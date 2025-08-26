@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/Home/OurClient.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1756135228247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756135240060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,9 @@\n   return (\r\n     <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n       <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n         <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n-              Partners <span className=\"text-primary\">Relevant</span> In\r\n-              The <span className=\"text-primary\">Market</span>.\r\n+              Partners Who <span className=\"text-primary\">Trust Us</span> \r\n             </h1>\r\n \r\n         <h2 className=\"text-4xl font-lora text-primaryTextColor mb-4 mt-2\">\r\n           Become Partner Who <span className=\"text-primary\"> Turst Us </span>\r\n"
+                },
+                {
+                    "date": 1756135248848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,8 @@\n         <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n               Partners Who <span className=\"text-primary\">Trust Us</span> \r\n             </h1>\r\n \r\n-        <h2 className=\"text-4xl font-lora text-primaryTextColor mb-4 mt-2\">\r\n-          Become Partner Who <span className=\"text-primary\"> Turst Us </span>\r\n-        </h2>\r\n         <div className=\"grid grid-cols-12 gap-2 py-7 px-8\">\r\n             <div className=\"col-start-3\"></div>\r\n             {\r\n                 partners.map((partner)=>{\r\n"
+                },
+                {
+                    "date": 1756135291159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+\"use client\"\r\n+import { partners } from \"@/data/data\";\r\n+import Image from \"next/image\";\r\n+import React from \"react\";\r\n+\r\n+const OurClient = () => {\r\n+  return (\r\n+    <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n+      <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n+        <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n+              Partners Who <span className=\"text-primary\">Trust Us</span> \r\n+            </h1>\r\n+\r\n+        <div className=\"grid grid-cols-12 gap-2 py-7 px-8 mt-10\">\r\n+            <div className=\"col-start-3\"></div>\r\n+            {\r\n+                partners.map((partner)=>{\r\n+                    return (\r\n+                        <div key={partner.id} className=\"\">\r\n+                            <Image priority={true}  src={partner.image} alt={`partner_${partner.id}`} width={70} height={40} className=\"object-contain shadow-lg cursor-pointer hover:scale-125 transition-all duration-500\"/>\r\n+                        </div>\r\n+                    )\r\n+                })\r\n+            }\r\n+        </div>\r\n+      \r\n+    \r\n+      </div>\r\n+    </section>\r\n+  );\r\n+};\r\n+\r\n+export default OurClient;\r\n"
+                }
+            ],
+            "date": 1756135228247,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\nimport { partners } from \"@/data/data\";\r\nimport Image from \"next/image\";\r\nimport React from \"react\";\r\n\r\nconst OurClient = () => {\r\n  return (\r\n    <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n      <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n        <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n              Partners <span className=\"text-primary\">Relevant</span> In\r\n              The <span className=\"text-primary\">Market</span>.\r\n            </h1>\r\n\r\n        <h2 className=\"text-4xl font-lora text-primaryTextColor mb-4 mt-2\">\r\n          Become Partner Who <span className=\"text-primary\"> Turst Us </span>\r\n        </h2>\r\n        <div className=\"grid grid-cols-12 gap-2 py-7 px-8\">\r\n            <div className=\"col-start-3\"></div>\r\n            {\r\n                partners.map((partner)=>{\r\n                    return (\r\n                        <div key={partner.id} className=\"\">\r\n                            <Image priority={true}  src={partner.image} alt={`partner_${partner.id}`} width={70} height={40} className=\"object-contain shadow-lg cursor-pointer hover:scale-125 transition-all duration-500\"/>\r\n                        </div>\r\n                    )\r\n                })\r\n            }\r\n        </div>\r\n      \r\n    \r\n      </div>\r\n    </section>\r\n  );\r\n};\r\n\r\nexport default OurClient;\r\n"
+        }
+    ]
+}

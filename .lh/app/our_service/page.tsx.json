@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/our_service/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756128949042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756128949042,
+            "name": "Commit-0",
+            "content": "import Heading from '@/components/Heading'\r\nimport OurClient from '@/components/Home/OurClient';\r\nimport WebsiteLayout from '@/components/layouts/WebsiteLayout';\r\nimport Features from '@/components/OurService/Features';\r\nimport HDSAction from '@/components/OurService/HDSAction';\r\nimport HDSDigital from '@/components/OurService/HDSDigital';\r\nimport HDSMedia from '@/components/OurService/HDSMedia';\r\nimport HDSStudio from '@/components/OurService/HDSStudio';\r\nimport HDSTalent from '@/components/OurService/HDSTalent';\r\nimport HeroSection from '@/components/OurService/HeroSection';\r\nimport React from 'react'\r\nexport const metadata = {\r\n  title: \"Our Service | HDS\",\r\n  description: \"Learn about our mission and team.\",\r\n};\r\nconst page = () => {\r\n  return (\r\n    <WebsiteLayout>\r\n    <section className='pt-14'>\r\n        <Heading title=\"Our Services\"/>\r\n        <HeroSection/>\r\n        <Features/>\r\n        <HDSMedia/>\r\n        <HDSTalent/>\r\n        <HDSStudio/>\r\n        <HDSDigital/>\r\n        <HDSAction/>\r\n        <OurClient/>\r\n    </section>\r\n    </WebsiteLayout>\r\n  )\r\n}\r\n\r\nexport default page"
+        }
+    ]
+}

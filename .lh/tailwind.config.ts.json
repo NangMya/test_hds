@@ -1,0 +1,18 @@
+{
+    "sourceFile": "tailwind.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756129636091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756129636091,
+            "name": "Commit-0",
+            "content": "// tailwind.config.js\nmodule.exports = {\n  content: [\n    './pages/**/*.{js,ts,jsx,tsx}',\n    './components/**/*.{js,ts,jsx,tsx}',\n    './app/**/*.{js,ts,jsx,tsx}', // Include the paths to your components and pages\n  ],\n  theme: {\n    extend: {\n      fontFamily: {\n        graphik: ['Graphik-Regular', 'sans-serif'],\n        lora: ['Lora-Regular', 'serif'],\n      },\n      colors: {\n        border:'#C9C8C8',\n        primary: \"#932E52\",\n        primaryLight:'#FFCBE0';\n        hr: \"#E7E7E7\",\n        cartBg:'#F8F8F8',\n        bg: '#EDF2F4',\n        primaryTextColor: '#1E344F',\n        textColor: '#18181B',\n        desc:'#6C768A',\n        secondaryBg:'#3A3A3C', //black\n        second:'#F15A22', //orange\n        third: '#552588', //purple\n        fourth: '#326B62', //dark green\n        fifth: '#B71E89',\n        dashboardBg: '#DEE5ED',\n      },\n    },\n  },\n  plugins: [],\n};\n"
+        }
+    ]
+}

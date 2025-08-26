@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/our_people/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756128961156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756128961156,
+            "name": "Commit-0",
+            "content": "import Heading from '@/components/Heading'\r\nimport Team from '@/components/Home/Team';\r\nimport WebsiteLayout from '@/components/layouts/WebsiteLayout';\r\nimport Department from '@/components/OurPeople/Department';\r\nimport FounderSection from '@/components/OurPeople/FounderSection';\r\nimport TeamActivity from '@/components/OurPeople/TeamActivity';\r\nimport TeamReward from '@/components/OurPeople/TeamReward';\r\nimport React from 'react'\r\nexport const metadata = {\r\n  title: \"Our People | HDS\",\r\n  description: \"Learn about our mission and team.\",\r\n};\r\nconst page = () => {\r\n  return (\r\n    <WebsiteLayout>  \r\n    <section className='py-14'>\r\n        <Heading title=\"Meet our talents\"/>\r\n        <FounderSection/>\r\n        <Team/>\r\n        <Department/>\r\n        <TeamReward/>\r\n        <TeamActivity/>\r\n    </section>\r\n    </WebsiteLayout>\r\n  )\r\n}\r\n\r\nexport default page"
+        }
+    ]
+}

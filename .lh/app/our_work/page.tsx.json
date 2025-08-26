@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/our_work/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756128955535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756128955535,
+            "name": "Commit-0",
+            "content": "import Heading from \"@/components/Heading\";\r\nimport WebsiteLayout from \"@/components/layouts/WebsiteLayout\";\r\nimport CaseStudy from \"@/components/OurWork/CaseStudy\";\r\nimport HeroSection from \"@/components/OurWork/HeroSection\";\r\nimport MeetingPoint from \"@/components/OurWork/MeetingPoint\";\r\nimport Image from \"next/image\";\r\nimport React from \"react\";\r\nexport const metadata = {\r\n  title: \"Our Work | HDS\",\r\n  description: \"Learn about our mission and team.\",\r\n};\r\nconst page = () => {\r\n  return (\r\n    <WebsiteLayout>\r\n      <section className=\"py-14 font-lora\">\r\n        <Heading title=\"Successful Works\" />\r\n        <HeroSection/>\r\n        <MeetingPoint />\r\n        <CaseStudy />\r\n      </section>\r\n    </WebsiteLayout>\r\n  );\r\n};\r\n\r\nexport default page;\r\n"
+        }
+    ]
+}
