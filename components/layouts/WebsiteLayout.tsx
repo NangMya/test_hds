@@ -29,13 +29,13 @@ const WebsiteLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <LanguageProvider>
+    <div className="min-h-screen flex flex-col ">
+      {/* <LanguageProvider> */}
         <ResponsiveNav />
         <main className="flex-1">{children}</main>
         <Footer />
         {/* <ScrollToTop /> */}
-      </LanguageProvider>
+      {/* </LanguageProvider> */}
     </div>
   );
 };

@@ -4,118 +4,153 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Carousel from "../Carousel";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import WavyCard2 from "../WavyCard2";
+import ImageModal from "../ImageModal";
 
+ type SlideProps = {
+  title: string;
+  subtitle: string;
+  image: string;
+  images: string[];
+};
+
+const slides = [
+  {
+    title: "Project Alpha",
+    subtitle: "A stunning portfolio piece.",
+    image: "/images/our_people/activity1.webp",
+    images: [
+      "/images/our_people/activity1.webp",
+      "/images/our_people/activity1.webp",
+      "/images/our_people/activity1.webp",
+    ],
+  },
+  {
+    title: "Project Beta",
+    subtitle: "Modern architecture design.",
+    image: "/images/our_people/activity2.webp",
+    images: [
+      "/images/our_people/activity2.webp",
+      "/images/our_people/activity1.webp",
+      "/images/our_people/activity1.webp",
+    ],
+  },
+  {
+    title: "Project Gamma",
+    subtitle: "Futuristic cityscapes.",
+    image: "/images/our_people/activity3.webp",
+    images: [
+      "/images/our_people/activity3.webp",
+      "/images/our_people/activity1.webp",
+      "/images/our_people/activity1.webp",
+    ],
+  },
+  {
+    title: "Project Alpha",
+    subtitle: "Futuristic cityscapes.",
+    image: "/images/our_people/activity3.webp",
+    images: [
+      "/images/our_people/activity3.webp",
+      "/images/our_people/activity1.webp",
+      "/images/our_people/activity1.webp",
+    ],
+  },
+];
 const TeamActivity = () => {
-  const slides = [
-    {
-      title: "March 2024",
-      subtitle: "Holiday Activities 1",
-      image: "/images/our_people/activity1.webp",
-      numbers: [3, 2, 1],
-    },
-    {
-      title: "Month 2024",
-      subtitle: "Team Football Match 2",
-      image: "/images/our_people/activity2.webp",
-      numbers: [],
-    },
-    {
-      title: "January 2024",
-      subtitle: "Company Anniversary 3",
-      image: "/images/our_people/activity3.webp",
-      numbers: [],
-    },
-    {
-      title: "December 2024",
-      subtitle: "Company Trip 4",
-      image: "/images/our_people/activity3.webp",
-      numbers: [],
-    },
-    {
-      title: "January 2025",
-      subtitle: "Company Anniversary 5",
-      image: "/images/our_people/activity3.webp",
-      numbers: [],
-    },
-  ];
-
+  
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slidesPerPage = 3;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+const [selectedSlide, setSelectedSlide] = useState<SlideProps | null>(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 5000); 
+    return () => clearInterval(interval);
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => 
-      prev >= slides.length - 1 ? 0 : prev + 1
+  const goToNext = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
     );
   };
-  
-  const nextSlide = () => {
-    setCurrentSlide((prev) => 
-      prev <= 0 ? slides.length - 1 : prev - 1
-    );
+ 
+  const openModal = (slide:SlideProps) => {
+    setSelectedSlide(slide);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedSlide(null);
   };
 
   const visibleSlides = [];
-  for (let i = 0; i < slidesPerPage; i++) {
-    const slideIndex = (currentSlide + i) % slides.length;
-    visibleSlides.push(slides[slideIndex]);
+  for (let i = 0; i < 3; i++) {
+    visibleSlides.push(slides[(currentSlide + i) % slides.length]);
   }
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       nextSlide();
-//     }, 5000);
-
-//     return () => clearInterval(interval);
-//   }, []);
   return (
-    <section className="relative overflow-hidden  min-h-[980px] bg-[url('/images/our_people/team_activity_bg.webp')] bg-no-repeat bg-center bg-cover z-0 ">
-      <div className="text-center pt-48 mb-12">
-        <p className="text-sm font-bold text-primary uppercase mb-4 pt-6">
-          Team Activities
-        </p>
-        <h2 className="text-4xl font-lora text-primaryTextColor mb-2">
-          Activities at <span className="text-primary">HDS Group</span>
-        </h2>
-      </div>
-      <div className="relative w-full max-w-6xl mx-auto overflow-hidden py-12">
-        <div className="flex transition-transform duration-500 ease-in-out">
-          {visibleSlides.map((slide, index) => (
-            <div
-              key={`${currentSlide}-${index}`}
-              className="w-1/3 flex-shrink-0 px-2 relative group"
-            >
-              <div className="relative h-80 overflow-hidden rounded-lg shadow-lg">
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/30"></div>
+    <section className=" overflow-hidden py-0 sm:py-16 md:py-1  z-0 mt-2">
+      <WavyCard2 color="#F2F0F4">
+        <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-16 h-full text-center">
+            <h2 className="text-center pt-[8rem] sm:pt-56 md:pt-48 mb-6 sm:mb-12 text-2xl sm:text-4xl font-lora text-primaryTextColor">
+              Our Happy Times
+            </h2>
+          <div className="relative w-full max-w-6xl mx-auto overflow-hidden py-2">
+            <div className="flex transition-transform duration-500 ease-in-out">
+              {visibleSlides.map((slide, index) => (
+                <div
+                  key={`${slide.title}-${index}`}
+                  className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2 relative group cursor-pointer"
+                  onClick={() => openModal(slide)}
+                >
+                  <div className="relative h-80 overflow-hidden rounded-lg shadow-lg">
+                    <Image
+                      src={slide.image}
+                      alt={slide.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
 
-                <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-center text-white">
-                  <h2 className="text-sm mb-2 drop-shadow-md">{slide.title}</h2>
-                  <p className="text-md font-medium mb-6 drop-shadow-md">
-                    {slide.subtitle}
-                  </p>
+                    <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-center text-white">
+                      <h2 className="text-sm mb-2 drop-shadow-md">
+                        {slide.title}
+                      </h2>
+                      <p className="text-md font-medium mb-6 drop-shadow-md">
+                        {slide.subtitle}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <button
-          onClick={prevSlide}
-          className="absolute bottom-0 right-0 hover:bg-white/80 text-gray-800 rounded-full p-2  "
-        >
-          <BsArrowRight size={20} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute bottom-0 right-12 hover:bg-white text-gray-800 rounded-full p-2  "
-        >
-          <BsArrowLeft size={20} />
-        </button>
-      </div>
+            {isModalOpen && (
+              <ImageModal slide={selectedSlide} onClose={closeModal} />
+            )}
+
+            <div className="pt-2 flex justify-end gap-4">
+              
+              <button
+                onClick={goToPrev}
+                className=" hover:bg-primary text-gray-800 rounded-full p-2 group "
+              >
+                <BsArrowLeft size={20} className="group-hover:text-white" />
+              </button>
+              <button
+                onClick={goToNext}
+                className=" hover:bg-primary text-gray-800 rounded-full p-2 group  "
+              >
+                <BsArrowRight size={20} className="group-hover:text-white" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </WavyCard2>
     </section>
   );
 };

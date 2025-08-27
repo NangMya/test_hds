@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/WaveCard1.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1756265530694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756265559110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,9 @@\n \"use client\";\r\n const WavyCard = ({ children }) => {\r\n   return (\r\n     <div className=\"relative w-96 h-64\">\r\n-      {/* This is the inline SVG. It's an element in your HTML.\r\n-        - `absolute inset-0`: Positions the SVG to cover the entire container.\r\n-        - `w-full h-full`: Makes the SVG take up the full width and height.\r\n-        - `viewBox`: Defines the coordinate system for the SVG.\r\n-        - `preserveAspectRatio=\"none\"`: Ensures the SVG scales to fit the container without maintaining its aspect ratio, which is crucial for this type of shape.\r\n-      */}\r\n+     \r\n       <svg\r\n         className=\"absolute inset-0 w-full h-full\"\r\n         viewBox=\"0 0 100 100\"\r\n         preserveAspectRatio=\"none\"\r\n"
+                },
+                {
+                    "date": 1756265633424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n \"use client\";\r\n-const WavyCard = ({ children }) => {\r\n+\r\n+type Props = {\r\n+    children: any\r\n+}\r\n+const WavyCard = ({ children }:Props) => {\r\n   return (\r\n     <div className=\"relative w-96 h-64\">\r\n      \r\n       <svg\r\n"
+                }
+            ],
+            "date": 1756265530694,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nconst WavyCard = ({ children }) => {\r\n  return (\r\n    <div className=\"relative w-96 h-64\">\r\n      {/* This is the inline SVG. It's an element in your HTML.\r\n        - `absolute inset-0`: Positions the SVG to cover the entire container.\r\n        - `w-full h-full`: Makes the SVG take up the full width and height.\r\n        - `viewBox`: Defines the coordinate system for the SVG.\r\n        - `preserveAspectRatio=\"none\"`: Ensures the SVG scales to fit the container without maintaining its aspect ratio, which is crucial for this type of shape.\r\n      */}\r\n      <svg\r\n        className=\"absolute inset-0 w-full h-full\"\r\n        viewBox=\"0 0 100 100\"\r\n        preserveAspectRatio=\"none\"\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n      >\r\n        <path\r\n          /* The `d` (path data) attribute is what defines the shape.\r\n            - `M0,0 L100,0 L100,85`: Draws a line from the top-left to the top-right, and then down to the right side of the wavy part.\r\n            - `C...`: The \"C\" commands are cubic Bezier curves that create the smooth, wavy effect at the bottom.\r\n            - `L0,0 Z`: Closes the path.\r\n\r\n            You can get this path data from a vector graphics program like Figma or Adobe Illustrator.\r\n          */\r\n          d=\"M0,0 L100,0 L100,85 C95,95 85,95 80,85 C75,95 65,95 60,85 C55,95 45,95 40,85 C35,95 25,95 20,85 C15,95 5,95 0,85 L0,0 Z\"\r\n          /* `fill` and `stroke` attributes can be set with CSS or Tailwind classes.\r\n            We use a Tailwind class `bg-white` and `border-2 border-blue-500` on the container,\r\n            but for the SVG you'll want to use the attributes directly for better control.\r\n          */\r\n          fill=\"#ffffff\" // White background color\r\n          stroke=\"#3b82f6\" // Blue border color\r\n          strokeWidth=\"1.5\"\r\n        />\r\n      </svg>\r\n\r\n      {/* This is the container for your content.\r\n        - `relative z-10`: Ensures the content appears above the SVG background.\r\n        - `p-4`: Adds padding around the content.\r\n      */}\r\n      <div className=\"relative z-10 p-4\">\r\n        {children}\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WavyCard;"
+        }
+    ]
+}

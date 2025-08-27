@@ -11,7 +11,7 @@ import { BsStarFill } from "react-icons/bs";
 const page = () => {
   return (
     <WebsiteLayout>
-      <section className="py-14">
+      <section className="pt-14">
         <Intro />
         <About />
         <OurStory />

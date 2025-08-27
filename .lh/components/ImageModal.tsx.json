@@ -1,0 +1,34 @@
+{
+    "sourceFile": "components/ImageModal.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1756278948377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756278982164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,11 @@\n 'use client';\r\n \r\n import { useEffect, useRef } from 'react';\r\n import Image from 'next/image';\r\n-type Props{\r\n-    \r\n+type Props = {\r\n+    slide: string,\r\n+    onClose:\r\n }\r\n const ImageModal = ({ slide, onClose }) => {\r\n   const modalRef = useRef();\r\n \r\n"
+                },
+                {
+                    "date": 1756279025535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,30 @@\n-// ImageModal.jsx\r\n-\r\n 'use client';\r\n \r\n-import { useEffect, useRef } from 'react';\r\n+import React, { useEffect, useRef } from 'react';\r\n import Image from 'next/image';\r\n-type Props = {\r\n-    slide: string,\r\n-    onClose:\r\n+\r\n+// Define the shape of a single slide item\r\n+interface SlideProps {\r\n+  title: string;\r\n+  subtitle: string;\r\n+  image: string;\r\n+  images: string[];\r\n }\r\n-const ImageModal = ({ slide, onClose }) => {\r\n-  const modalRef = useRef();\r\n \r\n+// Define the props for the ImageModal component\r\n+interface ImageModalProps {\r\n+  slide: SlideProps | null;\r\n+  onClose: () => void;\r\n+}\r\n+\r\n+const ImageModal: React.FC<ImageModalProps> = ({ slide, onClose }) => {\r\n+  const modalRef = useRef<HTMLDivElement>(null);\r\n+\r\n   // Close modal when clicking outside of it\r\n   useEffect(() => {\r\n-    const handleClickOutside = (event) => {\r\n-      if (modalRef.current && !modalRef.current.contains(event.target)) {\r\n+    const handleClickOutside = (event: MouseEvent) => {\r\n+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {\r\n         onClose();\r\n       }\r\n     };\r\n     document.addEventListener('mousedown', handleClickOutside);\r\n@@ -23,9 +32,11 @@\n       document.removeEventListener('mousedown', handleClickOutside);\r\n     };\r\n   }, [onClose]);\r\n \r\n-  if (!slide) return null;\r\n+  if (!slide) {\r\n+    return null;\r\n+  }\r\n \r\n   return (\r\n     <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4\">\r\n       <div \r\n"
+                },
+                {
+                    "date": 1756279033422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,15 @@\n \r\n import React, { useEffect, useRef } from 'react';\r\n import Image from 'next/image';\r\n \r\n-// Define the shape of a single slide item\r\n interface SlideProps {\r\n   title: string;\r\n   subtitle: string;\r\n   image: string;\r\n   images: string[];\r\n }\r\n \r\n-// Define the props for the ImageModal component\r\n interface ImageModalProps {\r\n   slide: SlideProps | null;\r\n   onClose: () => void;\r\n }\r\n"
+                },
+                {
+                    "date": 1756279062923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n \r\n const ImageModal: React.FC<ImageModalProps> = ({ slide, onClose }) => {\r\n   const modalRef = useRef<HTMLDivElement>(null);\r\n \r\n-  // Close modal when clicking outside of it\r\n   useEffect(() => {\r\n     const handleClickOutside = (event: MouseEvent) => {\r\n       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {\r\n         onClose();\r\n"
+                }
+            ],
+            "date": 1756278948377,
+            "name": "Commit-0",
+            "content": "// ImageModal.jsx\r\n\r\n'use client';\r\n\r\nimport { useEffect, useRef } from 'react';\r\nimport Image from 'next/image';\r\ntype Props{\r\n    \r\n}\r\nconst ImageModal = ({ slide, onClose }) => {\r\n  const modalRef = useRef();\r\n\r\n  // Close modal when clicking outside of it\r\n  useEffect(() => {\r\n    const handleClickOutside = (event) => {\r\n      if (modalRef.current && !modalRef.current.contains(event.target)) {\r\n        onClose();\r\n      }\r\n    };\r\n    document.addEventListener('mousedown', handleClickOutside);\r\n    return () => {\r\n      document.removeEventListener('mousedown', handleClickOutside);\r\n    };\r\n  }, [onClose]);\r\n\r\n  if (!slide) return null;\r\n\r\n  return (\r\n    <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4\">\r\n      <div \r\n        ref={modalRef} \r\n        className=\"bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95\"\r\n      >\r\n        <div className=\"p-6\">\r\n          <div className=\"flex justify-between items-center mb-4\">\r\n            <h2 className=\"text-2xl font-bold text-gray-800\">{slide.title}</h2>\r\n            <button \r\n              onClick={onClose} \r\n              className=\"text-gray-500 hover:text-gray-800 transition-colors\"\r\n            >\r\n              <svg xmlns=\"http://www.w3.org/2000/svg\" className=\"h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\r\n                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M6 18L18 6M6 6l12 12\" />\r\n              </svg>\r\n            </button>\r\n          </div>\r\n          <p className=\"text-gray-600 mb-6\">{slide.subtitle}</p>\r\n          \r\n          {/* Image Gallery */}\r\n          <div className=\"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4\">\r\n            {slide.images.map((imgSrc, index) => (\r\n              <div key={index} className=\"relative w-full h-48 rounded-lg overflow-hidden\">\r\n                <Image \r\n                  src={imgSrc} \r\n                  alt={`${slide.title} image ${index + 1}`} \r\n                  fill \r\n                  className=\"object-cover\" \r\n                />\r\n              </div>\r\n            ))}\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default ImageModal;"
+        }
+    ]
+}

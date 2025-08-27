@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/Home/Home.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756287801069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756287801069,
+            "name": "Commit-0",
+            "content": "\"use client\"\r\n\r\nimport React from 'react'\r\nimport Hero from './Hero'\r\nimport WhoWeAre from './WhoWeAre'\r\nimport WhatWeDo from './WhatWeDo'\r\nimport OurWork from './OurWork'\r\nimport Team from './Team'\r\nimport GetInTouch from './GetInTouch'\r\nimport JoinOurTeam from './JoinOurTeam'\r\nimport OurClient from './OurClient'\r\nimport WebsiteLayout from '../layouts/WebsiteLayout'\r\n\r\nconst Home = () => {\r\n  return (\r\n    \r\n  )\r\n}\r\n\r\nexport default Home"
+        }
+    ]
+}

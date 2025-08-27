@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/layouts/WebsiteLayout.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1756287928933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756287943220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     // };\r\n   }, []);\r\n \r\n   return (\r\n-    <div className=\"min-h-screen flex flex-col\">\r\n+    <div className=\"min-h-screen flex flex-col bg-green-200\">\r\n       {/* <LanguageProvider> */}\r\n         <ResponsiveNav />\r\n         <main className=\"flex-1\">{children}</main>\r\n         <Footer />\r\n"
+                },
+                {
+                    "date": 1756287967643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     // };\r\n   }, []);\r\n \r\n   return (\r\n-    <div className=\"min-h-screen flex flex-col bg-green-200\">\r\n+    <div className=\"min-h-screen flex flex-col \">\r\n       {/* <LanguageProvider> */}\r\n         <ResponsiveNav />\r\n         <main className=\"flex-1\">{children}</main>\r\n         <Footer />\r\n"
+                }
+            ],
+            "date": 1756287928932,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport { LanguageProvider } from \"@/context/LanguageContext\";\r\nimport Footer from \"../General/Footer/Footer\";\r\nimport ResponsiveNav from \"../General/Navbar/ResponsiveNav\";\r\nimport ScrollToTop from \"../Helper/ScrollToTop\";\r\nimport { useEffect } from \"react\";\r\n\r\nconst WebsiteLayout = ({ children }: { children: React.ReactNode }) => {\r\n  useEffect(() => {\r\n    const handleContextMenu = (e: MouseEvent) => {\r\n      e.preventDefault();\r\n    };\r\n    const handleKeyDown = (e: KeyboardEvent) => {\r\n      const blockedKeys = [\"F12\", \"I\", \"C\", \"U\"];\r\n      const isBlocked =\r\n        e.key === \"F12\" ||\r\n        (e.ctrlKey && e.shiftKey && blockedKeys.includes(e.key)) ||\r\n        (e.ctrlKey && e.key === \"U\");\r\n      if (isBlocked) {\r\n        e.preventDefault();\r\n      }\r\n    };\r\n    //   document.addEventListener(\"contextmenu\", handleContextMenu);\r\n    // window.addEventListener(\"keydown\", handleKeyDown);\r\n    //   return () => {\r\n    //   document.removeEventListener(\"contextmenu\", handleContextMenu);\r\n    //   window.removeEventListener(\"keydown\", handleKeyDown);\r\n    // };\r\n  }, []);\r\n\r\n  return (\r\n    <div className=\"min-h-screen flex flex-col\">\r\n      {/* <LanguageProvider> */}\r\n        <ResponsiveNav />\r\n        <main className=\"flex-1\">{children}</main>\r\n        <Footer />\r\n        {/* <ScrollToTop /> */}\r\n      {/* </LanguageProvider> */}\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WebsiteLayout;\r\n"
+        }
+    ]
+}

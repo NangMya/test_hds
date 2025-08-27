@@ -26,7 +26,9 @@ module.exports = {
         third: '#552588', //purple
         fourth: '#326B62', //dark green
         fifth: '#B71E89',
+        textLight: '#3F3B3B',
         dashboardBg: '#DEE5ED',
+
       },
     },
   },

@@ -113,7 +113,7 @@ export async function DELETE(req: Request, {params}: {params:{id: string}}){
     const {id} = params;
 
     try {
-        await prisma.applications.deleteMany({
+        await prisma.applicants.deleteMany({
             where: { job_id : Number(id) },
           });
         await prisma.jobs.delete({

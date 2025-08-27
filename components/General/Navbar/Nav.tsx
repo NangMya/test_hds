@@ -45,7 +45,7 @@ const Nav = ({ openNav, closeNav }: Props) => {
     {
       loading && <LoadingOverlay/>
     }
-      <div className="transition-all duration-200 h-14 z-[100] w-full fixed flex items-center">
+      <div className="transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow bg-transparent">
         <div className="flex flex-row items-center justify-between w-[90%] mx-auto">
           <Link href="/" prefetch={true} onClick={() => setLoading(true)}>
             <Image
@@ -81,9 +81,9 @@ const Nav = ({ openNav, closeNav }: Props) => {
         />
 
         <div
-          className={`fixed top-0 left-0 h-full bg-[#F6F6F6] w-[100%] md:w-[80%] grid grid-cols-2 transition-transform duration-500 ease-in-out z-[1050] ${navOpen}`}
+          className={`fixed top-0 left-0 h-full bg-[#F6F6F6] w-[100%] sm:w-[80%] grid grid-cols-1 sm:grid-cols-2 transition-transform duration-500 ease-in-out z-[1050] ${navOpen}`}
         >
-          <div className="flex items-center justify-center">
+          <div className=" items-center justify-center hidden sm:flex">
             <Image
               priority={true}
               src="/images/nav_image.webp"
@@ -94,13 +94,13 @@ const Nav = ({ openNav, closeNav }: Props) => {
             />
           </div>
 
-          <div className="relative flex flex-col justify-center p-6 text-gray-800">
+          <div className="relative flex flex-col justify-start sm:justify-center p-6 text-gray-800">
             <CgClose
               onClick={() => setOpenNavBar(false)}
               className="absolute top-4 right-6 w-8 h-8 text-black rounded-full border p-1 cursor-pointer"
             />
 
-            <nav className="space-y-6">
+            <nav className="space-y-6 mt-12 sm:mt-0">
               {navLinks.map((item) => (
                 <div key={item.id} className="border-b border-gray-300 pb-4">
                   <Link
@@ -143,7 +143,7 @@ const Nav = ({ openNav, closeNav }: Props) => {
                 </div>
               ))}
             </nav>
-            <div className="mt-10 flex gap-4 text-xl text-gray-700">
+            <div className="mt-10 flex gap-4 text-xl text-gray-700 absolute bottom-4 sm:relative">
               <Link href="#" prefetch={true} onClick={() => setLoading(true)}>
                 <FaLinkedin size={20} />
               </Link>

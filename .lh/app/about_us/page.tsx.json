@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/about_us/page.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1756288220849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1756288220848,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\nimport About from \"@/components/About/About\";\r\nimport Intro from \"@/components/About/Intro\";\r\nimport OurPrinciple from \"@/components/About/OurPrinciple\";\r\nimport OurStory from \"@/components/About/OurStory\";\r\nimport WebsiteLayout from \"@/components/layouts/WebsiteLayout\";\r\nimport Image from \"next/image\";\r\nimport React from \"react\";\r\nimport { BsStarFill } from \"react-icons/bs\";\r\n\r\nconst page = () => {\r\n  return (\r\n    <WebsiteLayout>\r\n      <section className=\"pt-14\">\r\n        <Intro />\r\n        <About />\r\n        <OurStory />\r\n        <OurPrinciple />\r\n      </section>\r\n    </WebsiteLayout>\r\n  );\r\n};\r\n\r\nexport default page;\r\n"
+        }
+    ]
+}

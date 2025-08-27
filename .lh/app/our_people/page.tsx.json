@@ -3,11 +3,39 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1756128961156,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756264320922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,31 @@\n-import Heading from '@/components/Heading'\r\n-import Team from '@/components/Home/Team';\r\n-import WebsiteLayout from '@/components/layouts/WebsiteLayout';\r\n-import Department from '@/components/OurPeople/Department';\r\n-import FounderSection from '@/components/OurPeople/FounderSection';\r\n-import TeamActivity from '@/components/OurPeople/TeamActivity';\r\n-import TeamReward from '@/components/OurPeople/TeamReward';\r\n-import React from 'react'\r\n+import Heading from \"@/components/Heading\";\r\n+import Team from \"@/components/Home/Team\";\r\n+import WebsiteLayout from \"@/components/layouts/WebsiteLayout\";\r\n+import Department from \"@/components/OurPeople/Department\";\r\n+import FounderSection from \"@/components/OurPeople/FounderSection\";\r\n+import TeamActivity from \"@/components/OurPeople/TeamActivity\";\r\n+import TeamReward from \"@/components/OurPeople/TeamReward\";\r\n+import React from \"react\";\r\n export const metadata = {\r\n   title: \"Our People | HDS\",\r\n   description: \"Learn about our mission and team.\",\r\n };\r\n const page = () => {\r\n   return (\r\n-    <WebsiteLayout>  \r\n-    <section className='py-14'>\r\n-        <Heading title=\"Meet our talents\"/>\r\n-        <FounderSection/>\r\n-        <Team/>\r\n-        <Department/>\r\n\\ No newline at end of file\n-        <TeamReward/>\r\n-        <TeamActivity/>\r\n-    </section>\r\n+    <WebsiteLayout>\r\n+      <section className=\"py-14\">\r\n+        <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n+          <h1 className=\"font-semibold text-7xl font-lora\">Meet <span>Our Team</span> </h1>\r\n+        </div>\r\n+        <Heading title=\"Meet our talents\" />\r\n+        <FounderSection />\r\n+        <Team />\r\n+        <Department />\r\n+        <TeamReward />\r\n+        <TeamActivity />\r\n+      </section>\r\n     </WebsiteLayout>\r\n-  )\r\n-}\r\n+  );\r\n+};\r\n \r\n-export default page\n+export default page;\r\n"
+                },
+                {
+                    "date": 1756264330090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   return (\r\n     <WebsiteLayout>\r\n       <section className=\"py-14\">\r\n         <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n-          <h1 className=\"font-semibold text-7xl font-lora\">Meet <span>Our Team</span> </h1>\r\n+          <h1 className=\"font-semibold text-7xl font-lora\">Meet <span className=\"text-primary\">Our Team</span> </h1>\r\n         </div>\r\n         <Heading title=\"Meet our talents\" />\r\n         <FounderSection />\r\n         <Team />\r\n"
+                },
+                {
+                    "date": 1756264343647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+import Team from \"@/components/Home/Team\";\r\n+import WebsiteLayout from \"@/components/layouts/WebsiteLayout\";\r\n+import Department from \"@/components/OurPeople/Department\";\r\n+import FounderSection from \"@/components/OurPeople/FounderSection\";\r\n+import TeamActivity from \"@/components/OurPeople/TeamActivity\";\r\n+import TeamReward from \"@/components/OurPeople/TeamReward\";\r\n+import React from \"react\";\r\n+export const metadata = {\r\n+  title: \"Our People | HDS\",\r\n+  description: \"Learn about our mission and team.\",\r\n+};\r\n+const page = () => {\r\n+  return (\r\n+    <WebsiteLayout>\r\n+      <section className=\"py-14\">\r\n+        <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n+          <h1 className=\"font-semibold text-7xl font-lora\">Meet <span className=\"text-primary\">Our Team</span> </h1>\r\n+        </div>\r\n+        <FounderSection />\r\n+        <Team />\r\n+        <Department />\r\n+        <TeamReward />\r\n+        <TeamActivity />\r\n+      </section>\r\n+    </WebsiteLayout>\r\n+  );\r\n+};\r\n+\r\n+export default page;\r\n"
+                },
+                {
+                    "date": 1756266346341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import Team from \"@/components/Home/Team\";\r\n import WebsiteLayout from \"@/components/layouts/WebsiteLayout\";\r\n import Department from \"@/components/OurPeople/Department\";\r\n import FounderSection from \"@/components/OurPeople/FounderSection\";\r\n+import MeetTheTeam from \"@/components/OurPeople/MeetTheTeam\";\r\n import TeamActivity from \"@/components/OurPeople/TeamActivity\";\r\n import TeamReward from \"@/components/OurPeople/TeamReward\";\r\n import React from \"react\";\r\n export const metadata = {\r\n@@ -16,9 +17,9 @@\n         <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n           <h1 className=\"font-semibold text-7xl font-lora\">Meet <span className=\"text-primary\">Our Team</span> </h1>\r\n         </div>\r\n         <FounderSection />\r\n-        <Team />\r\n+        <MeetTheTeam />\r\n         <Department />\r\n         <TeamReward />\r\n         <TeamActivity />\r\n       </section>\r\n"
+                },
+                {
+                    "date": 1756266351425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import FounderSection from \"@/components/OurPeople/FounderSection\";\r\n import MeetTheTeam from \"@/components/OurPeople/MeetTheTeam\";\r\n import TeamActivity from \"@/components/OurPeople/TeamActivity\";\r\n import TeamReward from \"@/components/OurPeople/TeamReward\";\r\n-import React from \"react\";\r\n export const metadata = {\r\n   title: \"Our People | HDS\",\r\n   description: \"Learn about our mission and team.\",\r\n };\r\n"
+                },
+                {
+                    "date": 1756279691229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n };\r\n const page = () => {\r\n   return (\r\n     <WebsiteLayout>\r\n-      <section className=\"py-14\">\r\n+      <section className=\"pt-14 pb-2\">\r\n         <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n           <h1 className=\"font-semibold text-7xl font-lora\">Meet <span className=\"text-primary\">Our Team</span> </h1>\r\n         </div>\r\n         <FounderSection />\r\n"
+                },
+                {
+                    "date": 1756279831008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,8 @@\n const page = () => {\r\n   return (\r\n     <WebsiteLayout>\r\n       <section className=\"pt-14 pb-2\">\r\n-        <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n-          <h1 className=\"font-semibold text-7xl font-lora\">Meet <span className=\"text-primary\">Our Team</span> </h1>\r\n-        </div>\r\n         <FounderSection />\r\n         <MeetTheTeam />\r\n         <Department />\r\n         <TeamReward />\r\n"
                 }
             ],
             "date": 1756128961156,
