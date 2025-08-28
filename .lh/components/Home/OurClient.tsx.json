@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1756135228247,
@@ -20,6 +20,22 @@
                 {
                     "date": 1756135291159,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,33 @@\n+\"use client\"\r\n+import { partners } from \"@/data/data\";\r\n+import Image from \"next/image\";\r\n+import React from \"react\";\r\n+\r\n+const OurClient = () => {\r\n+  return (\r\n+    <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n+      <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n+        <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n+              Partners Who <span className=\"text-primary\">Trust Us</span> \r\n+            </h1>\r\n+\r\n+        <div className=\"grid grid-cols-12 gap-2 py-7 px-8 mt-10\">\r\n+            <div className=\"col-start-3\"></div>\r\n+            {\r\n+                partners.map((partner)=>{\r\n+                    return (\r\n+                        <div key={partner.id} className=\"\">\r\n+                            <Image priority={true}  src={partner.image} alt={`partner_${partner.id}`} width={70} height={40} className=\"object-contain shadow-lg cursor-pointer hover:scale-125 transition-all duration-500\"/>\r\n+                        </div>\r\n+                    )\r\n+                })\r\n+            }\r\n+        </div>\r\n+      \r\n+    \r\n+      </div>\r\n+    </section>\r\n+  );\r\n+};\r\n+\r\n+export default OurClient;\r\n"
+                },
+                {
+                    "date": 1756355814004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,37 +30,4 @@\n   );\r\n };\r\n \r\n export default OurClient;\r\n-\"use client\"\r\n-import { partners } from \"@/data/data\";\r\n-import Image from \"next/image\";\r\n-import React from \"react\";\r\n-\r\n-const OurClient = () => {\r\n-  return (\r\n-    <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n-      <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n-        <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n-              Partners Who <span className=\"text-primary\">Trust Us</span> \r\n-            </h1>\r\n-\r\n-        <div className=\"grid grid-cols-12 gap-2 py-7 px-8\">\r\n-            <div className=\"col-start-3\"></div>\r\n-            {\r\n-                partners.map((partner)=>{\r\n-                    return (\r\n-                        <div key={partner.id} className=\"\">\r\n-                            <Image priority={true}  src={partner.image} alt={`partner_${partner.id}`} width={70} height={40} className=\"object-contain shadow-lg cursor-pointer hover:scale-125 transition-all duration-500\"/>\r\n-                        </div>\r\n-                    )\r\n-                })\r\n-            }\r\n-        </div>\r\n-      \r\n-    \r\n-      </div>\r\n-    </section>\r\n-  );\r\n-};\r\n-\r\n-export default OurClient;\r\n"
+                },
+                {
+                    "date": 1756365530204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import React from \"react\";\r\n \r\n const OurClient = () => {\r\n   return (\r\n-    <section className=\" min-h-[500px] md:min-h-[660px] overflow-x-hidden px-4\">\r\n+    <section className=\" min-h-[400px] sm:min-h-[660px] overflow-x-hidden px-4\">\r\n       <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n         <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n               Partners Who <span className=\"text-primary\">Trust Us</span> \r\n             </h1>\r\n"
+                },
+                {
+                    "date": 1756365562678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n         <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n               Partners Who <span className=\"text-primary\">Trust Us</span> \r\n             </h1>\r\n \r\n-        <div className=\"grid grid-cols-12 gap-2 py-7 px-8 mt-2 sm:mt-10\">\r\n+        <div className=\"grid grid-cols-12 gap-2 pysm:py-7 px-8 mt-2 sm:mt-10\">\r\n             <div className=\"col-start-3\"></div>\r\n             {\r\n                 partners.map((partner)=>{\r\n                     return (\r\n"
+                },
+                {
+                    "date": 1756365580751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n const OurClient = () => {\r\n   return (\r\n     <section className=\" min-h-[400px] sm:min-h-[660px] overflow-x-hidden px-4\">\r\n-      <div className=\"relative pt-10 flex flex-col justify-center text-center\">\r\n+      <div className=\"relative pt-0 sm:pt-10 flex flex-col justify-center text-center\">\r\n         <h1 className=\"text-3xl md:text-5xl font-normal leading-snug font-lora\">\r\n               Partners Who <span className=\"text-primary\">Trust Us</span> \r\n             </h1>\r\n \r\n"
                 }
             ],
             "date": 1756135228247,

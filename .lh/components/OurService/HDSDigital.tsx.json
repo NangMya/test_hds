@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/OurService/HDSDigital.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1756355305015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756355319802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,14 @@\n \r\n import Image from \"next/image\";\r\n import React from \"react\";\r\n import { PiShoppingBagFill } from \"react-icons/pi\";\r\n+import WavyCard3 from \"../WavyCard3\";\r\n \r\n const HDSDigital = () => {\r\n   return (\r\n  <section className=\"font-lora relative overflow-hidden w-full z-30 -mt-36  \">\r\n-      <WavyCard3 color=\"#326B62\">\r\n+      <WavyCard3 color=\"#90264C\">\r\n               <div className=\"bg-white w-24 h-24 rounded-full p-1 mx-auto mb-4 mt-8\">\r\n         <Image\r\n           src=\"/images/our_service/hds_digital.webp\"\r\n           width={100}\r\n"
+                },
+                {
+                    "date": 1756355374986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,11 @@\n             alt=\"HDS Media\"\r\n             className=\"object-contain rounded-full\"\r\n           />\r\n         </div>\r\n+          <h3 className=\"text-lg text-white text-center\">\r\n+          Production & Design\r\n+        </h3>\r\n         <p className=\"text-white py-4 text-md max-w-sm mx-auto text-center\">\r\n           Digital Media Google Ad, local website partnerships, social media page\r\n           management, community management.\r\n         </p>\r\n"
+                },
+                {
+                    "date": 1756355392885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,14 +18,10 @@\n             className=\"object-contain rounded-full\"\r\n           />\r\n         </div>\r\n           <h3 className=\"text-lg text-white text-center\">\r\n-          Production & Design\r\n+          Digital Media\r\n         </h3>\r\n-        <p className=\"text-white py-4 text-md max-w-sm mx-auto text-center\">\r\n-          Digital Media Google Ad, local website partnerships, social media page\r\n-          management, community management.\r\n-        </p>\r\n         <div className=\"grid grid-cols-2 gap-8 mt-10 w-[90%] mx-auto\">\r\n           <div className=\"px-8\">\r\n             <div className=\"flex flex-row gap-2 justify-start items-center mb-4\">\r\n               <span className=\"w-6 h-6 bg-white rounded-full text-primary flex justify-center items-center\">\r\n"
+                }
+            ],
+            "date": 1756355305015,
+            "name": "Commit-0",
+            "content": "\"use client\";\r\n\r\nimport Image from \"next/image\";\r\nimport React from \"react\";\r\nimport { PiShoppingBagFill } from \"react-icons/pi\";\r\n\r\nconst HDSDigital = () => {\r\n  return (\r\n <section className=\"font-lora relative overflow-hidden w-full z-30 -mt-36  \">\r\n      <WavyCard3 color=\"#326B62\">\r\n              <div className=\"bg-white w-24 h-24 rounded-full p-1 mx-auto mb-4 mt-8\">\r\n        <Image\r\n          src=\"/images/our_service/hds_digital.webp\"\r\n          width={100}\r\n          height={100}\r\n          alt=\"HDS Media\"\r\n          className=\"object-contain rounded-full\"\r\n        />\r\n      </div>\r\n      <p className=\"text-white py-4 text-md max-w-sm mx-auto text-center\">\r\n        Digital Media Google Ad, local website partnerships, social media page\r\n        management, community management.\r\n      </p>\r\n      <div className=\"grid grid-cols-2 gap-8 mt-10 w-[90%] mx-auto\">\r\n        <div className=\"px-8\">\r\n          <div className=\"flex flex-row gap-2 justify-start items-center mb-4\">\r\n            <span className=\"w-6 h-6 bg-white rounded-full text-primary flex justify-center items-center\">\r\n              <PiShoppingBagFill />\r\n            </span>\r\n            <p className=\"text-white text-sm\">HDS Media</p>\r\n          </div>\r\n          <p className=\"text-white text-xs py-2 opacity-65 text-left leading-6\">\r\n            Your Partner in digital success We aim to unlock your Brand's\r\n            potential across digital platforms.\r\n          </p>\r\n          <p className=\"text-white text-xs py-2 opacity-65 text-left leading-6\">\r\n            We craft innovative campaigns across multiple channels to make sure\r\n            we reach the right audiences.\r\n          </p>\r\n        </div>\r\n        <div className=\"px-8\">\r\n          <div className=\"flex flex-row gap-2 justify-start items-center mb-4\">\r\n            <span className=\"w-6 h-6 bg-white rounded-full text-primary flex justify-center items-center\">\r\n              <PiShoppingBagFill />\r\n            </span>\r\n            <p className=\"text-white text-sm\">Social Media Content</p>\r\n          </div>\r\n          <p className=\"text-white text-xs py-2 opacity-65 text-left leading-6\">\r\n            We provide valuable and cool contents that drives relationship\r\n            between your brand and your consumers.\r\n          </p>\r\n        </div>\r\n      </div>\r\n      <Image\r\n        src=\"/images/our_service/image4.webp\"\r\n        width={250}\r\n        height={300}\r\n        alt=\"HDS Talent Image\"\r\n        className=\"object-contain rounded-full absolute -bottom-10 left-0 z-20\"\r\n      />\r\n      </WavyCard3>\r\n    </section>\r\n  );\r\n};\r\n\r\nexport default HDSDigital;\r\n"
+        }
+    ]
+}

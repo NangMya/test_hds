@@ -3,50 +3,43 @@
 import Image from "next/image";
 import React from "react";
 import { PiShoppingBagFill } from "react-icons/pi";
+import WavyCard3 from "../WavyCard3";
 
 const HDSTalent = () => {
   return (
-    <section className="font-lora relative overflow-hidden py-6 md:py-10 min-h-[700px] md:min-h-[800px] bg-[url('/images/our_service/talent_bg.webp')]  bg-no-repeat bg-center bg-cover -mt-36">
-      <div className="bg-white w-24 h-24 rounded-full p-1 mx-auto mb-4 mt-10">
-        <Image
-          src="/images/our_service/hds_talent.webp"
-          width={100}
-          height={100}
-          alt="HDS Media"
-          className="object-contain rounded-full"
-        />
-      </div>
-      <p className="text-white text-center py-4 text-md max-w-sm mx-auto">
-        KOL/Influencer Management Mega, Macro, Micro, Nano talents for
-        endorsement or content development.
-      </p>
-      <div className="px-8 max-w-6xl mx-auto pt-8">
-        <div className="flex flex-row gap-2 justify-start items-center mb-4">
-          <span className="w-6 h-6 bg-white text-second rounded-full flex justify-center items-center">
-            <PiShoppingBagFill />
-          </span>
-          <p className="text-white text-sm">Our Media</p>
+    <div className="relative">
+    <section className="font-lora relative overflow-hidden py-6 md:py-0 w-full z-10 -mt-36 items-center justify-center ">
+      <WavyCard3 color="#F15A22">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
+          <Image
+            src="/images/our_service/hds_talent.webp"
+            width={100}
+            height={100}
+            alt="HDS Media"
+            className="object-contain rounded-full w-full h-full"
+          />
         </div>
-        <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
-        A new, prevailing channel to connect Brands and Audiences. We collaborate creatively with influencers who can engage and influence our audience.
-        </p>
-      </div>
 
-      <Image
-          src="/images/our_service/image1.webp"
-          width={300}
-          height={300}
-          alt="HDS Talent Image"
-          className="object-contain rounded-full absolute bottom-0 right-0 z-20"
-        />
-        <Image
-          src="/images/our_service/image2.webp"
-          width={300}
-          height={300}
-          alt="HDS Talent Image"
-          className="object-contain rounded-full absolute bottom-0 left-0 z-20"
-        />
+        <h3 className="text-lg text-white text-center">
+          KOL/Influencer Management
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6">
+            We collaborate with the right influencers to deliver authentic and
+            engaging content that boosts trust and turns followers into
+            customers.{" "}
+          </p>
+          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6">
+            Our approach is focused on selection of the right KOLs that
+            resonates with brands and their audiences, who can drive results,
+            and deliver engagement.
+          </p>
+        </div>
+      </WavyCard3>
+     
     </section>
+      
+    </div>
   );
 };
 

@@ -3,11 +3,27 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1756128949042,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756348688632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n const page = () => {\r\n   return (\r\n     <WebsiteLayout>\r\n     <section className='pt-14'>\r\n-        <Heading title=\"Our Services\"/>\r\n+        <Heading firstWord=\"Our \" secondWord=\"Services\"/>\r\n         <HeroSection/>\r\n         <Features/>\r\n         <HDSMedia/>\r\n         <HDSTalent/>\r\n"
+                },
+                {
+                    "date": 1756348706984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n const page = () => {\r\n   return (\r\n     <WebsiteLayout>\r\n     <section className='pt-14'>\r\n-        <Heading firstWord=\"Our \" secondWord=\"Services\"/>\r\n+        <Heading title=\"Our \" title2=\"Services\"/>\r\n         <HeroSection/>\r\n         <Features/>\r\n         <HDSMedia/>\r\n         <HDSTalent/>\r\n"
+                },
+                {
+                    "date": 1756348728308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n const page = () => {\r\n   return (\r\n     <WebsiteLayout>\r\n     <section className='pt-14'>\r\n-        <Heading title=\"Our \" title2=\"Services\"/>\r\n+        <Heading firstTitle=\"Our \" secondTitle=\"Services\"/>\r\n         <HeroSection/>\r\n         <Features/>\r\n         <HDSMedia/>\r\n         <HDSTalent/>\r\n"
+                },
+                {
+                    "date": 1756348847187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   return (\r\n     <WebsiteLayout>\r\n     <section className='pt-14'>\r\n         <Heading firstTitle=\"Our \" secondTitle=\"Services\"/>\r\n-        <HeroSection/>\r\n+        {/* <HeroSection/> */}\r\n         <Features/>\r\n         <HDSMedia/>\r\n         <HDSTalent/>\r\n         <HDSStudio/>\r\n"
                 }
             ],
             "date": 1756128949042,

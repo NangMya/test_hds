@@ -6,57 +6,47 @@ import { PiShoppingBagFill } from "react-icons/pi";
 
 const HDSMedia = () => {
   return (
-    <section className="relative text-center items-center justify-center bg-[#552588] py-16 font-lora">
+    <section className="relative text-center items-center justify-center bg-third py-16 font-lora">
       <Image
-        src="/images/our_service/hold_prize.webp"
+        src="/images/common/team_award_1.png"
         alt="image"
-        width={400}
-        height={400}
-        className="object-contain absolute -top-[30%] right-0"
+        width={280}
+        height={280}
+        className="object-contain absolute -top-[10%] sm:-top-[20%] right-0 sm:left-0 w-44 h-44 sm:w-64 sm:h-64 scale-x-[-1] sm:scale-x-0"
       />
-      <Image priority={true}  src="/images/our_service/talent_image.webp" alt="image" width={300} height={300} className="object-contain absolute -bottom-[10%] left-0 z-20"/>
-      <div className="bg-white w-24 h-24 rounded-full p-1 mx-auto mb-4">
+      <Image priority={true}  src="/images/our_service/talent_image.webp" alt="image" width={300} height={300} className="object-contain absolute bottom-10 sm:-bottom-[10%] left-0 z-20 w-40 h-40 sm:w-80 sm:h-80"/>
+      
+      <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
         <Image
           src="/images/our_service/hds_media.webp"
           width={100}
           height={100}
           alt="HDS Media"
-          className="object-contain rounded-full"
+          className="object-contain rounded-full w-full h-full"
         />
       </div>
-      <p className="text-white py-4 text-md max-w-sm mx-auto">
-        ATL Media, PR Management Pre and post planning and buying TV, Radio,
-        OOH, Cinema, PR event srt-up, press invite, PR tracking.
-      </p>
-      <div className="grid grid-cols-2 gap-8 mt-10 w-[90%] mx-auto pb-44">
-        <div className="px-8">
-          <div className="flex flex-row gap-2 justify-start items-center mb-4">
+      <h3 className="text-md sm:text-lg text-white">ATL Media</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-8 mt-2 sm:mt-10 w-full sm:w-[90%] mx-auto pb-28 sm:pb-44 pt-4 sm:pt-8">
+        <div className="px-8 pb-6 sm:pb-0">
+          <div className="flex flex-row gap-2 justify-start items-center mb-0 sm:mb-4">
             <span className="w-6 h-6 bg-white rounded-full text-third flex justify-center items-center">
               <PiShoppingBagFill />
             </span>
-            <p className="text-white text-sm">Our Media</p>
+            <p className="text-white text-sm">PR Management</p>
           </div>
           <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
-            Our data-driven approach, with accurate reporting from our data
-            sources CMM and Kantar, ensures transparency and accountability.
-          </p>
-          <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
-            Beyond traditional advertising, we have also spearheaded the
-            creation of TV programs across entertainment, sports, and live
-            events, which solidifies our stronghold in the industry.
+            From setting up your PR strategy to tracking performance, we manage every step with precision - delivering impactful stories that boost brand credibility through targeted media coverage.
           </p>
         </div>
-        <div className="px-8">
-          <div className="flex flex-row gap-2 justify-start items-center mb-4">
+        <div className="px-8 pb-6 sm:pb-0">
+          <div className="flex flex-row gap-2 justify-start items-center mb-0 sm:mb-4">
             <span className="w-6 h-6 bg-white rounded-full text-third flex justify-center items-center">
               <PiShoppingBagFill />
             </span>
-            <p className="text-white text-sm">Our PR Management Specialist</p>
+            <p className="text-white text-sm">ATL Media</p>
           </div>
           <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
-            We offer top-tier PR management with a passion for crafting
-            compelling narratives that drive positive brand and product brand
-            and product recognition supported by strategic media coverage.
+            We optimise brand exposure through strategic placements on TV, redio, billboards, and digital platforms. Ideal for creating strong brand awareness and credibility.
           </p>
         </div>
       </div>

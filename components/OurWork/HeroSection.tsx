@@ -5,7 +5,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className=" py-16 flex justify-between items-center">
+    <section className=" pt-16 pb-0 flex justify-between items-center">
       <Image
         src="/images/our_work/hold_trophy.webp"
         alt="Woman with trophy"
@@ -30,12 +30,6 @@ const HeroSection = () => {
             <p className="text-6xl font-bold py-4 ">95%</p>
             <p className="text-sm text-gray-500">Satisfied clients</p>
           </div>
-        </div>
-        <div className="text-center pt-10">
-          <p className="text-primary uppercase text-xs font-bold pb-2">
-            Featured Works
-          </p>
-          <h1 className="text-4xl">Our Recent Projects</h1>
         </div>
       </div>
       <Image

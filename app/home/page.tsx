@@ -13,7 +13,7 @@ import React from 'react'
 const HomePage = () => {
   return (
    <WebsiteLayout>
-    <section className="py-14">
+    <section className="">
         <Hero/>
         {/* <WhoWeAre/>
         <WhatWeDo/>

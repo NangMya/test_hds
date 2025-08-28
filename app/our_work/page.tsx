@@ -13,7 +13,7 @@ const page = () => {
   return (
     <WebsiteLayout>
       <section className="py-14 font-lora">
-        <Heading title="Successful Works" />
+        <Heading firstTitle="Successful " secondTitle="Works" />
         <HeroSection/>
         <MeetingPoint />
         <CaseStudy />

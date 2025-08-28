@@ -17,8 +17,8 @@ const page = () => {
   return (
     <WebsiteLayout>
     <section className='pt-14'>
-        <Heading title="Our Services"/>
-        <HeroSection/>
+        <Heading firstTitle="Our " secondTitle="Services"/>
+        {/* <HeroSection/> */}
         <Features/>
         <HDSMedia/>
         <HDSTalent/>

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1756129178702,
@@ -76,6 +76,14 @@
                 {
                     "date": 1756288681155,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     <>\r\n     {\r\n       loading && <LoadingOverlay/>\r\n     }\r\n-      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow\">\r\n+      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow bg-transparent\">\r\n         <div className=\"flex flex-row items-center justify-between w-[90%] mx-auto\">\r\n           <Link href=\"/\" prefetch={true} onClick={() => setLoading(true)}>\r\n             <Image\r\n               priority={true}\r\n"
+                },
+                {
+                    "date": 1756348359403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     <>\r\n     {\r\n       loading && <LoadingOverlay/>\r\n     }\r\n-      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow bg-transparent\">\r\n+      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center scroll:border-b-[1px] shadow bg-transparent\">\r\n         <div className=\"flex flex-row items-center justify-between w-[90%] mx-auto\">\r\n           <Link href=\"/\" prefetch={true} onClick={() => setLoading(true)}>\r\n             <Image\r\n               priority={true}\r\n"
+                },
+                {
+                    "date": 1756348371640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     <>\r\n     {\r\n       loading && <LoadingOverlay/>\r\n     }\r\n-      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center scroll:border-b-[1px] shadow bg-transparent\">\r\n+      <div className=\"transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow bg-transparent\">\r\n         <div className=\"flex flex-row items-center justify-between w-[90%] mx-auto\">\r\n           <Link href=\"/\" prefetch={true} onClick={() => setLoading(true)}>\r\n             <Image\r\n               priority={true}\r\n"
                 }
             ],
             "date": 1756129178702,

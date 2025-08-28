@@ -3,11 +3,27 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1756264276538,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756348748672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n \"use client\"\r\n import React from 'react'\r\n \r\n type Props ={\r\n-    title:string\r\n+    firstTitle:string,\r\n+    secondTitle: string,\r\n }\r\n \r\n-const Heading = ({title}:Props) => {\r\n+const Heading = ({firstTitle,secondTitle}:Props) => {\r\n   return (\r\n     <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n         <h1 className=\"font-semibold text-7xl font-lora\">{title}</h1>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1756348782158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,19 @@\n-\"use client\"\r\n-import React from 'react'\r\n+\"use client\";\r\n+import React from \"react\";\r\n \r\n-type Props ={\r\n-    firstTitle:string,\r\n-    secondTitle: string,\r\n-}\r\n+type Props = {\r\n+  firstTitle: string;\r\n+  secondTitle: string;\r\n+};\r\n \r\n-const Heading = ({firstTitle,secondTitle}:Props) => {\r\n+const Heading = ({ firstTitle, secondTitle }: Props) => {\r\n   return (\r\n\\ No newline at end of file\n-    <div className=\"py-7 border-t-border  border-b-[1px] border-b-border w-full text-center\">\r\n-        <h1 className=\"font-semibold text-7xl font-lora\">{title}</h1>\r\n+    <div className=\" py-7 border-b-border w-full text-center \">\r\n+      <h1 className=\" font-lora text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center\">\r\n+        {firstTitle} <span className=\"text-primary\">{secondTitle}</span>\r\n+      </h1>\r\n     </div>\r\n-  )\r\n-}\r\n+  );\r\n+};\r\n \r\n-export default Heading\n+export default Heading;\r\n"
+                },
+                {
+                    "date": 1756348809896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n };\r\n \r\n const Heading = ({ firstTitle, secondTitle }: Props) => {\r\n   return (\r\n-    <div className=\" py-7 border-b-border w-full text-center \">\r\n+    <div className=\" py-7 border-b-[1px] border-b-border w-full text-center \">\r\n       <h1 className=\" font-lora text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center\">\r\n         {firstTitle} <span className=\"text-primary\">{secondTitle}</span>\r\n       </h1>\r\n     </div>\r\n"
+                },
+                {
+                    "date": 1756356927930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,5 +15,5 @@\n     </div>\r\n   );\r\n };\r\n \r\n-export default Heading;\n\\ No newline at end of file\n+export default Heading;\r\n"
                 }
             ],
             "date": 1756264276538,
