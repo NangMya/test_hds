@@ -15,7 +15,8 @@ const HomePage = () => {
    <WebsiteLayout>
     <section className="">
         <Hero/>
-        {/* <WhoWeAre/>
+        <WhoWeAre/>
+        {/*
         <WhatWeDo/>
         <OurWork/>
         <Team/>

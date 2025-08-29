@@ -41,22 +41,22 @@ const MeetTheTeam = () => {
           <h2 className="font-lora text-primaryTextColor text-3xl sm:text-5xl  font-normal sm:pt-0 text-left">
             Meet The <span className="text-primary">Team</span>
           </h2>
-          <div className="grid grid-cols-3 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-2 gap-0 sm:gap-4">
             <div className="flex flex-col relative">
-              <div className="mt-8 lg:mt-16">
+              <div className="mt-8 lg:mt-16 xs:block">
                 <Image
                   src="/images/our_people/meet_the_team.png"
                   alt="3D running character"
                   width={300}
                   height={300}
-                  className="h-auto w-full max-w-md lg:max-w-md absolute bottom-10 sm:-bottom-4 -left-20 scale-[200%] sm:scale-100"
+                  className="h-auto w-full max-w-md lg:max-w-md absolute bottom-10 sm:-bottom-4 -left-10 sm:-left-20 scale-[200%] sm:scale-100"
                 />
                 <Image
                   src="/images/home/team/heart.webp"
                   alt="3D running character"
                   width={10}
                   height={10}
-                  className="w-8 max-w-md lg:max-w-md absolute top-32 left-20 scale-[200%] block sm:hidden"
+                  className="w-8 max-w-md lg:max-w-md absolute top-32 left-12 sm:left-20 scale-[200%] block sm:hidden"
                 />
               </div>
             </div>

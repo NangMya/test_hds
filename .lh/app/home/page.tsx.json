@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1756287838963,
@@ -20,6 +20,10 @@
                 {
                     "date": 1756348284090,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \r\n const HomePage = () => {\r\n   return (\r\n    <WebsiteLayout>\r\n-    <section className=\"py-14\">\r\n+    <section className=\"\">\r\n         <Hero/>\r\n         {/* <WhoWeAre/>\r\n         <WhatWeDo/>\r\n         <OurWork/>\r\n"
+                },
+                {
+                    "date": 1756444957291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n   return (\r\n    <WebsiteLayout>\r\n     <section className=\"\">\r\n         <Hero/>\r\n-        {/* <WhoWeAre/>\r\n+        <WhoWeAre/>\r\n+        {/*\r\n         <WhatWeDo/>\r\n         <OurWork/>\r\n         <Team/>\r\n         <OurClient/>\r\n"
                 }
             ],
             "date": 1756287838963,

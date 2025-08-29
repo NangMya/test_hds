@@ -74,10 +74,10 @@ const MeetingPoint = () => {
   }, []);
 
   return (
-    <section className=" overflow-hidden py-8 sm:py-16 md:py-1  z-0 mt-2 ">
+    <section className=" overflow-hidden py-4 sm:py-16 md:py-1  z-0 mt-2 ">
       <WavyCard1>
         <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-16 h-full text-center pt-0 sm:pt-10">
-          <h1 className="text-4xl text-center">Our Recent Projects</h1>
+          <h1 className="text-2xl sm:text-4xl text-center">Our Recent Projects</h1>
           <div className="flex flex-col items-center justify-center w-full h-full mt-10 font-sans">
             <div className="relative w-full max-w-6xl flex justify-center items-center h-64 sm:h-72 md:h-80">
               {slides.map((slide, index) => {
@@ -113,14 +113,13 @@ const MeetingPoint = () => {
                 }
 
                 const cardStyle = `
-                    absolute inset-0 mx-auto w-80 h-full overflow-hidden transition-all duration-500 ease-in-out
+                    absolute inset-0 mx-auto w-52 sm:w-80 h-full overflow-hidden transition-all duration-500 ease-in-out
                     bg-white transform ${shadow} ${rounded}
                   `;
 
                 return (
-                  <div className="">
+                  <div className="" key={slide.id}>
                   <div
-                    key={slide.id}
                     className={cardStyle}
                     style={{
                       transform: transformStyle,
@@ -148,10 +147,10 @@ const MeetingPoint = () => {
 
             {currentSlide && (
               <div className="mt-6 text-center z-10">
-                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                   {currentSlide.title}
                 </h2>
-                <p className="text-lg text-gray-600">{currentSlide.subtitle}</p>
+                <p className="text-md sm:text-lg text-gray-600">{currentSlide.subtitle}</p>
               </div>
             )}
 

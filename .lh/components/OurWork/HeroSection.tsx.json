@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1756376243314,
@@ -16,6 +16,26 @@
                 {
                     "date": 1756376389590,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import React from \"react\";\r\n \r\n const HeroSection = () => {\r\n   return (\r\n-    <section className=\" pt-16 pb-4 flex justify-between items-center\">\r\n+    <section className=\" pt-16 pb-0 flex justify-between items-center\">\r\n       <Image\r\n         src=\"/images/our_work/hold_trophy.webp\"\r\n         alt=\"Woman with trophy\"\r\n         width={150}\r\n"
+                },
+                {
+                    "date": 1756441751694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,18 +12,18 @@\n         width={150}\r\n         height={150}\r\n       />\r\n       <div>\r\n-        <div className=\"grid grid-cols-4 gap-12\">\r\n+        <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12\">\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n             <p className=\"text-6xl font-bold py-4 \">20+</p>\r\n             <p className=\"text-sm text-gray-500\">Successful works</p>\r\n           </div>\r\n-          <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n+          <div className=\" border-t-2 border-t-black mb-4 text-center hidden sm:block\">\r\n             <p className=\"text-6xl font-bold py-4 \">7+</p>\r\n             <p className=\"text-sm text-gray-500\">Case Studies</p>\r\n           </div>\r\n-          <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n+          <div className=\" border-t-2 border-t-black mb-4 text-center hidden sm:block\">\r\n             <p className=\"text-6xl font-bold py-4 \">5+</p>\r\n             <p className=\"text-sm text-gray-500\">Service provide</p>\r\n           </div>\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n"
+                },
+                {
+                    "date": 1756441773945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n         src=\"/images/our_work/hold_trophy.webp\"\r\n         alt=\"Woman with trophy\"\r\n         width={150}\r\n         height={150}\r\n+        className=\"hidden sm:block\"\r\n       />\r\n       <div>\r\n         <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12\">\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n@@ -36,8 +37,9 @@\n         src=\"/images/our_work/painting.webp\"\r\n         alt=\"Man painting\"\r\n         width={170}\r\n         height={170}\r\n+        className=\"hidden sm:block\"\r\n       />\r\n     </section>\r\n   );\r\n };\r\n"
+                },
+                {
+                    "date": 1756441800144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,21 +15,21 @@\n       />\r\n       <div>\r\n         <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12\">\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n-            <p className=\"text-6xl font-bold py-4 \">20+</p>\r\n+            <p className=\"text-4xl sm:text-6xl font-bold py-4 \">20+</p>\r\n             <p className=\"text-sm text-gray-500\">Successful works</p>\r\n           </div>\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center hidden sm:block\">\r\n-            <p className=\"text-6xl font-bold py-4 \">7+</p>\r\n+            <p className=\"text-4xl sm:text-6xl font-bold py-4 \">7+</p>\r\n             <p className=\"text-sm text-gray-500\">Case Studies</p>\r\n           </div>\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center hidden sm:block\">\r\n-            <p className=\"text-6xl font-bold py-4 \">5+</p>\r\n+            <p className=\"text-4xl sm:text-6xl font-bold py-4 \">5+</p>\r\n             <p className=\"text-sm text-gray-500\">Service provide</p>\r\n           </div>\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n-            <p className=\"text-6xl font-bold py-4 \">95%</p>\r\n+            <p className=\"text-4xl sm:text-6xl font-bold py-4 \">95%</p>\r\n             <p className=\"text-sm text-gray-500\">Satisfied clients</p>\r\n           </div>\r\n         </div>\r\n       </div>\r\n"
+                },
+                {
+                    "date": 1756442244947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n         height={150}\r\n         className=\"hidden sm:block\"\r\n       />\r\n       <div>\r\n-        <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12\">\r\n+        <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12 items-center\">\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n             <p className=\"text-4xl sm:text-6xl font-bold py-4 \">20+</p>\r\n             <p className=\"text-sm text-gray-500\">Successful works</p>\r\n           </div>\r\n"
+                },
+                {
+                    "date": 1756442282713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,18 +4,18 @@\n import React from \"react\";\r\n \r\n const HeroSection = () => {\r\n   return (\r\n-    <section className=\" pt-16 pb-0 flex justify-between items-center\">\r\n+    <section className=\" pt-16 pb-0 flex justify-center sm:justify-between items-center\">\r\n       <Image\r\n         src=\"/images/our_work/hold_trophy.webp\"\r\n         alt=\"Woman with trophy\"\r\n         width={150}\r\n         height={150}\r\n         className=\"hidden sm:block\"\r\n       />\r\n       <div>\r\n-        <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12 items-center\">\r\n+        <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-12\">\r\n           <div className=\" border-t-2 border-t-black mb-4 text-center\">\r\n             <p className=\"text-4xl sm:text-6xl font-bold py-4 \">20+</p>\r\n             <p className=\"text-sm text-gray-500\">Successful works</p>\r\n           </div>\r\n"
                 }
             ],
             "date": 1756376243314,

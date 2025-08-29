@@ -5,39 +5,97 @@ import React, { useState, useEffect, useRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { BsArrowUpRight } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa6";
-const imageData = [
-  { id: 1, title: 'Boompay', subtitle: 'App development project', imageUrl: 'https://placehold.co/400x800/8B5CF6/ffffff?text=Boompay' },
-  { id: 2, title: 'Graphic Design Mentorship', subtitle: 'Two days to go', imageUrl: 'https://placehold.co/400x800/F97316/ffffff?text=Design+Mentorship' },
-  { id: 3, title: 'Creative Works', subtitle: 'by team', imageUrl: 'https://placehold.co/400x800/EC4899/ffffff?text=Creative+Works' },
-  { id: 4, title: 'Team Projects', subtitle: 'Our Latest Work', imageUrl: 'https://placehold.co/400x800/10B981/ffffff?text=Team+Projects' },
-  { id: 5, title: 'Product Launch', subtitle: 'New Products', imageUrl: 'https://placehold.co/400x800/EF4444/ffffff?text=Product+Launch' },
-  { id: 6, title: 'Product Launch 6', subtitle: 'New Products', imageUrl: 'https://placehold.co/400x800/EF4444/ffffff?text=Product+Launch' },
-  { id: 7, title: 'Product Launch 7', subtitle: 'New Products', imageUrl: 'https://placehold.co/400x800/EF4444/ffffff?text=Product+Launch' },
-];
 
 const CaseStudy = () => {
-  const [activeImageId, setActiveImageId] = useState(imageData[0].id);
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState('HDS Media');
+  function useIsLargeScreen() {
+    const [isLarge, setIsLarge] = useState(false);
 
-  // Use a ref to store a map of image elements.
-  // We'll map each item's ID to its DOM element.
-  const imageRefs = useRef<Record<number, HTMLDivElement | null>>({});
+    useEffect(() => {
+      const handleResize = () => {
+        setIsLarge(window.innerWidth >= 1024); // `lg` breakpoint is 1024px by default
+      };
 
-  // Effect to scroll the active image into view.
+      // Set initial value
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return isLarge;
+  }
+  const [items, setItems] = useState([
+    {
+      id: 1,
+      title: "Card 1",
+      subtitle: "Subtitle 1",
+      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
+    },
+    {
+      id: 2,
+      title: "Card 2",
+      subtitle: "Subtitle 2",
+      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
+    },
+    {
+      id: 3,
+      title: "Card 3",
+      subtitle: "Subtitle 3",
+      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
+    },
+    {
+      id: 4,
+      title: "Card 4",
+      subtitle: "Subtitle 4",
+      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
+    },
+    {
+      id: 5,
+      title: "Card 5",
+      subtitle: "Subtitle 5",
+      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
+    },
+  ]);
+
+  const isLargeScreen = useIsLargeScreen();
+
+  // Decide which items to display based on screen size
+  const itemsToDisplay = isLargeScreen ? items : items.slice(0, 2);
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    // Check if the ref for the active image exists.
-    const activeImageElement = imageRefs.current[activeImageId];
-    if (activeImageElement) {
-      activeImageElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
-    }
-  }, [activeImageId]);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  useEffect(() => {
+    setItems(items.slice(0, isMobile ? 2 : 4));
+  }, [isMobile]);
+
+  // Function to handle moving the first item to the last position
+  const handleNext = () => {
+    setItems((currentItems) => {
+      // Get the first item
+      const [first, ...rest] = currentItems;
+      // Return a new array with the first item moved to the end
+      return [...rest, first];
+    });
+  };
+  // Function to handle moving the last item to the first position
+  const handlePrev = () => {
+    setItems((currentItems) => {
+      // Get the last item
+      const last = currentItems[currentItems.length - 1];
+      const rest = currentItems.slice(0, currentItems.length - 1);
+      return [last, ...rest];
+    });
+  };
+
   return (
-    <div className="bg-white px-6 py-10 grid grid-cols-5 min-h-[300px] max-h-[500px] mb-10">
-      <div className="col-span-2 px-12">
+    <div className="bg-white px-2 sm:px-6 py-0 sm:py-4 md:py-10 grid grid-cols-1 sm:grid-cols-5 min-h-[300px] max-h-[500px] mb-4 sm:mb-10">
+      <div className="col-span-1 sm:col-span-2 px-2 sm:px-12">
         <div className="flex flex-col justify-between h-full">
           <div>
             <p>Similar Case Studies</p>
@@ -47,119 +105,66 @@ const CaseStudy = () => {
           </div>
           <div>
             <FaArrowRight size={35} className="-rotate-45" />
-            <h1 className="font-lora font-semibold text-4xl py-4 ">
+            <h1 className="font-lora font-semibold text-xl sm:text-4xl py-4 ">
               Successful works <br /> by our team.
             </h1>
           </div>
         </div>
       </div>
-      <div className="col-span-3 p-0">
-        <div className="mt-8 md:mt-0 md:flex w-full bg-green-200">
+      <div className="col-span-1 sm:col-span-3 p-0">
+        <div className="flex justify-center items-center font-inter">
+          <div className="relative w-full">
+            <div className="flex items-center justify-center space-x-1 sm:space-x-2">
+              {itemsToDisplay.map((item, index) => {
+                const isFirst = index === 0;
 
-          <div
-            className="flex overflow-x-hidden overflow-y-hidden
-                     scrollbar-hide md:overflow-y-hidden snap-x snap-mandatory"
-          >
-
-            {imageData.map((item) => {
-              const isActive = item.id === activeImageId;
-              const cardClasses = `
-              relative
-              ${isActive ? 'w-80 h-[28rem] z-20 scale-100' : 'w-60 h-[28rem] z-10 scale-90'}
-              rounded-3xl overflow-hidden
-              shadow-lg transform transition-all duration-500
-              hover:scale-105 cursor-pointer
-              snap-center
-              ${!isActive ? 'grayscale hover:grayscale-0 rotate-0' : 'rotate-0'}
+                const cardClasses = `
+              relative shrink-0 transition-all duration-500 ease-in-out transform rounded-3xl overflow-hidden shadow-xl cursor-pointer
+               h-64 z-10
+              ${isFirst ? "w-52" : "w-1/3 grayscale hover:grayscale-0"}
+                            lg:w-32 lg:w-40 lg:h-80
+              ${
+                isFirst
+                  ? "lg:w-full lg:max-w-xs lg:z-20 lg:grayscale-0 lg:hover:grayscale-0"
+                  : "lg:z-10"
+              }
             `;
 
-              return (
-                <div
-                  key={item.id}
-                  // Assign a ref to each individual element
-                  // ref={(el: HTMLDivElement | null) => (imageRefs.current[item.id] = el)}
-
-                  className={cardClasses}
-                  onClick={() => setActiveImageId(item.id)}
-                >
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-
-                  <div className="absolute bottom-6 left-6 text-white text-sm font-sans">
-                    <p className="font-medium">{item.title}</p>
-                    <p className="text-xs text-gray-300">{item.subtitle}</p>
+                return (
+                  <div
+                    key={item.id}
+                    className={cardClasses}
+                    onClick={() => {
+                      setItems((currentItems) => {
+                        const clickedIndex = currentItems.findIndex(
+                          (i) => i.id === item.id
+                        );
+                        if (clickedIndex === 0) return currentItems;
+                        const newItems = [...currentItems];
+                        const [clickedItem] = newItems.splice(clickedIndex, 1);
+                        newItems.unshift(clickedItem);
+                        return newItems;
+                      });
+                    }}
+                  >
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6 text-white text-sm font-sans">
+                      <p className="font-semibold text-lg">{item.title}</p>
+                      <p className="text-gray-300">{item.subtitle}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 
 export default CaseStudy;
-// <div className="bg-white px-6 py-10 grid grid-cols-5 min-h-[300px] max-h-[500px] mb-10">
-//   <div className="col-span-2 px-12">
-//     <div className="flex flex-col justify-between h-full">
-//       <div>
-//         <p>Similar Case Studies</p>
-//         <select className="border rounded-3xl px-4 py-2 focus:outline-none hover:outline-none my-4 cursor-pointer">
-//           <option value="hds_media">HDS Media</option>
-//         </select>
-//       </div>
-//       <div>
-//         <FaArrowRight size={35} className="-rotate-45" />
-//         <h1 className="font-lora font-semibold text-4xl py-4 ">
-//           Successful works <br /> by our team.
-//         </h1>
-//       </div>
-//     </div>
-//   </div>
-//   <div className="col-span-3 p-4">
-//     <div className="flex gap-4 w-full">
-//       <div className="w-[40%] border rounded-3xl">
-//         <Image
-//           src="/images/our_work/image1.webp"
-//           width={100}
-//           height={50}
-//           className="w-full h-[440px] object-cover rounded-3xl"
-//           alt="Img1"
-//         />
-//       </div>
-//       <div className="w-[30%] border rounded-3xl">
-//         <Image
-//           src="/images/our_work/image2.webp"
-//           width={100}
-//           height={50}
-//           className="w-full h-[440px] object-cover rounded-3xl"
-//           alt="Img1"
-//         />
-//       </div>
-//       <div className="w-[20%] border rounded-3xl">
-//         <Image
-//           src="/images/our_work/image3.webp"
-//           width={100}
-//           height={50}
-//           className="w-full h-[440px] object-cover rounded-3xl"
-//           alt="Img1"
-//         />
-//       </div>
-//       <div className="w-[10%] border rounded-3xl">
-//         <Image
-//           src="/images/our_work/image4.webp"
-//           width={100}
-//           height={50}
-//           className="w-full h-[440px] object-cover rounded-3xl"
-//           alt="Img1"
-//         />
-//       </div>
-//     </div>
-//   </div>
-// </div>

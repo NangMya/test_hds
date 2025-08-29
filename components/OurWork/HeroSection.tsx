@@ -5,29 +5,30 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className=" pt-16 pb-0 flex justify-between items-center">
+    <section className=" pt-16 pb-0 flex justify-center sm:justify-between items-center">
       <Image
         src="/images/our_work/hold_trophy.webp"
         alt="Woman with trophy"
         width={150}
         height={150}
+        className="hidden sm:block"
       />
       <div>
-        <div className="grid grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-12">
           <div className=" border-t-2 border-t-black mb-4 text-center">
-            <p className="text-6xl font-bold py-4 ">20+</p>
+            <p className="text-4xl sm:text-6xl font-bold py-4 ">20+</p>
             <p className="text-sm text-gray-500">Successful works</p>
           </div>
-          <div className=" border-t-2 border-t-black mb-4 text-center">
-            <p className="text-6xl font-bold py-4 ">7+</p>
+          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block">
+            <p className="text-4xl sm:text-6xl font-bold py-4 ">7+</p>
             <p className="text-sm text-gray-500">Case Studies</p>
           </div>
-          <div className=" border-t-2 border-t-black mb-4 text-center">
-            <p className="text-6xl font-bold py-4 ">5+</p>
+          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block">
+            <p className="text-4xl sm:text-6xl font-bold py-4 ">5+</p>
             <p className="text-sm text-gray-500">Service provide</p>
           </div>
           <div className=" border-t-2 border-t-black mb-4 text-center">
-            <p className="text-6xl font-bold py-4 ">95%</p>
+            <p className="text-4xl sm:text-6xl font-bold py-4 ">95%</p>
             <p className="text-sm text-gray-500">Satisfied clients</p>
           </div>
         </div>
@@ -37,6 +38,7 @@ const HeroSection = () => {
         alt="Man painting"
         width={170}
         height={170}
+        className="hidden sm:block"
       />
     </section>
   );
