@@ -8,12 +8,12 @@ import Container from "../Container";
 
 const OurWork = () => {
   return (
-    <section className="relative overflow-hidden py-6 md:py-16 min-h-[850px] z-10">
+    <section className="relative overflow-hidden py-6 md:py-16 min-h-[500px] sm:min-h-[850px] z-10">
       <Container>
         <Image
           src="/images/home/our_work_bg.webp"
           alt="bg"
-          className="absolute top-0 left-0 w-screen h-full"
+          className="absolute top-0 left-0 w-screen h-full "
           width={2000}
           height={500}
           quality={100}
@@ -22,13 +22,13 @@ const OurWork = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end">
-            <div className="mb-6 md:mb-0 text-center w-full py-10">
-              <h2 className="text-3xl md:text-5xl font-normal font-lora text-primaryTextColor mb-10 md:mb-10 mt-12 sm:mt-6 md:mt-6">
+            <div className=" mb-2 sm:mb-6 md:mb-0 text-center w-full py-4 sm:py-10">
+              <h2 className="text-3xl sm:text-5xl font-normal font-lora text-primaryTextColor mb-2 sm:mb-10 mt-2 sm:mt-6 md:mt-6">
                 Our <span className="text-primary">Works</span>{" "}
               </h2>
 
-              <div className="w-full mx-auto mt-12">
-                <div className="grid grid-rows-3 grid-cols-4 gap-4 mx-auto px-0 pb-10">
+              <div className="w-full mx-auto mt-6 sm:mt-12">
+                <div className="grid grid-rows-3 grid-cols-4 gap-2 sm:gap-4 mx-auto px-0 pb-2 sm:pb-10">
                   <div className="col-span-2 row-span-2 bg-white rounded-3xl shadow-md relative">
                     <Image
                       src="/images/home/works/1.webp"

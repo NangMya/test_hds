@@ -1,11 +1,13 @@
 import React from 'react'
-interface ContainerProps{
-    children: React.ReactNode,
+interface ContainerProps {
+  children: React.ReactNode,
 }
-const Container:React.FC<ContainerProps> = ({children}) => {
+const Container: React.FC<ContainerProps> = ({ children }) => {
   return (
-    <div className="w-[85%] sm:w-[90%] md:w-[85%] lg:w-[85%] xl:w-[85%] mx-auto">
-        {children}
+    <div className="w-[95%] sm:w-[90%] md:w-[90%] lg:w-[85%] xl:w-[85%] mx-auto">
+
+      {/* <div className="w-[85%] sm:w-[90%] md:w-[85%] lg:w-[85%] xl:w-[85%] mx-auto"> */}
+      {children}
     </div>
   )
 }

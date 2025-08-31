@@ -8,6 +8,7 @@ import Team from '@/components/Home/Team'
 import WhatWeDo from '@/components/Home/WhatWeDo'
 import WhoWeAre from '@/components/Home/WhoWeAre'
 import WebsiteLayout from '@/components/layouts/WebsiteLayout'
+import MeetTheTeam from '@/components/OurPeople/MeetTheTeam'
 import React from 'react'
 
 const HomePage = () => {
@@ -16,13 +17,14 @@ const HomePage = () => {
     <section className="">
         <Hero/>
         <WhoWeAre/>
-        {/*
         <WhatWeDo/>
-        <OurWork/>
-        <Team/>
+        <OurWork/>  
+        <MeetTheTeam/>
+        {/* <Team/> */}
         <OurClient/>
         <GetInTouch/>
-        <JoinOurTeam/> */}
+        <JoinOurTeam/> 
+        
     </section>
     </WebsiteLayout>
   )

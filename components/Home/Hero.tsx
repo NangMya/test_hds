@@ -18,7 +18,7 @@ const Hero = () => {
   // const { t } = useLanguage();
 
   return (
-    <div className=" w-full  h-[100vh]  bg-[url('/images/home/hero_bg.webp')] bg-cover bg-no-repeat bg-center z-10 pt-14">
+    <div className=" w-full  h-[100vh]  bg-[url('/images/home/hero_bg.webp')] bg-cover bg-no-repeat bg-center z-10 sm:pt-14">
       <div className="relative w-full flex items-center h-full ">
         <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-25"></div>
         {/* <h1 className="text-5xl">{t.greeting}</h1> */}

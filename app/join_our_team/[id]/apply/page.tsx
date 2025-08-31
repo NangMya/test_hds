@@ -153,12 +153,12 @@ const page = () => {
   };
   return (
     <WebsiteLayout>
-      <section className="pt-12 w-[90%] mx-auto font-lora px-6 relative">
+      <section className="pt-12 w-full sm:w-[90%] mx-auto font-lora px-10 sm:px-6 relative">
         {loading && <LoadingOverlay />}
         <JobTitle />
-        <div className="py-6">
-          <div className="grid grid-cols-3 gap-8">
-            <div className="col-span-2">
+        <div className="pt-6 pb-48 sm:pt-6 sm:pb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="col-span-1 sm:col-span-2">
               <h1 className="text-3xl mb-4">Apply Now</h1>
               <p className="opacity-80 text-sm">
                 Design and produce high-quality graphics, illustrations, and
@@ -170,7 +170,7 @@ const page = () => {
                 onSubmit={handleApply}
                 encType="multipart/form-data"
               >
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 sm:gap-4">
                   <div className="mb-2">
                     <input
                       type="text"
@@ -210,6 +210,7 @@ const page = () => {
                 </div>
                 <div className="mb-2">
                   <textarea
+                    name="address"
                     rows={5}
                     placeholder="Address / City"
                     value={applicant.address}
@@ -334,7 +335,7 @@ const page = () => {
               </form>
             </div>
             <div className="">
-              <h1 className="text-3xl mb-4">Other Job</h1>
+              <h1 className="text-3xl mb-6 sm:mb-4">Other Job</h1>
               <div className="flex justify-between">
                 <div>
                   <h1 className="font-medium">UI/UX Designer</h1>
@@ -378,7 +379,7 @@ const page = () => {
           alt="image"
           width={400}
           height={400}
-          className="absolute -bottom-52 -right-28 -z-20"
+          className="absolute -bottom-32 -right-0 sm:-bottom-52 sm:-right-28 -z-20 w-60 sm:w-96 "
         />
       </section>
     </WebsiteLayout>

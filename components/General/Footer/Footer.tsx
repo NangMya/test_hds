@@ -48,7 +48,7 @@ const Footer = () => {
                   <Link
                     href="/about_us"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     Who we are
@@ -56,7 +56,7 @@ const Footer = () => {
                   <Link
                     href="/our_service"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     What we do
@@ -64,7 +64,7 @@ const Footer = () => {
                   <Link
                     href="/our_work"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     Our work
@@ -72,7 +72,7 @@ const Footer = () => {
                   <Link
                     href="/our_people"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     Our people
@@ -80,7 +80,7 @@ const Footer = () => {
                   <Link
                     href="/contact"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     Get in touch
@@ -88,7 +88,7 @@ const Footer = () => {
                   <Link
                     href="/join_our_team"
                     prefetch={true}
-                    className="text-sm py-2 cursor-pointer hover:text-primary"
+                    className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                     onClick={() => setLoading(true)}
                   >
                     Join our team
@@ -99,7 +99,7 @@ const Footer = () => {
                     <Link
                       href="#"
                       prefetch={true}
-                      className="text-sm py-2 cursor-pointer hover:text-primary"
+                      className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                       onClick={() => setLoading(true)}
                     >
                       Privacy Policy
@@ -107,7 +107,7 @@ const Footer = () => {
                     <Link
                       href="#"
                       prefetch={true}
-                      className="text-sm py-2 cursor-pointer hover:text-primary"
+                      className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                       onClick={() => setLoading(true)}
                     >
                       Cookie Policy
@@ -115,7 +115,7 @@ const Footer = () => {
                     <Link
                       href="#"
                       prefetch={true}
-                      className="text-sm py-2 cursor-pointer hover:text-primary"
+                      className="text-xs sm:text-sm py-2 cursor-pointer hover:text-primary"
                       onClick={() => setLoading(true)}
                     >
                       Terms & Conditions
