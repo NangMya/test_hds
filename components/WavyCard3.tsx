@@ -6,7 +6,7 @@ type Props = {
 };
 const WavyCard3 = ({ children, color }: Props) => {
   return (
-    <div className=" w-full h-auto min-h-[500px] sm:min-h-[600px]  overflow-hidden">
+    <div className=" w-full h-auto min-h-[500px] sm:min-h-[720px]  overflow-hidden">
       <svg
         className="absolute inset-0 -z-10 w-full h-[600px] sm:h-full"
         viewBox="0 0 2354 1100"

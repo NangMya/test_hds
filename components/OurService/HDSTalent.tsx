@@ -7,10 +7,10 @@ import WavyCard3 from "../WavyCard3";
 
 const HDSTalent = () => {
   return (
-    <div className="relative">
+    <div id="hds_talent" className="relative">
     <section className="font-lora relative overflow-hidden py-6 md:py-0 w-full z-10 -mt-36 items-center justify-center ">
       <WavyCard3 color="#F15A22">
-        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-0 sm:mt-16">
           <Image
             src="/images/our_service/hds_talent.webp"
             width={100}

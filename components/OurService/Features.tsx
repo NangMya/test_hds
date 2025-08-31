@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import Container from "../Container";
+import Link from "next/link";
 
 const Features = () => {
   return (
@@ -31,13 +32,15 @@ const Features = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-between relativ items-start pt-4">
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-4 text-left ">
             <div>
-              <Image
-                priority={true}
-                src="/images/home/hds_media.webp"
-                width={50}
-                height={50}
-                alt="HDS Media"
-              />
+              <Link href="/our_service#hds_media">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_media.webp"
+                  width={50}
+                  height={50}
+                  alt="HDS Media"
+                />
+              </Link>
               <h5 className="font-medium text-sm sm:text-md">ATL Media</h5>
               <p className="opacity-50 text-[10px] sm:text-xs leading-5">
                 Planning and Buying TV, Radio, OOH, Cinema, etc.
@@ -50,14 +53,16 @@ const Features = () => {
               </p>
             </div>
             <div>
-              <Image
-                priority={true}
-                src="/images/home/hds_digital.webp"
-                width={60}
-                height={60}
-                alt="HDS Digital"
-              />
+              <Link href="/our_service#hds_digital">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_digital.webp"
+                  width={60}
+                  height={60}
+                  alt="HDS Digital"
+                />
 
+              </Link>
               <h5 className=" font-medium text-sm sm:text-md pt-2">
                 Digital Media
               </h5>
@@ -69,13 +74,15 @@ const Features = () => {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-0 text-left items-center ">
             <div className="block sm:hidden">
-              <Image
-                priority={true}
-                src="/images/home/hds_talent.webp"
-                width={60}
-                height={60}
-                alt="HDS Talent"
-              />
+              <Link href="/our_service#hds_talent">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_talent.webp"
+                  width={60}
+                  height={60}
+                  alt="HDS Talent"
+                />
+              </Link>
 
               <h5 className=" font-medium text-sm sm:text-md pt-2">
                 KOL/Influencer Management
@@ -110,13 +117,15 @@ const Features = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-4 text-left  ">
             <div className="hidden sm:block">
-              <Image
-                priority={true}
-                src="/images/home/hds_talent.webp"
-                width={60}
-                height={60}
-                alt="HDS Talent"
-              />
+              <Link href="/our_service#hds_talent">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_talent.webp"
+                  width={60}
+                  height={60}
+                  alt="HDS Talent"
+                />
+              </Link>
 
               <h5 className=" font-medium text-sm sm:text-md pt-2">
                 KOL/Influencer Management
@@ -128,13 +137,15 @@ const Features = () => {
             </div>
 
             <div>
-              <Image
-                priority={true}
-                src="/images/home/hds_action.webp"
-                width={60}
-                height={60}
-                alt="HDS Action"
-              />
+              <Link href="/our_service#hds_action">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_action.webp"
+                  width={60}
+                  height={60}
+                  alt="HDS Action"
+                />
+              </Link>
 
               <h5 className=" font-medium text-sm sm:text-md pt-2">
                 Below The Line
@@ -145,13 +156,16 @@ const Features = () => {
               </p>
             </div>
             <div>
-              <Image
-                priority={true}
-                src="/images/home/hds_studio.webp"
-                width={60}
-                height={60}
-                alt="HDS Studio"
-              />
+              <Link href="/our_service#hds_studio">
+                <Image
+                  priority={true}
+                  src="/images/home/hds_studio.webp"
+                  width={60}
+                  height={60}
+                  alt="HDS Studio"
+                />
+              </Link>
+
 
               <h5 className=" font-medium text-sm sm:text-md pt-2">
                 Production & Design

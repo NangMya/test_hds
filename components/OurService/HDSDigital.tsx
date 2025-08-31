@@ -7,7 +7,7 @@ import WavyCard3 from "../WavyCard3";
 
 const HDSDigital = () => {
   return (
-    <div className="relative">
+    <div id="hds_digital" className="relative">
       <Image
         src="/images/our_service/image3.webp"
         width={250}
@@ -24,7 +24,7 @@ const HDSDigital = () => {
       />
       <section className="font-lora relative overflow-hidden w-full z-30 -mt-36  pb-10 sm:pb-0">
         <WavyCard3 color="#90264C">
-          <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-4 mt-8">
+          <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-4 mt-6 sm:mt-16">
             <Image
               src="/images/our_service/hds_digital.webp"
               width={100}

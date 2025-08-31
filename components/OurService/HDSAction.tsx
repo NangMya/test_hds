@@ -7,9 +7,9 @@ import WavyCard3 from "../WavyCard3";
 
 const HDSAction = () => {
   return (
-    <section className="font-lora relative overflow-hidden w-full z-40 -mt-36  ">
+    <section id="hds_action" className="font-lora relative overflow-hidden w-full z-40 -mt-36  ">
       <WavyCard3 color="#B71E89">
-        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-4 sm:mt-16">
           <Image
             src="/images/our_service/hds_action.webp"
             width={100}

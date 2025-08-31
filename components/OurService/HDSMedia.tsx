@@ -6,7 +6,7 @@ import { PiShoppingBagFill } from "react-icons/pi";
 
 const HDSMedia = () => {
   return (
-    <section className="relative text-center items-center justify-center bg-third py-16 font-lora">
+    <section id="hds_media" className="relative text-center items-center justify-center bg-third py-16 font-lora">
       <Image
         src="/images/common/team_award_1.png"
         alt="image"

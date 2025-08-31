@@ -7,7 +7,7 @@ import WavyCard3 from "../WavyCard3";
 
 const HDSStudio = () => {
   return (
-    <div className="relative">
+    <div id="hds_studio" className="relative">
     
        <Image
           src="/images/our_service/image2.webp"
@@ -25,7 +25,7 @@ const HDSStudio = () => {
         />
     <section className="font-lora relative overflow-hidden w-full z-30 -mt-36  pb-16 sm:pb-0 ">
       <WavyCard3 color="#326B62">
-        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-4 sm:mt-16">
           <Image
             src="/images/our_service/hds_studio.webp"
             width={100}
