@@ -16,6 +16,8 @@ import Link from "next/link";
 import { CgClose } from "react-icons/cg";
 import { navLinks } from "@/components/constant/menus";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 
 type Props = {
   openNav: () => void;
@@ -23,52 +25,55 @@ type Props = {
 };
 const Nav = ({ openNav, closeNav }: Props) => {
   const [openNavBar, setOpenNavBar] = useState(false);
-  const [changeColor, setChangeColor] = useState(false);
   const [loading, setLoading] = useState(false);
+  const pathName = usePathname();
+  const isHomePage = pathName === "/";
+
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navOpen = openNavBar ? "translate-x-0" : "-translate-x-full";
 
   useEffect(() => {
     const toggleChangeColor = () => {
-      if (window.scrollY > 30) {
-        setChangeColor(true);
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 150) {
+        setIsScrolled(true);
       } else {
-        setChangeColor(false);
+        setIsScrolled(false);
       }
     };
     window.addEventListener("scroll", toggleChangeColor);
     return () => window.removeEventListener("scroll", toggleChangeColor);
   }, []);
 
+  const navClass =
+    isHomePage && !isScrolled
+      ? " border-b-0"
+      : "bg-white border-b-[1px] shadow";
+  const logoColor = isHomePage && !isScrolled ? "#FFFFFF" : "#892A51";
+  const color = isHomePage && !isScrolled ? "text-white" : "text-primary";
+
+
   return (
     <>
-    {
-      loading && <LoadingOverlay/>
-    }
-      <div className="transition-all duration-200 h-14 z-[100] w-full fixed flex items-center border-b-[1px] shadow bg-transparent">
+      {loading && <LoadingOverlay />}
+      <nav
+        className={` transition-all duration-500 h-14 z-[100] w-full fixed flex items-center    ${navClass}`}
+      >
         <div className="flex flex-row items-center justify-between w-[90%] mx-auto">
           <Link href="/" prefetch={true} onClick={() => setLoading(true)}>
-            <Image
-              priority={true}
-              src="/hds.png"
-              alt="HDS"
-              width={150}
-              height={90}
-              className="w-[92px] h-[42px] object-cover cursor-pointer"
-            />
+            <Logo color={logoColor} />
           </Link>
 
           <div className="flex flex-row items-center justify-between gap-4">
             {/* <LanguageSwitcher changeColor={changeColor} /> */}
             <FaEllipsisVertical
               onClick={() => setOpenNavBar(true)}
-              className={`${
-                changeColor ? "text-black" : "text-white"
-              } cursor-pointer`}
+              className={`${color} cursor-pointer`}
             />
           </div>
         </div>
-      </div>
+      </nav>
 
       <div>
         <div

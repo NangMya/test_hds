@@ -19,7 +19,7 @@ export default function LoadingOverlay() {
         className="absolute left-0 w-screen h-screen flex items-center justify-center z-[1000]"
         style={{ top: `${scrollY}px` }}
       >
-        <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
+        <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-b-4 border-white"></div>
       </div>
     </>
   );

@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model roles
+ * 
+ */
+export type roles = $Result.DefaultSelection<Prisma.$rolesPayload>
+/**
  * Model users
  * 
  */
@@ -46,8 +51,8 @@ export type applicants = $Result.DefaultSelection<Prisma.$applicantsPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.users.findMany()
+ * // Fetch zero or more Roles
+ * const roles = await prisma.roles.findMany()
  * ```
  *
  *
@@ -67,8 +72,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.users.findMany()
+   * // Fetch zero or more Roles
+   * const roles = await prisma.roles.findMany()
    * ```
    *
    *
@@ -165,6 +170,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.roles`: Exposes CRUD operations for the **roles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Roles
+    * const roles = await prisma.roles.findMany()
+    * ```
+    */
+  get roles(): Prisma.rolesDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.users`: Exposes CRUD operations for the **users** model.
     * Example usage:
     * ```ts
@@ -653,6 +668,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    roles: 'roles',
     users: 'users',
     messages: 'messages',
     our_works: 'our_works',
@@ -676,10 +692,76 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "messages" | "our_works" | "jobs" | "applicants"
+      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      roles: {
+        payload: Prisma.$rolesPayload<ExtArgs>
+        fields: Prisma.rolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.rolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.rolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          findFirst: {
+            args: Prisma.rolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.rolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          findMany: {
+            args: Prisma.rolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>[]
+          }
+          create: {
+            args: Prisma.rolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          createMany: {
+            args: Prisma.rolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.rolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          update: {
+            args: Prisma.rolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.rolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.rolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.rolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rolesPayload>
+          }
+          aggregate: {
+            args: Prisma.RolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoles>
+          }
+          groupBy: {
+            args: Prisma.rolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RolesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.rolesCountArgs<ExtArgs>
+            result: $Utils.Optional<RolesCountAggregateOutputType> | number
+          }
+        }
+      }
       users: {
         payload: Prisma.$usersPayload<ExtArgs>
         fields: Prisma.usersFieldRefs
@@ -1094,6 +1176,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    roles?: rolesOmit
     users?: usersOmit
     messages?: messagesOmit
     our_works?: our_worksOmit
@@ -1186,6 +1269,37 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type RolesCountOutputType
+   */
+
+  export type RolesCountOutputType = {
+    users: number
+  }
+
+  export type RolesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | RolesCountOutputTypeCountUsersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RolesCountOutputType without action
+   */
+  export type RolesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RolesCountOutputType
+     */
+    select?: RolesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RolesCountOutputType without action
+   */
+  export type RolesCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: usersWhereInput
+  }
 
 
   /**
@@ -1291,6 +1405,969 @@ export namespace Prisma {
    */
 
   /**
+   * Model roles
+   */
+
+  export type AggregateRoles = {
+    _count: RolesCountAggregateOutputType | null
+    _avg: RolesAvgAggregateOutputType | null
+    _sum: RolesSumAggregateOutputType | null
+    _min: RolesMinAggregateOutputType | null
+    _max: RolesMaxAggregateOutputType | null
+  }
+
+  export type RolesAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RolesSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type RolesMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+  }
+
+  export type RolesMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+  }
+
+  export type RolesCountAggregateOutputType = {
+    id: number
+    name: number
+    access: number
+    _all: number
+  }
+
+
+  export type RolesAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type RolesSumAggregateInputType = {
+    id?: true
+  }
+
+  export type RolesMinAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type RolesMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type RolesCountAggregateInputType = {
+    id?: true
+    name?: true
+    access?: true
+    _all?: true
+  }
+
+  export type RolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which roles to aggregate.
+     */
+    where?: rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of roles to fetch.
+     */
+    orderBy?: rolesOrderByWithRelationInput | rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned roles
+    **/
+    _count?: true | RolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RolesMaxAggregateInputType
+  }
+
+  export type GetRolesAggregateType<T extends RolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoles[P]>
+      : GetScalarType<T[P], AggregateRoles[P]>
+  }
+
+
+
+
+  export type rolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: rolesWhereInput
+    orderBy?: rolesOrderByWithAggregationInput | rolesOrderByWithAggregationInput[]
+    by: RolesScalarFieldEnum[] | RolesScalarFieldEnum
+    having?: rolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RolesCountAggregateInputType | true
+    _avg?: RolesAvgAggregateInputType
+    _sum?: RolesSumAggregateInputType
+    _min?: RolesMinAggregateInputType
+    _max?: RolesMaxAggregateInputType
+  }
+
+  export type RolesGroupByOutputType = {
+    id: number
+    name: string
+    access: JsonValue
+    _count: RolesCountAggregateOutputType | null
+    _avg: RolesAvgAggregateOutputType | null
+    _sum: RolesSumAggregateOutputType | null
+    _min: RolesMinAggregateOutputType | null
+    _max: RolesMaxAggregateOutputType | null
+  }
+
+  type GetRolesGroupByPayload<T extends rolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RolesGroupByOutputType[P]>
+            : GetScalarType<T[P], RolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    access?: boolean
+    users?: boolean | roles$usersArgs<ExtArgs>
+    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["roles"]>
+
+
+
+  export type rolesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    access?: boolean
+  }
+
+  export type rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "access", ExtArgs["result"]["roles"]>
+  export type rolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | roles$usersArgs<ExtArgs>
+    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "roles"
+    objects: {
+      users: Prisma.$usersPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      access: Prisma.JsonValue
+    }, ExtArgs["result"]["roles"]>
+    composites: {}
+  }
+
+  type rolesGetPayload<S extends boolean | null | undefined | rolesDefaultArgs> = $Result.GetResult<Prisma.$rolesPayload, S>
+
+  type rolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RolesCountAggregateInputType | true
+    }
+
+  export interface rolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['roles'], meta: { name: 'roles' } }
+    /**
+     * Find zero or one Roles that matches the filter.
+     * @param {rolesFindUniqueArgs} args - Arguments to find a Roles
+     * @example
+     * // Get one Roles
+     * const roles = await prisma.roles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends rolesFindUniqueArgs>(args: SelectSubset<T, rolesFindUniqueArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Roles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {rolesFindUniqueOrThrowArgs} args - Arguments to find a Roles
+     * @example
+     * // Get one Roles
+     * const roles = await prisma.roles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends rolesFindUniqueOrThrowArgs>(args: SelectSubset<T, rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesFindFirstArgs} args - Arguments to find a Roles
+     * @example
+     * // Get one Roles
+     * const roles = await prisma.roles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends rolesFindFirstArgs>(args?: SelectSubset<T, rolesFindFirstArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Roles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesFindFirstOrThrowArgs} args - Arguments to find a Roles
+     * @example
+     * // Get one Roles
+     * const roles = await prisma.roles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends rolesFindFirstOrThrowArgs>(args?: SelectSubset<T, rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Roles
+     * const roles = await prisma.roles.findMany()
+     * 
+     * // Get first 10 Roles
+     * const roles = await prisma.roles.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const rolesWithIdOnly = await prisma.roles.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends rolesFindManyArgs>(args?: SelectSubset<T, rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Roles.
+     * @param {rolesCreateArgs} args - Arguments to create a Roles.
+     * @example
+     * // Create one Roles
+     * const Roles = await prisma.roles.create({
+     *   data: {
+     *     // ... data to create a Roles
+     *   }
+     * })
+     * 
+     */
+    create<T extends rolesCreateArgs>(args: SelectSubset<T, rolesCreateArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Roles.
+     * @param {rolesCreateManyArgs} args - Arguments to create many Roles.
+     * @example
+     * // Create many Roles
+     * const roles = await prisma.roles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends rolesCreateManyArgs>(args?: SelectSubset<T, rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Roles.
+     * @param {rolesDeleteArgs} args - Arguments to delete one Roles.
+     * @example
+     * // Delete one Roles
+     * const Roles = await prisma.roles.delete({
+     *   where: {
+     *     // ... filter to delete one Roles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends rolesDeleteArgs>(args: SelectSubset<T, rolesDeleteArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Roles.
+     * @param {rolesUpdateArgs} args - Arguments to update one Roles.
+     * @example
+     * // Update one Roles
+     * const roles = await prisma.roles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends rolesUpdateArgs>(args: SelectSubset<T, rolesUpdateArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Roles.
+     * @param {rolesDeleteManyArgs} args - Arguments to filter Roles to delete.
+     * @example
+     * // Delete a few Roles
+     * const { count } = await prisma.roles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends rolesDeleteManyArgs>(args?: SelectSubset<T, rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Roles
+     * const roles = await prisma.roles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends rolesUpdateManyArgs>(args: SelectSubset<T, rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Roles.
+     * @param {rolesUpsertArgs} args - Arguments to update or create a Roles.
+     * @example
+     * // Update or create a Roles
+     * const roles = await prisma.roles.upsert({
+     *   create: {
+     *     // ... data to create a Roles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Roles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends rolesUpsertArgs>(args: SelectSubset<T, rolesUpsertArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesCountArgs} args - Arguments to filter Roles to count.
+     * @example
+     * // Count the number of Roles
+     * const count = await prisma.roles.count({
+     *   where: {
+     *     // ... the filter for the Roles we want to count
+     *   }
+     * })
+    **/
+    count<T extends rolesCountArgs>(
+      args?: Subset<T, rolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RolesAggregateArgs>(args: Subset<T, RolesAggregateArgs>): Prisma.PrismaPromise<GetRolesAggregateType<T>>
+
+    /**
+     * Group by Roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends rolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: rolesGroupByArgs['orderBy'] }
+        : { orderBy?: rolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the roles model
+   */
+  readonly fields: rolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for roles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    users<T extends roles$usersArgs<ExtArgs> = {}>(args?: Subset<T, roles$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the roles model
+   */
+  interface rolesFieldRefs {
+    readonly id: FieldRef<"roles", 'Int'>
+    readonly name: FieldRef<"roles", 'String'>
+    readonly access: FieldRef<"roles", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * roles findUnique
+   */
+  export type rolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which roles to fetch.
+     */
+    where: rolesWhereUniqueInput
+  }
+
+  /**
+   * roles findUniqueOrThrow
+   */
+  export type rolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which roles to fetch.
+     */
+    where: rolesWhereUniqueInput
+  }
+
+  /**
+   * roles findFirst
+   */
+  export type rolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which roles to fetch.
+     */
+    where?: rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of roles to fetch.
+     */
+    orderBy?: rolesOrderByWithRelationInput | rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for roles.
+     */
+    cursor?: rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of roles.
+     */
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+  }
+
+  /**
+   * roles findFirstOrThrow
+   */
+  export type rolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which roles to fetch.
+     */
+    where?: rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of roles to fetch.
+     */
+    orderBy?: rolesOrderByWithRelationInput | rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for roles.
+     */
+    cursor?: rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of roles.
+     */
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+  }
+
+  /**
+   * roles findMany
+   */
+  export type rolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter, which roles to fetch.
+     */
+    where?: rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of roles to fetch.
+     */
+    orderBy?: rolesOrderByWithRelationInput | rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing roles.
+     */
+    cursor?: rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` roles.
+     */
+    skip?: number
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+  }
+
+  /**
+   * roles create
+   */
+  export type rolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a roles.
+     */
+    data: XOR<rolesCreateInput, rolesUncheckedCreateInput>
+  }
+
+  /**
+   * roles createMany
+   */
+  export type rolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many roles.
+     */
+    data: rolesCreateManyInput | rolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * roles update
+   */
+  export type rolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a roles.
+     */
+    data: XOR<rolesUpdateInput, rolesUncheckedUpdateInput>
+    /**
+     * Choose, which roles to update.
+     */
+    where: rolesWhereUniqueInput
+  }
+
+  /**
+   * roles updateMany
+   */
+  export type rolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update roles.
+     */
+    data: XOR<rolesUpdateManyMutationInput, rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which roles to update
+     */
+    where?: rolesWhereInput
+    /**
+     * Limit how many roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * roles upsert
+   */
+  export type rolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the roles to update in case it exists.
+     */
+    where: rolesWhereUniqueInput
+    /**
+     * In case the roles found by the `where` argument doesn't exist, create a new roles with this data.
+     */
+    create: XOR<rolesCreateInput, rolesUncheckedCreateInput>
+    /**
+     * In case the roles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<rolesUpdateInput, rolesUncheckedUpdateInput>
+  }
+
+  /**
+   * roles delete
+   */
+  export type rolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    /**
+     * Filter which roles to delete.
+     */
+    where: rolesWhereUniqueInput
+  }
+
+  /**
+   * roles deleteMany
+   */
+  export type rolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which roles to delete
+     */
+    where?: rolesWhereInput
+    /**
+     * Limit how many roles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * roles.users
+   */
+  export type roles$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+    orderBy?: usersOrderByWithRelationInput | usersOrderByWithRelationInput[]
+    cursor?: usersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+  }
+
+  /**
+   * roles without action
+   */
+  export type rolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model users
    */
 
@@ -1304,10 +2381,12 @@ export namespace Prisma {
 
   export type UsersAvgAggregateOutputType = {
     id: number | null
+    role_id: number | null
   }
 
   export type UsersSumAggregateOutputType = {
     id: number | null
+    role_id: number | null
   }
 
   export type UsersMinAggregateOutputType = {
@@ -1320,6 +2399,7 @@ export namespace Prisma {
     is_two_factor_enabled: boolean | null
     reset_token: string | null
     reset_token_expiry: Date | null
+    role_id: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1334,6 +2414,7 @@ export namespace Prisma {
     is_two_factor_enabled: boolean | null
     reset_token: string | null
     reset_token_expiry: Date | null
+    role_id: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1348,6 +2429,7 @@ export namespace Prisma {
     is_two_factor_enabled: number
     reset_token: number
     reset_token_expiry: number
+    role_id: number
     created_at: number
     updated_at: number
     _all: number
@@ -1356,10 +2438,12 @@ export namespace Prisma {
 
   export type UsersAvgAggregateInputType = {
     id?: true
+    role_id?: true
   }
 
   export type UsersSumAggregateInputType = {
     id?: true
+    role_id?: true
   }
 
   export type UsersMinAggregateInputType = {
@@ -1372,6 +2456,7 @@ export namespace Prisma {
     is_two_factor_enabled?: true
     reset_token?: true
     reset_token_expiry?: true
+    role_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -1386,6 +2471,7 @@ export namespace Prisma {
     is_two_factor_enabled?: true
     reset_token?: true
     reset_token_expiry?: true
+    role_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -1400,6 +2486,7 @@ export namespace Prisma {
     is_two_factor_enabled?: true
     reset_token?: true
     reset_token_expiry?: true
+    role_id?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -1501,6 +2588,7 @@ export namespace Prisma {
     is_two_factor_enabled: boolean | null
     reset_token: string | null
     reset_token_expiry: Date | null
+    role_id: number | null
     created_at: Date
     updated_at: Date
     _count: UsersCountAggregateOutputType | null
@@ -1534,8 +2622,10 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean
     reset_token?: boolean
     reset_token_expiry?: boolean
+    role_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    role?: boolean | users$roleArgs<ExtArgs>
     created_Work?: boolean | users$created_WorkArgs<ExtArgs>
     updated_Work?: boolean | users$updated_WorkArgs<ExtArgs>
     created_Job?: boolean | users$created_JobArgs<ExtArgs>
@@ -1556,12 +2646,14 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean
     reset_token?: boolean
     reset_token_expiry?: boolean
+    role_id?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "two_factor_code" | "two_factor_code_expiry" | "is_two_factor_enabled" | "reset_token" | "reset_token_expiry" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "two_factor_code" | "two_factor_code_expiry" | "is_two_factor_enabled" | "reset_token" | "reset_token_expiry" | "role_id" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    role?: boolean | users$roleArgs<ExtArgs>
     created_Work?: boolean | users$created_WorkArgs<ExtArgs>
     updated_Work?: boolean | users$updated_WorkArgs<ExtArgs>
     created_Job?: boolean | users$created_JobArgs<ExtArgs>
@@ -1573,6 +2665,7 @@ export namespace Prisma {
   export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "users"
     objects: {
+      role: Prisma.$rolesPayload<ExtArgs> | null
       created_Work: Prisma.$our_worksPayload<ExtArgs>[]
       updated_Work: Prisma.$our_worksPayload<ExtArgs>[]
       created_Job: Prisma.$jobsPayload<ExtArgs>[]
@@ -1589,6 +2682,7 @@ export namespace Prisma {
       is_two_factor_enabled: boolean | null
       reset_token: string | null
       reset_token_expiry: Date | null
+      role_id: number | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["users"]>
@@ -1931,6 +3025,7 @@ export namespace Prisma {
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    role<T extends users$roleArgs<ExtArgs> = {}>(args?: Subset<T, users$roleArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     created_Work<T extends users$created_WorkArgs<ExtArgs> = {}>(args?: Subset<T, users$created_WorkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$our_worksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Work<T extends users$updated_WorkArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_WorkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$our_worksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     created_Job<T extends users$created_JobArgs<ExtArgs> = {}>(args?: Subset<T, users$created_JobArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1974,6 +3069,7 @@ export namespace Prisma {
     readonly is_two_factor_enabled: FieldRef<"users", 'Boolean'>
     readonly reset_token: FieldRef<"users", 'String'>
     readonly reset_token_expiry: FieldRef<"users", 'DateTime'>
+    readonly role_id: FieldRef<"users", 'Int'>
     readonly created_at: FieldRef<"users", 'DateTime'>
     readonly updated_at: FieldRef<"users", 'DateTime'>
   }
@@ -2316,6 +3412,25 @@ export namespace Prisma {
      * Limit how many users to delete.
      */
     limit?: number
+  }
+
+  /**
+   * users.role
+   */
+  export type users$roleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the roles
+     */
+    select?: rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the roles
+     */
+    omit?: rolesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rolesInclude<ExtArgs> | null
+    where?: rolesWhereInput
   }
 
   /**
@@ -3422,16 +4537,11 @@ export namespace Prisma {
   export type Our_worksMinAggregateOutputType = {
     id: number | null
     date: Date | null
-    title_en: string | null
-    title_km: string | null
-    description_en: string | null
-    description_km: string | null
-    challenges_en: string | null
-    challenges_km: string | null
-    strategy_en: string | null
-    strategy_km: string | null
-    takeaway_en: string | null
-    takeaway_km: string | null
+    title: string | null
+    description: string | null
+    challenges: string | null
+    strategy: string | null
+    takeaway: string | null
     image: string | null
     created_by: number | null
     updated_by: number | null
@@ -3442,16 +4552,11 @@ export namespace Prisma {
   export type Our_worksMaxAggregateOutputType = {
     id: number | null
     date: Date | null
-    title_en: string | null
-    title_km: string | null
-    description_en: string | null
-    description_km: string | null
-    challenges_en: string | null
-    challenges_km: string | null
-    strategy_en: string | null
-    strategy_km: string | null
-    takeaway_en: string | null
-    takeaway_km: string | null
+    title: string | null
+    description: string | null
+    challenges: string | null
+    strategy: string | null
+    takeaway: string | null
     image: string | null
     created_by: number | null
     updated_by: number | null
@@ -3462,16 +4567,11 @@ export namespace Prisma {
   export type Our_worksCountAggregateOutputType = {
     id: number
     date: number
-    title_en: number
-    title_km: number
-    description_en: number
-    description_km: number
-    challenges_en: number
-    challenges_km: number
-    strategy_en: number
-    strategy_km: number
-    takeaway_en: number
-    takeaway_km: number
+    title: number
+    description: number
+    challenges: number
+    strategy: number
+    takeaway: number
     image: number
     created_by: number
     updated_by: number
@@ -3496,16 +4596,11 @@ export namespace Prisma {
   export type Our_worksMinAggregateInputType = {
     id?: true
     date?: true
-    title_en?: true
-    title_km?: true
-    description_en?: true
-    description_km?: true
-    challenges_en?: true
-    challenges_km?: true
-    strategy_en?: true
-    strategy_km?: true
-    takeaway_en?: true
-    takeaway_km?: true
+    title?: true
+    description?: true
+    challenges?: true
+    strategy?: true
+    takeaway?: true
     image?: true
     created_by?: true
     updated_by?: true
@@ -3516,16 +4611,11 @@ export namespace Prisma {
   export type Our_worksMaxAggregateInputType = {
     id?: true
     date?: true
-    title_en?: true
-    title_km?: true
-    description_en?: true
-    description_km?: true
-    challenges_en?: true
-    challenges_km?: true
-    strategy_en?: true
-    strategy_km?: true
-    takeaway_en?: true
-    takeaway_km?: true
+    title?: true
+    description?: true
+    challenges?: true
+    strategy?: true
+    takeaway?: true
     image?: true
     created_by?: true
     updated_by?: true
@@ -3536,16 +4626,11 @@ export namespace Prisma {
   export type Our_worksCountAggregateInputType = {
     id?: true
     date?: true
-    title_en?: true
-    title_km?: true
-    description_en?: true
-    description_km?: true
-    challenges_en?: true
-    challenges_km?: true
-    strategy_en?: true
-    strategy_km?: true
-    takeaway_en?: true
-    takeaway_km?: true
+    title?: true
+    description?: true
+    challenges?: true
+    strategy?: true
+    takeaway?: true
     image?: true
     created_by?: true
     updated_by?: true
@@ -3643,16 +4728,11 @@ export namespace Prisma {
   export type Our_worksGroupByOutputType = {
     id: number
     date: Date
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image: string | null
     created_by: number
     updated_by: number
@@ -3682,16 +4762,11 @@ export namespace Prisma {
   export type our_worksSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
-    title_en?: boolean
-    title_km?: boolean
-    description_en?: boolean
-    description_km?: boolean
-    challenges_en?: boolean
-    challenges_km?: boolean
-    strategy_en?: boolean
-    strategy_km?: boolean
-    takeaway_en?: boolean
-    takeaway_km?: boolean
+    title?: boolean
+    description?: boolean
+    challenges?: boolean
+    strategy?: boolean
+    takeaway?: boolean
     image?: boolean
     created_by?: boolean
     updated_by?: boolean
@@ -3706,16 +4781,11 @@ export namespace Prisma {
   export type our_worksSelectScalar = {
     id?: boolean
     date?: boolean
-    title_en?: boolean
-    title_km?: boolean
-    description_en?: boolean
-    description_km?: boolean
-    challenges_en?: boolean
-    challenges_km?: boolean
-    strategy_en?: boolean
-    strategy_km?: boolean
-    takeaway_en?: boolean
-    takeaway_km?: boolean
+    title?: boolean
+    description?: boolean
+    challenges?: boolean
+    strategy?: boolean
+    takeaway?: boolean
     image?: boolean
     created_by?: boolean
     updated_by?: boolean
@@ -3723,7 +4793,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type our_worksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "title_en" | "title_km" | "description_en" | "description_km" | "challenges_en" | "challenges_km" | "strategy_en" | "strategy_km" | "takeaway_en" | "takeaway_km" | "image" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["our_works"]>
+  export type our_worksOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "title" | "description" | "challenges" | "strategy" | "takeaway" | "image" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["our_works"]>
   export type our_worksInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
@@ -3738,16 +4808,11 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       date: Date
-      title_en: string
-      title_km: string
-      description_en: string
-      description_km: string
-      challenges_en: string
-      challenges_km: string
-      strategy_en: string
-      strategy_km: string
-      takeaway_en: string
-      takeaway_km: string
+      title: string
+      description: string
+      challenges: string
+      strategy: string
+      takeaway: string
       image: string | null
       created_by: number
       updated_by: number
@@ -4126,16 +5191,11 @@ export namespace Prisma {
   interface our_worksFieldRefs {
     readonly id: FieldRef<"our_works", 'Int'>
     readonly date: FieldRef<"our_works", 'DateTime'>
-    readonly title_en: FieldRef<"our_works", 'String'>
-    readonly title_km: FieldRef<"our_works", 'String'>
-    readonly description_en: FieldRef<"our_works", 'String'>
-    readonly description_km: FieldRef<"our_works", 'String'>
-    readonly challenges_en: FieldRef<"our_works", 'String'>
-    readonly challenges_km: FieldRef<"our_works", 'String'>
-    readonly strategy_en: FieldRef<"our_works", 'String'>
-    readonly strategy_km: FieldRef<"our_works", 'String'>
-    readonly takeaway_en: FieldRef<"our_works", 'String'>
-    readonly takeaway_km: FieldRef<"our_works", 'String'>
+    readonly title: FieldRef<"our_works", 'String'>
+    readonly description: FieldRef<"our_works", 'String'>
+    readonly challenges: FieldRef<"our_works", 'String'>
+    readonly strategy: FieldRef<"our_works", 'String'>
+    readonly takeaway: FieldRef<"our_works", 'String'>
     readonly image: FieldRef<"our_works", 'String'>
     readonly created_by: FieldRef<"our_works", 'Int'>
     readonly updated_by: FieldRef<"our_works", 'Int'>
@@ -4530,26 +5590,16 @@ export namespace Prisma {
     id: number | null
     open_date: Date | null
     close_date: Date | null
-    position_en: string | null
-    position_km: string | null
-    department_en: string | null
-    department_km: string | null
-    description_en: string | null
-    description_km: string | null
-    experiences_en: string | null
-    experiences_km: string | null
-    level_en: string | null
-    level_km: string | null
-    overview_en: string | null
-    overview_km: string | null
-    job_type_en: string | null
-    job_type_km: string | null
-    salary_en: string | null
-    salary_km: string | null
-    duties_en: string | null
-    duties_km: string | null
-    requirements_en: string | null
-    requirements_km: string | null
+    position: string | null
+    department: string | null
+    description: string | null
+    experiences: string | null
+    level: string | null
+    overview: string | null
+    job_type: string | null
+    salary: string | null
+    duties: string | null
+    requirements: string | null
     gender: string | null
     status: string | null
     created_by: number | null
@@ -4562,26 +5612,16 @@ export namespace Prisma {
     id: number | null
     open_date: Date | null
     close_date: Date | null
-    position_en: string | null
-    position_km: string | null
-    department_en: string | null
-    department_km: string | null
-    description_en: string | null
-    description_km: string | null
-    experiences_en: string | null
-    experiences_km: string | null
-    level_en: string | null
-    level_km: string | null
-    overview_en: string | null
-    overview_km: string | null
-    job_type_en: string | null
-    job_type_km: string | null
-    salary_en: string | null
-    salary_km: string | null
-    duties_en: string | null
-    duties_km: string | null
-    requirements_en: string | null
-    requirements_km: string | null
+    position: string | null
+    department: string | null
+    description: string | null
+    experiences: string | null
+    level: string | null
+    overview: string | null
+    job_type: string | null
+    salary: string | null
+    duties: string | null
+    requirements: string | null
     gender: string | null
     status: string | null
     created_by: number | null
@@ -4594,26 +5634,16 @@ export namespace Prisma {
     id: number
     open_date: number
     close_date: number
-    position_en: number
-    position_km: number
-    department_en: number
-    department_km: number
-    description_en: number
-    description_km: number
-    experiences_en: number
-    experiences_km: number
-    level_en: number
-    level_km: number
-    overview_en: number
-    overview_km: number
-    job_type_en: number
-    job_type_km: number
-    salary_en: number
-    salary_km: number
-    duties_en: number
-    duties_km: number
-    requirements_en: number
-    requirements_km: number
+    position: number
+    department: number
+    description: number
+    experiences: number
+    level: number
+    overview: number
+    job_type: number
+    salary: number
+    duties: number
+    requirements: number
     gender: number
     status: number
     created_by: number
@@ -4640,26 +5670,16 @@ export namespace Prisma {
     id?: true
     open_date?: true
     close_date?: true
-    position_en?: true
-    position_km?: true
-    department_en?: true
-    department_km?: true
-    description_en?: true
-    description_km?: true
-    experiences_en?: true
-    experiences_km?: true
-    level_en?: true
-    level_km?: true
-    overview_en?: true
-    overview_km?: true
-    job_type_en?: true
-    job_type_km?: true
-    salary_en?: true
-    salary_km?: true
-    duties_en?: true
-    duties_km?: true
-    requirements_en?: true
-    requirements_km?: true
+    position?: true
+    department?: true
+    description?: true
+    experiences?: true
+    level?: true
+    overview?: true
+    job_type?: true
+    salary?: true
+    duties?: true
+    requirements?: true
     gender?: true
     status?: true
     created_by?: true
@@ -4672,26 +5692,16 @@ export namespace Prisma {
     id?: true
     open_date?: true
     close_date?: true
-    position_en?: true
-    position_km?: true
-    department_en?: true
-    department_km?: true
-    description_en?: true
-    description_km?: true
-    experiences_en?: true
-    experiences_km?: true
-    level_en?: true
-    level_km?: true
-    overview_en?: true
-    overview_km?: true
-    job_type_en?: true
-    job_type_km?: true
-    salary_en?: true
-    salary_km?: true
-    duties_en?: true
-    duties_km?: true
-    requirements_en?: true
-    requirements_km?: true
+    position?: true
+    department?: true
+    description?: true
+    experiences?: true
+    level?: true
+    overview?: true
+    job_type?: true
+    salary?: true
+    duties?: true
+    requirements?: true
     gender?: true
     status?: true
     created_by?: true
@@ -4704,26 +5714,16 @@ export namespace Prisma {
     id?: true
     open_date?: true
     close_date?: true
-    position_en?: true
-    position_km?: true
-    department_en?: true
-    department_km?: true
-    description_en?: true
-    description_km?: true
-    experiences_en?: true
-    experiences_km?: true
-    level_en?: true
-    level_km?: true
-    overview_en?: true
-    overview_km?: true
-    job_type_en?: true
-    job_type_km?: true
-    salary_en?: true
-    salary_km?: true
-    duties_en?: true
-    duties_km?: true
-    requirements_en?: true
-    requirements_km?: true
+    position?: true
+    department?: true
+    description?: true
+    experiences?: true
+    level?: true
+    overview?: true
+    job_type?: true
+    salary?: true
+    duties?: true
+    requirements?: true
     gender?: true
     status?: true
     created_by?: true
@@ -4823,26 +5823,16 @@ export namespace Prisma {
     id: number
     open_date: Date
     close_date: Date
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status: string
     created_by: number
@@ -4874,26 +5864,16 @@ export namespace Prisma {
     id?: boolean
     open_date?: boolean
     close_date?: boolean
-    position_en?: boolean
-    position_km?: boolean
-    department_en?: boolean
-    department_km?: boolean
-    description_en?: boolean
-    description_km?: boolean
-    experiences_en?: boolean
-    experiences_km?: boolean
-    level_en?: boolean
-    level_km?: boolean
-    overview_en?: boolean
-    overview_km?: boolean
-    job_type_en?: boolean
-    job_type_km?: boolean
-    salary_en?: boolean
-    salary_km?: boolean
-    duties_en?: boolean
-    duties_km?: boolean
-    requirements_en?: boolean
-    requirements_km?: boolean
+    position?: boolean
+    department?: boolean
+    description?: boolean
+    experiences?: boolean
+    level?: boolean
+    overview?: boolean
+    job_type?: boolean
+    salary?: boolean
+    duties?: boolean
+    requirements?: boolean
     gender?: boolean
     status?: boolean
     created_by?: boolean
@@ -4912,26 +5892,16 @@ export namespace Prisma {
     id?: boolean
     open_date?: boolean
     close_date?: boolean
-    position_en?: boolean
-    position_km?: boolean
-    department_en?: boolean
-    department_km?: boolean
-    description_en?: boolean
-    description_km?: boolean
-    experiences_en?: boolean
-    experiences_km?: boolean
-    level_en?: boolean
-    level_km?: boolean
-    overview_en?: boolean
-    overview_km?: boolean
-    job_type_en?: boolean
-    job_type_km?: boolean
-    salary_en?: boolean
-    salary_km?: boolean
-    duties_en?: boolean
-    duties_km?: boolean
-    requirements_en?: boolean
-    requirements_km?: boolean
+    position?: boolean
+    department?: boolean
+    description?: boolean
+    experiences?: boolean
+    level?: boolean
+    overview?: boolean
+    job_type?: boolean
+    salary?: boolean
+    duties?: boolean
+    requirements?: boolean
     gender?: boolean
     status?: boolean
     created_by?: boolean
@@ -4940,7 +5910,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "open_date" | "close_date" | "position_en" | "position_km" | "department_en" | "department_km" | "description_en" | "description_km" | "experiences_en" | "experiences_km" | "level_en" | "level_km" | "overview_en" | "overview_km" | "job_type_en" | "job_type_km" | "salary_en" | "salary_km" | "duties_en" | "duties_km" | "requirements_en" | "requirements_km" | "gender" | "status" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["jobs"]>
+  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "open_date" | "close_date" | "position" | "department" | "description" | "experiences" | "level" | "overview" | "job_type" | "salary" | "duties" | "requirements" | "gender" | "status" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["jobs"]>
   export type jobsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
@@ -4959,26 +5929,16 @@ export namespace Prisma {
       id: number
       open_date: Date
       close_date: Date
-      position_en: string
-      position_km: string
-      department_en: string
-      department_km: string
-      description_en: string
-      description_km: string
-      experiences_en: string
-      experiences_km: string
-      level_en: string
-      level_km: string
-      overview_en: string
-      overview_km: string
-      job_type_en: string
-      job_type_km: string
-      salary_en: string
-      salary_km: string
-      duties_en: string
-      duties_km: string
-      requirements_en: string
-      requirements_km: string
+      position: string
+      department: string
+      description: string
+      experiences: string
+      level: string
+      overview: string
+      job_type: string
+      salary: string
+      duties: string
+      requirements: string
       gender: string
       status: string
       created_by: number
@@ -5360,26 +6320,16 @@ export namespace Prisma {
     readonly id: FieldRef<"jobs", 'Int'>
     readonly open_date: FieldRef<"jobs", 'DateTime'>
     readonly close_date: FieldRef<"jobs", 'DateTime'>
-    readonly position_en: FieldRef<"jobs", 'String'>
-    readonly position_km: FieldRef<"jobs", 'String'>
-    readonly department_en: FieldRef<"jobs", 'String'>
-    readonly department_km: FieldRef<"jobs", 'String'>
-    readonly description_en: FieldRef<"jobs", 'String'>
-    readonly description_km: FieldRef<"jobs", 'String'>
-    readonly experiences_en: FieldRef<"jobs", 'String'>
-    readonly experiences_km: FieldRef<"jobs", 'String'>
-    readonly level_en: FieldRef<"jobs", 'String'>
-    readonly level_km: FieldRef<"jobs", 'String'>
-    readonly overview_en: FieldRef<"jobs", 'String'>
-    readonly overview_km: FieldRef<"jobs", 'String'>
-    readonly job_type_en: FieldRef<"jobs", 'String'>
-    readonly job_type_km: FieldRef<"jobs", 'String'>
-    readonly salary_en: FieldRef<"jobs", 'String'>
-    readonly salary_km: FieldRef<"jobs", 'String'>
-    readonly duties_en: FieldRef<"jobs", 'String'>
-    readonly duties_km: FieldRef<"jobs", 'String'>
-    readonly requirements_en: FieldRef<"jobs", 'String'>
-    readonly requirements_km: FieldRef<"jobs", 'String'>
+    readonly position: FieldRef<"jobs", 'String'>
+    readonly department: FieldRef<"jobs", 'String'>
+    readonly description: FieldRef<"jobs", 'String'>
+    readonly experiences: FieldRef<"jobs", 'String'>
+    readonly level: FieldRef<"jobs", 'String'>
+    readonly overview: FieldRef<"jobs", 'String'>
+    readonly job_type: FieldRef<"jobs", 'String'>
+    readonly salary: FieldRef<"jobs", 'String'>
+    readonly duties: FieldRef<"jobs", 'String'>
+    readonly requirements: FieldRef<"jobs", 'String'>
     readonly gender: FieldRef<"jobs", 'String'>
     readonly status: FieldRef<"jobs", 'String'>
     readonly created_by: FieldRef<"jobs", 'Int'>
@@ -6848,6 +7798,15 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const RolesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    access: 'access'
+  };
+
+  export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
+
+
   export const UsersScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -6858,6 +7817,7 @@ export namespace Prisma {
     is_two_factor_enabled: 'is_two_factor_enabled',
     reset_token: 'reset_token',
     reset_token_expiry: 'reset_token_expiry',
+    role_id: 'role_id',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -6881,16 +7841,11 @@ export namespace Prisma {
   export const Our_worksScalarFieldEnum: {
     id: 'id',
     date: 'date',
-    title_en: 'title_en',
-    title_km: 'title_km',
-    description_en: 'description_en',
-    description_km: 'description_km',
-    challenges_en: 'challenges_en',
-    challenges_km: 'challenges_km',
-    strategy_en: 'strategy_en',
-    strategy_km: 'strategy_km',
-    takeaway_en: 'takeaway_en',
-    takeaway_km: 'takeaway_km',
+    title: 'title',
+    description: 'description',
+    challenges: 'challenges',
+    strategy: 'strategy',
+    takeaway: 'takeaway',
     image: 'image',
     created_by: 'created_by',
     updated_by: 'updated_by',
@@ -6905,26 +7860,16 @@ export namespace Prisma {
     id: 'id',
     open_date: 'open_date',
     close_date: 'close_date',
-    position_en: 'position_en',
-    position_km: 'position_km',
-    department_en: 'department_en',
-    department_km: 'department_km',
-    description_en: 'description_en',
-    description_km: 'description_km',
-    experiences_en: 'experiences_en',
-    experiences_km: 'experiences_km',
-    level_en: 'level_en',
-    level_km: 'level_km',
-    overview_en: 'overview_en',
-    overview_km: 'overview_km',
-    job_type_en: 'job_type_en',
-    job_type_km: 'job_type_km',
-    salary_en: 'salary_en',
-    salary_km: 'salary_km',
-    duties_en: 'duties_en',
-    duties_km: 'duties_km',
-    requirements_en: 'requirements_en',
-    requirements_km: 'requirements_km',
+    position: 'position',
+    department: 'department',
+    description: 'description',
+    experiences: 'experiences',
+    level: 'level',
+    overview: 'overview',
+    job_type: 'job_type',
+    salary: 'salary',
+    duties: 'duties',
+    requirements: 'requirements',
     gender: 'gender',
     status: 'status',
     created_by: 'created_by',
@@ -6963,6 +7908,37 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const rolesOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type rolesOrderByRelevanceFieldEnum = (typeof rolesOrderByRelevanceFieldEnum)[keyof typeof rolesOrderByRelevanceFieldEnum]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
@@ -6993,16 +7969,11 @@ export namespace Prisma {
 
 
   export const our_worksOrderByRelevanceFieldEnum: {
-    title_en: 'title_en',
-    title_km: 'title_km',
-    description_en: 'description_en',
-    description_km: 'description_km',
-    challenges_en: 'challenges_en',
-    challenges_km: 'challenges_km',
-    strategy_en: 'strategy_en',
-    strategy_km: 'strategy_km',
-    takeaway_en: 'takeaway_en',
-    takeaway_km: 'takeaway_km',
+    title: 'title',
+    description: 'description',
+    challenges: 'challenges',
+    strategy: 'strategy',
+    takeaway: 'takeaway',
     image: 'image'
   };
 
@@ -7010,26 +7981,16 @@ export namespace Prisma {
 
 
   export const jobsOrderByRelevanceFieldEnum: {
-    position_en: 'position_en',
-    position_km: 'position_km',
-    department_en: 'department_en',
-    department_km: 'department_km',
-    description_en: 'description_en',
-    description_km: 'description_km',
-    experiences_en: 'experiences_en',
-    experiences_km: 'experiences_km',
-    level_en: 'level_en',
-    level_km: 'level_km',
-    overview_en: 'overview_en',
-    overview_km: 'overview_km',
-    job_type_en: 'job_type_en',
-    job_type_km: 'job_type_km',
-    salary_en: 'salary_en',
-    salary_km: 'salary_km',
-    duties_en: 'duties_en',
-    duties_km: 'duties_km',
-    requirements_en: 'requirements_en',
-    requirements_km: 'requirements_km',
+    position: 'position',
+    department: 'department',
+    description: 'description',
+    experiences: 'experiences',
+    level: 'level',
+    overview: 'overview',
+    job_type: 'job_type',
+    salary: 'salary',
+    duties: 'duties',
+    requirements: 'requirements',
     gender: 'gender',
     status: 'status'
   };
@@ -7071,6 +8032,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -7094,6 +8069,54 @@ export namespace Prisma {
    */
 
 
+  export type rolesWhereInput = {
+    AND?: rolesWhereInput | rolesWhereInput[]
+    OR?: rolesWhereInput[]
+    NOT?: rolesWhereInput | rolesWhereInput[]
+    id?: IntFilter<"roles"> | number
+    name?: StringFilter<"roles"> | string
+    access?: JsonFilter<"roles">
+    users?: UsersListRelationFilter
+  }
+
+  export type rolesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    access?: SortOrder
+    users?: usersOrderByRelationAggregateInput
+    _relevance?: rolesOrderByRelevanceInput
+  }
+
+  export type rolesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: rolesWhereInput | rolesWhereInput[]
+    OR?: rolesWhereInput[]
+    NOT?: rolesWhereInput | rolesWhereInput[]
+    access?: JsonFilter<"roles">
+    users?: UsersListRelationFilter
+  }, "id" | "name">
+
+  export type rolesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    access?: SortOrder
+    _count?: rolesCountOrderByAggregateInput
+    _avg?: rolesAvgOrderByAggregateInput
+    _max?: rolesMaxOrderByAggregateInput
+    _min?: rolesMinOrderByAggregateInput
+    _sum?: rolesSumOrderByAggregateInput
+  }
+
+  export type rolesScalarWhereWithAggregatesInput = {
+    AND?: rolesScalarWhereWithAggregatesInput | rolesScalarWhereWithAggregatesInput[]
+    OR?: rolesScalarWhereWithAggregatesInput[]
+    NOT?: rolesScalarWhereWithAggregatesInput | rolesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"roles"> | number
+    name?: StringWithAggregatesFilter<"roles"> | string
+    access?: JsonWithAggregatesFilter<"roles">
+  }
+
   export type usersWhereInput = {
     AND?: usersWhereInput | usersWhereInput[]
     OR?: usersWhereInput[]
@@ -7107,8 +8130,10 @@ export namespace Prisma {
     is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
     reset_token?: StringNullableFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
+    role_id?: IntNullableFilter<"users"> | number | null
     created_at?: DateTimeFilter<"users"> | Date | string
     updated_at?: DateTimeFilter<"users"> | Date | string
+    role?: XOR<RolesNullableScalarRelationFilter, rolesWhereInput> | null
     created_Work?: Our_worksListRelationFilter
     updated_Work?: Our_worksListRelationFilter
     created_Job?: JobsListRelationFilter
@@ -7126,8 +8151,10 @@ export namespace Prisma {
     is_two_factor_enabled?: SortOrderInput | SortOrder
     reset_token?: SortOrderInput | SortOrder
     reset_token_expiry?: SortOrderInput | SortOrder
+    role_id?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    role?: rolesOrderByWithRelationInput
     created_Work?: our_worksOrderByRelationAggregateInput
     updated_Work?: our_worksOrderByRelationAggregateInput
     created_Job?: jobsOrderByRelationAggregateInput
@@ -7149,8 +8176,10 @@ export namespace Prisma {
     is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
     reset_token?: StringNullableFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
+    role_id?: IntNullableFilter<"users"> | number | null
     created_at?: DateTimeFilter<"users"> | Date | string
     updated_at?: DateTimeFilter<"users"> | Date | string
+    role?: XOR<RolesNullableScalarRelationFilter, rolesWhereInput> | null
     created_Work?: Our_worksListRelationFilter
     updated_Work?: Our_worksListRelationFilter
     created_Job?: JobsListRelationFilter
@@ -7168,6 +8197,7 @@ export namespace Prisma {
     is_two_factor_enabled?: SortOrderInput | SortOrder
     reset_token?: SortOrderInput | SortOrder
     reset_token_expiry?: SortOrderInput | SortOrder
+    role_id?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: usersCountOrderByAggregateInput
@@ -7190,6 +8220,7 @@ export namespace Prisma {
     is_two_factor_enabled?: BoolNullableWithAggregatesFilter<"users"> | boolean | null
     reset_token?: StringNullableWithAggregatesFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null
+    role_id?: IntNullableWithAggregatesFilter<"users"> | number | null
     created_at?: DateTimeWithAggregatesFilter<"users"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"users"> | Date | string
   }
@@ -7265,16 +8296,11 @@ export namespace Prisma {
     NOT?: our_worksWhereInput | our_worksWhereInput[]
     id?: IntFilter<"our_works"> | number
     date?: DateTimeFilter<"our_works"> | Date | string
-    title_en?: StringFilter<"our_works"> | string
-    title_km?: StringFilter<"our_works"> | string
-    description_en?: StringFilter<"our_works"> | string
-    description_km?: StringFilter<"our_works"> | string
-    challenges_en?: StringFilter<"our_works"> | string
-    challenges_km?: StringFilter<"our_works"> | string
-    strategy_en?: StringFilter<"our_works"> | string
-    strategy_km?: StringFilter<"our_works"> | string
-    takeaway_en?: StringFilter<"our_works"> | string
-    takeaway_km?: StringFilter<"our_works"> | string
+    title?: StringFilter<"our_works"> | string
+    description?: StringFilter<"our_works"> | string
+    challenges?: StringFilter<"our_works"> | string
+    strategy?: StringFilter<"our_works"> | string
+    takeaway?: StringFilter<"our_works"> | string
     image?: StringNullableFilter<"our_works"> | string | null
     created_by?: IntFilter<"our_works"> | number
     updated_by?: IntFilter<"our_works"> | number
@@ -7287,16 +8313,11 @@ export namespace Prisma {
   export type our_worksOrderByWithRelationInput = {
     id?: SortOrder
     date?: SortOrder
-    title_en?: SortOrder
-    title_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    challenges_en?: SortOrder
-    challenges_km?: SortOrder
-    strategy_en?: SortOrder
-    strategy_km?: SortOrder
-    takeaway_en?: SortOrder
-    takeaway_km?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    challenges?: SortOrder
+    strategy?: SortOrder
+    takeaway?: SortOrder
     image?: SortOrderInput | SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -7313,16 +8334,11 @@ export namespace Prisma {
     OR?: our_worksWhereInput[]
     NOT?: our_worksWhereInput | our_worksWhereInput[]
     date?: DateTimeFilter<"our_works"> | Date | string
-    title_en?: StringFilter<"our_works"> | string
-    title_km?: StringFilter<"our_works"> | string
-    description_en?: StringFilter<"our_works"> | string
-    description_km?: StringFilter<"our_works"> | string
-    challenges_en?: StringFilter<"our_works"> | string
-    challenges_km?: StringFilter<"our_works"> | string
-    strategy_en?: StringFilter<"our_works"> | string
-    strategy_km?: StringFilter<"our_works"> | string
-    takeaway_en?: StringFilter<"our_works"> | string
-    takeaway_km?: StringFilter<"our_works"> | string
+    title?: StringFilter<"our_works"> | string
+    description?: StringFilter<"our_works"> | string
+    challenges?: StringFilter<"our_works"> | string
+    strategy?: StringFilter<"our_works"> | string
+    takeaway?: StringFilter<"our_works"> | string
     image?: StringNullableFilter<"our_works"> | string | null
     created_by?: IntFilter<"our_works"> | number
     updated_by?: IntFilter<"our_works"> | number
@@ -7335,16 +8351,11 @@ export namespace Prisma {
   export type our_worksOrderByWithAggregationInput = {
     id?: SortOrder
     date?: SortOrder
-    title_en?: SortOrder
-    title_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    challenges_en?: SortOrder
-    challenges_km?: SortOrder
-    strategy_en?: SortOrder
-    strategy_km?: SortOrder
-    takeaway_en?: SortOrder
-    takeaway_km?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    challenges?: SortOrder
+    strategy?: SortOrder
+    takeaway?: SortOrder
     image?: SortOrderInput | SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -7363,16 +8374,11 @@ export namespace Prisma {
     NOT?: our_worksScalarWhereWithAggregatesInput | our_worksScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"our_works"> | number
     date?: DateTimeWithAggregatesFilter<"our_works"> | Date | string
-    title_en?: StringWithAggregatesFilter<"our_works"> | string
-    title_km?: StringWithAggregatesFilter<"our_works"> | string
-    description_en?: StringWithAggregatesFilter<"our_works"> | string
-    description_km?: StringWithAggregatesFilter<"our_works"> | string
-    challenges_en?: StringWithAggregatesFilter<"our_works"> | string
-    challenges_km?: StringWithAggregatesFilter<"our_works"> | string
-    strategy_en?: StringWithAggregatesFilter<"our_works"> | string
-    strategy_km?: StringWithAggregatesFilter<"our_works"> | string
-    takeaway_en?: StringWithAggregatesFilter<"our_works"> | string
-    takeaway_km?: StringWithAggregatesFilter<"our_works"> | string
+    title?: StringWithAggregatesFilter<"our_works"> | string
+    description?: StringWithAggregatesFilter<"our_works"> | string
+    challenges?: StringWithAggregatesFilter<"our_works"> | string
+    strategy?: StringWithAggregatesFilter<"our_works"> | string
+    takeaway?: StringWithAggregatesFilter<"our_works"> | string
     image?: StringNullableWithAggregatesFilter<"our_works"> | string | null
     created_by?: IntWithAggregatesFilter<"our_works"> | number
     updated_by?: IntWithAggregatesFilter<"our_works"> | number
@@ -7387,26 +8393,16 @@ export namespace Prisma {
     id?: IntFilter<"jobs"> | number
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
-    position_en?: StringFilter<"jobs"> | string
-    position_km?: StringFilter<"jobs"> | string
-    department_en?: StringFilter<"jobs"> | string
-    department_km?: StringFilter<"jobs"> | string
-    description_en?: StringFilter<"jobs"> | string
-    description_km?: StringFilter<"jobs"> | string
-    experiences_en?: StringFilter<"jobs"> | string
-    experiences_km?: StringFilter<"jobs"> | string
-    level_en?: StringFilter<"jobs"> | string
-    level_km?: StringFilter<"jobs"> | string
-    overview_en?: StringFilter<"jobs"> | string
-    overview_km?: StringFilter<"jobs"> | string
-    job_type_en?: StringFilter<"jobs"> | string
-    job_type_km?: StringFilter<"jobs"> | string
-    salary_en?: StringFilter<"jobs"> | string
-    salary_km?: StringFilter<"jobs"> | string
-    duties_en?: StringFilter<"jobs"> | string
-    duties_km?: StringFilter<"jobs"> | string
-    requirements_en?: StringFilter<"jobs"> | string
-    requirements_km?: StringFilter<"jobs"> | string
+    position?: StringFilter<"jobs"> | string
+    department?: StringFilter<"jobs"> | string
+    description?: StringFilter<"jobs"> | string
+    experiences?: StringFilter<"jobs"> | string
+    level?: StringFilter<"jobs"> | string
+    overview?: StringFilter<"jobs"> | string
+    job_type?: StringFilter<"jobs"> | string
+    salary?: StringFilter<"jobs"> | string
+    duties?: StringFilter<"jobs"> | string
+    requirements?: StringFilter<"jobs"> | string
     gender?: StringFilter<"jobs"> | string
     status?: StringFilter<"jobs"> | string
     created_by?: IntFilter<"jobs"> | number
@@ -7422,26 +8418,16 @@ export namespace Prisma {
     id?: SortOrder
     open_date?: SortOrder
     close_date?: SortOrder
-    position_en?: SortOrder
-    position_km?: SortOrder
-    department_en?: SortOrder
-    department_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    experiences_en?: SortOrder
-    experiences_km?: SortOrder
-    level_en?: SortOrder
-    level_km?: SortOrder
-    overview_en?: SortOrder
-    overview_km?: SortOrder
-    job_type_en?: SortOrder
-    job_type_km?: SortOrder
-    salary_en?: SortOrder
-    salary_km?: SortOrder
-    duties_en?: SortOrder
-    duties_km?: SortOrder
-    requirements_en?: SortOrder
-    requirements_km?: SortOrder
+    position?: SortOrder
+    department?: SortOrder
+    description?: SortOrder
+    experiences?: SortOrder
+    level?: SortOrder
+    overview?: SortOrder
+    job_type?: SortOrder
+    salary?: SortOrder
+    duties?: SortOrder
+    requirements?: SortOrder
     gender?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
@@ -7461,26 +8447,16 @@ export namespace Prisma {
     NOT?: jobsWhereInput | jobsWhereInput[]
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
-    position_en?: StringFilter<"jobs"> | string
-    position_km?: StringFilter<"jobs"> | string
-    department_en?: StringFilter<"jobs"> | string
-    department_km?: StringFilter<"jobs"> | string
-    description_en?: StringFilter<"jobs"> | string
-    description_km?: StringFilter<"jobs"> | string
-    experiences_en?: StringFilter<"jobs"> | string
-    experiences_km?: StringFilter<"jobs"> | string
-    level_en?: StringFilter<"jobs"> | string
-    level_km?: StringFilter<"jobs"> | string
-    overview_en?: StringFilter<"jobs"> | string
-    overview_km?: StringFilter<"jobs"> | string
-    job_type_en?: StringFilter<"jobs"> | string
-    job_type_km?: StringFilter<"jobs"> | string
-    salary_en?: StringFilter<"jobs"> | string
-    salary_km?: StringFilter<"jobs"> | string
-    duties_en?: StringFilter<"jobs"> | string
-    duties_km?: StringFilter<"jobs"> | string
-    requirements_en?: StringFilter<"jobs"> | string
-    requirements_km?: StringFilter<"jobs"> | string
+    position?: StringFilter<"jobs"> | string
+    department?: StringFilter<"jobs"> | string
+    description?: StringFilter<"jobs"> | string
+    experiences?: StringFilter<"jobs"> | string
+    level?: StringFilter<"jobs"> | string
+    overview?: StringFilter<"jobs"> | string
+    job_type?: StringFilter<"jobs"> | string
+    salary?: StringFilter<"jobs"> | string
+    duties?: StringFilter<"jobs"> | string
+    requirements?: StringFilter<"jobs"> | string
     gender?: StringFilter<"jobs"> | string
     status?: StringFilter<"jobs"> | string
     created_by?: IntFilter<"jobs"> | number
@@ -7496,26 +8472,16 @@ export namespace Prisma {
     id?: SortOrder
     open_date?: SortOrder
     close_date?: SortOrder
-    position_en?: SortOrder
-    position_km?: SortOrder
-    department_en?: SortOrder
-    department_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    experiences_en?: SortOrder
-    experiences_km?: SortOrder
-    level_en?: SortOrder
-    level_km?: SortOrder
-    overview_en?: SortOrder
-    overview_km?: SortOrder
-    job_type_en?: SortOrder
-    job_type_km?: SortOrder
-    salary_en?: SortOrder
-    salary_km?: SortOrder
-    duties_en?: SortOrder
-    duties_km?: SortOrder
-    requirements_en?: SortOrder
-    requirements_km?: SortOrder
+    position?: SortOrder
+    department?: SortOrder
+    description?: SortOrder
+    experiences?: SortOrder
+    level?: SortOrder
+    overview?: SortOrder
+    job_type?: SortOrder
+    salary?: SortOrder
+    duties?: SortOrder
+    requirements?: SortOrder
     gender?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
@@ -7536,26 +8502,16 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"jobs"> | number
     open_date?: DateTimeWithAggregatesFilter<"jobs"> | Date | string
     close_date?: DateTimeWithAggregatesFilter<"jobs"> | Date | string
-    position_en?: StringWithAggregatesFilter<"jobs"> | string
-    position_km?: StringWithAggregatesFilter<"jobs"> | string
-    department_en?: StringWithAggregatesFilter<"jobs"> | string
-    department_km?: StringWithAggregatesFilter<"jobs"> | string
-    description_en?: StringWithAggregatesFilter<"jobs"> | string
-    description_km?: StringWithAggregatesFilter<"jobs"> | string
-    experiences_en?: StringWithAggregatesFilter<"jobs"> | string
-    experiences_km?: StringWithAggregatesFilter<"jobs"> | string
-    level_en?: StringWithAggregatesFilter<"jobs"> | string
-    level_km?: StringWithAggregatesFilter<"jobs"> | string
-    overview_en?: StringWithAggregatesFilter<"jobs"> | string
-    overview_km?: StringWithAggregatesFilter<"jobs"> | string
-    job_type_en?: StringWithAggregatesFilter<"jobs"> | string
-    job_type_km?: StringWithAggregatesFilter<"jobs"> | string
-    salary_en?: StringWithAggregatesFilter<"jobs"> | string
-    salary_km?: StringWithAggregatesFilter<"jobs"> | string
-    duties_en?: StringWithAggregatesFilter<"jobs"> | string
-    duties_km?: StringWithAggregatesFilter<"jobs"> | string
-    requirements_en?: StringWithAggregatesFilter<"jobs"> | string
-    requirements_km?: StringWithAggregatesFilter<"jobs"> | string
+    position?: StringWithAggregatesFilter<"jobs"> | string
+    department?: StringWithAggregatesFilter<"jobs"> | string
+    description?: StringWithAggregatesFilter<"jobs"> | string
+    experiences?: StringWithAggregatesFilter<"jobs"> | string
+    level?: StringWithAggregatesFilter<"jobs"> | string
+    overview?: StringWithAggregatesFilter<"jobs"> | string
+    job_type?: StringWithAggregatesFilter<"jobs"> | string
+    salary?: StringWithAggregatesFilter<"jobs"> | string
+    duties?: StringWithAggregatesFilter<"jobs"> | string
+    requirements?: StringWithAggregatesFilter<"jobs"> | string
     gender?: StringWithAggregatesFilter<"jobs"> | string
     status?: StringWithAggregatesFilter<"jobs"> | string
     created_by?: IntWithAggregatesFilter<"jobs"> | number
@@ -7665,6 +8621,49 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"applicants"> | Date | string
   }
 
+  export type rolesCreateInput = {
+    name: string
+    access: JsonNullValueInput | InputJsonValue
+    users?: usersCreateNestedManyWithoutRoleInput
+  }
+
+  export type rolesUncheckedCreateInput = {
+    id?: number
+    name: string
+    access: JsonNullValueInput | InputJsonValue
+    users?: usersUncheckedCreateNestedManyWithoutRoleInput
+  }
+
+  export type rolesUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+    users?: usersUpdateManyWithoutRoleNestedInput
+  }
+
+  export type rolesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+    users?: usersUncheckedUpdateManyWithoutRoleNestedInput
+  }
+
+  export type rolesCreateManyInput = {
+    id?: number
+    name: string
+    access: JsonNullValueInput | InputJsonValue
+  }
+
+  export type rolesUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type rolesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+  }
+
   export type usersCreateInput = {
     name?: string | null
     email: string
@@ -7676,6 +8675,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
@@ -7693,6 +8693,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
@@ -7713,6 +8714,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
@@ -7730,6 +8732,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -7749,6 +8752,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -7776,6 +8780,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7849,16 +8854,11 @@ export namespace Prisma {
 
   export type our_worksCreateInput = {
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -7869,16 +8869,11 @@ export namespace Prisma {
   export type our_worksUncheckedCreateInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_by: number
     updated_by: number
@@ -7888,16 +8883,11 @@ export namespace Prisma {
 
   export type our_worksUpdateInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7908,16 +8898,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -7928,16 +8913,11 @@ export namespace Prisma {
   export type our_worksCreateManyInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_by: number
     updated_by: number
@@ -7947,16 +8927,11 @@ export namespace Prisma {
 
   export type our_worksUpdateManyMutationInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7965,16 +8940,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -7985,26 +8955,16 @@ export namespace Prisma {
   export type jobsCreateInput = {
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_at?: Date | string
@@ -8018,26 +8978,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_by: number
@@ -8050,26 +9000,16 @@ export namespace Prisma {
   export type jobsUpdateInput = {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8083,26 +9023,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
@@ -8116,26 +9046,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_by: number
@@ -8147,26 +9067,16 @@ export namespace Prisma {
   export type jobsUpdateManyMutationInput = {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8177,26 +9087,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
@@ -8323,21 +9223,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -8351,6 +9236,144 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type UsersListRelationFilter = {
+    every?: usersWhereInput
+    some?: usersWhereInput
+    none?: usersWhereInput
+  }
+
+  export type usersOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type rolesOrderByRelevanceInput = {
+    fields: rolesOrderByRelevanceFieldEnum | rolesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type rolesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    access?: SortOrder
+  }
+
+  export type rolesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type rolesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type rolesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type rolesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -8369,6 +9392,17 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -8378,6 +9412,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type RolesNullableScalarRelationFilter = {
+    is?: rolesWhereInput | null
+    isNot?: rolesWhereInput | null
   }
 
   export type Our_worksListRelationFilter = {
@@ -8431,12 +9470,14 @@ export namespace Prisma {
     is_two_factor_enabled?: SortOrder
     reset_token?: SortOrder
     reset_token_expiry?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
     id?: SortOrder
+    role_id?: SortOrder
   }
 
   export type usersMaxOrderByAggregateInput = {
@@ -8449,6 +9490,7 @@ export namespace Prisma {
     is_two_factor_enabled?: SortOrder
     reset_token?: SortOrder
     reset_token_expiry?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -8463,28 +9505,14 @@ export namespace Prisma {
     is_two_factor_enabled?: SortOrder
     reset_token?: SortOrder
     reset_token_expiry?: SortOrder
+    role_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    role_id?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8503,24 +9531,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8543,6 +9553,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBoolNullableFilter<$PrismaModel>
     _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8617,16 +9643,11 @@ export namespace Prisma {
   export type our_worksCountOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
-    title_en?: SortOrder
-    title_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    challenges_en?: SortOrder
-    challenges_km?: SortOrder
-    strategy_en?: SortOrder
-    strategy_km?: SortOrder
-    takeaway_en?: SortOrder
-    takeaway_km?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    challenges?: SortOrder
+    strategy?: SortOrder
+    takeaway?: SortOrder
     image?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -8643,16 +9664,11 @@ export namespace Prisma {
   export type our_worksMaxOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
-    title_en?: SortOrder
-    title_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    challenges_en?: SortOrder
-    challenges_km?: SortOrder
-    strategy_en?: SortOrder
-    strategy_km?: SortOrder
-    takeaway_en?: SortOrder
-    takeaway_km?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    challenges?: SortOrder
+    strategy?: SortOrder
+    takeaway?: SortOrder
     image?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -8663,16 +9679,11 @@ export namespace Prisma {
   export type our_worksMinOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
-    title_en?: SortOrder
-    title_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    challenges_en?: SortOrder
-    challenges_km?: SortOrder
-    strategy_en?: SortOrder
-    strategy_km?: SortOrder
-    takeaway_en?: SortOrder
-    takeaway_km?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    challenges?: SortOrder
+    strategy?: SortOrder
+    takeaway?: SortOrder
     image?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -8696,26 +9707,16 @@ export namespace Prisma {
     id?: SortOrder
     open_date?: SortOrder
     close_date?: SortOrder
-    position_en?: SortOrder
-    position_km?: SortOrder
-    department_en?: SortOrder
-    department_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    experiences_en?: SortOrder
-    experiences_km?: SortOrder
-    level_en?: SortOrder
-    level_km?: SortOrder
-    overview_en?: SortOrder
-    overview_km?: SortOrder
-    job_type_en?: SortOrder
-    job_type_km?: SortOrder
-    salary_en?: SortOrder
-    salary_km?: SortOrder
-    duties_en?: SortOrder
-    duties_km?: SortOrder
-    requirements_en?: SortOrder
-    requirements_km?: SortOrder
+    position?: SortOrder
+    department?: SortOrder
+    description?: SortOrder
+    experiences?: SortOrder
+    level?: SortOrder
+    overview?: SortOrder
+    job_type?: SortOrder
+    salary?: SortOrder
+    duties?: SortOrder
+    requirements?: SortOrder
     gender?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
@@ -8734,26 +9735,16 @@ export namespace Prisma {
     id?: SortOrder
     open_date?: SortOrder
     close_date?: SortOrder
-    position_en?: SortOrder
-    position_km?: SortOrder
-    department_en?: SortOrder
-    department_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    experiences_en?: SortOrder
-    experiences_km?: SortOrder
-    level_en?: SortOrder
-    level_km?: SortOrder
-    overview_en?: SortOrder
-    overview_km?: SortOrder
-    job_type_en?: SortOrder
-    job_type_km?: SortOrder
-    salary_en?: SortOrder
-    salary_km?: SortOrder
-    duties_en?: SortOrder
-    duties_km?: SortOrder
-    requirements_en?: SortOrder
-    requirements_km?: SortOrder
+    position?: SortOrder
+    department?: SortOrder
+    description?: SortOrder
+    experiences?: SortOrder
+    level?: SortOrder
+    overview?: SortOrder
+    job_type?: SortOrder
+    salary?: SortOrder
+    duties?: SortOrder
+    requirements?: SortOrder
     gender?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
@@ -8766,26 +9757,16 @@ export namespace Prisma {
     id?: SortOrder
     open_date?: SortOrder
     close_date?: SortOrder
-    position_en?: SortOrder
-    position_km?: SortOrder
-    department_en?: SortOrder
-    department_km?: SortOrder
-    description_en?: SortOrder
-    description_km?: SortOrder
-    experiences_en?: SortOrder
-    experiences_km?: SortOrder
-    level_en?: SortOrder
-    level_km?: SortOrder
-    overview_en?: SortOrder
-    overview_km?: SortOrder
-    job_type_en?: SortOrder
-    job_type_km?: SortOrder
-    salary_en?: SortOrder
-    salary_km?: SortOrder
-    duties_en?: SortOrder
-    duties_km?: SortOrder
-    requirements_en?: SortOrder
-    requirements_km?: SortOrder
+    position?: SortOrder
+    department?: SortOrder
+    description?: SortOrder
+    experiences?: SortOrder
+    level?: SortOrder
+    overview?: SortOrder
+    job_type?: SortOrder
+    salary?: SortOrder
+    duties?: SortOrder
+    requirements?: SortOrder
     gender?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
@@ -8871,6 +9852,66 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type usersCreateNestedManyWithoutRoleInput = {
+    create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
+    createMany?: usersCreateManyRoleInputEnvelope
+    connect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+  }
+
+  export type usersUncheckedCreateNestedManyWithoutRoleInput = {
+    create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
+    createMany?: usersCreateManyRoleInputEnvelope
+    connect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type usersUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
+    upsert?: usersUpsertWithWhereUniqueWithoutRoleInput | usersUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: usersCreateManyRoleInputEnvelope
+    set?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    disconnect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    delete?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    connect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    update?: usersUpdateWithWhereUniqueWithoutRoleInput | usersUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: usersUpdateManyWithWhereWithoutRoleInput | usersUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: usersScalarWhereInput | usersScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type usersUncheckedUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
+    upsert?: usersUpsertWithWhereUniqueWithoutRoleInput | usersUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: usersCreateManyRoleInputEnvelope
+    set?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    disconnect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    delete?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    connect?: usersWhereUniqueInput | usersWhereUniqueInput[]
+    update?: usersUpdateWithWhereUniqueWithoutRoleInput | usersUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: usersUpdateManyWithWhereWithoutRoleInput | usersUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: usersScalarWhereInput | usersScalarWhereInput[]
+  }
+
+  export type rolesCreateNestedOneWithoutUsersInput = {
+    create?: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: rolesCreateOrConnectWithoutUsersInput
+    connect?: rolesWhereUniqueInput
+  }
+
   export type our_worksCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<our_worksCreateWithoutCreatedByInput, our_worksUncheckedCreateWithoutCreatedByInput> | our_worksCreateWithoutCreatedByInput[] | our_worksUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: our_worksCreateOrConnectWithoutCreatedByInput | our_worksCreateOrConnectWithoutCreatedByInput[]
@@ -8945,10 +9986,6 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -8959,6 +9996,16 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type rolesUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: rolesCreateOrConnectWithoutUsersInput
+    upsert?: rolesUpsertWithoutUsersInput
+    disconnect?: rolesWhereInput | boolean
+    delete?: rolesWhereInput | boolean
+    connect?: rolesWhereUniqueInput
+    update?: XOR<XOR<rolesUpdateToOneWithWhereWithoutUsersInput, rolesUpdateWithoutUsersInput>, rolesUncheckedUpdateWithoutUsersInput>
   }
 
   export type our_worksUpdateManyWithoutCreatedByNestedInput = {
@@ -9031,8 +10078,8 @@ export namespace Prisma {
     deleteMany?: applicantsScalarWhereInput | applicantsScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -9246,21 +10293,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -9274,33 +10306,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9330,35 +10335,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -9375,6 +10351,100 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9399,6 +10469,33 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -9413,18 +10510,110 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type usersCreateWithoutRoleInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean | null
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutRoleInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean | null
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutRoleInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput>
+  }
+
+  export type usersCreateManyRoleInputEnvelope = {
+    data: usersCreateManyRoleInput | usersCreateManyRoleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usersUpsertWithWhereUniqueWithoutRoleInput = {
+    where: usersWhereUniqueInput
+    update: XOR<usersUpdateWithoutRoleInput, usersUncheckedUpdateWithoutRoleInput>
+    create: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput>
+  }
+
+  export type usersUpdateWithWhereUniqueWithoutRoleInput = {
+    where: usersWhereUniqueInput
+    data: XOR<usersUpdateWithoutRoleInput, usersUncheckedUpdateWithoutRoleInput>
+  }
+
+  export type usersUpdateManyWithWhereWithoutRoleInput = {
+    where: usersScalarWhereInput
+    data: XOR<usersUpdateManyMutationInput, usersUncheckedUpdateManyWithoutRoleInput>
+  }
+
+  export type usersScalarWhereInput = {
+    AND?: usersScalarWhereInput | usersScalarWhereInput[]
+    OR?: usersScalarWhereInput[]
+    NOT?: usersScalarWhereInput | usersScalarWhereInput[]
+    id?: IntFilter<"users"> | number
+    name?: StringNullableFilter<"users"> | string | null
+    email?: StringFilter<"users"> | string
+    password?: StringFilter<"users"> | string
+    two_factor_code?: StringNullableFilter<"users"> | string | null
+    two_factor_code_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
+    is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
+    reset_token?: StringNullableFilter<"users"> | string | null
+    reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
+    role_id?: IntNullableFilter<"users"> | number | null
+    created_at?: DateTimeFilter<"users"> | Date | string
+    updated_at?: DateTimeFilter<"users"> | Date | string
+  }
+
+  export type rolesCreateWithoutUsersInput = {
+    name: string
+    access: JsonNullValueInput | InputJsonValue
+  }
+
+  export type rolesUncheckedCreateWithoutUsersInput = {
+    id?: number
+    name: string
+    access: JsonNullValueInput | InputJsonValue
+  }
+
+  export type rolesCreateOrConnectWithoutUsersInput = {
+    where: rolesWhereUniqueInput
+    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
+  }
+
   export type our_worksCreateWithoutCreatedByInput = {
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -9434,16 +10623,11 @@ export namespace Prisma {
   export type our_worksUncheckedCreateWithoutCreatedByInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     updated_by: number
     created_at?: Date | string
@@ -9462,16 +10646,11 @@ export namespace Prisma {
 
   export type our_worksCreateWithoutUpdatedByInput = {
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -9481,16 +10660,11 @@ export namespace Prisma {
   export type our_worksUncheckedCreateWithoutUpdatedByInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_by: number
     created_at?: Date | string
@@ -9510,26 +10684,16 @@ export namespace Prisma {
   export type jobsCreateWithoutCreatedByInput = {
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_at?: Date | string
@@ -9542,26 +10706,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     updated_by: number
@@ -9583,26 +10737,16 @@ export namespace Prisma {
   export type jobsCreateWithoutUpdatedByInput = {
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_at?: Date | string
@@ -9615,26 +10759,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_by: number
@@ -9692,6 +10826,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type rolesUpsertWithoutUsersInput = {
+    update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
+    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
+    where?: rolesWhereInput
+  }
+
+  export type rolesUpdateToOneWithWhereWithoutUsersInput = {
+    where?: rolesWhereInput
+    data: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type rolesUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+  }
+
+  export type rolesUncheckedUpdateWithoutUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    access?: JsonNullValueInput | InputJsonValue
+  }
+
   export type our_worksUpsertWithWhereUniqueWithoutCreatedByInput = {
     where: our_worksWhereUniqueInput
     update: XOR<our_worksUpdateWithoutCreatedByInput, our_worksUncheckedUpdateWithoutCreatedByInput>
@@ -9714,16 +10870,11 @@ export namespace Prisma {
     NOT?: our_worksScalarWhereInput | our_worksScalarWhereInput[]
     id?: IntFilter<"our_works"> | number
     date?: DateTimeFilter<"our_works"> | Date | string
-    title_en?: StringFilter<"our_works"> | string
-    title_km?: StringFilter<"our_works"> | string
-    description_en?: StringFilter<"our_works"> | string
-    description_km?: StringFilter<"our_works"> | string
-    challenges_en?: StringFilter<"our_works"> | string
-    challenges_km?: StringFilter<"our_works"> | string
-    strategy_en?: StringFilter<"our_works"> | string
-    strategy_km?: StringFilter<"our_works"> | string
-    takeaway_en?: StringFilter<"our_works"> | string
-    takeaway_km?: StringFilter<"our_works"> | string
+    title?: StringFilter<"our_works"> | string
+    description?: StringFilter<"our_works"> | string
+    challenges?: StringFilter<"our_works"> | string
+    strategy?: StringFilter<"our_works"> | string
+    takeaway?: StringFilter<"our_works"> | string
     image?: StringNullableFilter<"our_works"> | string | null
     created_by?: IntFilter<"our_works"> | number
     updated_by?: IntFilter<"our_works"> | number
@@ -9770,26 +10921,16 @@ export namespace Prisma {
     id?: IntFilter<"jobs"> | number
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
-    position_en?: StringFilter<"jobs"> | string
-    position_km?: StringFilter<"jobs"> | string
-    department_en?: StringFilter<"jobs"> | string
-    department_km?: StringFilter<"jobs"> | string
-    description_en?: StringFilter<"jobs"> | string
-    description_km?: StringFilter<"jobs"> | string
-    experiences_en?: StringFilter<"jobs"> | string
-    experiences_km?: StringFilter<"jobs"> | string
-    level_en?: StringFilter<"jobs"> | string
-    level_km?: StringFilter<"jobs"> | string
-    overview_en?: StringFilter<"jobs"> | string
-    overview_km?: StringFilter<"jobs"> | string
-    job_type_en?: StringFilter<"jobs"> | string
-    job_type_km?: StringFilter<"jobs"> | string
-    salary_en?: StringFilter<"jobs"> | string
-    salary_km?: StringFilter<"jobs"> | string
-    duties_en?: StringFilter<"jobs"> | string
-    duties_km?: StringFilter<"jobs"> | string
-    requirements_en?: StringFilter<"jobs"> | string
-    requirements_km?: StringFilter<"jobs"> | string
+    position?: StringFilter<"jobs"> | string
+    department?: StringFilter<"jobs"> | string
+    description?: StringFilter<"jobs"> | string
+    experiences?: StringFilter<"jobs"> | string
+    level?: StringFilter<"jobs"> | string
+    overview?: StringFilter<"jobs"> | string
+    job_type?: StringFilter<"jobs"> | string
+    salary?: StringFilter<"jobs"> | string
+    duties?: StringFilter<"jobs"> | string
+    requirements?: StringFilter<"jobs"> | string
     gender?: StringFilter<"jobs"> | string
     status?: StringFilter<"jobs"> | string
     created_by?: IntFilter<"jobs"> | number
@@ -9860,6 +11001,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
@@ -9876,6 +11018,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -9900,6 +11043,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
@@ -9916,6 +11060,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
@@ -9951,6 +11096,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
@@ -9967,6 +11113,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -9997,6 +11144,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
@@ -10013,6 +11161,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -10032,6 +11181,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
@@ -10048,6 +11198,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
@@ -10072,6 +11223,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
@@ -10088,6 +11240,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
@@ -10162,6 +11315,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
@@ -10178,6 +11332,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -10208,6 +11363,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
@@ -10224,6 +11380,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -10251,26 +11408,16 @@ export namespace Prisma {
   export type jobsCreateWithoutApplicantInput = {
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_at?: Date | string
@@ -10283,26 +11430,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_by: number
@@ -10327,6 +11464,7 @@ export namespace Prisma {
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
     updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
@@ -10343,6 +11481,7 @@ export namespace Prisma {
     is_two_factor_enabled?: boolean | null
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
+    role_id?: number | null
     created_at?: Date | string
     updated_at?: Date | string
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
@@ -10370,26 +11509,16 @@ export namespace Prisma {
   export type jobsUpdateWithoutApplicantInput = {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10402,26 +11531,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
@@ -10452,6 +11571,7 @@ export namespace Prisma {
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
@@ -10468,6 +11588,7 @@ export namespace Prisma {
     is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -10476,19 +11597,79 @@ export namespace Prisma {
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
+  export type usersCreateManyRoleInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean | null
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type usersUpdateWithoutRoleInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateManyWithoutRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type our_worksCreateManyCreatedByInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     updated_by: number
     created_at?: Date | string
@@ -10498,16 +11679,11 @@ export namespace Prisma {
   export type our_worksCreateManyUpdatedByInput = {
     id?: number
     date: Date | string
-    title_en: string
-    title_km: string
-    description_en: string
-    description_km: string
-    challenges_en: string
-    challenges_km: string
-    strategy_en: string
-    strategy_km: string
-    takeaway_en: string
-    takeaway_km: string
+    title: string
+    description: string
+    challenges: string
+    strategy: string
+    takeaway: string
     image?: string | null
     created_by: number
     created_at?: Date | string
@@ -10518,26 +11694,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     updated_by: number
@@ -10549,26 +11715,16 @@ export namespace Prisma {
     id?: number
     open_date: Date | string
     close_date: Date | string
-    position_en: string
-    position_km: string
-    department_en: string
-    department_km: string
-    description_en: string
-    description_km: string
-    experiences_en: string
-    experiences_km: string
-    level_en: string
-    level_km: string
-    overview_en: string
-    overview_km: string
-    job_type_en: string
-    job_type_km: string
-    salary_en: string
-    salary_km: string
-    duties_en: string
-    duties_km: string
-    requirements_en: string
-    requirements_km: string
+    position: string
+    department: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
     gender: string
     status?: string
     created_by: number
@@ -10593,16 +11749,11 @@ export namespace Prisma {
 
   export type our_worksUpdateWithoutCreatedByInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10612,16 +11763,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateWithoutCreatedByInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10631,16 +11777,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateManyWithoutCreatedByInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10649,16 +11790,11 @@ export namespace Prisma {
 
   export type our_worksUpdateWithoutUpdatedByInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10668,16 +11804,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateWithoutUpdatedByInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10687,16 +11818,11 @@ export namespace Prisma {
   export type our_worksUncheckedUpdateManyWithoutUpdatedByInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    title_en?: StringFieldUpdateOperationsInput | string
-    title_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    challenges_en?: StringFieldUpdateOperationsInput | string
-    challenges_km?: StringFieldUpdateOperationsInput | string
-    strategy_en?: StringFieldUpdateOperationsInput | string
-    strategy_km?: StringFieldUpdateOperationsInput | string
-    takeaway_en?: StringFieldUpdateOperationsInput | string
-    takeaway_km?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    challenges?: StringFieldUpdateOperationsInput | string
+    strategy?: StringFieldUpdateOperationsInput | string
+    takeaway?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10706,26 +11832,16 @@ export namespace Prisma {
   export type jobsUpdateWithoutCreatedByInput = {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10738,26 +11854,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -10770,26 +11876,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -10800,26 +11896,16 @@ export namespace Prisma {
   export type jobsUpdateWithoutUpdatedByInput = {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10832,26 +11918,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
@@ -10864,26 +11940,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    position_en?: StringFieldUpdateOperationsInput | string
-    position_km?: StringFieldUpdateOperationsInput | string
-    department_en?: StringFieldUpdateOperationsInput | string
-    department_km?: StringFieldUpdateOperationsInput | string
-    description_en?: StringFieldUpdateOperationsInput | string
-    description_km?: StringFieldUpdateOperationsInput | string
-    experiences_en?: StringFieldUpdateOperationsInput | string
-    experiences_km?: StringFieldUpdateOperationsInput | string
-    level_en?: StringFieldUpdateOperationsInput | string
-    level_km?: StringFieldUpdateOperationsInput | string
-    overview_en?: StringFieldUpdateOperationsInput | string
-    overview_km?: StringFieldUpdateOperationsInput | string
-    job_type_en?: StringFieldUpdateOperationsInput | string
-    job_type_km?: StringFieldUpdateOperationsInput | string
-    salary_en?: StringFieldUpdateOperationsInput | string
-    salary_km?: StringFieldUpdateOperationsInput | string
-    duties_en?: StringFieldUpdateOperationsInput | string
-    duties_km?: StringFieldUpdateOperationsInput | string
-    requirements_en?: StringFieldUpdateOperationsInput | string
-    requirements_km?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number

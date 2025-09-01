@@ -3,8 +3,10 @@
 // import { useLanguage } from "@/context/LanguageContext";
 import { Kaushan_Script, Pacifico } from "next/font/google";
 import Image from "next/image";
-import React from "react";
+import React,{useEffect} from "react";
 import { FaArrowRight } from "react-icons/fa";
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const kaushan = Kaushan_Script({
   subsets: ["latin"],
@@ -14,18 +16,24 @@ const pacifico = Pacifico({
   weight: "400",
   subsets: ["latin"],
 });
-const Hero = () => {
-  // const { t } = useLanguage();
 
+
+
+const Hero = () => {
+  useEffect(() => {
+        // Register GSAP plugins.
+        // gsap.registerPlugin(ScrollTrigger);
+
+      }, []);
+  // const { t } = useLanguage();
   return (
     <div className=" w-full  h-[100vh]  bg-[url('/images/home/hero_bg.webp')] bg-cover bg-no-repeat bg-center z-10 sm:pt-14">
       <div className="relative w-full flex items-center h-full ">
-        <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-25"></div>
         {/* <h1 className="text-5xl">{t.greeting}</h1> */}
         <div className=" grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between items-center w-[90%] left-[5%] mx-auto pt-0 sm:pt-0 ">
           <div>
             <div className="border-t-[1px] border-b-[1px] sm:border-t-2 sm:border-b-2 py-4 sm:py-10 border-t-border border-b-border w-full h-20 sm:h-32 flex flex-col items-center justify-center">
-              <div className="text-white text-sm sm:text-lg md:text-lg font-bold tracking-[0.17rem] w-full text-center">
+              <div className="text1 text-white text-sm sm:text-lg md:text-lg font-bold tracking-[0.17rem] w-full text-center">
                 <div className="relative inline-block">
                   <h1
                     className={`${pacifico.className} text-white text-sm sm:text-lg relative z-10`}

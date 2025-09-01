@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Logo from "@/components/Logo";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -24,13 +25,14 @@ const Footer = () => {
           <div className=" w-[95%] md:w-[90%] mx-auto">
             <div className="flex flex-row md:flex-row lg:flex-row  justify-around sm:justify-between w-full ">
               <div>
-                <Image
+                {/* <Image
                   alt="logo"
                   src="/logo.svg"
                   width={100}
                   height={100}
                   className="object-cover mx-auto md:mx-0"
-                />
+                /> */}
+                <Logo color="#892A51" width="130px" />
                 <h1 className="font-extrabold text-lg py-2">Work With Us</h1>
                 <p className="text-xs  py-2">hello@hd&smedia.com</p>
                 <p className="text-xs  py-2">+1 (201) 895-3801</p>

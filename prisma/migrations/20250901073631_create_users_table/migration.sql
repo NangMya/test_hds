@@ -1,4 +1,14 @@
 -- CreateTable
+CREATE TABLE `roles` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `access` JSON NOT NULL,
+
+    UNIQUE INDEX `roles_name_key`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NULL,
@@ -9,6 +19,7 @@ CREATE TABLE `users` (
     `is_two_factor_enabled` BOOLEAN NULL,
     `reset_token` VARCHAR(191) NULL,
     `reset_token_expiry` DATETIME(3) NULL,
+    `role_id` INTEGER NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
@@ -33,16 +44,11 @@ CREATE TABLE `messages` (
 CREATE TABLE `our_works` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `date` DATETIME(3) NOT NULL,
-    `title_en` VARCHAR(191) NOT NULL,
-    `title_km` VARCHAR(191) NOT NULL,
-    `description_en` VARCHAR(191) NOT NULL,
-    `description_km` VARCHAR(191) NOT NULL,
-    `challenges_en` VARCHAR(191) NOT NULL,
-    `challenges_km` VARCHAR(191) NOT NULL,
-    `strategy_en` VARCHAR(191) NOT NULL,
-    `strategy_km` VARCHAR(191) NOT NULL,
-    `takeaway_en` VARCHAR(191) NOT NULL,
-    `takeaway_km` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `challenges` VARCHAR(191) NOT NULL,
+    `strategy` VARCHAR(191) NOT NULL,
+    `takeaway` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NULL,
     `created_by` INTEGER NOT NULL,
     `updated_by` INTEGER NOT NULL,
@@ -57,26 +63,16 @@ CREATE TABLE `jobs` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `open_date` DATETIME(3) NOT NULL,
     `close_date` DATETIME(3) NOT NULL,
-    `position_en` VARCHAR(191) NOT NULL,
-    `position_km` VARCHAR(191) NOT NULL,
-    `department_en` VARCHAR(191) NOT NULL,
-    `department_km` VARCHAR(191) NOT NULL,
-    `description_en` VARCHAR(191) NOT NULL,
-    `description_km` VARCHAR(191) NOT NULL,
-    `experiences_en` VARCHAR(191) NOT NULL,
-    `experiences_km` VARCHAR(191) NOT NULL,
-    `level_en` VARCHAR(191) NOT NULL,
-    `level_km` VARCHAR(191) NOT NULL,
-    `overview_en` VARCHAR(191) NOT NULL,
-    `overview_km` VARCHAR(191) NOT NULL,
-    `job_type_en` VARCHAR(191) NOT NULL,
-    `job_type_km` VARCHAR(191) NOT NULL,
-    `salary_en` VARCHAR(191) NOT NULL,
-    `salary_km` VARCHAR(191) NOT NULL,
-    `duties_en` VARCHAR(191) NOT NULL,
-    `duties_km` VARCHAR(191) NOT NULL,
-    `requirements_en` VARCHAR(191) NOT NULL,
-    `requirements_km` VARCHAR(191) NOT NULL,
+    `position` VARCHAR(191) NOT NULL,
+    `department` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `experiences` VARCHAR(191) NOT NULL,
+    `level` VARCHAR(191) NOT NULL,
+    `overview` VARCHAR(191) NOT NULL,
+    `job_type` VARCHAR(191) NOT NULL,
+    `salary` VARCHAR(191) NOT NULL,
+    `duties` VARCHAR(191) NOT NULL,
+    `requirements` VARCHAR(191) NOT NULL,
     `gender` VARCHAR(191) NOT NULL,
     `status` VARCHAR(191) NOT NULL DEFAULT 'open',
     `created_by` INTEGER NOT NULL,
@@ -105,6 +101,9 @@ CREATE TABLE `applicants` (
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `users` ADD CONSTRAINT `users_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `our_works` ADD CONSTRAINT `our_works_created_by_fkey` FOREIGN KEY (`created_by`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

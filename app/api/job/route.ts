@@ -18,49 +18,30 @@ export async function POST(req: Request) {
         const closeDateStr = form.get("close_date") as string;
         const open_date = new Date(openDateStr).toISOString();
         const close_date = new Date(closeDateStr).toISOString();
-        const position_en = form.get('position_en') as string;
-        const position_km = form.get("position_km") as string;
-        const department_en  = form.get("department_en") as string;
-        const department_km = form.get("department_km") as string;
-        const description_en = form.get("description_en") as string;
-        const description_km = form.get("description_km") as string;
-        const experiences_en = form.get("experiences_en") as string;
-        const experiences_km = form.get("experiences_km") as string;
-        const level_en = form.get("level_en") as string;
-        const level_km = form.get("level_km") as string;
-        const overview_en = form.get("overview_en") as string;
-        const overview_km = form.get("overview_km") as string;
-        const job_type_en = form.get("job_type_en") as string;
-        const job_type_km = form.get("job_type_km") as string;
-        const salary_en = form.get("salary_en") as string;
-        const salary_km = form.get("salary_km") as string;
-        const duties_en = form.get("duties_en") as string;
-        const duties_km = form.get("duties_km") as string;
+        const position = form.get('position') as string;
+        const department  = form.get("department") as string;
+        const description = form.get("description") as string;
+        const experiences = form.get("experiences") as string;
+        const level = form.get("level") as string;
+        const overview = form.get("overview") as string;
+        const job_type = form.get("job_type") as string;
+        const salary = form.get("salary") as string;
+        const duties = form.get("duties") as string;
         const requirements_km = form.get("requirements_km") as string;
-        const requirements_en = form.get("requirements_en") as string;
-
+        const requirements = form.get("requirements") as string;
         const gender = form.get("gender") as string;
         const status = form.get("status") as string;
 
         if(
             !open_date ||
             !close_date ||
-            !position_en ||
-            !position_km ||
-            !description_en ||
-            !description_km ||
-            !experiences_en ||
-            !experiences_km ||
-            !level_en ||
-            !overview_en ||
-            !overview_km ||
-            !job_type_en ||
-            !salary_en ||
-            !salary_km ||
-            !duties_en ||
-            !duties_km ||
-            !requirements_en ||
-            !requirements_km ||
+            !position ||
+            !description ||
+            !experiences ||
+            !level ||
+            !job_type ||
+            !duties ||
+            !requirements ||
             !gender
                 ){
                     return NextResponse.json({error: "All fields are required"},{status: 400})
@@ -70,26 +51,16 @@ export async function POST(req: Request) {
                     data: {
                         open_date,
                         close_date,
-                        position_en,
-                        position_km,
-                        description_en,
-                        description_km,
-                        department_en,
-                        department_km,
-                        experiences_en,
-                        experiences_km,
-                        level_en,
-                        level_km,
-                        overview_en,
-                        overview_km,
-                        job_type_en,
-                        job_type_km,
-                        salary_en,
-                        salary_km,
-                        duties_en,
-                        duties_km,
-                        requirements_en,
-                        requirements_km,
+                        position,
+                        description,
+                        department,
+                        experiences,
+                        level,
+                        overview,
+                        job_type,
+                        salary,
+                        duties,
+                        requirements,
                         gender,
                         status,
                         created_by: 1,

@@ -8,23 +8,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model roles {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  access Json
+  users  users[] @relation("roleId")
+}
+
 model users {
-  id                     Int          @id @default(autoincrement())
+  id                     Int       @id @default(autoincrement())
   name                   String?
-  email                  String       @unique
+  email                  String    @unique
   password               String
   two_factor_code        String?
   two_factor_code_expiry DateTime?
-  is_two_factor_enabled  Boolean?
+  is_two_factor_enabled  Boolean  @default(true)
   reset_token            String?
   reset_token_expiry     DateTime?
-  created_at             DateTime     @default(now())
-  updated_at             DateTime     @updatedAt
-  created_Work           our_works[]  @relation("CreatedByUser")
-  updated_Work           our_works[]  @relation("UpdatedByUser")
-  created_Job            jobs[]       @relation("CreatedByUser")
-  updated_Job            jobs[]       @relation("UpdatedByUser")
-  updated_Applicant      applicants[] @relation("UpdatedByUser")
+  role_id                Int?
+  role                   roles?    @relation("roleId", fields: [role_id], references: [id])
+  created_at        DateTime     @default(now())
+  updated_at        DateTime     @updatedAt
+  created_Work      our_works[]  @relation("CreatedByUser")
+  updated_Work      our_works[]  @relation("UpdatedByUser")
+  created_Job       jobs[]       @relation("CreatedByUser")
+  updated_Job       jobs[]       @relation("UpdatedByUser")
+  updated_Applicant applicants[] @relation("UpdatedByUser")
 }
 
 model messages {
@@ -38,60 +47,45 @@ model messages {
 }
 
 model our_works {
-  id             Int      @id @default(autoincrement())
-  date           DateTime
-  title_en       String
-  title_km       String
-  description_en String
-  description_km String
-  challenges_en  String
-  challenges_km  String
-  strategy_en    String
-  strategy_km    String
-  takeaway_en    String
-  takeaway_km    String
-  image          String?
-  created_by     Int
-  updated_by     Int
-  createdBy      users    @relation("CreatedByUser", fields: [created_by], references: [id])
-  updatedBy      users    @relation("UpdatedByUser", fields: [updated_by], references: [id])
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  title       String
+  description String
+  challenges  String
+  strategy    String
+  takeaway    String
+  image       String?
+  created_by  Int
+  updated_by  Int
+  createdBy   users    @relation("CreatedByUser", fields: [created_by], references: [id])
+  updatedBy   users    @relation("UpdatedByUser", fields: [updated_by], references: [id])
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }
 
 model jobs {
-  id              Int          @id @default(autoincrement())
-  open_date       DateTime
-  close_date      DateTime
-  position_en     String
-  position_km     String
-  department_en   String
-  department_km   String
-  description_en  String
-  description_km  String
-  experiences_en  String
-  experiences_km  String
-  level_en        String
-  level_km        String
-  overview_en     String
-  overview_km     String
-  job_type_en     String
-  job_type_km     String
-  salary_en       String
-  salary_km       String
-  duties_en       String
-  duties_km       String
-  requirements_en String
-  requirements_km String
-  gender          String
-  status          String       @default("open")
-  created_by      Int
-  updated_by      Int
-  createdBy       users        @relation("CreatedByUser", fields: [created_by], references: [id])
-  updatedBy       users        @relation("UpdatedByUser", fields: [updated_by], references: [id])
-  created_at      DateTime     @default(now())
-  updated_at      DateTime     @updatedAt
-  applicant       applicants[]
+  id           Int          @id @default(autoincrement())
+  open_date    DateTime
+  close_date   DateTime
+  position     String
+  department   String
+  description  String
+  experiences  String
+  level        String
+  overview     String
+  job_type     String
+  salary       String
+  duties       String
+  requirements String
+  gender       String
+  status       String       @default("open")
+  created_by   Int
+  updated_by   Int
+  createdBy    users        @relation("CreatedByUser", fields: [created_by], references: [id])
+  updatedBy    users        @relation("UpdatedByUser", fields: [updated_by], references: [id])
+  created_at   DateTime     @default(now())
+  updated_at   DateTime     @updatedAt
+  applicant    applicants[]
 }
 
 model applicants {
