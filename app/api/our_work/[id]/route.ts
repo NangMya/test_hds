@@ -1,8 +1,8 @@
-import prisma from "@/lib/db";
 import { unlink, writeFile } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
+import prisma from "@/lib/db";
 
 
 export async function GET(
@@ -36,16 +36,11 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       const dateStr = form.get("date") as string;
       const date = new Date(dateStr).toISOString();
   
-      const title_en = form.get("title_en") as string;
-      const title_km = form.get("title_km") as string;
-      const description_en = form.get("description_en") as string;
-      const description_km = form.get("description_km") as string;
-      const challenges_en = form.get("challenges_en") as string;
-      const challenges_km = form.get("challenges_km") as string;
-      const strategy_en = form.get("strategy_en") as string;
-      const strategy_km = form.get("strategy_km") as string;
-      const takeaway_en = form.get("takeaway_en") as string;
-      const takeaway_km = form.get("takeaway_km") as string;
+      const title = form.get("title") as string;
+      const description = form.get("description") as string;
+      const challenges = form.get("challenges") as string;
+      const strategy = form.get("strategy") as string;
+      const takeaway = form.get("takeaway") as string;
       const image = form.get("image") as File | null;
   
       const existingWork = await prisma.our_works.findUnique({
@@ -77,16 +72,11 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         where: { id: Number(id) },
         data: {
           date,
-          title_en,
-          title_km,
-          description_en,
-          description_km,
-          challenges_en,
-          challenges_km,
-          strategy_en,
-          strategy_km,
-          takeaway_en,
-          takeaway_km,
+          title,
+          description,
+          challenges,
+          strategy,
+          takeaway,
           image: imagePath,
           created_by: 1,
           updated_by: 1,

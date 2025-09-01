@@ -1,7 +1,7 @@
 
-import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import prisma from "@/lib/db";
 
 export async function POST(req: Request) {
     const { email, code } = await req.json();

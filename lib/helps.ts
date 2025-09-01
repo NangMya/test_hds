@@ -7,5 +7,5 @@ export const customFormatDate = (isoDate: string) => {
     return `${day} ${month} ${year}`;
   };
   
-  console.log(customFormatDate("2022-06-26T00:00:00.000Z")); // 👉 "26 Jun 2022"
+  console.log(customFormatDate("2022-06-26T00:00:00.000Z"));
   

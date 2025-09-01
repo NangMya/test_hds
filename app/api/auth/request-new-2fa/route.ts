@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
-import { generate2FACode } from "@/lib/util";
 import { sendEmail } from "@/lib/email";
+import { generate2FACode } from "@/lib/util";
+import { NextResponse } from "next/server";
+
 
 export async function POST(req: Request) {
     const { email } = await req.json();

@@ -1,7 +1,7 @@
-import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import path from "path";
+import prisma from "@/lib/db";
 
 export async function GET() {
   try {
@@ -20,30 +20,20 @@ export async function POST(req: Request) {
     const dateStr = form.get("date") as string;
     const date = new Date(dateStr).toISOString();
 
-    const title_en = form.get("title_en") as string;
-    const title_km = form.get("title_km") as string;
-    const description_en = form.get("description_en") as string;
-    const description_km = form.get("description_km") as string;
-    const challenges_en = form.get("challenges_en") as string;
-    const challenges_km = form.get("challenges_km") as string;
-    const strategy_en = form.get("strategy_en") as string;
-    const strategy_km = form.get("strategy_km") as string;
-    const takeaway_en = form.get("takeaway_en") as string;
-    const takeaway_km = form.get("takeaway_km") as string;
+    const title = form.get("title") as string;
+    const description = form.get("description") as string;
+    const challenges = form.get("challenges") as string;
+    const strategy = form.get("strategy") as string;
+    const takeaway = form.get("takeaway") as string;
     const image = form.get("image") as File;
 
     if (
       !date ||
-      !title_en ||
-      !title_km ||
-      !description_en ||
-      !description_km ||
-      !challenges_en ||
-      !challenges_km ||
-      !strategy_en ||
-      !strategy_km ||
-      !takeaway_en ||
-      !takeaway_km ||
+      !title ||
+      !description ||
+      !challenges ||
+      !strategy ||
+      !takeaway ||
       !image
     ) {
       return NextResponse.json({ error: "All fields are required!" }, { status: 400 });
@@ -60,16 +50,11 @@ export async function POST(req: Request) {
     const newWorks = await prisma.our_works.create({
       data: {
         date,
-        title_en,
-        title_km,
-        description_en,
-        description_km,
-        challenges_en,
-        challenges_km,
-        strategy_en,
-        strategy_km,
-        takeaway_en,
-        takeaway_km,
+        title,
+        description,
+        challenges,
+        strategy,
+        takeaway,
         image: `/uploads/works/${filename}`, 
         created_by: 1,
         updated_by: 1,

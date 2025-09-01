@@ -29,11 +29,11 @@ model users {
   role                   roles?       @relation("roleId", fields: [role_id], references: [id])
   created_at             DateTime     @default(now())
   updated_at             DateTime     @updatedAt
-  created_Work           our_works[]  @relation("CreatedByUser")
-  updated_Work           our_works[]  @relation("UpdatedByUser")
-  created_Job            jobs[]       @relation("CreatedByUser")
-  updated_Job            jobs[]       @relation("UpdatedByUser")
-  updated_Applicant      applicants[] @relation("UpdatedByUser")
+  created_Work           our_works[]  @relation("UserCreatedWorks")
+  updated_Work           our_works[]  @relation("UserUpdatedWorks")
+  created_Job            jobs[]       @relation("UserCreatedJobs")
+  updated_Job            jobs[]       @relation("UserUpdatedJobs")
+  updated_Applicant      applicants[] @relation("UserUpdatedApplicants")
 }
 
 model messages {
@@ -57,10 +57,11 @@ model our_works {
   image       String?
   created_by  Int
   updated_by  Int
-  createdBy   users    @relation("CreatedByUser", fields: [created_by], references: [id])
-  updatedBy   users    @relation("UpdatedByUser", fields: [updated_by], references: [id])
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  createdBy   users    @relation("UserCreatedWorks", fields: [created_by], references: [id])
+  updatedBy   users    @relation("UserUpdatedWorks", fields: [updated_by], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model jobs {
@@ -81,15 +82,15 @@ model jobs {
   status       String       @default("open")
   created_by   Int
   updated_by   Int
-  createdBy    users        @relation("CreatedByUser", fields: [created_by], references: [id])
-  updatedBy    users        @relation("UpdatedByUser", fields: [updated_by], references: [id])
+  createdBy    users        @relation("UserCreatedJobs", fields: [created_by], references: [id])
+  updatedBy    users        @relation("UserUpdatedJobs", fields: [updated_by], references: [id])
   created_at   DateTime     @default(now())
   updated_at   DateTime     @updatedAt
   applicant    applicants[]
 }
 
 model applicants {
-  id              Int      @id @default(autoincrement())
+  id              Int    @id @default(autoincrement())
   name            String
   email           String
   phone           String
@@ -98,10 +99,11 @@ model applicants {
   expected_salary String
   job_id          Int
   file            String
-  job             jobs     @relation(fields: [job_id], references: [id])
-  status          String   @default("pending")
+  job             jobs   @relation(fields: [job_id], references: [id])
+  status          String @default("pending")
   updated_by      Int
-  updatedBy       users    @relation("UpdatedByUser", fields: [updated_by], references: [id])
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  updatedBy       users  @relation("UserUpdatedApplicants", fields: [updated_by], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

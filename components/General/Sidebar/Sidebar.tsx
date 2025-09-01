@@ -1,5 +1,6 @@
 "use client";
 import { adminNavLinks } from "@/components/constant/menus";
+import Logo from "@/components/Logo";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,16 +10,10 @@ import React from "react";
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="bg-dashboardBg shadow-sm min-w-44 overflow-hidden">
-      <ul className="py-2">
+    <div className="bg-white shadow-sm min-w-48 overflow-hidden">
+      <ul className="">
       <li className="px-2 pb-6 mb-6">
-        <Image
-          src="/logo.svg"
-          alt="HDS"
-          width={150}
-          height={90}
-          className="w-[92px] h-[42px] object-cover"
-        />
+        <Logo width="90px" />
         </li>
         {
           adminNavLinks.map((link) =>{

@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 
+
+import bcrypt from "bcryptjs";
 import prisma from "@/lib/db";
 import { generate2FACode } from "@/lib/util";
 import { sendEmail } from "@/lib/email";
-import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();

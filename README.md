@@ -1,3 +1,10 @@
+
+npx prisma generate
+
+npx prisam migrate dev
+npx prisma migrate reset
+npx prisma migrate resolve --rolled-back "<migration-name>"
+
 create migration
 npx prisma migrate dev --name <migration-name>
 

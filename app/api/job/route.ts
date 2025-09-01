@@ -1,5 +1,5 @@
+
 import prisma from "@/lib/db";
-import { error } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -27,7 +27,6 @@ export async function POST(req: Request) {
         const job_type = form.get("job_type") as string;
         const salary = form.get("salary") as string;
         const duties = form.get("duties") as string;
-        const requirements_km = form.get("requirements_km") as string;
         const requirements = form.get("requirements") as string;
         const gender = form.get("gender") as string;
         const status = form.get("status") as string;
