@@ -16,7 +16,7 @@ CREATE TABLE `users` (
     `password` VARCHAR(191) NOT NULL,
     `two_factor_code` VARCHAR(191) NULL,
     `two_factor_code_expiry` DATETIME(3) NULL,
-    `is_two_factor_enabled` BOOLEAN NULL,
+    `is_two_factor_enabled` BOOLEAN NOT NULL DEFAULT true,
     `reset_token` VARCHAR(191) NULL,
     `reset_token_expiry` DATETIME(3) NULL,
     `role_id` INTEGER NULL,

@@ -2585,7 +2585,7 @@ export namespace Prisma {
     password: string
     two_factor_code: string | null
     two_factor_code_expiry: Date | null
-    is_two_factor_enabled: boolean | null
+    is_two_factor_enabled: boolean
     reset_token: string | null
     reset_token_expiry: Date | null
     role_id: number | null
@@ -2679,7 +2679,7 @@ export namespace Prisma {
       password: string
       two_factor_code: string | null
       two_factor_code_expiry: Date | null
-      is_two_factor_enabled: boolean | null
+      is_two_factor_enabled: boolean
       reset_token: string | null
       reset_token_expiry: Date | null
       role_id: number | null
@@ -8127,7 +8127,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     two_factor_code?: StringNullableFilter<"users"> | string | null
     two_factor_code_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
-    is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
+    is_two_factor_enabled?: BoolFilter<"users"> | boolean
     reset_token?: StringNullableFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
     role_id?: IntNullableFilter<"users"> | number | null
@@ -8148,7 +8148,7 @@ export namespace Prisma {
     password?: SortOrder
     two_factor_code?: SortOrderInput | SortOrder
     two_factor_code_expiry?: SortOrderInput | SortOrder
-    is_two_factor_enabled?: SortOrderInput | SortOrder
+    is_two_factor_enabled?: SortOrder
     reset_token?: SortOrderInput | SortOrder
     reset_token_expiry?: SortOrderInput | SortOrder
     role_id?: SortOrderInput | SortOrder
@@ -8173,7 +8173,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     two_factor_code?: StringNullableFilter<"users"> | string | null
     two_factor_code_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
-    is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
+    is_two_factor_enabled?: BoolFilter<"users"> | boolean
     reset_token?: StringNullableFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
     role_id?: IntNullableFilter<"users"> | number | null
@@ -8194,7 +8194,7 @@ export namespace Prisma {
     password?: SortOrder
     two_factor_code?: SortOrderInput | SortOrder
     two_factor_code_expiry?: SortOrderInput | SortOrder
-    is_two_factor_enabled?: SortOrderInput | SortOrder
+    is_two_factor_enabled?: SortOrder
     reset_token?: SortOrderInput | SortOrder
     reset_token_expiry?: SortOrderInput | SortOrder
     role_id?: SortOrderInput | SortOrder
@@ -8217,7 +8217,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"users"> | string
     two_factor_code?: StringNullableWithAggregatesFilter<"users"> | string | null
     two_factor_code_expiry?: DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null
-    is_two_factor_enabled?: BoolNullableWithAggregatesFilter<"users"> | boolean | null
+    is_two_factor_enabled?: BoolWithAggregatesFilter<"users"> | boolean
     reset_token?: StringNullableWithAggregatesFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null
     role_id?: IntNullableWithAggregatesFilter<"users"> | number | null
@@ -8670,7 +8670,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -8690,7 +8690,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -8709,7 +8709,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8729,7 +8729,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8749,7 +8749,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -8763,7 +8763,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8777,7 +8777,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9387,9 +9387,9 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -9547,12 +9547,12 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9990,8 +9990,8 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -10402,9 +10402,9 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -10461,12 +10461,12 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10516,7 +10516,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -10535,7 +10535,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -10583,7 +10583,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     two_factor_code?: StringNullableFilter<"users"> | string | null
     two_factor_code_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
-    is_two_factor_enabled?: BoolNullableFilter<"users"> | boolean | null
+    is_two_factor_enabled?: BoolFilter<"users"> | boolean
     reset_token?: StringNullableFilter<"users"> | string | null
     reset_token_expiry?: DateTimeNullableFilter<"users"> | Date | string | null
     role_id?: IntNullableFilter<"users"> | number | null
@@ -10996,7 +10996,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11015,7 +11015,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -11038,7 +11038,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11057,7 +11057,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -11091,7 +11091,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11110,7 +11110,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11139,7 +11139,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11158,7 +11158,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11176,7 +11176,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11195,7 +11195,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -11218,7 +11218,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11237,7 +11237,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -11310,7 +11310,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11329,7 +11329,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11358,7 +11358,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11377,7 +11377,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11459,7 +11459,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11478,7 +11478,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     role_id?: number | null
@@ -11566,7 +11566,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11585,7 +11585,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11604,7 +11604,7 @@ export namespace Prisma {
     password: string
     two_factor_code?: string | null
     two_factor_code_expiry?: Date | string | null
-    is_two_factor_enabled?: boolean | null
+    is_two_factor_enabled?: boolean
     reset_token?: string | null
     reset_token_expiry?: Date | string | null
     created_at?: Date | string
@@ -11617,7 +11617,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11636,7 +11636,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11655,7 +11655,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
     two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    is_two_factor_enabled?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
     reset_token?: NullableStringFieldUpdateOperationsInput | string | null
     reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

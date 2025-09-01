@@ -22,7 +22,7 @@ model users {
   password               String
   two_factor_code        String?
   two_factor_code_expiry DateTime?
-  is_two_factor_enabled  Boolean?
+  is_two_factor_enabled  Boolean      @default(true)
   reset_token            String?
   reset_token_expiry     DateTime?
   role_id                Int?
