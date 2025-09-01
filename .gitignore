@@ -32,8 +32,7 @@ yarn-error.log*
 .vercel
 .env
 .lh
-README.md
-/README.md
+doc.md
 
 # typescript
 *.tsbuildinfo
