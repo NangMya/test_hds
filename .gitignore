@@ -33,6 +33,7 @@ yarn-error.log*
 .env
 .lh
 doc.md
+/public/uploads
 
 # typescript
 *.tsbuildinfo
