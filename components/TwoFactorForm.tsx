@@ -36,6 +36,9 @@ const TwoFactorForm = () => {
     }
   };
   const handleRequestNewCode = async () => {
+    setMessage('');
+    setError('');
+    setCode('');
     setLoading(true);
     const response = await fetch("/api/auth/request-new-2fa", {
       method: "POST",
@@ -51,7 +54,7 @@ const TwoFactorForm = () => {
     setLoading(false);
     if (data.message === "New 2FA code sent to your email.") {
       setTimeout(() => {
-        router.push("/admin/verify-2fa");
+        router.push("/auth/verify-2fa");
       }, 2000); 
     }
 

@@ -30,7 +30,7 @@ const RegisterForm = () => {
       setLoading(false);
 
       if (response.ok) {
-        router.push("/admin/login");
+        router.push("/auth/login");
       } else {
         setError(data.message || "Registration failed");
       }
@@ -107,7 +107,7 @@ const RegisterForm = () => {
          <div className="text-center text-xs mb-2">
               Have an account? 
             <Link
-              href="/admin/login"
+              href="/auth/login"
               className="text-xs underline hover:text-primary "
             >
               Login

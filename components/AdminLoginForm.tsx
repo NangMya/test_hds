@@ -30,7 +30,7 @@ const AdminLoginForm = () => {
       setLoading(false);
 
       if (response.ok) {
-        router.push("/admin/verify-2fa");
+        router.push("/auth/verify-2fa");
         localStorage.setItem("auth-email", data.email);
       } else {
         setError(data.message || "Login failed");
@@ -101,7 +101,7 @@ const AdminLoginForm = () => {
            <div className="text-center text-xs mb-2">
             I don't have an account. 
             <Link
-              href="/admin/register"
+              href="/auth/register"
               className="text-xs underline hover:text-primary "
             >
               Signup

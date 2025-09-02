@@ -166,6 +166,7 @@ const page = () => {
       });
 
       const result = await response.json();
+      console.log('result',result);
       if (result.error) {
         setError(result.error || "An error occurred. Please try again later.");
         throw new Error(result.error || "Failed to update.");

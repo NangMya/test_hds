@@ -29,6 +29,9 @@ const Hero = ({showreelPC,showreelMB}:{showreelPC:any, showreelMB:any}) => {
   // const { t } = useLanguage();
   return (
     <div className="w-full h-[100vh] relative z-10 sm:pt-14 overflow-hidden">
+      {
+       ( !showreelMB && !showreelPC) && <Image alt="heror_bg" src="/images_bg/home/hero_bg.png" width={1000} height={1000} className="absolute top-0 left-0 w-full h-full object-cover z-0"  />
+      }
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden sm:block"
         src={showreelPC}
@@ -37,7 +40,8 @@ const Hero = ({showreelPC,showreelMB}:{showreelPC:any, showreelMB:any}) => {
         muted
         playsInline
       />
-       <video
+
+      <video
         className="absolute top-0 left-0 w-full h-full object-cover z-0 block sm:hidden"
         src={showreelMB}
         autoPlay

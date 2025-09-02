@@ -22,7 +22,7 @@ export async function GET(
             return NextResponse.json({ error: "Work not found" }, { status: 404 });
         }
     } catch (error) {
-        return NextResponse.json({ error: "Field to fetch work" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch work" }, { status: 500 });
     }
 }
 

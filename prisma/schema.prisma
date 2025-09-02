@@ -36,6 +36,8 @@ model users {
   created_Info           infos[]      @relation("UserCreatedInfo")
   updated_Info           infos[]      @relation("UserUpdatedInfo")
   updated_Applicant      applicants[] @relation("UserUpdatedApplicants")
+  created_Client         clients[]    @relation("UserCreatedClient")
+  updated_Client         clients[]    @relation("UserUpdatedClient")
 }
 
 model messages {
@@ -122,7 +124,7 @@ model infos {
   facebook_url  String?
   linkedin_url  String?
   instagram_url String?
-  youtube_url    String?
+  youtube_url   String?
   telegram_url  String?
   tiktok_url    String?
   created_by    Int
@@ -131,4 +133,16 @@ model infos {
   updatedBy     users    @relation("UserUpdatedInfo", fields: [updated_by], references: [id])
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
+}
+
+model clients {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  logo       String
+  created_by Int
+  updated_by Int
+  createdBy  users    @relation("UserCreatedClient", fields: [created_by], references: [id])
+  updatedBy  users    @relation("UserUpdatedClient", fields: [updated_by], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
