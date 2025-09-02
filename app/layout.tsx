@@ -1,17 +1,12 @@
-"use client";
-
 import "./globals.css";
-import { usePathname } from "next/navigation";
 
-
+// This component remains a Server Component by default, which is the best practice.
+// It will not cause hydration errors because it doesn't use client-side hooks.
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isAdminRoute = pathname.includes("admin");
-
   return (
     <html lang="en">
       <body className={`antialiased overflow-x-hidden font-graphik`}>

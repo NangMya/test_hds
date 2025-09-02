@@ -1,7 +1,6 @@
 "use client";
 
 import FormTitle from "@/components/FormTitle";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -122,7 +121,7 @@ const page = () => {
     formData.append("gender", job.gender);
     formData.append("status", job.status);
     try {
-      const response = await fetch("/api/job", {
+      const response = await fetch("/api/admin/job", {
         method: "POST",
         body: formData,
       });
@@ -140,10 +139,9 @@ const page = () => {
   };
 
   return (
-    <DashboardLayout>
-      {loading && <LoadingOverlay />}
 
       <div className="bg-white p-4 rounded-lg">
+      {loading && <LoadingOverlay />}
         <FormTitle title="Create New Job" />
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg">
@@ -573,7 +571,6 @@ const page = () => {
           </div>
         </form>
       </div>
-    </DashboardLayout>
   );
 };
 

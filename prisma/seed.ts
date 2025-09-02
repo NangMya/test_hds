@@ -45,6 +45,19 @@ async function main() {
         console.error("Could not find 'Super Admin' role to assign.");
     }
 
+    const info = await prisma.infos.create({
+      data:{
+        name: "HDS",
+        email: "info@hdsmediagroup.com",
+        phone1: "(+855) 23 424 424",
+        phone2: "(+855) 10 222 444",
+        address: "#304, St.1970, Sangkat,Phnom Penh Thmey, Khan Sen Sok,Phnom Penh, Cambodia.",
+        showreel_pc: "",
+        showreel_mb: "",
+        created_by: 1,
+        updated_by: 1,
+      }
+    })
   console.log("Seeding finished.");
 }
 

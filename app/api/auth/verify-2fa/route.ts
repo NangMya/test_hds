@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import prisma from "@/lib/db";
+import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
     const { email, code } = await req.json();
@@ -27,7 +28,12 @@ export async function POST(req: Request) {
         }
 
         const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1d" });
-
+        cookies().set('auth-token', token, {
+            httpOnly: true, 
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24 * 7, 
+            path: '/', 
+        });
         return NextResponse.json({ token });
 
     } catch (error) {

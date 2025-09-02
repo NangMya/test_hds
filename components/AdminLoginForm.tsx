@@ -55,9 +55,9 @@ const AdminLoginForm = () => {
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
-          <div className="mb-6">
-            <label htmlFor="email" className="text-textColor">
+        <form className="mt-8" onSubmit={handleLogin}>
+          <div className="mb-4">
+            <label htmlFor="email" className="text-textColor text-xs">
               Email
             </label>
             <input
@@ -67,11 +67,11 @@ const AdminLoginForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-1 border border-border rounded hover:outline-none focus:outline-none"
+              className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
             />
           </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="text-textColor">
+          <div className="mb-2">
+            <label htmlFor="password" className="text-textColor text-xs">
               Password
             </label>
             <input
@@ -81,10 +81,10 @@ const AdminLoginForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-1 border border-border rounded hover:outline-none focus:outline-none"
+              className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
             />
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end py-2">
             <Link
               href="/admin/forgot-password"
               className="text-xs underline hover:text-primary "
@@ -94,10 +94,19 @@ const AdminLoginForm = () => {
           </div>
           <button
             type="submit"
-            className="px-4 py-2 bg-primary text-white float-end rounded border text-sm border-primary hover:bg-transparent hover:text-primary transition-all duration-500"
+            className="w-full px-4 py-2 bg-primary text-white float-end rounded border text-sm border-primary hover:bg-transparent hover:text-primary transition-all duration-500"
           >
             Log In
           </button>
+           <div className="text-center text-xs mb-2">
+            I don't have an account. 
+            <Link
+              href="/admin/register"
+              className="text-xs underline hover:text-primary "
+            >
+              Signup
+            </Link>
+          </div>
         </form>
       </div>
     </>

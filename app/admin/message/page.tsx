@@ -1,6 +1,5 @@
 "use client"; 
 
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useRouter } from "next/navigation"; 
 import React, { useEffect, useState } from "react";
@@ -25,7 +24,7 @@ const Page = () => {
   
     const fetchMessages = async () => {
       try {
-        const response = await fetch("/api/message");
+        const response = await fetch("/api/admin/message");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -44,7 +43,7 @@ const Page = () => {
 
 
   return (
-    <DashboardLayout>
+    <section>
       <div className="bg-white shadow rounded-lg p-6">
         {
           loading && <LoadingOverlay/>
@@ -67,7 +66,7 @@ const Page = () => {
           </div>
         ))}
       </div>
-    </DashboardLayout>
+    </section>
   );
 };
 

@@ -64,5 +64,10 @@ export const adminNavLinks = [
         url: '/admin/our_works',
         label: 'Our Works',
     },
+    {
+        id: 6,
+        url: "/admin/infos",
+        label: "Company Info"
+    }
    
 ];

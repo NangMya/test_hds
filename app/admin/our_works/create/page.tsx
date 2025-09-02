@@ -1,7 +1,6 @@
 "use client";
 
 import FormTitle from "@/components/FormTitle";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -61,7 +60,7 @@ const page = () => {
     if (work.image) formData.append("image", work.image);
 
     try {
-      const response = await fetch("/api/our_work", {
+      const response = await fetch("/api/admin/our_work", {
         method: "POST",
         body: formData,
       });
@@ -79,7 +78,7 @@ const page = () => {
   };
 
   return (
-    <DashboardLayout>
+    <section>
       {loading && <LoadingOverlay />}
 
       <div className="bg-white p-4 rounded-lg">
@@ -290,7 +289,7 @@ const page = () => {
           </div>
         </form>
       </div>
-    </DashboardLayout>
+    </section>
   );
 };
 

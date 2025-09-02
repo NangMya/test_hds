@@ -43,6 +43,11 @@ export type jobs = $Result.DefaultSelection<Prisma.$jobsPayload>
  * 
  */
 export type applicants = $Result.DefaultSelection<Prisma.$applicantsPayload>
+/**
+ * Model infos
+ * 
+ */
+export type infos = $Result.DefaultSelection<Prisma.$infosPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -60,7 +65,7 @@ export type applicants = $Result.DefaultSelection<Prisma.$applicantsPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -92,6 +97,13 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -221,6 +233,16 @@ export class PrismaClient<
     * ```
     */
   get applicants(): Prisma.applicantsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.infos`: Exposes CRUD operations for the **infos** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Infos
+    * const infos = await prisma.infos.findMany()
+    * ```
+    */
+  get infos(): Prisma.infosDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -279,8 +301,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.15.0
-   * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -666,7 +688,8 @@ export namespace Prisma {
     messages: 'messages',
     our_works: 'our_works',
     jobs: 'jobs',
-    applicants: 'applicants'
+    applicants: 'applicants',
+    infos: 'infos'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -685,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants"
+      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1085,6 +1108,72 @@ export namespace Prisma {
           }
         }
       }
+      infos: {
+        payload: Prisma.$infosPayload<ExtArgs>
+        fields: Prisma.infosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.infosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.infosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          findFirst: {
+            args: Prisma.infosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.infosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          findMany: {
+            args: Prisma.infosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>[]
+          }
+          create: {
+            args: Prisma.infosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          createMany: {
+            args: Prisma.infosCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.infosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          update: {
+            args: Prisma.infosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          deleteMany: {
+            args: Prisma.infosDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.infosUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.infosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$infosPayload>
+          }
+          aggregate: {
+            args: Prisma.InfosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInfos>
+          }
+          groupBy: {
+            args: Prisma.infosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InfosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.infosCountArgs<ExtArgs>
+            result: $Utils.Optional<InfosCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1128,24 +1217,16 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Shorthand for `emit: 'stdout'`
+     * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events only
+     * // Emit as events
      * log: [
-     *   { emit: 'event', level: 'query' },
-     *   { emit: 'event', level: 'info' },
-     *   { emit: 'event', level: 'warn' }
-     *   { emit: 'event', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
-     * 
-     * / Emit as events and log to stdout
-     * og: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
-     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1183,6 +1264,7 @@ export namespace Prisma {
     our_works?: our_worksOmit
     jobs?: jobsOmit
     applicants?: applicantsOmit
+    infos?: infosOmit
   }
 
   /* Types for Logging */
@@ -1192,15 +1274,10 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
-
-  export type GetLogType<T> = CheckIsLogLevel<
-    T extends LogDefinition ? T['level'] : T
-  >;
-
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -1240,6 +1317,25 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -1298,6 +1394,8 @@ export namespace Prisma {
     updated_Work: number
     created_Job: number
     updated_Job: number
+    created_Info: number
+    updated_Info: number
     updated_Applicant: number
   }
 
@@ -1306,6 +1404,8 @@ export namespace Prisma {
     updated_Work?: boolean | UsersCountOutputTypeCountUpdated_WorkArgs
     created_Job?: boolean | UsersCountOutputTypeCountCreated_JobArgs
     updated_Job?: boolean | UsersCountOutputTypeCountUpdated_JobArgs
+    created_Info?: boolean | UsersCountOutputTypeCountCreated_InfoArgs
+    updated_Info?: boolean | UsersCountOutputTypeCountUpdated_InfoArgs
     updated_Applicant?: boolean | UsersCountOutputTypeCountUpdated_ApplicantArgs
   }
 
@@ -1346,6 +1446,20 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountUpdated_JobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: jobsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_InfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: infosWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_InfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: infosWhereInput
   }
 
   /**
@@ -2617,6 +2731,8 @@ export namespace Prisma {
     updated_Work?: boolean | users$updated_WorkArgs<ExtArgs>
     created_Job?: boolean | users$created_JobArgs<ExtArgs>
     updated_Job?: boolean | users$updated_JobArgs<ExtArgs>
+    created_Info?: boolean | users$created_InfoArgs<ExtArgs>
+    updated_Info?: boolean | users$updated_InfoArgs<ExtArgs>
     updated_Applicant?: boolean | users$updated_ApplicantArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
@@ -2645,6 +2761,8 @@ export namespace Prisma {
     updated_Work?: boolean | users$updated_WorkArgs<ExtArgs>
     created_Job?: boolean | users$created_JobArgs<ExtArgs>
     updated_Job?: boolean | users$updated_JobArgs<ExtArgs>
+    created_Info?: boolean | users$created_InfoArgs<ExtArgs>
+    updated_Info?: boolean | users$updated_InfoArgs<ExtArgs>
     updated_Applicant?: boolean | users$updated_ApplicantArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2657,6 +2775,8 @@ export namespace Prisma {
       updated_Work: Prisma.$our_worksPayload<ExtArgs>[]
       created_Job: Prisma.$jobsPayload<ExtArgs>[]
       updated_Job: Prisma.$jobsPayload<ExtArgs>[]
+      created_Info: Prisma.$infosPayload<ExtArgs>[]
+      updated_Info: Prisma.$infosPayload<ExtArgs>[]
       updated_Applicant: Prisma.$applicantsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3017,6 +3137,8 @@ export namespace Prisma {
     updated_Work<T extends users$updated_WorkArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_WorkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$our_worksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     created_Job<T extends users$created_JobArgs<ExtArgs> = {}>(args?: Subset<T, users$created_JobArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Job<T extends users$updated_JobArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_JobArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Info<T extends users$created_InfoArgs<ExtArgs> = {}>(args?: Subset<T, users$created_InfoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Info<T extends users$updated_InfoArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_InfoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Applicant<T extends users$updated_ApplicantArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_ApplicantArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$applicantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3514,6 +3636,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: JobsScalarFieldEnum | JobsScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Info
+   */
+  export type users$created_InfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    where?: infosWhereInput
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    cursor?: infosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InfosScalarFieldEnum | InfosScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Info
+   */
+  export type users$updated_InfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    where?: infosWhereInput
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    cursor?: infosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InfosScalarFieldEnum | InfosScalarFieldEnum[]
   }
 
   /**
@@ -7772,6 +7942,1135 @@ export namespace Prisma {
 
 
   /**
+   * Model infos
+   */
+
+  export type AggregateInfos = {
+    _count: InfosCountAggregateOutputType | null
+    _avg: InfosAvgAggregateOutputType | null
+    _sum: InfosSumAggregateOutputType | null
+    _min: InfosMinAggregateOutputType | null
+    _max: InfosMaxAggregateOutputType | null
+  }
+
+  export type InfosAvgAggregateOutputType = {
+    id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type InfosSumAggregateOutputType = {
+    id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type InfosMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phone1: string | null
+    phone2: string | null
+    address: string | null
+    map: string | null
+    showreel_pc: string | null
+    showreel_mb: string | null
+    facebook_url: string | null
+    linkedin_url: string | null
+    instagram_url: string | null
+    youtube_url: string | null
+    telegram_url: string | null
+    tiktok_url: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type InfosMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phone1: string | null
+    phone2: string | null
+    address: string | null
+    map: string | null
+    showreel_pc: string | null
+    showreel_mb: string | null
+    facebook_url: string | null
+    linkedin_url: string | null
+    instagram_url: string | null
+    youtube_url: string | null
+    telegram_url: string | null
+    tiktok_url: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type InfosCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    phone1: number
+    phone2: number
+    address: number
+    map: number
+    showreel_pc: number
+    showreel_mb: number
+    facebook_url: number
+    linkedin_url: number
+    instagram_url: number
+    youtube_url: number
+    telegram_url: number
+    tiktok_url: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type InfosAvgAggregateInputType = {
+    id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type InfosSumAggregateInputType = {
+    id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type InfosMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone1?: true
+    phone2?: true
+    address?: true
+    map?: true
+    showreel_pc?: true
+    showreel_mb?: true
+    facebook_url?: true
+    linkedin_url?: true
+    instagram_url?: true
+    youtube_url?: true
+    telegram_url?: true
+    tiktok_url?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type InfosMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone1?: true
+    phone2?: true
+    address?: true
+    map?: true
+    showreel_pc?: true
+    showreel_mb?: true
+    facebook_url?: true
+    linkedin_url?: true
+    instagram_url?: true
+    youtube_url?: true
+    telegram_url?: true
+    tiktok_url?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type InfosCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone1?: true
+    phone2?: true
+    address?: true
+    map?: true
+    showreel_pc?: true
+    showreel_mb?: true
+    facebook_url?: true
+    linkedin_url?: true
+    instagram_url?: true
+    youtube_url?: true
+    telegram_url?: true
+    tiktok_url?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type InfosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which infos to aggregate.
+     */
+    where?: infosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of infos to fetch.
+     */
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: infosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned infos
+    **/
+    _count?: true | InfosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InfosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InfosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InfosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InfosMaxAggregateInputType
+  }
+
+  export type GetInfosAggregateType<T extends InfosAggregateArgs> = {
+        [P in keyof T & keyof AggregateInfos]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInfos[P]>
+      : GetScalarType<T[P], AggregateInfos[P]>
+  }
+
+
+
+
+  export type infosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: infosWhereInput
+    orderBy?: infosOrderByWithAggregationInput | infosOrderByWithAggregationInput[]
+    by: InfosScalarFieldEnum[] | InfosScalarFieldEnum
+    having?: infosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InfosCountAggregateInputType | true
+    _avg?: InfosAvgAggregateInputType
+    _sum?: InfosSumAggregateInputType
+    _min?: InfosMinAggregateInputType
+    _max?: InfosMaxAggregateInputType
+  }
+
+  export type InfosGroupByOutputType = {
+    id: number
+    name: string
+    email: string
+    phone1: string
+    phone2: string | null
+    address: string
+    map: string | null
+    showreel_pc: string | null
+    showreel_mb: string | null
+    facebook_url: string | null
+    linkedin_url: string | null
+    instagram_url: string | null
+    youtube_url: string | null
+    telegram_url: string | null
+    tiktok_url: string | null
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: InfosCountAggregateOutputType | null
+    _avg: InfosAvgAggregateOutputType | null
+    _sum: InfosSumAggregateOutputType | null
+    _min: InfosMinAggregateOutputType | null
+    _max: InfosMaxAggregateOutputType | null
+  }
+
+  type GetInfosGroupByPayload<T extends infosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InfosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InfosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InfosGroupByOutputType[P]>
+            : GetScalarType<T[P], InfosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type infosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone1?: boolean
+    phone2?: boolean
+    address?: boolean
+    map?: boolean
+    showreel_pc?: boolean
+    showreel_mb?: boolean
+    facebook_url?: boolean
+    linkedin_url?: boolean
+    instagram_url?: boolean
+    youtube_url?: boolean
+    telegram_url?: boolean
+    tiktok_url?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["infos"]>
+
+
+
+  export type infosSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone1?: boolean
+    phone2?: boolean
+    address?: boolean
+    map?: boolean
+    showreel_pc?: boolean
+    showreel_mb?: boolean
+    facebook_url?: boolean
+    linkedin_url?: boolean
+    instagram_url?: boolean
+    youtube_url?: boolean
+    telegram_url?: boolean
+    tiktok_url?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type infosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone1" | "phone2" | "address" | "map" | "showreel_pc" | "showreel_mb" | "facebook_url" | "linkedin_url" | "instagram_url" | "youtube_url" | "telegram_url" | "tiktok_url" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["infos"]>
+  export type infosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $infosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "infos"
+    objects: {
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      email: string
+      phone1: string
+      phone2: string | null
+      address: string
+      map: string | null
+      showreel_pc: string | null
+      showreel_mb: string | null
+      facebook_url: string | null
+      linkedin_url: string | null
+      instagram_url: string | null
+      youtube_url: string | null
+      telegram_url: string | null
+      tiktok_url: string | null
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["infos"]>
+    composites: {}
+  }
+
+  type infosGetPayload<S extends boolean | null | undefined | infosDefaultArgs> = $Result.GetResult<Prisma.$infosPayload, S>
+
+  type infosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<infosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InfosCountAggregateInputType | true
+    }
+
+  export interface infosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['infos'], meta: { name: 'infos' } }
+    /**
+     * Find zero or one Infos that matches the filter.
+     * @param {infosFindUniqueArgs} args - Arguments to find a Infos
+     * @example
+     * // Get one Infos
+     * const infos = await prisma.infos.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends infosFindUniqueArgs>(args: SelectSubset<T, infosFindUniqueArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Infos that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {infosFindUniqueOrThrowArgs} args - Arguments to find a Infos
+     * @example
+     * // Get one Infos
+     * const infos = await prisma.infos.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends infosFindUniqueOrThrowArgs>(args: SelectSubset<T, infosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Infos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosFindFirstArgs} args - Arguments to find a Infos
+     * @example
+     * // Get one Infos
+     * const infos = await prisma.infos.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends infosFindFirstArgs>(args?: SelectSubset<T, infosFindFirstArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Infos that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosFindFirstOrThrowArgs} args - Arguments to find a Infos
+     * @example
+     * // Get one Infos
+     * const infos = await prisma.infos.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends infosFindFirstOrThrowArgs>(args?: SelectSubset<T, infosFindFirstOrThrowArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Infos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Infos
+     * const infos = await prisma.infos.findMany()
+     * 
+     * // Get first 10 Infos
+     * const infos = await prisma.infos.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const infosWithIdOnly = await prisma.infos.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends infosFindManyArgs>(args?: SelectSubset<T, infosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Infos.
+     * @param {infosCreateArgs} args - Arguments to create a Infos.
+     * @example
+     * // Create one Infos
+     * const Infos = await prisma.infos.create({
+     *   data: {
+     *     // ... data to create a Infos
+     *   }
+     * })
+     * 
+     */
+    create<T extends infosCreateArgs>(args: SelectSubset<T, infosCreateArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Infos.
+     * @param {infosCreateManyArgs} args - Arguments to create many Infos.
+     * @example
+     * // Create many Infos
+     * const infos = await prisma.infos.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends infosCreateManyArgs>(args?: SelectSubset<T, infosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Infos.
+     * @param {infosDeleteArgs} args - Arguments to delete one Infos.
+     * @example
+     * // Delete one Infos
+     * const Infos = await prisma.infos.delete({
+     *   where: {
+     *     // ... filter to delete one Infos
+     *   }
+     * })
+     * 
+     */
+    delete<T extends infosDeleteArgs>(args: SelectSubset<T, infosDeleteArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Infos.
+     * @param {infosUpdateArgs} args - Arguments to update one Infos.
+     * @example
+     * // Update one Infos
+     * const infos = await prisma.infos.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends infosUpdateArgs>(args: SelectSubset<T, infosUpdateArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Infos.
+     * @param {infosDeleteManyArgs} args - Arguments to filter Infos to delete.
+     * @example
+     * // Delete a few Infos
+     * const { count } = await prisma.infos.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends infosDeleteManyArgs>(args?: SelectSubset<T, infosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Infos
+     * const infos = await prisma.infos.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends infosUpdateManyArgs>(args: SelectSubset<T, infosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Infos.
+     * @param {infosUpsertArgs} args - Arguments to update or create a Infos.
+     * @example
+     * // Update or create a Infos
+     * const infos = await prisma.infos.upsert({
+     *   create: {
+     *     // ... data to create a Infos
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Infos we want to update
+     *   }
+     * })
+     */
+    upsert<T extends infosUpsertArgs>(args: SelectSubset<T, infosUpsertArgs<ExtArgs>>): Prisma__infosClient<$Result.GetResult<Prisma.$infosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosCountArgs} args - Arguments to filter Infos to count.
+     * @example
+     * // Count the number of Infos
+     * const count = await prisma.infos.count({
+     *   where: {
+     *     // ... the filter for the Infos we want to count
+     *   }
+     * })
+    **/
+    count<T extends infosCountArgs>(
+      args?: Subset<T, infosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InfosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InfosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InfosAggregateArgs>(args: Subset<T, InfosAggregateArgs>): Prisma.PrismaPromise<GetInfosAggregateType<T>>
+
+    /**
+     * Group by Infos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {infosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends infosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: infosGroupByArgs['orderBy'] }
+        : { orderBy?: infosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, infosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInfosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the infos model
+   */
+  readonly fields: infosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for infos.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__infosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the infos model
+   */
+  interface infosFieldRefs {
+    readonly id: FieldRef<"infos", 'Int'>
+    readonly name: FieldRef<"infos", 'String'>
+    readonly email: FieldRef<"infos", 'String'>
+    readonly phone1: FieldRef<"infos", 'String'>
+    readonly phone2: FieldRef<"infos", 'String'>
+    readonly address: FieldRef<"infos", 'String'>
+    readonly map: FieldRef<"infos", 'String'>
+    readonly showreel_pc: FieldRef<"infos", 'String'>
+    readonly showreel_mb: FieldRef<"infos", 'String'>
+    readonly facebook_url: FieldRef<"infos", 'String'>
+    readonly linkedin_url: FieldRef<"infos", 'String'>
+    readonly instagram_url: FieldRef<"infos", 'String'>
+    readonly youtube_url: FieldRef<"infos", 'String'>
+    readonly telegram_url: FieldRef<"infos", 'String'>
+    readonly tiktok_url: FieldRef<"infos", 'String'>
+    readonly created_by: FieldRef<"infos", 'Int'>
+    readonly updated_by: FieldRef<"infos", 'Int'>
+    readonly created_at: FieldRef<"infos", 'DateTime'>
+    readonly updated_at: FieldRef<"infos", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * infos findUnique
+   */
+  export type infosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter, which infos to fetch.
+     */
+    where: infosWhereUniqueInput
+  }
+
+  /**
+   * infos findUniqueOrThrow
+   */
+  export type infosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter, which infos to fetch.
+     */
+    where: infosWhereUniqueInput
+  }
+
+  /**
+   * infos findFirst
+   */
+  export type infosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter, which infos to fetch.
+     */
+    where?: infosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of infos to fetch.
+     */
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for infos.
+     */
+    cursor?: infosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of infos.
+     */
+    distinct?: InfosScalarFieldEnum | InfosScalarFieldEnum[]
+  }
+
+  /**
+   * infos findFirstOrThrow
+   */
+  export type infosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter, which infos to fetch.
+     */
+    where?: infosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of infos to fetch.
+     */
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for infos.
+     */
+    cursor?: infosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` infos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of infos.
+     */
+    distinct?: InfosScalarFieldEnum | InfosScalarFieldEnum[]
+  }
+
+  /**
+   * infos findMany
+   */
+  export type infosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter, which infos to fetch.
+     */
+    where?: infosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of infos to fetch.
+     */
+    orderBy?: infosOrderByWithRelationInput | infosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing infos.
+     */
+    cursor?: infosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` infos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` infos.
+     */
+    skip?: number
+    distinct?: InfosScalarFieldEnum | InfosScalarFieldEnum[]
+  }
+
+  /**
+   * infos create
+   */
+  export type infosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a infos.
+     */
+    data: XOR<infosCreateInput, infosUncheckedCreateInput>
+  }
+
+  /**
+   * infos createMany
+   */
+  export type infosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many infos.
+     */
+    data: infosCreateManyInput | infosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * infos update
+   */
+  export type infosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a infos.
+     */
+    data: XOR<infosUpdateInput, infosUncheckedUpdateInput>
+    /**
+     * Choose, which infos to update.
+     */
+    where: infosWhereUniqueInput
+  }
+
+  /**
+   * infos updateMany
+   */
+  export type infosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update infos.
+     */
+    data: XOR<infosUpdateManyMutationInput, infosUncheckedUpdateManyInput>
+    /**
+     * Filter which infos to update
+     */
+    where?: infosWhereInput
+    /**
+     * Limit how many infos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * infos upsert
+   */
+  export type infosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the infos to update in case it exists.
+     */
+    where: infosWhereUniqueInput
+    /**
+     * In case the infos found by the `where` argument doesn't exist, create a new infos with this data.
+     */
+    create: XOR<infosCreateInput, infosUncheckedCreateInput>
+    /**
+     * In case the infos was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<infosUpdateInput, infosUncheckedUpdateInput>
+  }
+
+  /**
+   * infos delete
+   */
+  export type infosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+    /**
+     * Filter which infos to delete.
+     */
+    where: infosWhereUniqueInput
+  }
+
+  /**
+   * infos deleteMany
+   */
+  export type infosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which infos to delete
+     */
+    where?: infosWhereInput
+    /**
+     * Limit how many infos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * infos without action
+   */
+  export type infosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the infos
+     */
+    select?: infosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the infos
+     */
+    omit?: infosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: infosInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7887,6 +9186,31 @@ export namespace Prisma {
   export type ApplicantsScalarFieldEnum = (typeof ApplicantsScalarFieldEnum)[keyof typeof ApplicantsScalarFieldEnum]
 
 
+  export const InfosScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    phone1: 'phone1',
+    phone2: 'phone2',
+    address: 'address',
+    map: 'map',
+    showreel_pc: 'showreel_pc',
+    showreel_mb: 'showreel_mb',
+    facebook_url: 'facebook_url',
+    linkedin_url: 'linkedin_url',
+    instagram_url: 'instagram_url',
+    youtube_url: 'youtube_url',
+    telegram_url: 'telegram_url',
+    tiktok_url: 'tiktok_url',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type InfosScalarFieldEnum = (typeof InfosScalarFieldEnum)[keyof typeof InfosScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -7997,6 +9321,26 @@ export namespace Prisma {
   };
 
   export type applicantsOrderByRelevanceFieldEnum = (typeof applicantsOrderByRelevanceFieldEnum)[keyof typeof applicantsOrderByRelevanceFieldEnum]
+
+
+  export const infosOrderByRelevanceFieldEnum: {
+    name: 'name',
+    email: 'email',
+    phone1: 'phone1',
+    phone2: 'phone2',
+    address: 'address',
+    map: 'map',
+    showreel_pc: 'showreel_pc',
+    showreel_mb: 'showreel_mb',
+    facebook_url: 'facebook_url',
+    linkedin_url: 'linkedin_url',
+    instagram_url: 'instagram_url',
+    youtube_url: 'youtube_url',
+    telegram_url: 'telegram_url',
+    tiktok_url: 'tiktok_url'
+  };
+
+  export type infosOrderByRelevanceFieldEnum = (typeof infosOrderByRelevanceFieldEnum)[keyof typeof infosOrderByRelevanceFieldEnum]
 
 
   /**
@@ -8125,6 +9469,8 @@ export namespace Prisma {
     updated_Work?: Our_worksListRelationFilter
     created_Job?: JobsListRelationFilter
     updated_Job?: JobsListRelationFilter
+    created_Info?: InfosListRelationFilter
+    updated_Info?: InfosListRelationFilter
     updated_Applicant?: ApplicantsListRelationFilter
   }
 
@@ -8146,6 +9492,8 @@ export namespace Prisma {
     updated_Work?: our_worksOrderByRelationAggregateInput
     created_Job?: jobsOrderByRelationAggregateInput
     updated_Job?: jobsOrderByRelationAggregateInput
+    created_Info?: infosOrderByRelationAggregateInput
+    updated_Info?: infosOrderByRelationAggregateInput
     updated_Applicant?: applicantsOrderByRelationAggregateInput
     _relevance?: usersOrderByRelevanceInput
   }
@@ -8171,6 +9519,8 @@ export namespace Prisma {
     updated_Work?: Our_worksListRelationFilter
     created_Job?: JobsListRelationFilter
     updated_Job?: JobsListRelationFilter
+    created_Info?: InfosListRelationFilter
+    updated_Info?: InfosListRelationFilter
     updated_Applicant?: ApplicantsListRelationFilter
   }, "id" | "email">
 
@@ -8608,6 +9958,137 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"applicants"> | Date | string
   }
 
+  export type infosWhereInput = {
+    AND?: infosWhereInput | infosWhereInput[]
+    OR?: infosWhereInput[]
+    NOT?: infosWhereInput | infosWhereInput[]
+    id?: IntFilter<"infos"> | number
+    name?: StringFilter<"infos"> | string
+    email?: StringFilter<"infos"> | string
+    phone1?: StringFilter<"infos"> | string
+    phone2?: StringNullableFilter<"infos"> | string | null
+    address?: StringFilter<"infos"> | string
+    map?: StringNullableFilter<"infos"> | string | null
+    showreel_pc?: StringNullableFilter<"infos"> | string | null
+    showreel_mb?: StringNullableFilter<"infos"> | string | null
+    facebook_url?: StringNullableFilter<"infos"> | string | null
+    linkedin_url?: StringNullableFilter<"infos"> | string | null
+    instagram_url?: StringNullableFilter<"infos"> | string | null
+    youtube_url?: StringNullableFilter<"infos"> | string | null
+    telegram_url?: StringNullableFilter<"infos"> | string | null
+    tiktok_url?: StringNullableFilter<"infos"> | string | null
+    created_by?: IntFilter<"infos"> | number
+    updated_by?: IntFilter<"infos"> | number
+    created_at?: DateTimeFilter<"infos"> | Date | string
+    updated_at?: DateTimeFilter<"infos"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type infosOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone1?: SortOrder
+    phone2?: SortOrderInput | SortOrder
+    address?: SortOrder
+    map?: SortOrderInput | SortOrder
+    showreel_pc?: SortOrderInput | SortOrder
+    showreel_mb?: SortOrderInput | SortOrder
+    facebook_url?: SortOrderInput | SortOrder
+    linkedin_url?: SortOrderInput | SortOrder
+    instagram_url?: SortOrderInput | SortOrder
+    youtube_url?: SortOrderInput | SortOrder
+    telegram_url?: SortOrderInput | SortOrder
+    tiktok_url?: SortOrderInput | SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    _relevance?: infosOrderByRelevanceInput
+  }
+
+  export type infosWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: infosWhereInput | infosWhereInput[]
+    OR?: infosWhereInput[]
+    NOT?: infosWhereInput | infosWhereInput[]
+    name?: StringFilter<"infos"> | string
+    email?: StringFilter<"infos"> | string
+    phone1?: StringFilter<"infos"> | string
+    phone2?: StringNullableFilter<"infos"> | string | null
+    address?: StringFilter<"infos"> | string
+    map?: StringNullableFilter<"infos"> | string | null
+    showreel_pc?: StringNullableFilter<"infos"> | string | null
+    showreel_mb?: StringNullableFilter<"infos"> | string | null
+    facebook_url?: StringNullableFilter<"infos"> | string | null
+    linkedin_url?: StringNullableFilter<"infos"> | string | null
+    instagram_url?: StringNullableFilter<"infos"> | string | null
+    youtube_url?: StringNullableFilter<"infos"> | string | null
+    telegram_url?: StringNullableFilter<"infos"> | string | null
+    tiktok_url?: StringNullableFilter<"infos"> | string | null
+    created_by?: IntFilter<"infos"> | number
+    updated_by?: IntFilter<"infos"> | number
+    created_at?: DateTimeFilter<"infos"> | Date | string
+    updated_at?: DateTimeFilter<"infos"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type infosOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone1?: SortOrder
+    phone2?: SortOrderInput | SortOrder
+    address?: SortOrder
+    map?: SortOrderInput | SortOrder
+    showreel_pc?: SortOrderInput | SortOrder
+    showreel_mb?: SortOrderInput | SortOrder
+    facebook_url?: SortOrderInput | SortOrder
+    linkedin_url?: SortOrderInput | SortOrder
+    instagram_url?: SortOrderInput | SortOrder
+    youtube_url?: SortOrderInput | SortOrder
+    telegram_url?: SortOrderInput | SortOrder
+    tiktok_url?: SortOrderInput | SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: infosCountOrderByAggregateInput
+    _avg?: infosAvgOrderByAggregateInput
+    _max?: infosMaxOrderByAggregateInput
+    _min?: infosMinOrderByAggregateInput
+    _sum?: infosSumOrderByAggregateInput
+  }
+
+  export type infosScalarWhereWithAggregatesInput = {
+    AND?: infosScalarWhereWithAggregatesInput | infosScalarWhereWithAggregatesInput[]
+    OR?: infosScalarWhereWithAggregatesInput[]
+    NOT?: infosScalarWhereWithAggregatesInput | infosScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"infos"> | number
+    name?: StringWithAggregatesFilter<"infos"> | string
+    email?: StringWithAggregatesFilter<"infos"> | string
+    phone1?: StringWithAggregatesFilter<"infos"> | string
+    phone2?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    address?: StringWithAggregatesFilter<"infos"> | string
+    map?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    showreel_pc?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    showreel_mb?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    facebook_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    linkedin_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    instagram_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    youtube_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    telegram_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    tiktok_url?: StringNullableWithAggregatesFilter<"infos"> | string | null
+    created_by?: IntWithAggregatesFilter<"infos"> | number
+    updated_by?: IntWithAggregatesFilter<"infos"> | number
+    created_at?: DateTimeWithAggregatesFilter<"infos"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"infos"> | Date | string
+  }
+
   export type rolesCreateInput = {
     name: string
     access: JsonNullValueInput | InputJsonValue
@@ -8667,6 +10148,8 @@ export namespace Prisma {
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -8687,6 +10170,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -8706,6 +10191,8 @@ export namespace Prisma {
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -8726,6 +10213,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -9199,6 +10688,155 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type infosCreateInput = {
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_InfoInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_InfoInput
+  }
+
+  export type infosUncheckedCreateInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_InfoNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_InfoNestedInput
+  }
+
+  export type infosUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosCreateManyInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -9418,6 +11056,12 @@ export namespace Prisma {
     none?: jobsWhereInput
   }
 
+  export type InfosListRelationFilter = {
+    every?: infosWhereInput
+    some?: infosWhereInput
+    none?: infosWhereInput
+  }
+
   export type ApplicantsListRelationFilter = {
     every?: applicantsWhereInput
     some?: applicantsWhereInput
@@ -9434,6 +11078,10 @@ export namespace Prisma {
   }
 
   export type jobsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type infosOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9839,6 +11487,90 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type infosOrderByRelevanceInput = {
+    fields: infosOrderByRelevanceFieldEnum | infosOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type infosCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone1?: SortOrder
+    phone2?: SortOrder
+    address?: SortOrder
+    map?: SortOrder
+    showreel_pc?: SortOrder
+    showreel_mb?: SortOrder
+    facebook_url?: SortOrder
+    linkedin_url?: SortOrder
+    instagram_url?: SortOrder
+    youtube_url?: SortOrder
+    telegram_url?: SortOrder
+    tiktok_url?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type infosAvgOrderByAggregateInput = {
+    id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type infosMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone1?: SortOrder
+    phone2?: SortOrder
+    address?: SortOrder
+    map?: SortOrder
+    showreel_pc?: SortOrder
+    showreel_mb?: SortOrder
+    facebook_url?: SortOrder
+    linkedin_url?: SortOrder
+    instagram_url?: SortOrder
+    youtube_url?: SortOrder
+    telegram_url?: SortOrder
+    tiktok_url?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type infosMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone1?: SortOrder
+    phone2?: SortOrder
+    address?: SortOrder
+    map?: SortOrder
+    showreel_pc?: SortOrder
+    showreel_mb?: SortOrder
+    facebook_url?: SortOrder
+    linkedin_url?: SortOrder
+    instagram_url?: SortOrder
+    youtube_url?: SortOrder
+    telegram_url?: SortOrder
+    tiktok_url?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type infosSumOrderByAggregateInput = {
+    id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
   export type usersCreateNestedManyWithoutRoleInput = {
     create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
@@ -9927,6 +11659,20 @@ export namespace Prisma {
     connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
   }
 
+  export type infosCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput> | infosCreateWithoutCreatedByInput[] | infosUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutCreatedByInput | infosCreateOrConnectWithoutCreatedByInput[]
+    createMany?: infosCreateManyCreatedByInputEnvelope
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+  }
+
+  export type infosCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput> | infosCreateWithoutUpdatedByInput[] | infosUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutUpdatedByInput | infosCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: infosCreateManyUpdatedByInputEnvelope
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+  }
+
   export type applicantsCreateNestedManyWithoutUpdatedByInput = {
     create?: XOR<applicantsCreateWithoutUpdatedByInput, applicantsUncheckedCreateWithoutUpdatedByInput> | applicantsCreateWithoutUpdatedByInput[] | applicantsUncheckedCreateWithoutUpdatedByInput[]
     connectOrCreate?: applicantsCreateOrConnectWithoutUpdatedByInput | applicantsCreateOrConnectWithoutUpdatedByInput[]
@@ -9960,6 +11706,20 @@ export namespace Prisma {
     connectOrCreate?: jobsCreateOrConnectWithoutUpdatedByInput | jobsCreateOrConnectWithoutUpdatedByInput[]
     createMany?: jobsCreateManyUpdatedByInputEnvelope
     connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+  }
+
+  export type infosUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput> | infosCreateWithoutCreatedByInput[] | infosUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutCreatedByInput | infosCreateOrConnectWithoutCreatedByInput[]
+    createMany?: infosCreateManyCreatedByInputEnvelope
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+  }
+
+  export type infosUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput> | infosCreateWithoutUpdatedByInput[] | infosUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutUpdatedByInput | infosCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: infosCreateManyUpdatedByInputEnvelope
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
   }
 
   export type applicantsUncheckedCreateNestedManyWithoutUpdatedByInput = {
@@ -10051,6 +11811,34 @@ export namespace Prisma {
     deleteMany?: jobsScalarWhereInput | jobsScalarWhereInput[]
   }
 
+  export type infosUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput> | infosCreateWithoutCreatedByInput[] | infosUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutCreatedByInput | infosCreateOrConnectWithoutCreatedByInput[]
+    upsert?: infosUpsertWithWhereUniqueWithoutCreatedByInput | infosUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: infosCreateManyCreatedByInputEnvelope
+    set?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    disconnect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    delete?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    update?: infosUpdateWithWhereUniqueWithoutCreatedByInput | infosUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: infosUpdateManyWithWhereWithoutCreatedByInput | infosUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: infosScalarWhereInput | infosScalarWhereInput[]
+  }
+
+  export type infosUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput> | infosCreateWithoutUpdatedByInput[] | infosUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutUpdatedByInput | infosCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: infosUpsertWithWhereUniqueWithoutUpdatedByInput | infosUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: infosCreateManyUpdatedByInputEnvelope
+    set?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    disconnect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    delete?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    update?: infosUpdateWithWhereUniqueWithoutUpdatedByInput | infosUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: infosUpdateManyWithWhereWithoutUpdatedByInput | infosUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: infosScalarWhereInput | infosScalarWhereInput[]
+  }
+
   export type applicantsUpdateManyWithoutUpdatedByNestedInput = {
     create?: XOR<applicantsCreateWithoutUpdatedByInput, applicantsUncheckedCreateWithoutUpdatedByInput> | applicantsCreateWithoutUpdatedByInput[] | applicantsUncheckedCreateWithoutUpdatedByInput[]
     connectOrCreate?: applicantsCreateOrConnectWithoutUpdatedByInput | applicantsCreateOrConnectWithoutUpdatedByInput[]
@@ -10127,6 +11915,34 @@ export namespace Prisma {
     update?: jobsUpdateWithWhereUniqueWithoutUpdatedByInput | jobsUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: jobsUpdateManyWithWhereWithoutUpdatedByInput | jobsUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: jobsScalarWhereInput | jobsScalarWhereInput[]
+  }
+
+  export type infosUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput> | infosCreateWithoutCreatedByInput[] | infosUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutCreatedByInput | infosCreateOrConnectWithoutCreatedByInput[]
+    upsert?: infosUpsertWithWhereUniqueWithoutCreatedByInput | infosUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: infosCreateManyCreatedByInputEnvelope
+    set?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    disconnect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    delete?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    update?: infosUpdateWithWhereUniqueWithoutCreatedByInput | infosUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: infosUpdateManyWithWhereWithoutCreatedByInput | infosUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: infosScalarWhereInput | infosScalarWhereInput[]
+  }
+
+  export type infosUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput> | infosCreateWithoutUpdatedByInput[] | infosUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: infosCreateOrConnectWithoutUpdatedByInput | infosCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: infosUpsertWithWhereUniqueWithoutUpdatedByInput | infosUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: infosCreateManyUpdatedByInputEnvelope
+    set?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    disconnect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    delete?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    connect?: infosWhereUniqueInput | infosWhereUniqueInput[]
+    update?: infosUpdateWithWhereUniqueWithoutUpdatedByInput | infosUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: infosUpdateManyWithWhereWithoutUpdatedByInput | infosUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: infosScalarWhereInput | infosScalarWhereInput[]
   }
 
   export type applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput = {
@@ -10267,6 +12083,34 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutUpdated_ApplicantInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_ApplicantInput, usersUpdateWithoutUpdated_ApplicantInput>, usersUncheckedUpdateWithoutUpdated_ApplicantInput>
+  }
+
+  export type usersCreateNestedOneWithoutCreated_InfoInput = {
+    create?: XOR<usersCreateWithoutCreated_InfoInput, usersUncheckedCreateWithoutCreated_InfoInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_InfoInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_InfoInput = {
+    create?: XOR<usersCreateWithoutUpdated_InfoInput, usersUncheckedCreateWithoutUpdated_InfoInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_InfoInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_InfoNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_InfoInput, usersUncheckedCreateWithoutCreated_InfoInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_InfoInput
+    upsert?: usersUpsertWithoutCreated_InfoInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_InfoInput, usersUpdateWithoutCreated_InfoInput>, usersUncheckedUpdateWithoutCreated_InfoInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_InfoNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_InfoInput, usersUncheckedCreateWithoutUpdated_InfoInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_InfoInput
+    upsert?: usersUpsertWithoutUpdated_InfoInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_InfoInput, usersUpdateWithoutUpdated_InfoInput>, usersUncheckedUpdateWithoutUpdated_InfoInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10512,6 +12356,8 @@ export namespace Prisma {
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -10531,6 +12377,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -10774,6 +12622,108 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type infosCreateWithoutCreatedByInput = {
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updatedBy: usersCreateNestedOneWithoutUpdated_InfoInput
+  }
+
+  export type infosUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosCreateOrConnectWithoutCreatedByInput = {
+    where: infosWhereUniqueInput
+    create: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type infosCreateManyCreatedByInputEnvelope = {
+    data: infosCreateManyCreatedByInput | infosCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type infosCreateWithoutUpdatedByInput = {
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_InfoInput
+  }
+
+  export type infosUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosCreateOrConnectWithoutUpdatedByInput = {
+    where: infosWhereUniqueInput
+    create: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type infosCreateManyUpdatedByInputEnvelope = {
+    data: infosCreateManyUpdatedByInput | infosCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
   export type applicantsCreateWithoutUpdatedByInput = {
     name: string
     email: string
@@ -10942,6 +12892,63 @@ export namespace Prisma {
     data: XOR<jobsUpdateManyMutationInput, jobsUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
+  export type infosUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: infosWhereUniqueInput
+    update: XOR<infosUpdateWithoutCreatedByInput, infosUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<infosCreateWithoutCreatedByInput, infosUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type infosUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: infosWhereUniqueInput
+    data: XOR<infosUpdateWithoutCreatedByInput, infosUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type infosUpdateManyWithWhereWithoutCreatedByInput = {
+    where: infosScalarWhereInput
+    data: XOR<infosUpdateManyMutationInput, infosUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type infosScalarWhereInput = {
+    AND?: infosScalarWhereInput | infosScalarWhereInput[]
+    OR?: infosScalarWhereInput[]
+    NOT?: infosScalarWhereInput | infosScalarWhereInput[]
+    id?: IntFilter<"infos"> | number
+    name?: StringFilter<"infos"> | string
+    email?: StringFilter<"infos"> | string
+    phone1?: StringFilter<"infos"> | string
+    phone2?: StringNullableFilter<"infos"> | string | null
+    address?: StringFilter<"infos"> | string
+    map?: StringNullableFilter<"infos"> | string | null
+    showreel_pc?: StringNullableFilter<"infos"> | string | null
+    showreel_mb?: StringNullableFilter<"infos"> | string | null
+    facebook_url?: StringNullableFilter<"infos"> | string | null
+    linkedin_url?: StringNullableFilter<"infos"> | string | null
+    instagram_url?: StringNullableFilter<"infos"> | string | null
+    youtube_url?: StringNullableFilter<"infos"> | string | null
+    telegram_url?: StringNullableFilter<"infos"> | string | null
+    tiktok_url?: StringNullableFilter<"infos"> | string | null
+    created_by?: IntFilter<"infos"> | number
+    updated_by?: IntFilter<"infos"> | number
+    created_at?: DateTimeFilter<"infos"> | Date | string
+    updated_at?: DateTimeFilter<"infos"> | Date | string
+  }
+
+  export type infosUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: infosWhereUniqueInput
+    update: XOR<infosUpdateWithoutUpdatedByInput, infosUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<infosCreateWithoutUpdatedByInput, infosUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type infosUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: infosWhereUniqueInput
+    data: XOR<infosUpdateWithoutUpdatedByInput, infosUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type infosUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: infosScalarWhereInput
+    data: XOR<infosUpdateManyMutationInput, infosUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
   export type applicantsUpsertWithWhereUniqueWithoutUpdatedByInput = {
     where: applicantsWhereUniqueInput
     update: XOR<applicantsUpdateWithoutUpdatedByInput, applicantsUncheckedUpdateWithoutUpdatedByInput>
@@ -10992,6 +12999,8 @@ export namespace Prisma {
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11011,6 +13020,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11034,6 +13045,8 @@ export namespace Prisma {
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11053,6 +13066,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11087,6 +13102,8 @@ export namespace Prisma {
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11106,6 +13123,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11135,6 +13154,8 @@ export namespace Prisma {
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11154,6 +13175,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11172,6 +13195,8 @@ export namespace Prisma {
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11191,6 +13216,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11214,6 +13241,8 @@ export namespace Prisma {
     created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11233,6 +13262,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
@@ -11306,6 +13337,8 @@ export namespace Prisma {
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11325,6 +13358,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11354,6 +13389,8 @@ export namespace Prisma {
     created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11373,6 +13410,8 @@ export namespace Prisma {
     created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11456,6 +13495,8 @@ export namespace Prisma {
     updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ApplicantInput = {
@@ -11475,6 +13516,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ApplicantInput = {
@@ -11563,6 +13606,8 @@ export namespace Prisma {
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ApplicantInput = {
@@ -11582,6 +13627,204 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersCreateWithoutCreated_InfoInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_InfoInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_InfoInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_InfoInput, usersUncheckedCreateWithoutCreated_InfoInput>
+  }
+
+  export type usersCreateWithoutUpdated_InfoInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_InfoInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_InfoInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_InfoInput, usersUncheckedCreateWithoutUpdated_InfoInput>
+  }
+
+  export type usersUpsertWithoutCreated_InfoInput = {
+    update: XOR<usersUpdateWithoutCreated_InfoInput, usersUncheckedUpdateWithoutCreated_InfoInput>
+    create: XOR<usersCreateWithoutCreated_InfoInput, usersUncheckedCreateWithoutCreated_InfoInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_InfoInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_InfoInput, usersUncheckedUpdateWithoutCreated_InfoInput>
+  }
+
+  export type usersUpdateWithoutCreated_InfoInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_InfoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_InfoInput = {
+    update: XOR<usersUpdateWithoutUpdated_InfoInput, usersUncheckedUpdateWithoutUpdated_InfoInput>
+    create: XOR<usersCreateWithoutUpdated_InfoInput, usersUncheckedCreateWithoutUpdated_InfoInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_InfoInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_InfoInput, usersUncheckedUpdateWithoutUpdated_InfoInput>
+  }
+
+  export type usersUpdateWithoutUpdated_InfoInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_InfoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateManyRoleInput = {
@@ -11613,6 +13856,8 @@ export namespace Prisma {
     updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11632,6 +13877,8 @@ export namespace Prisma {
     updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
@@ -11714,6 +13961,48 @@ export namespace Prisma {
     requirements: string
     gender: string
     status?: string
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosCreateManyCreatedByInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type infosCreateManyUpdatedByInput = {
+    id?: number
+    name: string
+    email: string
+    phone1: string
+    phone2?: string | null
+    address: string
+    map?: string | null
+    showreel_pc?: string | null
+    showreel_mb?: string | null
+    facebook_url?: string | null
+    linkedin_url?: string | null
+    instagram_url?: string | null
+    youtube_url?: string | null
+    telegram_url?: string | null
+    tiktok_url?: string | null
     created_by: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -11939,6 +14228,130 @@ export namespace Prisma {
     requirements?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosUpdateWithoutCreatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_InfoNestedInput
+  }
+
+  export type infosUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosUpdateWithoutUpdatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_InfoNestedInput
+  }
+
+  export type infosUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type infosUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone1?: StringFieldUpdateOperationsInput | string
+    phone2?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    map?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_pc?: NullableStringFieldUpdateOperationsInput | string | null
+    showreel_mb?: NullableStringFieldUpdateOperationsInput | string | null
+    facebook_url?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin_url?: NullableStringFieldUpdateOperationsInput | string | null
+    instagram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    youtube_url?: NullableStringFieldUpdateOperationsInput | string | null
+    telegram_url?: NullableStringFieldUpdateOperationsInput | string | null
+    tiktok_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string

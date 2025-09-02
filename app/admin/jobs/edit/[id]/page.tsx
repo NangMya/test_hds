@@ -1,7 +1,6 @@
 "use client";
 
 import FormTitle from "@/components/FormTitle";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -67,7 +66,7 @@ const page = () => {
   useEffect(() => {
     const getJobData = async () => {
       try {
-        const res = await fetch(`/api/job/${id}`, {
+        const res = await fetch(`/api/admin/job/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -159,7 +158,7 @@ const page = () => {
     formData.append("gender", job.gender);
     formData.append("status", job.status);
     try {
-      const response = await fetch(`/api/job/${id}`, {
+      const response = await fetch(`/api/admin/job/${id}`, {
         method: "PUT",
         body: formData,
       });
@@ -177,7 +176,7 @@ const page = () => {
   };
 
   return (
-    <DashboardLayout>
+    <section>
       {loading && <LoadingOverlay />}
 
       <div className="bg-white p-4 rounded-lg">
@@ -610,7 +609,7 @@ const page = () => {
           </div>
         </form>
       </div>
-    </DashboardLayout>
+    </section>
   );
 };
 

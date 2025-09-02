@@ -122,7 +122,7 @@ const page = () => {
         //       formData.append("file", selectedFiles[i]);
         //   }
         }
-      const res = await fetch("/api/applicant", {
+      const res = await fetch("/api/web/applicant", {
         method: "POST",
         body: formData,
       });

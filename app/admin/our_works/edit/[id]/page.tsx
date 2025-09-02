@@ -1,7 +1,6 @@
 "use client";
 
 import FormTitle from "@/components/FormTitle";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,7 +48,7 @@ const page = () => {
     const getWorkData = async () => {
       console.log("id", id);
       try {
-        const res = await fetch(`/api/our_work/${id}`, {
+        const res = await fetch(`/api/admin/our_work/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -87,7 +86,7 @@ const page = () => {
     if (work.image) formData.append("image", work.image);
 
     try {
-      const response = await fetch(`/api/our_work/${id}`, {
+      const response = await fetch(`/api/admin/our_work/${id}`, {
         method: "PUT",
         body: formData,
       });
@@ -105,7 +104,7 @@ const page = () => {
   };
 
   return (
-    <DashboardLayout>
+    <section>
 
       <div className="bg-white p-4 rounded-lg">
         { loading && <LoadingOverlay/>}
@@ -330,7 +329,7 @@ const page = () => {
           </div>
         </form>
       </div>
-    </DashboardLayout>
+    </section>
   );
 };
 

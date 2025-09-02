@@ -1,5 +1,4 @@
 "use client";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { customFormatDate } from "@/lib/helps";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
@@ -39,7 +38,7 @@ const page = () => {
   useEffect(() => {
     const fetchWroks = async () => {
       try {
-        const response = await fetch("/api/our_work");
+        const response = await fetch("/api/admin/our_work");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -65,7 +64,7 @@ const page = () => {
   
       try {
         setLoading(true);
-        const res = await fetch(`/api/our_work/${id}`, {
+        const res = await fetch(`/api/admin/our_work/${id}`, {
           method: "DELETE",
         });
   
@@ -86,7 +85,7 @@ const page = () => {
   };
 
   return (
-    <DashboardLayout>
+    <section>
       <div className="bg-white shadow rounded-lg p-6 w-full max-w-7xl mx-auto mainDiv">
         {loading && <LoadingOverlay />}
         {error && <p className="text-red-500">{error}</p>}
@@ -196,7 +195,7 @@ const page = () => {
           </table>
         </div>
       </div>
-    </DashboardLayout>
+    </section>
   );
 };
 

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1756287928933,
@@ -16,6 +16,18 @@
                 {
                     "date": 1756287967643,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     // };\r\n   }, []);\r\n \r\n   return (\r\n-    <div className=\"min-h-screen flex flex-col bg-green-200\">\r\n+    <div className=\"min-h-screen flex flex-col \">\r\n       {/* <LanguageProvider> */}\r\n         <ResponsiveNav />\r\n         <main className=\"flex-1\">{children}</main>\r\n         <Footer />\r\n"
+                },
+                {
+                    "date": 1756790596165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n   return (\r\n     <div className=\"min-h-screen flex flex-col \">\r\n       {/* <LanguageProvider> */}\r\n         <ResponsiveNav />\r\n+        <p className=\"py-6 bg-red-300\">test</p>\r\n         <main className=\"flex-1\">{children}</main>\r\n         <Footer />\r\n         {/* <ScrollToTop /> */}\r\n       {/* </LanguageProvider> */}\r\n"
+                },
+                {
+                    "date": 1756790774379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n   return (\r\n     <div className=\"min-h-screen flex flex-col \">\r\n       {/* <LanguageProvider> */}\r\n         <ResponsiveNav />\r\n-        <p className=\"py-6 bg-red-300\">test</p>\r\n         <main className=\"flex-1\">{children}</main>\r\n         <Footer />\r\n         {/* <ScrollToTop /> */}\r\n       {/* </LanguageProvider> */}\r\n"
+                },
+                {
+                    "date": 1756808253329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import ResponsiveNav from \"../General/Navbar/ResponsiveNav\";\r\n import ScrollToTop from \"../Helper/ScrollToTop\";\r\n import { useEffect } from \"react\";\r\n \r\n-const WebsiteLayout = ({ children }: { children: React.ReactNode }) => {\r\n+const WebsiteLayout = ({ children, footerData }: { children: React.ReactNode, footerData: any }) => {\r\n   useEffect(() => {\r\n     const handleContextMenu = (e: MouseEvent) => {\r\n       e.preventDefault();\r\n     };\r\n"
                 }
             ],
             "date": 1756287928932,

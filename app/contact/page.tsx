@@ -34,7 +34,7 @@ const page = () => {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/message", {
+      const res = await fetch("/api/admin/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -5,7 +5,7 @@ import ResponsiveNav from "../General/Navbar/ResponsiveNav";
 import ScrollToTop from "../Helper/ScrollToTop";
 import { useEffect } from "react";
 
-const WebsiteLayout = ({ children }: { children: React.ReactNode }) => {
+const WebsiteLayout = ({ children, footerData }: { children: React.ReactNode, footerData: any }) => {
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();

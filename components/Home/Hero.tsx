@@ -3,9 +3,9 @@
 // import { useLanguage } from "@/context/LanguageContext";
 import { Kaushan_Script, Pacifico } from "next/font/google";
 import Image from "next/image";
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import gsap from 'gsap';
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const kaushan = Kaushan_Script({
@@ -18,16 +18,33 @@ const pacifico = Pacifico({
 });
 
 
+const Hero = ({showreelPC,showreelMB}:{showreelPC:any, showreelMB:any}) => {
 
-const Hero = () => {
+  console.log('show',showreelMB);
   useEffect(() => {
-        // Register GSAP plugins.
-        // gsap.registerPlugin(ScrollTrigger);
-
-      }, []);
+  
+    // Register GSAP plugins.
+    // gsap.registerPlugin(ScrollTrigger);
+  }, []);
   // const { t } = useLanguage();
   return (
-    <div className=" w-full  h-[100vh]  bg-[url('/images/home/hero_bg.webp')] bg-cover bg-no-repeat bg-center z-10 sm:pt-14">
+    <div className="w-full h-[100vh] relative z-10 sm:pt-14 overflow-hidden">
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden sm:block"
+        src={showreelPC}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+       <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 block sm:hidden"
+        src={showreelMB}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
       <div className="relative w-full flex items-center h-full ">
         {/* <h1 className="text-5xl">{t.greeting}</h1> */}
         <div className=" grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between items-center w-[90%] left-[5%] mx-auto pt-0 sm:pt-0 ">
@@ -58,10 +75,10 @@ const Hero = () => {
               </div>
             </div>
             <br />
-              <p className="absoute bottom-0 sm:relative inline text-xs text-white font-light cursor-pointer text-center">
-          Get In Touch &nbsp;
-          <FaArrowRight className="inline" size={14} />
-        </p>
+            <p className="absoute bottom-0 sm:relative inline text-xs text-white font-light cursor-pointer text-center">
+              Get In Touch &nbsp;
+              <FaArrowRight className="inline" size={14} />
+            </p>
           </div>
           <div className="mx-auto">
             <Image
@@ -82,7 +99,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-        
     </div>
   );
 };
