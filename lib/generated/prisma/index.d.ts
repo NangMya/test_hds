@@ -53,6 +53,16 @@ export type infos = $Result.DefaultSelection<Prisma.$infosPayload>
  * 
  */
 export type clients = $Result.DefaultSelection<Prisma.$clientsPayload>
+/**
+ * Model departments
+ * 
+ */
+export type departments = $Result.DefaultSelection<Prisma.$departmentsPayload>
+/**
+ * Model members
+ * 
+ */
+export type members = $Result.DefaultSelection<Prisma.$membersPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -70,7 +80,7 @@ export type clients = $Result.DefaultSelection<Prisma.$clientsPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -102,6 +112,13 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -251,6 +268,26 @@ export class PrismaClient<
     * ```
     */
   get clients(): Prisma.clientsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.departments`: Exposes CRUD operations for the **departments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Departments
+    * const departments = await prisma.departments.findMany()
+    * ```
+    */
+  get departments(): Prisma.departmentsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.members`: Exposes CRUD operations for the **members** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Members
+    * const members = await prisma.members.findMany()
+    * ```
+    */
+  get members(): Prisma.membersDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -309,8 +346,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.15.0
-   * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
     client: string
@@ -698,7 +735,9 @@ export namespace Prisma {
     jobs: 'jobs',
     applicants: 'applicants',
     infos: 'infos',
-    clients: 'clients'
+    clients: 'clients',
+    departments: 'departments',
+    members: 'members'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -717,7 +756,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients"
+      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients" | "departments" | "members"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1249,6 +1288,138 @@ export namespace Prisma {
           }
         }
       }
+      departments: {
+        payload: Prisma.$departmentsPayload<ExtArgs>
+        fields: Prisma.departmentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.departmentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.departmentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          findFirst: {
+            args: Prisma.departmentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.departmentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          findMany: {
+            args: Prisma.departmentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>[]
+          }
+          create: {
+            args: Prisma.departmentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          createMany: {
+            args: Prisma.departmentsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.departmentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          update: {
+            args: Prisma.departmentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.departmentsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.departmentsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.departmentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$departmentsPayload>
+          }
+          aggregate: {
+            args: Prisma.DepartmentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDepartments>
+          }
+          groupBy: {
+            args: Prisma.departmentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DepartmentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.departmentsCountArgs<ExtArgs>
+            result: $Utils.Optional<DepartmentsCountAggregateOutputType> | number
+          }
+        }
+      }
+      members: {
+        payload: Prisma.$membersPayload<ExtArgs>
+        fields: Prisma.membersFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.membersFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.membersFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          findFirst: {
+            args: Prisma.membersFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.membersFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          findMany: {
+            args: Prisma.membersFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>[]
+          }
+          create: {
+            args: Prisma.membersCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          createMany: {
+            args: Prisma.membersCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.membersDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          update: {
+            args: Prisma.membersUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          deleteMany: {
+            args: Prisma.membersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.membersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.membersUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$membersPayload>
+          }
+          aggregate: {
+            args: Prisma.MembersAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMembers>
+          }
+          groupBy: {
+            args: Prisma.membersGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MembersGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.membersCountArgs<ExtArgs>
+            result: $Utils.Optional<MembersCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1292,24 +1463,16 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Shorthand for `emit: 'stdout'`
+     * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events only
+     * // Emit as events
      * log: [
-     *   { emit: 'event', level: 'query' },
-     *   { emit: 'event', level: 'info' },
-     *   { emit: 'event', level: 'warn' }
-     *   { emit: 'event', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
-     * 
-     * / Emit as events and log to stdout
-     * og: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
-     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1349,6 +1512,8 @@ export namespace Prisma {
     applicants?: applicantsOmit
     infos?: infosOmit
     clients?: clientsOmit
+    departments?: departmentsOmit
+    members?: membersOmit
   }
 
   /* Types for Logging */
@@ -1358,15 +1523,10 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
-
-  export type GetLogType<T> = CheckIsLogLevel<
-    T extends LogDefinition ? T['level'] : T
-  >;
-
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -1406,6 +1566,25 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -1469,6 +1648,10 @@ export namespace Prisma {
     updated_Applicant: number
     created_Client: number
     updated_Client: number
+    created_Department: number
+    updated_Department: number
+    created_Member: number
+    updated_Member: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1481,6 +1664,10 @@ export namespace Prisma {
     updated_Applicant?: boolean | UsersCountOutputTypeCountUpdated_ApplicantArgs
     created_Client?: boolean | UsersCountOutputTypeCountCreated_ClientArgs
     updated_Client?: boolean | UsersCountOutputTypeCountUpdated_ClientArgs
+    created_Department?: boolean | UsersCountOutputTypeCountCreated_DepartmentArgs
+    updated_Department?: boolean | UsersCountOutputTypeCountUpdated_DepartmentArgs
+    created_Member?: boolean | UsersCountOutputTypeCountCreated_MemberArgs
+    updated_Member?: boolean | UsersCountOutputTypeCountUpdated_MemberArgs
   }
 
   // Custom InputTypes
@@ -1557,6 +1744,34 @@ export namespace Prisma {
     where?: clientsWhereInput
   }
 
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: departmentsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: departmentsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_MemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: membersWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_MemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: membersWhereInput
+  }
+
 
   /**
    * Count Type JobsCountOutputType
@@ -1586,6 +1801,37 @@ export namespace Prisma {
    */
   export type JobsCountOutputTypeCountApplicantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: applicantsWhereInput
+  }
+
+
+  /**
+   * Count Type DepartmentsCountOutputType
+   */
+
+  export type DepartmentsCountOutputType = {
+    member: number
+  }
+
+  export type DepartmentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    member?: boolean | DepartmentsCountOutputTypeCountMemberArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DepartmentsCountOutputType without action
+   */
+  export type DepartmentsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepartmentsCountOutputType
+     */
+    select?: DepartmentsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DepartmentsCountOutputType without action
+   */
+  export type DepartmentsCountOutputTypeCountMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: membersWhereInput
   }
 
 
@@ -2824,6 +3070,10 @@ export namespace Prisma {
     updated_Applicant?: boolean | users$updated_ApplicantArgs<ExtArgs>
     created_Client?: boolean | users$created_ClientArgs<ExtArgs>
     updated_Client?: boolean | users$updated_ClientArgs<ExtArgs>
+    created_Department?: boolean | users$created_DepartmentArgs<ExtArgs>
+    updated_Department?: boolean | users$updated_DepartmentArgs<ExtArgs>
+    created_Member?: boolean | users$created_MemberArgs<ExtArgs>
+    updated_Member?: boolean | users$updated_MemberArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -2856,6 +3106,10 @@ export namespace Prisma {
     updated_Applicant?: boolean | users$updated_ApplicantArgs<ExtArgs>
     created_Client?: boolean | users$created_ClientArgs<ExtArgs>
     updated_Client?: boolean | users$updated_ClientArgs<ExtArgs>
+    created_Department?: boolean | users$created_DepartmentArgs<ExtArgs>
+    updated_Department?: boolean | users$updated_DepartmentArgs<ExtArgs>
+    created_Member?: boolean | users$created_MemberArgs<ExtArgs>
+    updated_Member?: boolean | users$updated_MemberArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2872,6 +3126,10 @@ export namespace Prisma {
       updated_Applicant: Prisma.$applicantsPayload<ExtArgs>[]
       created_Client: Prisma.$clientsPayload<ExtArgs>[]
       updated_Client: Prisma.$clientsPayload<ExtArgs>[]
+      created_Department: Prisma.$departmentsPayload<ExtArgs>[]
+      updated_Department: Prisma.$departmentsPayload<ExtArgs>[]
+      created_Member: Prisma.$membersPayload<ExtArgs>[]
+      updated_Member: Prisma.$membersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3236,6 +3494,10 @@ export namespace Prisma {
     updated_Applicant<T extends users$updated_ApplicantArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_ApplicantArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$applicantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     created_Client<T extends users$created_ClientArgs<ExtArgs> = {}>(args?: Subset<T, users$created_ClientArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Client<T extends users$updated_ClientArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_ClientArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Department<T extends users$created_DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, users$created_DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Department<T extends users$updated_DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Member<T extends users$created_MemberArgs<ExtArgs> = {}>(args?: Subset<T, users$created_MemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Member<T extends users$updated_MemberArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_MemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3852,6 +4114,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ClientsScalarFieldEnum | ClientsScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Department
+   */
+  export type users$created_DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    where?: departmentsWhereInput
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    cursor?: departmentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DepartmentsScalarFieldEnum | DepartmentsScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Department
+   */
+  export type users$updated_DepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    where?: departmentsWhereInput
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    cursor?: departmentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DepartmentsScalarFieldEnum | DepartmentsScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Member
+   */
+  export type users$created_MemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    where?: membersWhereInput
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    cursor?: membersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Member
+   */
+  export type users$updated_MemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    where?: membersWhereInput
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    cursor?: membersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
   }
 
   /**
@@ -10212,6 +10570,2053 @@ export namespace Prisma {
 
 
   /**
+   * Model departments
+   */
+
+  export type AggregateDepartments = {
+    _count: DepartmentsCountAggregateOutputType | null
+    _avg: DepartmentsAvgAggregateOutputType | null
+    _sum: DepartmentsSumAggregateOutputType | null
+    _min: DepartmentsMinAggregateOutputType | null
+    _max: DepartmentsMaxAggregateOutputType | null
+  }
+
+  export type DepartmentsAvgAggregateOutputType = {
+    id: number | null
+    status: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type DepartmentsSumAggregateOutputType = {
+    id: number | null
+    status: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type DepartmentsMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    status: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type DepartmentsMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    status: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type DepartmentsCountAggregateOutputType = {
+    id: number
+    name: number
+    status: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type DepartmentsAvgAggregateInputType = {
+    id?: true
+    status?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type DepartmentsSumAggregateInputType = {
+    id?: true
+    status?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type DepartmentsMinAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type DepartmentsMaxAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type DepartmentsCountAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type DepartmentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which departments to aggregate.
+     */
+    where?: departmentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of departments to fetch.
+     */
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: departmentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` departments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` departments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned departments
+    **/
+    _count?: true | DepartmentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DepartmentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DepartmentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DepartmentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DepartmentsMaxAggregateInputType
+  }
+
+  export type GetDepartmentsAggregateType<T extends DepartmentsAggregateArgs> = {
+        [P in keyof T & keyof AggregateDepartments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDepartments[P]>
+      : GetScalarType<T[P], AggregateDepartments[P]>
+  }
+
+
+
+
+  export type departmentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: departmentsWhereInput
+    orderBy?: departmentsOrderByWithAggregationInput | departmentsOrderByWithAggregationInput[]
+    by: DepartmentsScalarFieldEnum[] | DepartmentsScalarFieldEnum
+    having?: departmentsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DepartmentsCountAggregateInputType | true
+    _avg?: DepartmentsAvgAggregateInputType
+    _sum?: DepartmentsSumAggregateInputType
+    _min?: DepartmentsMinAggregateInputType
+    _max?: DepartmentsMaxAggregateInputType
+  }
+
+  export type DepartmentsGroupByOutputType = {
+    id: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: DepartmentsCountAggregateOutputType | null
+    _avg: DepartmentsAvgAggregateOutputType | null
+    _sum: DepartmentsSumAggregateOutputType | null
+    _min: DepartmentsMinAggregateOutputType | null
+    _max: DepartmentsMaxAggregateOutputType | null
+  }
+
+  type GetDepartmentsGroupByPayload<T extends departmentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DepartmentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DepartmentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DepartmentsGroupByOutputType[P]>
+            : GetScalarType<T[P], DepartmentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type departmentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    member?: boolean | departments$memberArgs<ExtArgs>
+    _count?: boolean | DepartmentsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["departments"]>
+
+
+
+  export type departmentsSelectScalar = {
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type departmentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["departments"]>
+  export type departmentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    member?: boolean | departments$memberArgs<ExtArgs>
+    _count?: boolean | DepartmentsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $departmentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "departments"
+    objects: {
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+      member: Prisma.$membersPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      status: number
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["departments"]>
+    composites: {}
+  }
+
+  type departmentsGetPayload<S extends boolean | null | undefined | departmentsDefaultArgs> = $Result.GetResult<Prisma.$departmentsPayload, S>
+
+  type departmentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<departmentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DepartmentsCountAggregateInputType | true
+    }
+
+  export interface departmentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['departments'], meta: { name: 'departments' } }
+    /**
+     * Find zero or one Departments that matches the filter.
+     * @param {departmentsFindUniqueArgs} args - Arguments to find a Departments
+     * @example
+     * // Get one Departments
+     * const departments = await prisma.departments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends departmentsFindUniqueArgs>(args: SelectSubset<T, departmentsFindUniqueArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Departments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {departmentsFindUniqueOrThrowArgs} args - Arguments to find a Departments
+     * @example
+     * // Get one Departments
+     * const departments = await prisma.departments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends departmentsFindUniqueOrThrowArgs>(args: SelectSubset<T, departmentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Departments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsFindFirstArgs} args - Arguments to find a Departments
+     * @example
+     * // Get one Departments
+     * const departments = await prisma.departments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends departmentsFindFirstArgs>(args?: SelectSubset<T, departmentsFindFirstArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Departments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsFindFirstOrThrowArgs} args - Arguments to find a Departments
+     * @example
+     * // Get one Departments
+     * const departments = await prisma.departments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends departmentsFindFirstOrThrowArgs>(args?: SelectSubset<T, departmentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Departments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Departments
+     * const departments = await prisma.departments.findMany()
+     * 
+     * // Get first 10 Departments
+     * const departments = await prisma.departments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const departmentsWithIdOnly = await prisma.departments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends departmentsFindManyArgs>(args?: SelectSubset<T, departmentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Departments.
+     * @param {departmentsCreateArgs} args - Arguments to create a Departments.
+     * @example
+     * // Create one Departments
+     * const Departments = await prisma.departments.create({
+     *   data: {
+     *     // ... data to create a Departments
+     *   }
+     * })
+     * 
+     */
+    create<T extends departmentsCreateArgs>(args: SelectSubset<T, departmentsCreateArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Departments.
+     * @param {departmentsCreateManyArgs} args - Arguments to create many Departments.
+     * @example
+     * // Create many Departments
+     * const departments = await prisma.departments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends departmentsCreateManyArgs>(args?: SelectSubset<T, departmentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Departments.
+     * @param {departmentsDeleteArgs} args - Arguments to delete one Departments.
+     * @example
+     * // Delete one Departments
+     * const Departments = await prisma.departments.delete({
+     *   where: {
+     *     // ... filter to delete one Departments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends departmentsDeleteArgs>(args: SelectSubset<T, departmentsDeleteArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Departments.
+     * @param {departmentsUpdateArgs} args - Arguments to update one Departments.
+     * @example
+     * // Update one Departments
+     * const departments = await prisma.departments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends departmentsUpdateArgs>(args: SelectSubset<T, departmentsUpdateArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Departments.
+     * @param {departmentsDeleteManyArgs} args - Arguments to filter Departments to delete.
+     * @example
+     * // Delete a few Departments
+     * const { count } = await prisma.departments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends departmentsDeleteManyArgs>(args?: SelectSubset<T, departmentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Departments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Departments
+     * const departments = await prisma.departments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends departmentsUpdateManyArgs>(args: SelectSubset<T, departmentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Departments.
+     * @param {departmentsUpsertArgs} args - Arguments to update or create a Departments.
+     * @example
+     * // Update or create a Departments
+     * const departments = await prisma.departments.upsert({
+     *   create: {
+     *     // ... data to create a Departments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Departments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends departmentsUpsertArgs>(args: SelectSubset<T, departmentsUpsertArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Departments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsCountArgs} args - Arguments to filter Departments to count.
+     * @example
+     * // Count the number of Departments
+     * const count = await prisma.departments.count({
+     *   where: {
+     *     // ... the filter for the Departments we want to count
+     *   }
+     * })
+    **/
+    count<T extends departmentsCountArgs>(
+      args?: Subset<T, departmentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DepartmentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Departments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepartmentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DepartmentsAggregateArgs>(args: Subset<T, DepartmentsAggregateArgs>): Prisma.PrismaPromise<GetDepartmentsAggregateType<T>>
+
+    /**
+     * Group by Departments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {departmentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends departmentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: departmentsGroupByArgs['orderBy'] }
+        : { orderBy?: departmentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, departmentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDepartmentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the departments model
+   */
+  readonly fields: departmentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for departments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__departmentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    member<T extends departments$memberArgs<ExtArgs> = {}>(args?: Subset<T, departments$memberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the departments model
+   */
+  interface departmentsFieldRefs {
+    readonly id: FieldRef<"departments", 'Int'>
+    readonly name: FieldRef<"departments", 'String'>
+    readonly status: FieldRef<"departments", 'Int'>
+    readonly created_by: FieldRef<"departments", 'Int'>
+    readonly updated_by: FieldRef<"departments", 'Int'>
+    readonly created_at: FieldRef<"departments", 'DateTime'>
+    readonly updated_at: FieldRef<"departments", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * departments findUnique
+   */
+  export type departmentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter, which departments to fetch.
+     */
+    where: departmentsWhereUniqueInput
+  }
+
+  /**
+   * departments findUniqueOrThrow
+   */
+  export type departmentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter, which departments to fetch.
+     */
+    where: departmentsWhereUniqueInput
+  }
+
+  /**
+   * departments findFirst
+   */
+  export type departmentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter, which departments to fetch.
+     */
+    where?: departmentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of departments to fetch.
+     */
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for departments.
+     */
+    cursor?: departmentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` departments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` departments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of departments.
+     */
+    distinct?: DepartmentsScalarFieldEnum | DepartmentsScalarFieldEnum[]
+  }
+
+  /**
+   * departments findFirstOrThrow
+   */
+  export type departmentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter, which departments to fetch.
+     */
+    where?: departmentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of departments to fetch.
+     */
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for departments.
+     */
+    cursor?: departmentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` departments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` departments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of departments.
+     */
+    distinct?: DepartmentsScalarFieldEnum | DepartmentsScalarFieldEnum[]
+  }
+
+  /**
+   * departments findMany
+   */
+  export type departmentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter, which departments to fetch.
+     */
+    where?: departmentsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of departments to fetch.
+     */
+    orderBy?: departmentsOrderByWithRelationInput | departmentsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing departments.
+     */
+    cursor?: departmentsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` departments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` departments.
+     */
+    skip?: number
+    distinct?: DepartmentsScalarFieldEnum | DepartmentsScalarFieldEnum[]
+  }
+
+  /**
+   * departments create
+   */
+  export type departmentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a departments.
+     */
+    data: XOR<departmentsCreateInput, departmentsUncheckedCreateInput>
+  }
+
+  /**
+   * departments createMany
+   */
+  export type departmentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many departments.
+     */
+    data: departmentsCreateManyInput | departmentsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * departments update
+   */
+  export type departmentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a departments.
+     */
+    data: XOR<departmentsUpdateInput, departmentsUncheckedUpdateInput>
+    /**
+     * Choose, which departments to update.
+     */
+    where: departmentsWhereUniqueInput
+  }
+
+  /**
+   * departments updateMany
+   */
+  export type departmentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update departments.
+     */
+    data: XOR<departmentsUpdateManyMutationInput, departmentsUncheckedUpdateManyInput>
+    /**
+     * Filter which departments to update
+     */
+    where?: departmentsWhereInput
+    /**
+     * Limit how many departments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * departments upsert
+   */
+  export type departmentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the departments to update in case it exists.
+     */
+    where: departmentsWhereUniqueInput
+    /**
+     * In case the departments found by the `where` argument doesn't exist, create a new departments with this data.
+     */
+    create: XOR<departmentsCreateInput, departmentsUncheckedCreateInput>
+    /**
+     * In case the departments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<departmentsUpdateInput, departmentsUncheckedUpdateInput>
+  }
+
+  /**
+   * departments delete
+   */
+  export type departmentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+    /**
+     * Filter which departments to delete.
+     */
+    where: departmentsWhereUniqueInput
+  }
+
+  /**
+   * departments deleteMany
+   */
+  export type departmentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which departments to delete
+     */
+    where?: departmentsWhereInput
+    /**
+     * Limit how many departments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * departments.member
+   */
+  export type departments$memberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    where?: membersWhereInput
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    cursor?: membersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * departments without action
+   */
+  export type departmentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the departments
+     */
+    select?: departmentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the departments
+     */
+    omit?: departmentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: departmentsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model members
+   */
+
+  export type AggregateMembers = {
+    _count: MembersCountAggregateOutputType | null
+    _avg: MembersAvgAggregateOutputType | null
+    _sum: MembersSumAggregateOutputType | null
+    _min: MembersMinAggregateOutputType | null
+    _max: MembersMaxAggregateOutputType | null
+  }
+
+  export type MembersAvgAggregateOutputType = {
+    id: number | null
+    department_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type MembersSumAggregateOutputType = {
+    id: number | null
+    department_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type MembersMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    profile: string | null
+    department_id: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type MembersMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    profile: string | null
+    department_id: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type MembersCountAggregateOutputType = {
+    id: number
+    name: number
+    profile: number
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type MembersAvgAggregateInputType = {
+    id?: true
+    department_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type MembersSumAggregateInputType = {
+    id?: true
+    department_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type MembersMinAggregateInputType = {
+    id?: true
+    name?: true
+    profile?: true
+    department_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type MembersMaxAggregateInputType = {
+    id?: true
+    name?: true
+    profile?: true
+    department_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type MembersCountAggregateInputType = {
+    id?: true
+    name?: true
+    profile?: true
+    department_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type MembersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which members to aggregate.
+     */
+    where?: membersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of members to fetch.
+     */
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: membersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` members from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` members.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned members
+    **/
+    _count?: true | MembersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MembersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MembersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MembersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MembersMaxAggregateInputType
+  }
+
+  export type GetMembersAggregateType<T extends MembersAggregateArgs> = {
+        [P in keyof T & keyof AggregateMembers]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMembers[P]>
+      : GetScalarType<T[P], AggregateMembers[P]>
+  }
+
+
+
+
+  export type membersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: membersWhereInput
+    orderBy?: membersOrderByWithAggregationInput | membersOrderByWithAggregationInput[]
+    by: MembersScalarFieldEnum[] | MembersScalarFieldEnum
+    having?: membersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MembersCountAggregateInputType | true
+    _avg?: MembersAvgAggregateInputType
+    _sum?: MembersSumAggregateInputType
+    _min?: MembersMinAggregateInputType
+    _max?: MembersMaxAggregateInputType
+  }
+
+  export type MembersGroupByOutputType = {
+    id: number
+    name: string
+    profile: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: MembersCountAggregateOutputType | null
+    _avg: MembersAvgAggregateOutputType | null
+    _sum: MembersSumAggregateOutputType | null
+    _min: MembersMinAggregateOutputType | null
+    _max: MembersMaxAggregateOutputType | null
+  }
+
+  type GetMembersGroupByPayload<T extends membersGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MembersGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MembersGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MembersGroupByOutputType[P]>
+            : GetScalarType<T[P], MembersGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type membersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    profile?: boolean
+    department_id?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    departmentId?: boolean | departmentsDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["members"]>
+
+
+
+  export type membersSelectScalar = {
+    id?: boolean
+    name?: boolean
+    profile?: boolean
+    department_id?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type membersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profile" | "department_id" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["members"]>
+  export type membersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    departmentId?: boolean | departmentsDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $membersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "members"
+    objects: {
+      departmentId: Prisma.$departmentsPayload<ExtArgs>
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      profile: string
+      department_id: number
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["members"]>
+    composites: {}
+  }
+
+  type membersGetPayload<S extends boolean | null | undefined | membersDefaultArgs> = $Result.GetResult<Prisma.$membersPayload, S>
+
+  type membersCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<membersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MembersCountAggregateInputType | true
+    }
+
+  export interface membersDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['members'], meta: { name: 'members' } }
+    /**
+     * Find zero or one Members that matches the filter.
+     * @param {membersFindUniqueArgs} args - Arguments to find a Members
+     * @example
+     * // Get one Members
+     * const members = await prisma.members.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends membersFindUniqueArgs>(args: SelectSubset<T, membersFindUniqueArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Members that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {membersFindUniqueOrThrowArgs} args - Arguments to find a Members
+     * @example
+     * // Get one Members
+     * const members = await prisma.members.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends membersFindUniqueOrThrowArgs>(args: SelectSubset<T, membersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Members that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersFindFirstArgs} args - Arguments to find a Members
+     * @example
+     * // Get one Members
+     * const members = await prisma.members.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends membersFindFirstArgs>(args?: SelectSubset<T, membersFindFirstArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Members that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersFindFirstOrThrowArgs} args - Arguments to find a Members
+     * @example
+     * // Get one Members
+     * const members = await prisma.members.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends membersFindFirstOrThrowArgs>(args?: SelectSubset<T, membersFindFirstOrThrowArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Members that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Members
+     * const members = await prisma.members.findMany()
+     * 
+     * // Get first 10 Members
+     * const members = await prisma.members.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const membersWithIdOnly = await prisma.members.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends membersFindManyArgs>(args?: SelectSubset<T, membersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Members.
+     * @param {membersCreateArgs} args - Arguments to create a Members.
+     * @example
+     * // Create one Members
+     * const Members = await prisma.members.create({
+     *   data: {
+     *     // ... data to create a Members
+     *   }
+     * })
+     * 
+     */
+    create<T extends membersCreateArgs>(args: SelectSubset<T, membersCreateArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Members.
+     * @param {membersCreateManyArgs} args - Arguments to create many Members.
+     * @example
+     * // Create many Members
+     * const members = await prisma.members.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends membersCreateManyArgs>(args?: SelectSubset<T, membersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Members.
+     * @param {membersDeleteArgs} args - Arguments to delete one Members.
+     * @example
+     * // Delete one Members
+     * const Members = await prisma.members.delete({
+     *   where: {
+     *     // ... filter to delete one Members
+     *   }
+     * })
+     * 
+     */
+    delete<T extends membersDeleteArgs>(args: SelectSubset<T, membersDeleteArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Members.
+     * @param {membersUpdateArgs} args - Arguments to update one Members.
+     * @example
+     * // Update one Members
+     * const members = await prisma.members.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends membersUpdateArgs>(args: SelectSubset<T, membersUpdateArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Members.
+     * @param {membersDeleteManyArgs} args - Arguments to filter Members to delete.
+     * @example
+     * // Delete a few Members
+     * const { count } = await prisma.members.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends membersDeleteManyArgs>(args?: SelectSubset<T, membersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Members.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Members
+     * const members = await prisma.members.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends membersUpdateManyArgs>(args: SelectSubset<T, membersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Members.
+     * @param {membersUpsertArgs} args - Arguments to update or create a Members.
+     * @example
+     * // Update or create a Members
+     * const members = await prisma.members.upsert({
+     *   create: {
+     *     // ... data to create a Members
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Members we want to update
+     *   }
+     * })
+     */
+    upsert<T extends membersUpsertArgs>(args: SelectSubset<T, membersUpsertArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Members.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersCountArgs} args - Arguments to filter Members to count.
+     * @example
+     * // Count the number of Members
+     * const count = await prisma.members.count({
+     *   where: {
+     *     // ... the filter for the Members we want to count
+     *   }
+     * })
+    **/
+    count<T extends membersCountArgs>(
+      args?: Subset<T, membersCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MembersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Members.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MembersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MembersAggregateArgs>(args: Subset<T, MembersAggregateArgs>): Prisma.PrismaPromise<GetMembersAggregateType<T>>
+
+    /**
+     * Group by Members.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {membersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends membersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: membersGroupByArgs['orderBy'] }
+        : { orderBy?: membersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, membersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMembersGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the members model
+   */
+  readonly fields: membersFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for members.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__membersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    departmentId<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the members model
+   */
+  interface membersFieldRefs {
+    readonly id: FieldRef<"members", 'Int'>
+    readonly name: FieldRef<"members", 'String'>
+    readonly profile: FieldRef<"members", 'String'>
+    readonly department_id: FieldRef<"members", 'Int'>
+    readonly created_by: FieldRef<"members", 'Int'>
+    readonly updated_by: FieldRef<"members", 'Int'>
+    readonly created_at: FieldRef<"members", 'DateTime'>
+    readonly updated_at: FieldRef<"members", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * members findUnique
+   */
+  export type membersFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter, which members to fetch.
+     */
+    where: membersWhereUniqueInput
+  }
+
+  /**
+   * members findUniqueOrThrow
+   */
+  export type membersFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter, which members to fetch.
+     */
+    where: membersWhereUniqueInput
+  }
+
+  /**
+   * members findFirst
+   */
+  export type membersFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter, which members to fetch.
+     */
+    where?: membersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of members to fetch.
+     */
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for members.
+     */
+    cursor?: membersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` members from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` members.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of members.
+     */
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * members findFirstOrThrow
+   */
+  export type membersFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter, which members to fetch.
+     */
+    where?: membersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of members to fetch.
+     */
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for members.
+     */
+    cursor?: membersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` members from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` members.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of members.
+     */
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * members findMany
+   */
+  export type membersFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter, which members to fetch.
+     */
+    where?: membersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of members to fetch.
+     */
+    orderBy?: membersOrderByWithRelationInput | membersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing members.
+     */
+    cursor?: membersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` members from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` members.
+     */
+    skip?: number
+    distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * members create
+   */
+  export type membersCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * The data needed to create a members.
+     */
+    data: XOR<membersCreateInput, membersUncheckedCreateInput>
+  }
+
+  /**
+   * members createMany
+   */
+  export type membersCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many members.
+     */
+    data: membersCreateManyInput | membersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * members update
+   */
+  export type membersUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * The data needed to update a members.
+     */
+    data: XOR<membersUpdateInput, membersUncheckedUpdateInput>
+    /**
+     * Choose, which members to update.
+     */
+    where: membersWhereUniqueInput
+  }
+
+  /**
+   * members updateMany
+   */
+  export type membersUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update members.
+     */
+    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyInput>
+    /**
+     * Filter which members to update
+     */
+    where?: membersWhereInput
+    /**
+     * Limit how many members to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * members upsert
+   */
+  export type membersUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * The filter to search for the members to update in case it exists.
+     */
+    where: membersWhereUniqueInput
+    /**
+     * In case the members found by the `where` argument doesn't exist, create a new members with this data.
+     */
+    create: XOR<membersCreateInput, membersUncheckedCreateInput>
+    /**
+     * In case the members was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<membersUpdateInput, membersUncheckedUpdateInput>
+  }
+
+  /**
+   * members delete
+   */
+  export type membersDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+    /**
+     * Filter which members to delete.
+     */
+    where: membersWhereUniqueInput
+  }
+
+  /**
+   * members deleteMany
+   */
+  export type membersDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which members to delete
+     */
+    where?: membersWhereInput
+    /**
+     * Limit how many members to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * members without action
+   */
+  export type membersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the members
+     */
+    select?: membersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the members
+     */
+    omit?: membersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: membersInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10365,6 +12770,33 @@ export namespace Prisma {
   export type ClientsScalarFieldEnum = (typeof ClientsScalarFieldEnum)[keyof typeof ClientsScalarFieldEnum]
 
 
+  export const DepartmentsScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    status: 'status',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type DepartmentsScalarFieldEnum = (typeof DepartmentsScalarFieldEnum)[keyof typeof DepartmentsScalarFieldEnum]
+
+
+  export const MembersScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    profile: 'profile',
+    department_id: 'department_id',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type MembersScalarFieldEnum = (typeof MembersScalarFieldEnum)[keyof typeof MembersScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -10505,6 +12937,21 @@ export namespace Prisma {
   export type clientsOrderByRelevanceFieldEnum = (typeof clientsOrderByRelevanceFieldEnum)[keyof typeof clientsOrderByRelevanceFieldEnum]
 
 
+  export const departmentsOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type departmentsOrderByRelevanceFieldEnum = (typeof departmentsOrderByRelevanceFieldEnum)[keyof typeof departmentsOrderByRelevanceFieldEnum]
+
+
+  export const membersOrderByRelevanceFieldEnum: {
+    name: 'name',
+    profile: 'profile'
+  };
+
+  export type membersOrderByRelevanceFieldEnum = (typeof membersOrderByRelevanceFieldEnum)[keyof typeof membersOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -10636,6 +13083,10 @@ export namespace Prisma {
     updated_Applicant?: ApplicantsListRelationFilter
     created_Client?: ClientsListRelationFilter
     updated_Client?: ClientsListRelationFilter
+    created_Department?: DepartmentsListRelationFilter
+    updated_Department?: DepartmentsListRelationFilter
+    created_Member?: MembersListRelationFilter
+    updated_Member?: MembersListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -10661,6 +13112,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsOrderByRelationAggregateInput
     created_Client?: clientsOrderByRelationAggregateInput
     updated_Client?: clientsOrderByRelationAggregateInput
+    created_Department?: departmentsOrderByRelationAggregateInput
+    updated_Department?: departmentsOrderByRelationAggregateInput
+    created_Member?: membersOrderByRelationAggregateInput
+    updated_Member?: membersOrderByRelationAggregateInput
     _relevance?: usersOrderByRelevanceInput
   }
 
@@ -10690,6 +13145,10 @@ export namespace Prisma {
     updated_Applicant?: ApplicantsListRelationFilter
     created_Client?: ClientsListRelationFilter
     updated_Client?: ClientsListRelationFilter
+    created_Department?: DepartmentsListRelationFilter
+    updated_Department?: DepartmentsListRelationFilter
+    created_Member?: MembersListRelationFilter
+    updated_Member?: MembersListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -11328,6 +13787,159 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"clients"> | Date | string
   }
 
+  export type departmentsWhereInput = {
+    AND?: departmentsWhereInput | departmentsWhereInput[]
+    OR?: departmentsWhereInput[]
+    NOT?: departmentsWhereInput | departmentsWhereInput[]
+    id?: IntFilter<"departments"> | number
+    name?: StringFilter<"departments"> | string
+    status?: IntFilter<"departments"> | number
+    created_by?: IntFilter<"departments"> | number
+    updated_by?: IntFilter<"departments"> | number
+    created_at?: DateTimeFilter<"departments"> | Date | string
+    updated_at?: DateTimeFilter<"departments"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    member?: MembersListRelationFilter
+  }
+
+  export type departmentsOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    member?: membersOrderByRelationAggregateInput
+    _relevance?: departmentsOrderByRelevanceInput
+  }
+
+  export type departmentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: departmentsWhereInput | departmentsWhereInput[]
+    OR?: departmentsWhereInput[]
+    NOT?: departmentsWhereInput | departmentsWhereInput[]
+    name?: StringFilter<"departments"> | string
+    status?: IntFilter<"departments"> | number
+    created_by?: IntFilter<"departments"> | number
+    updated_by?: IntFilter<"departments"> | number
+    created_at?: DateTimeFilter<"departments"> | Date | string
+    updated_at?: DateTimeFilter<"departments"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    member?: MembersListRelationFilter
+  }, "id">
+
+  export type departmentsOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: departmentsCountOrderByAggregateInput
+    _avg?: departmentsAvgOrderByAggregateInput
+    _max?: departmentsMaxOrderByAggregateInput
+    _min?: departmentsMinOrderByAggregateInput
+    _sum?: departmentsSumOrderByAggregateInput
+  }
+
+  export type departmentsScalarWhereWithAggregatesInput = {
+    AND?: departmentsScalarWhereWithAggregatesInput | departmentsScalarWhereWithAggregatesInput[]
+    OR?: departmentsScalarWhereWithAggregatesInput[]
+    NOT?: departmentsScalarWhereWithAggregatesInput | departmentsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"departments"> | number
+    name?: StringWithAggregatesFilter<"departments"> | string
+    status?: IntWithAggregatesFilter<"departments"> | number
+    created_by?: IntWithAggregatesFilter<"departments"> | number
+    updated_by?: IntWithAggregatesFilter<"departments"> | number
+    created_at?: DateTimeWithAggregatesFilter<"departments"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"departments"> | Date | string
+  }
+
+  export type membersWhereInput = {
+    AND?: membersWhereInput | membersWhereInput[]
+    OR?: membersWhereInput[]
+    NOT?: membersWhereInput | membersWhereInput[]
+    id?: IntFilter<"members"> | number
+    name?: StringFilter<"members"> | string
+    profile?: StringFilter<"members"> | string
+    department_id?: IntFilter<"members"> | number
+    created_by?: IntFilter<"members"> | number
+    updated_by?: IntFilter<"members"> | number
+    created_at?: DateTimeFilter<"members"> | Date | string
+    updated_at?: DateTimeFilter<"members"> | Date | string
+    departmentId?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type membersOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    profile?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    departmentId?: departmentsOrderByWithRelationInput
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    _relevance?: membersOrderByRelevanceInput
+  }
+
+  export type membersWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: membersWhereInput | membersWhereInput[]
+    OR?: membersWhereInput[]
+    NOT?: membersWhereInput | membersWhereInput[]
+    name?: StringFilter<"members"> | string
+    profile?: StringFilter<"members"> | string
+    department_id?: IntFilter<"members"> | number
+    created_by?: IntFilter<"members"> | number
+    updated_by?: IntFilter<"members"> | number
+    created_at?: DateTimeFilter<"members"> | Date | string
+    updated_at?: DateTimeFilter<"members"> | Date | string
+    departmentId?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type membersOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    profile?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: membersCountOrderByAggregateInput
+    _avg?: membersAvgOrderByAggregateInput
+    _max?: membersMaxOrderByAggregateInput
+    _min?: membersMinOrderByAggregateInput
+    _sum?: membersSumOrderByAggregateInput
+  }
+
+  export type membersScalarWhereWithAggregatesInput = {
+    AND?: membersScalarWhereWithAggregatesInput | membersScalarWhereWithAggregatesInput[]
+    OR?: membersScalarWhereWithAggregatesInput[]
+    NOT?: membersScalarWhereWithAggregatesInput | membersScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"members"> | number
+    name?: StringWithAggregatesFilter<"members"> | string
+    profile?: StringWithAggregatesFilter<"members"> | string
+    department_id?: IntWithAggregatesFilter<"members"> | number
+    created_by?: IntWithAggregatesFilter<"members"> | number
+    updated_by?: IntWithAggregatesFilter<"members"> | number
+    created_at?: DateTimeWithAggregatesFilter<"members"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"members"> | Date | string
+  }
+
   export type rolesCreateInput = {
     name: string
     access: JsonNullValueInput | InputJsonValue
@@ -11392,6 +14004,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -11416,6 +14032,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUpdateInput = {
@@ -11439,6 +14059,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -11463,6 +14087,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -12149,6 +14777,146 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type departmentsCreateInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+    member?: membersCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsUncheckedCreateInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsCreateManyInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type departmentsUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type departmentsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersCreateInput = {
+    name: string
+    profile: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    createdBy: usersCreateNestedOneWithoutCreated_MemberInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+  }
+
+  export type membersUncheckedCreateInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+  }
+
+  export type membersUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersCreateManyInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -12386,6 +15154,18 @@ export namespace Prisma {
     none?: clientsWhereInput
   }
 
+  export type DepartmentsListRelationFilter = {
+    every?: departmentsWhereInput
+    some?: departmentsWhereInput
+    none?: departmentsWhereInput
+  }
+
+  export type MembersListRelationFilter = {
+    every?: membersWhereInput
+    some?: membersWhereInput
+    none?: membersWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -12408,6 +15188,14 @@ export namespace Prisma {
   }
 
   export type clientsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type departmentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type membersOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12941,6 +15729,114 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type departmentsOrderByRelevanceInput = {
+    fields: departmentsOrderByRelevanceFieldEnum | departmentsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type departmentsCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type departmentsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type departmentsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type departmentsMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type departmentsSumOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type DepartmentsScalarRelationFilter = {
+    is?: departmentsWhereInput
+    isNot?: departmentsWhereInput
+  }
+
+  export type membersOrderByRelevanceInput = {
+    fields: membersOrderByRelevanceFieldEnum | membersOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type membersCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    profile?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type membersAvgOrderByAggregateInput = {
+    id?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type membersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    profile?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type membersMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    profile?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type membersSumOrderByAggregateInput = {
+    id?: SortOrder
+    department_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
   export type usersCreateNestedManyWithoutRoleInput = {
     create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
@@ -13064,6 +15960,34 @@ export namespace Prisma {
     connect?: clientsWhereUniqueInput | clientsWhereUniqueInput[]
   }
 
+  export type departmentsCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput> | departmentsCreateWithoutCreatedByInput[] | departmentsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutCreatedByInput | departmentsCreateOrConnectWithoutCreatedByInput[]
+    createMany?: departmentsCreateManyCreatedByInputEnvelope
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+  }
+
+  export type departmentsCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput> | departmentsCreateWithoutUpdatedByInput[] | departmentsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutUpdatedByInput | departmentsCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: departmentsCreateManyUpdatedByInputEnvelope
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+  }
+
+  export type membersCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput> | membersCreateWithoutCreatedByInput[] | membersUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutCreatedByInput | membersCreateOrConnectWithoutCreatedByInput[]
+    createMany?: membersCreateManyCreatedByInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type membersCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput> | membersCreateWithoutUpdatedByInput[] | membersUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutUpdatedByInput | membersCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: membersCreateManyUpdatedByInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
   export type our_worksUncheckedCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<our_worksCreateWithoutCreatedByInput, our_worksUncheckedCreateWithoutCreatedByInput> | our_worksCreateWithoutCreatedByInput[] | our_worksUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: our_worksCreateOrConnectWithoutCreatedByInput | our_worksCreateOrConnectWithoutCreatedByInput[]
@@ -13125,6 +16049,34 @@ export namespace Prisma {
     connectOrCreate?: clientsCreateOrConnectWithoutUpdatedByInput | clientsCreateOrConnectWithoutUpdatedByInput[]
     createMany?: clientsCreateManyUpdatedByInputEnvelope
     connect?: clientsWhereUniqueInput | clientsWhereUniqueInput[]
+  }
+
+  export type departmentsUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput> | departmentsCreateWithoutCreatedByInput[] | departmentsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutCreatedByInput | departmentsCreateOrConnectWithoutCreatedByInput[]
+    createMany?: departmentsCreateManyCreatedByInputEnvelope
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+  }
+
+  export type departmentsUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput> | departmentsCreateWithoutUpdatedByInput[] | departmentsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutUpdatedByInput | departmentsCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: departmentsCreateManyUpdatedByInputEnvelope
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+  }
+
+  export type membersUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput> | membersCreateWithoutCreatedByInput[] | membersUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutCreatedByInput | membersCreateOrConnectWithoutCreatedByInput[]
+    createMany?: membersCreateManyCreatedByInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type membersUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput> | membersCreateWithoutUpdatedByInput[] | membersUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutUpdatedByInput | membersCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: membersCreateManyUpdatedByInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -13279,6 +16231,62 @@ export namespace Prisma {
     deleteMany?: clientsScalarWhereInput | clientsScalarWhereInput[]
   }
 
+  export type departmentsUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput> | departmentsCreateWithoutCreatedByInput[] | departmentsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutCreatedByInput | departmentsCreateOrConnectWithoutCreatedByInput[]
+    upsert?: departmentsUpsertWithWhereUniqueWithoutCreatedByInput | departmentsUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: departmentsCreateManyCreatedByInputEnvelope
+    set?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    disconnect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    delete?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    update?: departmentsUpdateWithWhereUniqueWithoutCreatedByInput | departmentsUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: departmentsUpdateManyWithWhereWithoutCreatedByInput | departmentsUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+  }
+
+  export type departmentsUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput> | departmentsCreateWithoutUpdatedByInput[] | departmentsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutUpdatedByInput | departmentsCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: departmentsUpsertWithWhereUniqueWithoutUpdatedByInput | departmentsUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: departmentsCreateManyUpdatedByInputEnvelope
+    set?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    disconnect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    delete?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    update?: departmentsUpdateWithWhereUniqueWithoutUpdatedByInput | departmentsUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: departmentsUpdateManyWithWhereWithoutUpdatedByInput | departmentsUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+  }
+
+  export type membersUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput> | membersCreateWithoutCreatedByInput[] | membersUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutCreatedByInput | membersCreateOrConnectWithoutCreatedByInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutCreatedByInput | membersUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: membersCreateManyCreatedByInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutCreatedByInput | membersUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutCreatedByInput | membersUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type membersUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput> | membersCreateWithoutUpdatedByInput[] | membersUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutUpdatedByInput | membersCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutUpdatedByInput | membersUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: membersCreateManyUpdatedByInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutUpdatedByInput | membersUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutUpdatedByInput | membersUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -13411,6 +16419,62 @@ export namespace Prisma {
     update?: clientsUpdateWithWhereUniqueWithoutUpdatedByInput | clientsUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: clientsUpdateManyWithWhereWithoutUpdatedByInput | clientsUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: clientsScalarWhereInput | clientsScalarWhereInput[]
+  }
+
+  export type departmentsUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput> | departmentsCreateWithoutCreatedByInput[] | departmentsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutCreatedByInput | departmentsCreateOrConnectWithoutCreatedByInput[]
+    upsert?: departmentsUpsertWithWhereUniqueWithoutCreatedByInput | departmentsUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: departmentsCreateManyCreatedByInputEnvelope
+    set?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    disconnect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    delete?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    update?: departmentsUpdateWithWhereUniqueWithoutCreatedByInput | departmentsUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: departmentsUpdateManyWithWhereWithoutCreatedByInput | departmentsUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+  }
+
+  export type departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput> | departmentsCreateWithoutUpdatedByInput[] | departmentsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: departmentsCreateOrConnectWithoutUpdatedByInput | departmentsCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: departmentsUpsertWithWhereUniqueWithoutUpdatedByInput | departmentsUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: departmentsCreateManyUpdatedByInputEnvelope
+    set?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    disconnect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    delete?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    connect?: departmentsWhereUniqueInput | departmentsWhereUniqueInput[]
+    update?: departmentsUpdateWithWhereUniqueWithoutUpdatedByInput | departmentsUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: departmentsUpdateManyWithWhereWithoutUpdatedByInput | departmentsUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+  }
+
+  export type membersUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput> | membersCreateWithoutCreatedByInput[] | membersUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutCreatedByInput | membersCreateOrConnectWithoutCreatedByInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutCreatedByInput | membersUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: membersCreateManyCreatedByInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutCreatedByInput | membersUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutCreatedByInput | membersUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type membersUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput> | membersCreateWithoutUpdatedByInput[] | membersUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutUpdatedByInput | membersCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutUpdatedByInput | membersUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: membersCreateManyUpdatedByInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutUpdatedByInput | membersUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutUpdatedByInput | membersUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutCreated_WorkInput = {
@@ -13593,6 +16657,118 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutUpdated_ClientInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_ClientInput, usersUpdateWithoutUpdated_ClientInput>, usersUncheckedUpdateWithoutUpdated_ClientInput>
+  }
+
+  export type usersCreateNestedOneWithoutCreated_DepartmentInput = {
+    create?: XOR<usersCreateWithoutCreated_DepartmentInput, usersUncheckedCreateWithoutCreated_DepartmentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_DepartmentInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_DepartmentInput = {
+    create?: XOR<usersCreateWithoutUpdated_DepartmentInput, usersUncheckedCreateWithoutUpdated_DepartmentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_DepartmentInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type membersCreateNestedManyWithoutDepartmentIdInput = {
+    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
+    createMany?: membersCreateManyDepartmentIdInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type membersUncheckedCreateNestedManyWithoutDepartmentIdInput = {
+    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
+    createMany?: membersCreateManyDepartmentIdInputEnvelope
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_DepartmentInput, usersUncheckedCreateWithoutCreated_DepartmentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_DepartmentInput
+    upsert?: usersUpsertWithoutCreated_DepartmentInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_DepartmentInput, usersUpdateWithoutCreated_DepartmentInput>, usersUncheckedUpdateWithoutCreated_DepartmentInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_DepartmentInput, usersUncheckedCreateWithoutUpdated_DepartmentInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_DepartmentInput
+    upsert?: usersUpsertWithoutUpdated_DepartmentInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_DepartmentInput, usersUpdateWithoutUpdated_DepartmentInput>, usersUncheckedUpdateWithoutUpdated_DepartmentInput>
+  }
+
+  export type membersUpdateManyWithoutDepartmentIdNestedInput = {
+    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentIdInput | membersUpsertWithWhereUniqueWithoutDepartmentIdInput[]
+    createMany?: membersCreateManyDepartmentIdInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutDepartmentIdInput | membersUpdateWithWhereUniqueWithoutDepartmentIdInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutDepartmentIdInput | membersUpdateManyWithWhereWithoutDepartmentIdInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type membersUncheckedUpdateManyWithoutDepartmentIdNestedInput = {
+    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentIdInput | membersUpsertWithWhereUniqueWithoutDepartmentIdInput[]
+    createMany?: membersCreateManyDepartmentIdInputEnvelope
+    set?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+    update?: membersUpdateWithWhereUniqueWithoutDepartmentIdInput | membersUpdateWithWhereUniqueWithoutDepartmentIdInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutDepartmentIdInput | membersUpdateManyWithWhereWithoutDepartmentIdInput[]
+    deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type departmentsCreateNestedOneWithoutMemberInput = {
+    create?: XOR<departmentsCreateWithoutMemberInput, departmentsUncheckedCreateWithoutMemberInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutMemberInput
+    connect?: departmentsWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutCreated_MemberInput = {
+    create?: XOR<usersCreateWithoutCreated_MemberInput, usersUncheckedCreateWithoutCreated_MemberInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_MemberInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_MemberInput = {
+    create?: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_MemberInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type departmentsUpdateOneRequiredWithoutMemberNestedInput = {
+    create?: XOR<departmentsCreateWithoutMemberInput, departmentsUncheckedCreateWithoutMemberInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutMemberInput
+    upsert?: departmentsUpsertWithoutMemberInput
+    connect?: departmentsWhereUniqueInput
+    update?: XOR<XOR<departmentsUpdateToOneWithWhereWithoutMemberInput, departmentsUpdateWithoutMemberInput>, departmentsUncheckedUpdateWithoutMemberInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_MemberNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_MemberInput, usersUncheckedCreateWithoutCreated_MemberInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_MemberInput
+    upsert?: usersUpsertWithoutCreated_MemberInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_MemberInput, usersUpdateWithoutCreated_MemberInput>, usersUncheckedUpdateWithoutCreated_MemberInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_MemberNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_MemberInput
+    upsert?: usersUpsertWithoutUpdated_MemberInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_MemberInput, usersUpdateWithoutUpdated_MemberInput>, usersUncheckedUpdateWithoutUpdated_MemberInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -13843,6 +17019,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutRoleInput = {
@@ -13866,6 +17046,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutRoleInput = {
@@ -14303,6 +17487,122 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type departmentsCreateWithoutCreatedByInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+    member?: membersCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    name: string
+    status: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsCreateOrConnectWithoutCreatedByInput = {
+    where: departmentsWhereUniqueInput
+    create: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type departmentsCreateManyCreatedByInputEnvelope = {
+    data: departmentsCreateManyCreatedByInput | departmentsCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type departmentsCreateWithoutUpdatedByInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
+    member?: membersCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+  }
+
+  export type departmentsCreateOrConnectWithoutUpdatedByInput = {
+    where: departmentsWhereUniqueInput
+    create: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type departmentsCreateManyUpdatedByInputEnvelope = {
+    data: departmentsCreateManyUpdatedByInput | departmentsCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type membersCreateWithoutCreatedByInput = {
+    name: string
+    profile: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+  }
+
+  export type membersUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateOrConnectWithoutCreatedByInput = {
+    where: membersWhereUniqueInput
+    create: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type membersCreateManyCreatedByInputEnvelope = {
+    data: membersCreateManyCreatedByInput | membersCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type membersCreateWithoutUpdatedByInput = {
+    name: string
+    profile: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    createdBy: usersCreateNestedOneWithoutCreated_MemberInput
+  }
+
+  export type membersUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateOrConnectWithoutUpdatedByInput = {
+    where: membersWhereUniqueInput
+    create: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type membersCreateManyUpdatedByInputEnvelope = {
+    data: membersCreateManyUpdatedByInput | membersCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
   export type rolesUpsertWithoutUsersInput = {
     update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
     create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
@@ -14569,6 +17869,97 @@ export namespace Prisma {
     data: XOR<clientsUpdateManyMutationInput, clientsUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
+  export type departmentsUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: departmentsWhereUniqueInput
+    update: XOR<departmentsUpdateWithoutCreatedByInput, departmentsUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<departmentsCreateWithoutCreatedByInput, departmentsUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type departmentsUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: departmentsWhereUniqueInput
+    data: XOR<departmentsUpdateWithoutCreatedByInput, departmentsUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type departmentsUpdateManyWithWhereWithoutCreatedByInput = {
+    where: departmentsScalarWhereInput
+    data: XOR<departmentsUpdateManyMutationInput, departmentsUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type departmentsScalarWhereInput = {
+    AND?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+    OR?: departmentsScalarWhereInput[]
+    NOT?: departmentsScalarWhereInput | departmentsScalarWhereInput[]
+    id?: IntFilter<"departments"> | number
+    name?: StringFilter<"departments"> | string
+    status?: IntFilter<"departments"> | number
+    created_by?: IntFilter<"departments"> | number
+    updated_by?: IntFilter<"departments"> | number
+    created_at?: DateTimeFilter<"departments"> | Date | string
+    updated_at?: DateTimeFilter<"departments"> | Date | string
+  }
+
+  export type departmentsUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: departmentsWhereUniqueInput
+    update: XOR<departmentsUpdateWithoutUpdatedByInput, departmentsUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<departmentsCreateWithoutUpdatedByInput, departmentsUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type departmentsUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: departmentsWhereUniqueInput
+    data: XOR<departmentsUpdateWithoutUpdatedByInput, departmentsUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type departmentsUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: departmentsScalarWhereInput
+    data: XOR<departmentsUpdateManyMutationInput, departmentsUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
+  export type membersUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: membersWhereUniqueInput
+    update: XOR<membersUpdateWithoutCreatedByInput, membersUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<membersCreateWithoutCreatedByInput, membersUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type membersUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: membersWhereUniqueInput
+    data: XOR<membersUpdateWithoutCreatedByInput, membersUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type membersUpdateManyWithWhereWithoutCreatedByInput = {
+    where: membersScalarWhereInput
+    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type membersScalarWhereInput = {
+    AND?: membersScalarWhereInput | membersScalarWhereInput[]
+    OR?: membersScalarWhereInput[]
+    NOT?: membersScalarWhereInput | membersScalarWhereInput[]
+    id?: IntFilter<"members"> | number
+    name?: StringFilter<"members"> | string
+    profile?: StringFilter<"members"> | string
+    department_id?: IntFilter<"members"> | number
+    created_by?: IntFilter<"members"> | number
+    updated_by?: IntFilter<"members"> | number
+    created_at?: DateTimeFilter<"members"> | Date | string
+    updated_at?: DateTimeFilter<"members"> | Date | string
+  }
+
+  export type membersUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: membersWhereUniqueInput
+    update: XOR<membersUpdateWithoutUpdatedByInput, membersUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<membersCreateWithoutUpdatedByInput, membersUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type membersUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: membersWhereUniqueInput
+    data: XOR<membersUpdateWithoutUpdatedByInput, membersUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type membersUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: membersScalarWhereInput
+    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
   export type usersCreateWithoutCreated_WorkInput = {
     name?: string | null
     email: string
@@ -14589,6 +17980,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_WorkInput = {
@@ -14612,6 +18007,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_WorkInput = {
@@ -14639,6 +18038,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_WorkInput = {
@@ -14662,6 +18065,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_WorkInput = {
@@ -14700,6 +18107,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_WorkInput = {
@@ -14723,6 +18134,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_WorkInput = {
@@ -14756,6 +18171,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_WorkInput = {
@@ -14779,6 +18198,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_JobInput = {
@@ -14801,6 +18224,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_JobInput = {
@@ -14824,6 +18251,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_JobInput = {
@@ -14851,6 +18282,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_JobInput = {
@@ -14874,6 +18309,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_JobInput = {
@@ -14951,6 +18390,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_JobInput = {
@@ -14974,6 +18417,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_JobInput = {
@@ -15007,6 +18454,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_JobInput = {
@@ -15030,6 +18481,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type applicantsUpsertWithWhereUniqueWithoutJobInput = {
@@ -15116,6 +18571,10 @@ export namespace Prisma {
     updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ApplicantInput = {
@@ -15139,6 +18598,10 @@ export namespace Prisma {
     updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ApplicantInput = {
@@ -15231,6 +18694,10 @@ export namespace Prisma {
     updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ApplicantInput = {
@@ -15254,6 +18721,10 @@ export namespace Prisma {
     updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_InfoInput = {
@@ -15276,6 +18747,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_InfoInput = {
@@ -15299,6 +18774,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_InfoInput = {
@@ -15326,6 +18805,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_InfoInput = {
@@ -15349,6 +18832,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_InfoInput = {
@@ -15387,6 +18874,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_InfoInput = {
@@ -15410,6 +18901,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_InfoInput = {
@@ -15443,6 +18938,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_InfoInput = {
@@ -15466,6 +18965,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_ClientInput = {
@@ -15488,6 +18991,10 @@ export namespace Prisma {
     updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_ClientInput = {
@@ -15511,6 +19018,10 @@ export namespace Prisma {
     updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_ClientInput = {
@@ -15538,6 +19049,10 @@ export namespace Prisma {
     updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ClientInput = {
@@ -15561,6 +19076,10 @@ export namespace Prisma {
     updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ClientInput = {
@@ -15599,6 +19118,10 @@ export namespace Prisma {
     updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_ClientInput = {
@@ -15622,6 +19145,10 @@ export namespace Prisma {
     updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_ClientInput = {
@@ -15655,6 +19182,10 @@ export namespace Prisma {
     updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ClientInput = {
@@ -15678,6 +19209,597 @@ export namespace Prisma {
     updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersCreateWithoutCreated_DepartmentInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_DepartmentInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_DepartmentInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_DepartmentInput, usersUncheckedCreateWithoutCreated_DepartmentInput>
+  }
+
+  export type usersCreateWithoutUpdated_DepartmentInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_DepartmentInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_DepartmentInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_DepartmentInput, usersUncheckedCreateWithoutUpdated_DepartmentInput>
+  }
+
+  export type membersCreateWithoutDepartmentIdInput = {
+    name: string
+    profile: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_MemberInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+  }
+
+  export type membersUncheckedCreateWithoutDepartmentIdInput = {
+    id?: number
+    name: string
+    profile: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateOrConnectWithoutDepartmentIdInput = {
+    where: membersWhereUniqueInput
+    create: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput>
+  }
+
+  export type membersCreateManyDepartmentIdInputEnvelope = {
+    data: membersCreateManyDepartmentIdInput | membersCreateManyDepartmentIdInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usersUpsertWithoutCreated_DepartmentInput = {
+    update: XOR<usersUpdateWithoutCreated_DepartmentInput, usersUncheckedUpdateWithoutCreated_DepartmentInput>
+    create: XOR<usersCreateWithoutCreated_DepartmentInput, usersUncheckedCreateWithoutCreated_DepartmentInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_DepartmentInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_DepartmentInput, usersUncheckedUpdateWithoutCreated_DepartmentInput>
+  }
+
+  export type usersUpdateWithoutCreated_DepartmentInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_DepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_DepartmentInput = {
+    update: XOR<usersUpdateWithoutUpdated_DepartmentInput, usersUncheckedUpdateWithoutUpdated_DepartmentInput>
+    create: XOR<usersCreateWithoutUpdated_DepartmentInput, usersUncheckedCreateWithoutUpdated_DepartmentInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_DepartmentInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_DepartmentInput, usersUncheckedUpdateWithoutUpdated_DepartmentInput>
+  }
+
+  export type usersUpdateWithoutUpdated_DepartmentInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_DepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type membersUpsertWithWhereUniqueWithoutDepartmentIdInput = {
+    where: membersWhereUniqueInput
+    update: XOR<membersUpdateWithoutDepartmentIdInput, membersUncheckedUpdateWithoutDepartmentIdInput>
+    create: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput>
+  }
+
+  export type membersUpdateWithWhereUniqueWithoutDepartmentIdInput = {
+    where: membersWhereUniqueInput
+    data: XOR<membersUpdateWithoutDepartmentIdInput, membersUncheckedUpdateWithoutDepartmentIdInput>
+  }
+
+  export type membersUpdateManyWithWhereWithoutDepartmentIdInput = {
+    where: membersScalarWhereInput
+    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutDepartmentIdInput>
+  }
+
+  export type departmentsCreateWithoutMemberInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+  }
+
+  export type departmentsUncheckedCreateWithoutMemberInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type departmentsCreateOrConnectWithoutMemberInput = {
+    where: departmentsWhereUniqueInput
+    create: XOR<departmentsCreateWithoutMemberInput, departmentsUncheckedCreateWithoutMemberInput>
+  }
+
+  export type usersCreateWithoutCreated_MemberInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_MemberInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_MemberInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_MemberInput, usersUncheckedCreateWithoutCreated_MemberInput>
+  }
+
+  export type usersCreateWithoutUpdated_MemberInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_MemberInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_MemberInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
+  }
+
+  export type departmentsUpsertWithoutMemberInput = {
+    update: XOR<departmentsUpdateWithoutMemberInput, departmentsUncheckedUpdateWithoutMemberInput>
+    create: XOR<departmentsCreateWithoutMemberInput, departmentsUncheckedCreateWithoutMemberInput>
+    where?: departmentsWhereInput
+  }
+
+  export type departmentsUpdateToOneWithWhereWithoutMemberInput = {
+    where?: departmentsWhereInput
+    data: XOR<departmentsUpdateWithoutMemberInput, departmentsUncheckedUpdateWithoutMemberInput>
+  }
+
+  export type departmentsUpdateWithoutMemberInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+  }
+
+  export type departmentsUncheckedUpdateWithoutMemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usersUpsertWithoutCreated_MemberInput = {
+    update: XOR<usersUpdateWithoutCreated_MemberInput, usersUncheckedUpdateWithoutCreated_MemberInput>
+    create: XOR<usersCreateWithoutCreated_MemberInput, usersUncheckedCreateWithoutCreated_MemberInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_MemberInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_MemberInput, usersUncheckedUpdateWithoutCreated_MemberInput>
+  }
+
+  export type usersUpdateWithoutCreated_MemberInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_MemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_MemberInput = {
+    update: XOR<usersUpdateWithoutUpdated_MemberInput, usersUncheckedUpdateWithoutUpdated_MemberInput>
+    create: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_MemberInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_MemberInput, usersUncheckedUpdateWithoutUpdated_MemberInput>
+  }
+
+  export type usersUpdateWithoutUpdated_MemberInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_MemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
   export type usersCreateManyRoleInput = {
@@ -15714,6 +19836,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRoleInput = {
@@ -15737,6 +19863,10 @@ export namespace Prisma {
     updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRoleInput = {
@@ -15893,6 +20023,44 @@ export namespace Prisma {
     id?: number
     name: string
     logo: string
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type departmentsCreateManyCreatedByInput = {
+    id?: number
+    name: string
+    status: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type departmentsCreateManyUpdatedByInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateManyCreatedByInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateManyUpdatedByInput = {
+    id?: number
+    name: string
+    profile: string
+    department_id: number
     created_by: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -16328,6 +20496,120 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type departmentsUpdateWithoutCreatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type departmentsUpdateWithoutUpdatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
+    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+  }
+
+  export type departmentsUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUpdateWithoutCreatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+  }
+
+  export type membersUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUpdateWithoutUpdatedByInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
+  }
+
+  export type membersUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type applicantsCreateManyJobInput = {
     id?: number
     name: string
@@ -16382,6 +20664,45 @@ export namespace Prisma {
     expected_salary?: StringFieldUpdateOperationsInput | string
     file?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersCreateManyDepartmentIdInput = {
+    id?: number
+    name: string
+    profile: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersUpdateWithoutDepartmentIdInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+  }
+
+  export type membersUncheckedUpdateWithoutDepartmentIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type membersUncheckedUpdateManyWithoutDepartmentIdInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -19,13 +19,13 @@ const WhatWeDo = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-12 justify-center px-2 sm:px-10 ">
             <div className="bg-cartBg p-3 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative z-20 w-full max-w-xs h-[220px] sm: h-[220px] sm:h-[300px]  ">
               <Image
-                src="/images/home/hds_media.webp"
+                src="/images/common/hds_media.png"
                 alt="ATL Media"
-                width={10}
+                width={300}
                 height={10}
                 className="w-10 sm:w-14 h-auto"
               />
-              <h3 className="text-sm sm:text-xl font-normal text-gray-800 mb-3">
+              <h3 className="text-sm sm:text-xl font-normal text-gray-800 mb-3 mt-4">
                 Above The Line Media
               </h3>
               <p className="text-desc text-xs pb-4">
@@ -40,13 +40,13 @@ const WhatWeDo = () => {
 
             <div className="bg-cartBg p-3 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative -mt-10   w-full max-w-xs  h-[220px] sm:h-[300px]  ">
               <Image
-                src="/images/home/hds_digital.webp"
+                src="/images/common/hds_digital.png"
                 alt="Digital Media"
-                width={10}
+                width={300}
                 height={10}
                 className="w-10 sm:w-14 h-auto"
               />
-              <h3 className="text-sm sm:text-xl font-normal text-gray-800 mb-3">
+              <h3 className="text-sm sm:text-xl font-normal text-gray-800 mb-3 mt-4">
                 Digital Media
               </h3>
               <p className="text-desc text-xs pb-4">
@@ -61,13 +61,13 @@ const WhatWeDo = () => {
 
             <div className="bg-cartBg p-3 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative z-20  h-[220px] sm:h-[300px]  items-center col-span-2 sm:col-span-1 w-1/2  mx-auto sm:w-full max-w-xs mt-4 sm:mt-0 ">
               <Image
-                src="/images/home/hds_talent.webp"
+                src="/images/common/hds_talent.png"
                 alt="KOL/Influencer Management"
-                width={10}
+                width={300}
                 height={10}
                 className="w-10 sm:w-14 h-auto"
               />
-              <h3 className="text-xl font-normal text-gray-800 mb-3">
+              <h3 className="text-sm sm:text-xl font-normal text-gray-800 mb-3 mt-4">
                 KOL/Influencer Management
               </h3>
               <p className="text-desc text-xs pb-4">
@@ -84,13 +84,13 @@ const WhatWeDo = () => {
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-12 p-4 sm:px-10  h-[220px] sm:h-[300px]  justify-center mx-auto mt-8 sm:mt-12 z-20 w-full sm:w-2/3 mx-auto">
             <div className="bg-cartBg p-3 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300  w-full max-w-xs  h-full relative">
               <Image
-                src="/images/home/hds_action.webp"
+                src="/images/common/hds_action.png"
                 alt="H2S"
-                width={10}
+                width={300}
                 height={10}
                 className="w-10 sm:w-14 h-auto"
               />
-              <h3 className="text-sm sm:text-xl text-xl font-normal text-gray-800 mb-3 mt-1">
+              <h3 className=" text-sm sm:text-xl font-normal text-gray-800 mb-3 mt-1">
                 Below The Line
               </h3>
               <div className="flex flex-col justify-between">
@@ -107,9 +107,9 @@ const WhatWeDo = () => {
 
             <div className="bg-cartBg p-3 sm:p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300  w-full max-w-xs  h-full relative ">
               <Image
-                src="/images/home/hds_studio.webp"
+                src="/images/common/hds_studio.png"
                 alt="Production & Design"
-                width={10}
+                width={300}
                 height={10}
                 className="w-10 sm:w-14 h-auto"
               />

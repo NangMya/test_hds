@@ -44,12 +44,10 @@ export async function POST(req: Request) {
         day
       );
 
-      await mkdir(directoryPath, { recursive: true });
-
       const pcFilePath = path.join(directoryPath, fileName);
       await writeFile(pcFilePath, buffer);
 
-      filepath = `/uploads/info/${year}/${month}/${day}/${fileName}`;
+      filepath = `/uploads/clients/${year}/${month}/${day}/${fileName}`;
     }
 
     const data = {

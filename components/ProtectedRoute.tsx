@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   useEffect(() => {
     const token = getTokenCookie()
     if (!token) {
-      router.push('/admin/login')
+      router.push('/auth/login')
     }
   }, [router])
 

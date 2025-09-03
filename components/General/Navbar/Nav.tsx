@@ -61,7 +61,11 @@ const Nav = ({ openNav, closeNav }: Props) => {
         className={` transition-all duration-500 h-14 z-[100] w-full fixed flex items-center    ${navClass}`}
       >
         <div className="flex flex-row items-center justify-between w-[90%] mx-auto">
-          <Link href="/" prefetch={true} onClick={() => setLoading(true)}>
+          {/* <Link href="/" prefetch={true} onClick={() => setLoading(true)}>
+            <Logo color={logoColor} />
+          </Link> */}
+
+           <Link href="/" >
             <Logo color={logoColor} />
           </Link>
 

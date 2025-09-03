@@ -6,7 +6,6 @@ export function middleware(request: NextRequest) {
 
   const token = request.cookies.get('auth-token')?.value;
   const path = request.nextUrl.pathname;
-  console.log('token=>',token);
 
   if (publicPaths.includes(path)) {
     return NextResponse.next();
@@ -20,5 +19,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+    matcher: ['/admin/:path*'],
+
+  // matcher: ['/auth/:path*'],
 };

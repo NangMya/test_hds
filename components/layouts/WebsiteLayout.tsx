@@ -4,6 +4,7 @@ import Footer from "../General/Footer/Footer";
 import ResponsiveNav from "../General/Navbar/ResponsiveNav";
 import ScrollToTop from "../Helper/ScrollToTop";
 import { useEffect } from "react";
+import LoadingBar from "../LadingBar";
 
 const WebsiteLayout = ({ children, footerData }: { children: React.ReactNode, footerData: any }) => {
   useEffect(() => {
@@ -33,7 +34,7 @@ const WebsiteLayout = ({ children, footerData }: { children: React.ReactNode, fo
       {/* <LanguageProvider> */}
         <ResponsiveNav />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer footerData={footerData} />
         {/* <ScrollToTop /> */}
       {/* </LanguageProvider> */}
     </div>

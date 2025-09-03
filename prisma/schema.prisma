@@ -16,28 +16,32 @@ model roles {
 }
 
 model users {
-  id                     Int          @id @default(autoincrement())
+  id                     Int           @id @default(autoincrement())
   name                   String?
-  email                  String       @unique
+  email                  String        @unique
   password               String
   two_factor_code        String?
   two_factor_code_expiry DateTime?
-  is_two_factor_enabled  Boolean      @default(true)
+  is_two_factor_enabled  Boolean       @default(true)
   reset_token            String?
   reset_token_expiry     DateTime?
   role_id                Int?
-  role                   roles?       @relation("roleId", fields: [role_id], references: [id])
-  created_at             DateTime     @default(now())
-  updated_at             DateTime     @updatedAt
-  created_Work           our_works[]  @relation("UserCreatedWorks")
-  updated_Work           our_works[]  @relation("UserUpdatedWorks")
-  created_Job            jobs[]       @relation("UserCreatedJobs")
-  updated_Job            jobs[]       @relation("UserUpdatedJobs")
-  created_Info           infos[]      @relation("UserCreatedInfo")
-  updated_Info           infos[]      @relation("UserUpdatedInfo")
-  updated_Applicant      applicants[] @relation("UserUpdatedApplicants")
-  created_Client         clients[]    @relation("UserCreatedClient")
-  updated_Client         clients[]    @relation("UserUpdatedClient")
+  role                   roles?        @relation("roleId", fields: [role_id], references: [id])
+  created_at             DateTime      @default(now())
+  updated_at             DateTime      @updatedAt
+  created_Work           our_works[]   @relation("UserCreatedWorks")
+  updated_Work           our_works[]   @relation("UserUpdatedWorks")
+  created_Job            jobs[]        @relation("UserCreatedJobs")
+  updated_Job            jobs[]        @relation("UserUpdatedJobs")
+  created_Info           infos[]       @relation("UserCreatedInfo")
+  updated_Info           infos[]       @relation("UserUpdatedInfo")
+  updated_Applicant      applicants[]  @relation("UserUpdatedApplicants")
+  created_Client         clients[]     @relation("UserCreatedClient")
+  updated_Client         clients[]     @relation("UserUpdatedClient")
+  created_Department     departments[] @relation("UserCreatedDepartment")
+  updated_Department     departments[] @relation("UserUpdatedDepartment")
+  created_Member         members[]     @relation("UserCreatedMember")
+  updated_Member         members[]     @relation("UserUpdatedMember")
 }
 
 model messages {
@@ -145,4 +149,31 @@ model clients {
   updatedBy  users    @relation("UserUpdatedClient", fields: [updated_by], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+model departments {
+  id         Int       @id @default(autoincrement())
+  name       String
+  status     Int
+  created_by Int
+  updated_by Int
+  createdBy  users     @relation("UserCreatedDepartment", fields: [created_by], references: [id])
+  updatedBy  users     @relation("UserUpdatedDepartment", fields: [updated_by], references: [id])
+  member     members[] @relation("DepartmentOfUser")
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+}
+
+model members {
+  id            Int         @id @default(autoincrement())
+  name          String
+  profile       String
+  department_id Int
+  departmentId  departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
+  created_by    Int
+  updated_by    Int
+  createdBy     users       @relation("UserCreatedMember", fields: [created_by], references: [id])
+  updatedBy     users       @relation("UserUpdatedMember", fields: [updated_by], references: [id])
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
 }

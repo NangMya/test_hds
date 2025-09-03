@@ -70,5 +70,5 @@
 //   'use server'
 //   const { clearTokenCookie } = await import('./auth')
 //   clearTokenCookie()
-//   redirect('/admin/login')
+//   redirect('/auth/login')
 // }

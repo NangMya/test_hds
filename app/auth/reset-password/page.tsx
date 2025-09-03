@@ -30,7 +30,7 @@ const page = () => {
     
     if (data.status == 200) {
       setMessage(data.message);
-      router.push("/admin/login"); 
+      router.push("/auth/login"); 
     }else{
       setError(data.message)
     }

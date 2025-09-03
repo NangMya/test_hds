@@ -17,7 +17,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     if (storedToken) {
       setToken(storedToken);
     } else {
-      router.push("/admin/login");
+      router.push("/auth/login");
     }
     setLoading(false); 
   }, [router]);

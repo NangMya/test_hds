@@ -18,7 +18,7 @@ const HDSMedia = () => {
       
       <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
         <Image
-          src="/images/our_service/hds_media.webp"
+          src="/images/common/hds_media.png"
           width={100}
           height={100}
           alt="HDS Media"

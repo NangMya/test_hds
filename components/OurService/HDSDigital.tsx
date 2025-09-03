@@ -26,7 +26,7 @@ const HDSDigital = () => {
         <WavyCard3 color="#90264C">
           <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-4 mt-6 sm:mt-16">
             <Image
-              src="/images/our_service/hds_digital.webp"
+              src="/images/common/hds_digital.png"
               width={100}
               height={100}
               alt="HDS Media"

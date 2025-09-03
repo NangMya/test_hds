@@ -2,6 +2,7 @@
 
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Logo from "@/components/Logo";
+import { api } from "@/services/api";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -15,8 +16,9 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 
-const Footer = () => {
+const Footer = async ({ footerData }: {  footerData: any }) => {
   const [loading, setLoading] = useState(false);
+   
   return (
     <>
       {loading && <LoadingOverlay />}
@@ -25,17 +27,11 @@ const Footer = () => {
           <div className=" w-[95%] md:w-[90%] mx-auto">
             <div className="flex flex-row md:flex-row lg:flex-row  justify-around sm:justify-between w-full ">
               <div>
-                {/* <Image
-                  alt="logo"
-                  src="/logo.svg"
-                  width={100}
-                  height={100}
-                  className="object-cover mx-auto md:mx-0"
-                /> */}
                 <Logo color="#892A51" width="130px" />
                 <h1 className="font-extrabold text-lg py-2">Work With Us</h1>
-                <p className="text-xs  py-2">hello@hd&smedia.com</p>
-                <p className="text-xs  py-2">+1 (201) 895-3801</p>
+                <p className="text-xs  py-2">{footerData?.email || "hello@hd&smedia.com"}</p>
+                <p className="text-xs  py-2">{footerData?.phone1 || '(+855) 23 424 424'}</p>
+                <p className="text-xs  py-2">{footerData?.phone2 || '(+855) 10 222 444'}</p>
                 <div className="block sm:hidden">
                   <p className="text-sm py-4">
                     View Map

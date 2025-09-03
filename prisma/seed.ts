@@ -66,60 +66,77 @@ async function main() {
   //   },
   // });
 
-  const now = new Date();
-  const year = now.getFullYear().toString();
-  const month = (now.getMonth() + 1).toString().padStart(2, "0");
-  const day = now.getDate().toString().padStart(2, "0");
-  const initialImageDir = path.join(
-    process.cwd(),
-    "public",
-    "images",
-    "client"
-  );
-  const destinationDir = path.join(
-    process.cwd(),
-    "public",
-    "uploads",
-    "clients",
-    year,
-    month,
-    day
-  );
+  // Client 
+  // const now = new Date();
+  // const year = now.getFullYear().toString();
+  // const month = (now.getMonth() + 1).toString().padStart(2, "0");
+  // const day = now.getDate().toString().padStart(2, "0");
+  // const initialImageDir = path.join(
+  //   process.cwd(),
+  //   "public",
+  //   "images",
+  //   "client"
+  // );
+  // const destinationDir = path.join(
+  //   process.cwd(),
+  //   "public",
+  //   "uploads",
+  //   "clients",
+  //   year,
+  //   month,
+  //   day
+  // );
 
-  try {
-    const imageFiles = await fs.readdir(initialImageDir);
-    await fs.mkdir(destinationDir, { recursive: true });
+  // try {
+  //   const imageFiles = await fs.readdir(initialImageDir);
+  //   await fs.mkdir(destinationDir, { recursive: true });
 
-    for (const fileName of imageFiles) {
-      const initialPath = path.join(initialImageDir, fileName);
-      const destinationPath = path.join(destinationDir, fileName);
+  //   for (const fileName of imageFiles) {
+  //     const initialPath = path.join(initialImageDir, fileName);
+  //     const destinationPath = path.join(destinationDir, fileName);
 
-      await fs.copyFile(initialPath, destinationPath);
+  //     await fs.copyFile(initialPath, destinationPath);
 
-      await fs.unlink(initialPath);
-      console.log(`Deleted original: ${initialPath}`);
+  //     await fs.unlink(initialPath);
+  //     console.log(`Deleted original: ${initialPath}`);
 
-      const clientName = path.parse(fileName).name;
-      await prisma.clients.create({
+  //     const clientName = path.parse(fileName).name;
+  //     await prisma.clients.create({
+  //       data: {
+  //         name: clientName,
+  //         logo: `/uploads/clients/${year}/${month}/${day}/${fileName}`,
+  //         created_by: 1,
+  //         updated_by: 1,
+  //       },
+  //     });
+  //     console.log(`Saved new path to database for ${clientName}`);
+  //   }
+  //   await fs.rm(initialImageDir, { recursive: true });
+  //   console.log(`Removed directory: ${initialImageDir}`);
+
+  //   console.log("Seeder completed. All images moved and database updated.");
+  // } catch (error) {
+  //   console.error("An error occurred during seeding:", error);
+  //   process.exit(1);
+  // } finally {
+  //   await prisma.$disconnect();
+  // }
+
+
+  // Department
+  const departmentDatas = ["Development","Designer","Marketing","Custmer Service","Operatins","Finance"];
+   const departments = await Promise.all(
+    departmentDatas.map(async (department) => {
+      return prisma.departments.create({
         data: {
-          name: clientName,
-          logo: `/uploads/clients/${year}/${month}/${day}/${fileName}`,
+          name: department,
+          status:1,
           created_by: 1,
-          updated_by: 1,
+          updated_by:1
         },
       });
-      console.log(`Saved new path to database for ${clientName}`);
-    }
-    await fs.rm(initialImageDir, { recursive: true });
-    console.log(`Removed directory: ${initialImageDir}`);
-
-    console.log("Seeder completed. All images moved and database updated.");
-  } catch (error) {
-    console.error("An error occurred during seeding:", error);
-    process.exit(1);
-  } finally {
-    await prisma.$disconnect();
-  }
+    })
+  );
 }
 
 main()

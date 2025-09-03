@@ -25,6 +25,7 @@ const TwoFactorForm = () => {
 
       const data = await response.json();
 
+      localStorage.setItem('auth-token',data.token);
       setLoading(false);
       if (response.ok) {
         router.push("/admin/dashboard");

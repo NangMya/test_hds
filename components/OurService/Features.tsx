@@ -35,7 +35,7 @@ const Features = () => {
               <Link href="/our_service#hds_media">
                 <Image
                   priority={true}
-                  src="/images/home/hds_media.webp"
+                  src="/images/common/hds_media.png"
                   width={50}
                   height={50}
                   alt="HDS Media"
@@ -56,7 +56,7 @@ const Features = () => {
               <Link href="/our_service#hds_digital">
                 <Image
                   priority={true}
-                  src="/images/home/hds_digital.webp"
+                  src="/images/common/hds_digital.png"
                   width={60}
                   height={60}
                   alt="HDS Digital"
@@ -77,7 +77,7 @@ const Features = () => {
               <Link href="/our_service#hds_talent">
                 <Image
                   priority={true}
-                  src="/images/home/hds_talent.webp"
+                  src="/images/common/hds_talent.png"
                   width={60}
                   height={60}
                   alt="HDS Talent"
@@ -120,7 +120,7 @@ const Features = () => {
               <Link href="/our_service#hds_talent">
                 <Image
                   priority={true}
-                  src="/images/home/hds_talent.webp"
+                  src="/images/common/hds_talent.png"
                   width={60}
                   height={60}
                   alt="HDS Talent"
@@ -140,7 +140,7 @@ const Features = () => {
               <Link href="/our_service#hds_action">
                 <Image
                   priority={true}
-                  src="/images/home/hds_action.webp"
+                  src="/images/common/hds_action.png"
                   width={60}
                   height={60}
                   alt="HDS Action"
@@ -159,7 +159,7 @@ const Features = () => {
               <Link href="/our_service#hds_studio">
                 <Image
                   priority={true}
-                  src="/images/home/hds_studio.webp"
+                  src="/images/common/hds_studio.png"
                   width={60}
                   height={60}
                   alt="HDS Studio"

@@ -18,7 +18,7 @@
 //       setToken(storedToken);
 //     } else {
 //       // If no token, redirect. The component will return null until the redirect happens.
-//       router.push("/admin/login");
+//       router.push("/auth/login");
 //     }
 //     setLoading(false); // We have now checked localStorage, so stop loading
 //   }, [router]);
