@@ -1,24 +1,23 @@
-
-import 'server-only';
+import "server-only";
 
 const BASE_URL = process.env.BASE_URL
-    ? process.env.BASE_URL
-    : 'http://localhost:3000';
+  ? process.env.BASE_URL
+  : "http://localhost:3000";
 
 export interface Client {
-    id: string;
-    name: string;
-    logo: string;
+  id: string;
+  name: string;
+  logo: string;
 }
 
 export interface Member {
-    id: string;
-    name: string;
-    // Add other properties
+  id: string;
+  name: string;
+  // Add other properties
 }
 
 export interface Info {
-    id: number;
+  id: number;
   name: string;
   email: string;
   phone1: string;
@@ -40,53 +39,58 @@ export interface Info {
 }
 
 export type DepartmentProp = {
-  id: number;
+  id?: number;
   name: string;
   status: number;
-  created_by: number;
-  updated_by: number;
-  created_at: string;
-  updated_at: string;
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
 };
 async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
-    const fullUrl = `${BASE_URL}${url}`;
+  const fullUrl = `${BASE_URL}${url}`;
 
-    const res = await fetch(fullUrl, {
+  const res = await fetch(fullUrl, {
+    cache: "no-store", // Example of disabling cache, or use 'force-cache'
+    next: { tags },
+    headers: {
+      "Content-Type": "application/json",
+      // 'Authorization': `Bearer ${process.env.API_KEY}`, // Example auth
+    },
+  });
 
-        cache: 'no-store', // Example of disabling cache, or use 'force-cache'
-        next: { tags },
-        headers: {
-            'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${process.env.API_KEY}`, // Example auth
-        },
-    });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch data from ${url}`);
+  }
 
-    if (!res.ok) {
-        throw new Error(`Failed to fetch data from ${url}`);
-    }
-
-    return res.json();
+  return res.json();
 }
 
 // --- API Call Functions ---
 export const api = {
-    // Call to get clients
-    getClients: async (): Promise<Client[]> => {
-        return fetcher<Client[]>('/api/web/client', ['clients']);
-    },
+  // Call to get clients
+  getClients: async (): Promise<Client[]> => {
+    return fetcher<Client[]>("/api/web/client", ["clients"]);
+  },
 
-    // Call to get info
-    getHomeInfo: async(): Promise<Info> => {
-        return fetcher<Info>('/api/web/home',['info'])
-    }
+  // Call to get info
+  getHomeInfo: async (): Promise<Info> => {
+    return fetcher<Info>("/api/web/home", ["info"]);
+  },
 
-    // Call to get members
-    //   getMembers: async (): Promise<Member[]> => {
-    //     return fetcher<Member[]>('https://api.yourdomain.com/members', ['members']);
-    //   },
+  // Call to get members
+  //   getMembers: async (): Promise<Member[]> => {
+  //     return fetcher<Member[]>('https://api.yourdomain.com/members', ['members']);
+  //   },
 
-    //   // Call to get info
-    //   getHomeInfo: async (): Promise<Info> => {
-    //     return fetcher<Info>('https://api.yourdomain.com/info', ['info']);
-    //   },
+  //   // Call to get info
+  //   getHomeInfo: async (): Promise<Info> => {
+  //     return fetcher<Info>('https://api.yourdomain.com/info', ['info']);
+  //   },
 };

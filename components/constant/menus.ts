@@ -73,6 +73,16 @@ export const adminNavLinks = [
         id: 7,
         url: "/admin/clients",
         label: "Clients",
+    },
+    {
+        id: 8,
+        url: "/admin/departments",
+        label: "Departments"
+    },
+    {
+        id:9,
+        url: "/admin/members",
+        label: "Members",
     }
    
 ];

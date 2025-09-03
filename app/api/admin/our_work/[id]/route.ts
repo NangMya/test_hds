@@ -78,7 +78,6 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
           strategy,
           takeaway,
           image: imagePath,
-          created_by: 1,
           updated_by: 1,
         },
       });

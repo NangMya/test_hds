@@ -80,7 +80,7 @@ export type members = $Result.DefaultSelection<Prisma.$membersPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -112,13 +112,6 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
-
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -346,8 +339,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.15.0
+   * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
    */
   export type PrismaVersion = {
     client: string
@@ -1463,16 +1456,24 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Defaults to stdout
+     * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events
+     * // Emit as events only
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
      * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1523,10 +1524,15 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
 
   export type QueryEvent = {
     timestamp: Date
@@ -1566,25 +1572,6 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
-
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
-
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
-    params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -11630,6 +11617,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     profile: string | null
+    position: string | null
     department_id: number | null
     created_by: number | null
     updated_by: number | null
@@ -11641,6 +11629,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     profile: string | null
+    position: string | null
     department_id: number | null
     created_by: number | null
     updated_by: number | null
@@ -11652,6 +11641,7 @@ export namespace Prisma {
     id: number
     name: number
     profile: number
+    position: number
     department_id: number
     created_by: number
     updated_by: number
@@ -11679,6 +11669,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profile?: true
+    position?: true
     department_id?: true
     created_by?: true
     updated_by?: true
@@ -11690,6 +11681,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profile?: true
+    position?: true
     department_id?: true
     created_by?: true
     updated_by?: true
@@ -11701,6 +11693,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profile?: true
+    position?: true
     department_id?: true
     created_by?: true
     updated_by?: true
@@ -11799,6 +11792,7 @@ export namespace Prisma {
     id: number
     name: string
     profile: string
+    position: string
     department_id: number
     created_by: number
     updated_by: number
@@ -11829,12 +11823,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profile?: boolean
+    position?: boolean
     department_id?: boolean
     created_by?: boolean
     updated_by?: boolean
     created_at?: boolean
     updated_at?: boolean
-    departmentId?: boolean | departmentsDefaultArgs<ExtArgs>
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["members"]>
@@ -11845,6 +11840,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profile?: boolean
+    position?: boolean
     department_id?: boolean
     created_by?: boolean
     updated_by?: boolean
@@ -11852,9 +11848,9 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type membersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profile" | "department_id" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["members"]>
+  export type membersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profile" | "position" | "department_id" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["members"]>
   export type membersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    departmentId?: boolean | departmentsDefaultArgs<ExtArgs>
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
   }
@@ -11862,7 +11858,7 @@ export namespace Prisma {
   export type $membersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "members"
     objects: {
-      departmentId: Prisma.$departmentsPayload<ExtArgs>
+      department: Prisma.$departmentsPayload<ExtArgs>
       createdBy: Prisma.$usersPayload<ExtArgs>
       updatedBy: Prisma.$usersPayload<ExtArgs>
     }
@@ -11870,6 +11866,7 @@ export namespace Prisma {
       id: number
       name: string
       profile: string
+      position: string
       department_id: number
       created_by: number
       updated_by: number
@@ -12215,7 +12212,7 @@ export namespace Prisma {
    */
   export interface Prisma__membersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    departmentId<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    department<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -12250,6 +12247,7 @@ export namespace Prisma {
     readonly id: FieldRef<"members", 'Int'>
     readonly name: FieldRef<"members", 'String'>
     readonly profile: FieldRef<"members", 'String'>
+    readonly position: FieldRef<"members", 'String'>
     readonly department_id: FieldRef<"members", 'Int'>
     readonly created_by: FieldRef<"members", 'Int'>
     readonly updated_by: FieldRef<"members", 'Int'>
@@ -12787,6 +12785,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     profile: 'profile',
+    position: 'position',
     department_id: 'department_id',
     created_by: 'created_by',
     updated_by: 'updated_by',
@@ -12946,7 +12945,8 @@ export namespace Prisma {
 
   export const membersOrderByRelevanceFieldEnum: {
     name: 'name',
-    profile: 'profile'
+    profile: 'profile',
+    position: 'position'
   };
 
   export type membersOrderByRelevanceFieldEnum = (typeof membersOrderByRelevanceFieldEnum)[keyof typeof membersOrderByRelevanceFieldEnum]
@@ -13868,12 +13868,13 @@ export namespace Prisma {
     id?: IntFilter<"members"> | number
     name?: StringFilter<"members"> | string
     profile?: StringFilter<"members"> | string
+    position?: StringFilter<"members"> | string
     department_id?: IntFilter<"members"> | number
     created_by?: IntFilter<"members"> | number
     updated_by?: IntFilter<"members"> | number
     created_at?: DateTimeFilter<"members"> | Date | string
     updated_at?: DateTimeFilter<"members"> | Date | string
-    departmentId?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
@@ -13882,12 +13883,13 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profile?: SortOrder
+    position?: SortOrder
     department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    departmentId?: departmentsOrderByWithRelationInput
+    department?: departmentsOrderByWithRelationInput
     createdBy?: usersOrderByWithRelationInput
     updatedBy?: usersOrderByWithRelationInput
     _relevance?: membersOrderByRelevanceInput
@@ -13900,12 +13902,13 @@ export namespace Prisma {
     NOT?: membersWhereInput | membersWhereInput[]
     name?: StringFilter<"members"> | string
     profile?: StringFilter<"members"> | string
+    position?: StringFilter<"members"> | string
     department_id?: IntFilter<"members"> | number
     created_by?: IntFilter<"members"> | number
     updated_by?: IntFilter<"members"> | number
     created_at?: DateTimeFilter<"members"> | Date | string
     updated_at?: DateTimeFilter<"members"> | Date | string
-    departmentId?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id">
@@ -13914,6 +13917,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profile?: SortOrder
+    position?: SortOrder
     department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -13933,6 +13937,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"members"> | number
     name?: StringWithAggregatesFilter<"members"> | string
     profile?: StringWithAggregatesFilter<"members"> | string
+    position?: StringWithAggregatesFilter<"members"> | string
     department_id?: IntWithAggregatesFilter<"members"> | number
     created_by?: IntWithAggregatesFilter<"members"> | number
     updated_by?: IntWithAggregatesFilter<"members"> | number
@@ -14784,7 +14789,7 @@ export namespace Prisma {
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
     updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
-    member?: membersCreateNestedManyWithoutDepartmentIdInput
+    member?: membersCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateInput = {
@@ -14795,7 +14800,7 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUpdateInput = {
@@ -14805,7 +14810,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
-    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateInput = {
@@ -14816,7 +14821,7 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsCreateManyInput = {
@@ -14849,9 +14854,10 @@ export namespace Prisma {
   export type membersCreateInput = {
     name: string
     profile: string
+    position: string
     created_at?: Date | string
     updated_at?: Date | string
-    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    department: departmentsCreateNestedOneWithoutMemberInput
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
   }
@@ -14860,6 +14866,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     created_by: number
     updated_by: number
@@ -14870,9 +14877,10 @@ export namespace Prisma {
   export type membersUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
   }
@@ -14881,6 +14889,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -14892,6 +14901,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     created_by: number
     updated_by: number
@@ -14902,6 +14912,7 @@ export namespace Prisma {
   export type membersUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14910,6 +14921,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
@@ -15794,6 +15806,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profile?: SortOrder
+    position?: SortOrder
     department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -15812,6 +15825,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profile?: SortOrder
+    position?: SortOrder
     department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -15823,6 +15837,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profile?: SortOrder
+    position?: SortOrder
     department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -16671,17 +16686,17 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type membersCreateNestedManyWithoutDepartmentIdInput = {
-    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
-    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
-    createMany?: membersCreateManyDepartmentIdInputEnvelope
+  export type membersCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
+    createMany?: membersCreateManyDepartmentInputEnvelope
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
   }
 
-  export type membersUncheckedCreateNestedManyWithoutDepartmentIdInput = {
-    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
-    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
-    createMany?: membersCreateManyDepartmentIdInputEnvelope
+  export type membersUncheckedCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
+    createMany?: membersCreateManyDepartmentInputEnvelope
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
   }
 
@@ -16701,31 +16716,31 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_DepartmentInput, usersUpdateWithoutUpdated_DepartmentInput>, usersUncheckedUpdateWithoutUpdated_DepartmentInput>
   }
 
-  export type membersUpdateManyWithoutDepartmentIdNestedInput = {
-    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
-    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
-    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentIdInput | membersUpsertWithWhereUniqueWithoutDepartmentIdInput[]
-    createMany?: membersCreateManyDepartmentIdInputEnvelope
+  export type membersUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentInput | membersUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: membersCreateManyDepartmentInputEnvelope
     set?: membersWhereUniqueInput | membersWhereUniqueInput[]
     disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
     delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
-    update?: membersUpdateWithWhereUniqueWithoutDepartmentIdInput | membersUpdateWithWhereUniqueWithoutDepartmentIdInput[]
-    updateMany?: membersUpdateManyWithWhereWithoutDepartmentIdInput | membersUpdateManyWithWhereWithoutDepartmentIdInput[]
+    update?: membersUpdateWithWhereUniqueWithoutDepartmentInput | membersUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutDepartmentInput | membersUpdateManyWithWhereWithoutDepartmentInput[]
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
   }
 
-  export type membersUncheckedUpdateManyWithoutDepartmentIdNestedInput = {
-    create?: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput> | membersCreateWithoutDepartmentIdInput[] | membersUncheckedCreateWithoutDepartmentIdInput[]
-    connectOrCreate?: membersCreateOrConnectWithoutDepartmentIdInput | membersCreateOrConnectWithoutDepartmentIdInput[]
-    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentIdInput | membersUpsertWithWhereUniqueWithoutDepartmentIdInput[]
-    createMany?: membersCreateManyDepartmentIdInputEnvelope
+  export type membersUncheckedUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
+    upsert?: membersUpsertWithWhereUniqueWithoutDepartmentInput | membersUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: membersCreateManyDepartmentInputEnvelope
     set?: membersWhereUniqueInput | membersWhereUniqueInput[]
     disconnect?: membersWhereUniqueInput | membersWhereUniqueInput[]
     delete?: membersWhereUniqueInput | membersWhereUniqueInput[]
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
-    update?: membersUpdateWithWhereUniqueWithoutDepartmentIdInput | membersUpdateWithWhereUniqueWithoutDepartmentIdInput[]
-    updateMany?: membersUpdateManyWithWhereWithoutDepartmentIdInput | membersUpdateManyWithWhereWithoutDepartmentIdInput[]
+    update?: membersUpdateWithWhereUniqueWithoutDepartmentInput | membersUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: membersUpdateManyWithWhereWithoutDepartmentInput | membersUpdateManyWithWhereWithoutDepartmentInput[]
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
   }
 
@@ -17493,7 +17508,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
-    member?: membersCreateNestedManyWithoutDepartmentIdInput
+    member?: membersCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateWithoutCreatedByInput = {
@@ -17503,7 +17518,7 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsCreateOrConnectWithoutCreatedByInput = {
@@ -17522,7 +17537,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
-    member?: membersCreateNestedManyWithoutDepartmentIdInput
+    member?: membersCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateWithoutUpdatedByInput = {
@@ -17532,7 +17547,7 @@ export namespace Prisma {
     created_by: number
     created_at?: Date | string
     updated_at?: Date | string
-    member?: membersUncheckedCreateNestedManyWithoutDepartmentIdInput
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsCreateOrConnectWithoutUpdatedByInput = {
@@ -17548,9 +17563,10 @@ export namespace Prisma {
   export type membersCreateWithoutCreatedByInput = {
     name: string
     profile: string
+    position: string
     created_at?: Date | string
     updated_at?: Date | string
-    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    department: departmentsCreateNestedOneWithoutMemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
   }
 
@@ -17558,6 +17574,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     updated_by: number
     created_at?: Date | string
@@ -17577,9 +17594,10 @@ export namespace Prisma {
   export type membersCreateWithoutUpdatedByInput = {
     name: string
     profile: string
+    position: string
     created_at?: Date | string
     updated_at?: Date | string
-    departmentId: departmentsCreateNestedOneWithoutMemberInput
+    department: departmentsCreateNestedOneWithoutMemberInput
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
   }
 
@@ -17587,6 +17605,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     created_by: number
     created_at?: Date | string
@@ -17937,6 +17956,7 @@ export namespace Prisma {
     id?: IntFilter<"members"> | number
     name?: StringFilter<"members"> | string
     profile?: StringFilter<"members"> | string
+    position?: StringFilter<"members"> | string
     department_id?: IntFilter<"members"> | number
     created_by?: IntFilter<"members"> | number
     updated_by?: IntFilter<"members"> | number
@@ -19331,32 +19351,34 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutUpdated_DepartmentInput, usersUncheckedCreateWithoutUpdated_DepartmentInput>
   }
 
-  export type membersCreateWithoutDepartmentIdInput = {
+  export type membersCreateWithoutDepartmentInput = {
     name: string
     profile: string
+    position: string
     created_at?: Date | string
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
   }
 
-  export type membersUncheckedCreateWithoutDepartmentIdInput = {
+  export type membersUncheckedCreateWithoutDepartmentInput = {
     id?: number
     name: string
     profile: string
+    position: string
     created_by: number
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type membersCreateOrConnectWithoutDepartmentIdInput = {
+  export type membersCreateOrConnectWithoutDepartmentInput = {
     where: membersWhereUniqueInput
-    create: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput>
+    create: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput>
   }
 
-  export type membersCreateManyDepartmentIdInputEnvelope = {
-    data: membersCreateManyDepartmentIdInput | membersCreateManyDepartmentIdInput[]
+  export type membersCreateManyDepartmentInputEnvelope = {
+    data: membersCreateManyDepartmentInput | membersCreateManyDepartmentInput[]
     skipDuplicates?: boolean
   }
 
@@ -19488,20 +19510,20 @@ export namespace Prisma {
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
-  export type membersUpsertWithWhereUniqueWithoutDepartmentIdInput = {
+  export type membersUpsertWithWhereUniqueWithoutDepartmentInput = {
     where: membersWhereUniqueInput
-    update: XOR<membersUpdateWithoutDepartmentIdInput, membersUncheckedUpdateWithoutDepartmentIdInput>
-    create: XOR<membersCreateWithoutDepartmentIdInput, membersUncheckedCreateWithoutDepartmentIdInput>
+    update: XOR<membersUpdateWithoutDepartmentInput, membersUncheckedUpdateWithoutDepartmentInput>
+    create: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput>
   }
 
-  export type membersUpdateWithWhereUniqueWithoutDepartmentIdInput = {
+  export type membersUpdateWithWhereUniqueWithoutDepartmentInput = {
     where: membersWhereUniqueInput
-    data: XOR<membersUpdateWithoutDepartmentIdInput, membersUncheckedUpdateWithoutDepartmentIdInput>
+    data: XOR<membersUpdateWithoutDepartmentInput, membersUncheckedUpdateWithoutDepartmentInput>
   }
 
-  export type membersUpdateManyWithWhereWithoutDepartmentIdInput = {
+  export type membersUpdateManyWithWhereWithoutDepartmentInput = {
     where: membersScalarWhereInput
-    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutDepartmentIdInput>
+    data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutDepartmentInput>
   }
 
   export type departmentsCreateWithoutMemberInput = {
@@ -20050,6 +20072,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     updated_by: number
     created_at?: Date | string
@@ -20060,6 +20083,7 @@ export namespace Prisma {
     id?: number
     name: string
     profile: string
+    position: string
     department_id: number
     created_by: number
     created_at?: Date | string
@@ -20502,7 +20526,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
-    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateWithoutCreatedByInput = {
@@ -20512,7 +20536,7 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateManyWithoutCreatedByInput = {
@@ -20530,7 +20554,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
-    member?: membersUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateWithoutUpdatedByInput = {
@@ -20540,7 +20564,7 @@ export namespace Prisma {
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    member?: membersUncheckedUpdateManyWithoutDepartmentIdNestedInput
+    member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateManyWithoutUpdatedByInput = {
@@ -20555,9 +20579,10 @@ export namespace Prisma {
   export type membersUpdateWithoutCreatedByInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
   }
 
@@ -20565,6 +20590,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20575,6 +20601,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20584,9 +20611,10 @@ export namespace Prisma {
   export type membersUpdateWithoutUpdatedByInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    departmentId?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
   }
 
@@ -20594,6 +20622,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20604,6 +20633,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     department_id?: IntFieldUpdateOperationsInput | number
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20669,39 +20699,43 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type membersCreateManyDepartmentIdInput = {
+  export type membersCreateManyDepartmentInput = {
     id?: number
     name: string
     profile: string
+    position: string
     created_by: number
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type membersUpdateWithoutDepartmentIdInput = {
+  export type membersUpdateWithoutDepartmentInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
   }
 
-  export type membersUncheckedUpdateWithoutDepartmentIdInput = {
+  export type membersUncheckedUpdateWithoutDepartmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type membersUncheckedUpdateManyWithoutDepartmentIdInput = {
+  export type membersUncheckedUpdateManyWithoutDepartmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

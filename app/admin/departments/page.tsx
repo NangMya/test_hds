@@ -1,4 +1,5 @@
 "use client";
+import ButtonLink from "@/components/ButtonLink";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { customFormatDate } from "@/lib/helps";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
@@ -23,6 +24,8 @@ const page = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log('data',data);
+        console.log('response',data);
         setDepartments(data);
       } catch (error) {
         setError("Failed to fetch department");
@@ -63,26 +66,21 @@ const page = () => {
 
   return (
     <section>
-      <div className="bg-white shadow rounded-lg p-6 w-full max-w-7xl mx-auto mainDiv">
+      <div className="bg-white shadow rounded-lg p-6 w-full mx-auto mainDiv">
         {loading && <LoadingOverlay />}
         {error && <p className="text-red-500">{error}</p>}
 
-        <div className="flex py-2">
-          <Link
-            href="/admin/departments/create"
-            className="py-2 px-4 rounded-lg bg-secondaryBg text-white border border-primary hover:bg-transparent hover:text-primary text-xs"
-          >
-            <FaPlusSquare size={20} className="inline pb-1" /> Create
-          </Link>
+        <div className="flex py-2 justify-end">
+          <ButtonLink url="/admin/departments/create" label="Create" />
         </div>
 
-        <div className="overflow-x-auto  w-[1000px] tableDiv">
+        <div className="overflow-x-auto w-full tableDiv">
           <table className="min-w-full">
-            <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora">
+            <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora w-full">
               <tr className="whitespace-nowrap">
-                <th className="px-4 py-2 text-sm font-lora">Name</th>
-                <th className="px-4 py-2 text-sm font-lora">Status</th>
-                <th className="px-4 py-2 text-sm font-lora">Created By</th>
+                <th className="px-4 py-2 text-sm font-lora text-left">Name</th>
+                <th className="px-4 py-2 text-sm font-lora text-left">Status</th>
+                <th className="px-4 py-2 text-sm font-lora text-left">Created By</th>
                 <th className="px-4 py-2 text-sm font-lora">Action</th>
               </tr>
             </thead>
@@ -96,11 +94,11 @@ const page = () => {
                     {department.name}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {department.status}
+                    {department.status == 1 ? "Active" : "Inactive"}
                   </td>
 
                   <td className="px-4 py-3 text-xs font-lora">
-                    {department.created_by}
+                    {department?.createdBy?.name}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
                     <div className="flex justify-center gap-x-4">
@@ -112,7 +110,7 @@ const page = () => {
                         <FaEdit size={20} />
                       </Link>
                       <button
-                        onClick={() => handleDelete(department.id)}
+                        onClick={() => handleDelete(Number(department?.id))}
                         className="text-red-500  hover:text-red-600"
                       >
                         <FaTrash size={20} />

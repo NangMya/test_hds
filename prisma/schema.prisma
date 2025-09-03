@@ -168,8 +168,9 @@ model members {
   id            Int         @id @default(autoincrement())
   name          String
   profile       String
+  position      String
   department_id Int
-  departmentId  departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
+  department  departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
   created_by    Int
   updated_by    Int
   createdBy     users       @relation("UserCreatedMember", fields: [created_by], references: [id])

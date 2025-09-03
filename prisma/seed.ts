@@ -25,7 +25,7 @@ async function main() {
   //   })
   // );
 
-  // User
+  // // User
   // const hashedPassword = await bcrypt.hash("password", 10);
   // const superAdminRole = roles.find((role) => role.name === "Super Admin");
 
@@ -50,7 +50,7 @@ async function main() {
   //   console.error("Could not find 'Super Admin' role to assign.");
   // }
 
-  // info
+  // // info
   // const info = await prisma.infos.create({
   //   data: {
   //     name: "HDS",

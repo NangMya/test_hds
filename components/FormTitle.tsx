@@ -7,7 +7,7 @@ type Props  = {
 }
 const FormTitle = ({title}:Props) => {
   return (
-    <h1 className='text-primary font-lora text-lg font-bold uppercase'>
+    <h1 className='text-primary font-lora text-lg font-bold uppercase px-6'>
         {title}
     </h1>
   )

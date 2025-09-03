@@ -13,7 +13,7 @@ export default function LogoutButton() {
     <form onSubmit={handleLogout}>
       <button
         type="submit"
-        className="px-4 text-xs pt-2 pb-3 font-medium text-white bg-secondaryBg rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+        className="px-4 text-xs pt-2 pb-3 font-medium text-white bg-primary rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
       >
         Logout
       </button>

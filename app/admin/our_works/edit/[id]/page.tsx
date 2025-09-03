@@ -92,12 +92,12 @@ const page = () => {
       });
 
       const data = await response.json();
+      setLoading(false)
       if (response.ok) {
         router.push("/admin/our_works");
       } else {
         setError(data.error || "Fail to create");
       }
-      setLoading(false)
     } catch (error) {
       setError("An error occurred. Please try again later.");
     }
