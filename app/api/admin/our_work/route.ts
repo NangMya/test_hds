@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
+import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import prisma from "@/lib/db";
 
 export async function GET() {
   try {
-    const works = await prisma.our_works.findMany();
+    const works = await prisma.our_works.findMany({
+      include: {
+        createdBy: {
+          select: {
+            name: true,
+          }
+        }
+      }
+    });
     return NextResponse.json(works);
   } catch (error) {
     return NextResponse.error();
@@ -38,14 +46,21 @@ export async function POST(req: Request) {
     ) {
       return NextResponse.json({ error: "All fields are required!" }, { status: 400 });
     }
+    const now = new Date();
+    const year = now.getFullYear().toString();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0");
+    const day = now.getDate().toString().padStart(2, "0");
 
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const filename = `${Date.now()}_${image.name}`;
-    const filepath = path.join(process.cwd(), "public", "uploads/works", filename);
+    const directoryPath = path.join(process.cwd(), "public", "uploads", "our_works", year, month, day);
 
+    await mkdir(directoryPath, {recursive:true});
+    const imagePath = `/uploads/our_works/${year}/${month}/${day}/${filename}`;
+    const filePath = path.join(directoryPath,filename);
     // Save file to /public/uploads
-    await writeFile(filepath, buffer);
+    await writeFile(filePath, buffer);
 
     const newWorks = await prisma.our_works.create({
       data: {
@@ -55,7 +70,7 @@ export async function POST(req: Request) {
         challenges,
         strategy,
         takeaway,
-        image: `/uploads/works/${filename}`, 
+        image: imagePath,
         created_by: 1,
         updated_by: 1,
       },

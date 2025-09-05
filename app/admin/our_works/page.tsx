@@ -1,7 +1,9 @@
 "use client";
+import ButtonLink from "@/components/ButtonLink";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { customFormatDate } from "@/lib/helps";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
+import { WorkProp } from "@/services/api";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,29 +12,11 @@ import { FaEdit, FaPlusSquare } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 
 
-type WorkProps = {
-  id: number;
-  date: string;
-  title_en: string;
-  title_km: string;
-  description_en: string;
-  description_km: string;
-  challenges_en: string;
-  challenges_km: string;
-  strategy_en: string;
-  strategy_km: string;
-  takeaway_en: string;
-  takeaway_km: string;
-  image: string;
-  created_by: number;
-  updated_by: number;
-  created_at: string;
-  updated_at: string;
-};
+
 const page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [works, setWorks] = useState<WorkProps[]>([]);
+  const [works, setWorks] = useState<WorkProp[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -90,13 +74,8 @@ const page = () => {
         {loading && <LoadingOverlay />}
         {error && <p className="text-red-500">{error}</p>}
 
-        <div className="flex py-2">
-          <Link
-            href="/admin/our_works/create"
-            className="py-2 px-4 rounded-lg bg-secondaryBg text-white border border-primary hover:bg-transparent hover:text-primary text-xs"
-          >
-            <FaPlusSquare size={20} className="inline pb-1" /> Create
-          </Link>
+         <div className="flex py-2 justify-end">
+          <ButtonLink url="/admin/our_works/create" label="Create" />
         </div>
 
         <div className="overflow-x-auto  w-[1000px] tableDiv">
@@ -104,23 +83,18 @@ const page = () => {
             <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora">
               <tr className="whitespace-nowrap">
                 <th className="px-4 py-2 text-sm font-lora">Date</th>
-                <th className="px-4 py-2 text-sm font-lora">Title EN</th>
-                <th className="px-4 py-2 text-sm font-lora">Title KM</th>
-                <th className="px-4 py-2 text-sm font-lora">Description EN</th>
-                <th className="px-4 py-2 text-sm font-lora">Description KM</th>
-                <th className="px-4 py-2 text-sm font-lora">Challenges EN</th>
-                <th className="px-4 py-2 text-sm font-lora">Challenges KM</th>
-                <th className="px-4 py-2 text-sm font-lora">Strategy EN</th>
-                <th className="px-4 py-2 text-sm font-lora">Strategy KM</th>
-                <th className="px-4 py-2 text-sm font-lora">Takeaway EN</th>
-                <th className="px-4 py-2 text-sm font-lora">Takeaway KM</th>
+                <th className="px-4 py-2 text-sm font-lora">Title</th>
+                <th className="px-4 py-2 text-sm font-lora">Description</th>
+                <th className="px-4 py-2 text-sm font-lora">Challenges</th>
+                <th className="px-4 py-2 text-sm font-lora">Strategy</th>
+                <th className="px-4 py-2 text-sm font-lora">Takeaway</th>
                 <th className="px-4 py-2 text-sm font-lora">Image</th>
                 <th className="px-4 py-2 text-sm font-lora">Created By</th>
                 <th className="px-4 py-2 text-sm font-lora">Action</th>
               </tr>
             </thead>
             <tbody>
-              {works.map((work: WorkProps) => (
+              {works.map((work: WorkProp) => (
                 <tr
                   key={work.id}
                   className="whitespace-nowrap border-b border-border"
@@ -129,47 +103,32 @@ const page = () => {
                     {customFormatDate(work.date)}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.title_en}
+                    {work.title}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.title_km}
+                    {work.description}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.description_en}
+                    {work.challenges}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.description_km}
+                    {work.strategy}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.challenges_en}
-                  </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.challenges_km}
-                  </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.strategy_en}
-                  </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.strategy_km}
-                  </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.takeaway_en}
-                  </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.takeaway_km}
+                    {work.takeaway}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
                     {work.image ? (
                       <Image
                         src={work.image}
-                        alt={work.title_en}
+                        alt={work.title}
                         width={80}
                         height={80}
                       />
                     ) : null}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
-                    {work.created_by}
+                    {work.createdBy?.name}
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
                     <div className="flex justify-center gap-x-4">
@@ -182,7 +141,7 @@ const page = () => {
                       <FaEdit size={20} />
                     </Link>
                     <button
-                      onClick={() => handleDelete(work.id)}
+                      onClick={() => handleDelete(work.id as number)}
                       className="text-red-500  hover:text-red-600"
                     >
                       <FaTrash size={20}/>

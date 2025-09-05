@@ -14,57 +14,57 @@ async function main() {
   console.log("Start seeding...");
 
   // role
-  // const roles = await Promise.all(
-  //   roleDatas.map(async (roleName) => {
-  //     return prisma.roles.create({
-  //       data: {
-  //         name: roleName,
-  //         access: {},
-  //       },
-  //     });
-  //   })
-  // );
+  const roles = await Promise.all(
+    roleDatas.map(async (roleName) => {
+      return prisma.roles.create({
+        data: {
+          name: roleName,
+          access: {},
+        },
+      });
+    })
+  );
 
   // // User
-  // const hashedPassword = await bcrypt.hash("password", 10);
-  // const superAdminRole = roles.find((role) => role.name === "Super Admin");
+  const hashedPassword = await bcrypt.hash("password", 10);
+  const superAdminRole = roles.find((role) => role.name === "Super Admin");
 
-  // if (superAdminRole) {
-  //   const user1 = await prisma.users.create({
-  //     data: {
-  //       name: "Nang",
-  //       email: "nangmya@dkmads.com",
-  //       password: hashedPassword,
-  //       is_two_factor_enabled: true,
-  //       role: {
-  //         connect: {
-  //           id: superAdminRole.id,
-  //         },
-  //       },
-  //     },
-  //   });
-  //   console.log(
-  //     `Created user: ${user1.name} with role: ${superAdminRole.name}`
-  //   );
-  // } else {
-  //   console.error("Could not find 'Super Admin' role to assign.");
-  // }
+  if (superAdminRole) {
+    const user1 = await prisma.users.create({
+      data: {
+        name: "Nang",
+        email: "nangmya@dkmads.com",
+        password: hashedPassword,
+        is_two_factor_enabled: true,
+        role: {
+          connect: {
+            id: superAdminRole.id,
+          },
+        },
+      },
+    });
+    console.log(
+      `Created user: ${user1.name} with role: ${superAdminRole.name}`
+    );
+  } else {
+    console.error("Could not find 'Super Admin' role to assign.");
+  }
 
   // // info
-  // const info = await prisma.infos.create({
-  //   data: {
-  //     name: "HDS",
-  //     email: "info@hdsmediagroup.com",
-  //     phone1: "(+855) 23 424 424",
-  //     phone2: "(+855) 10 222 444",
-  //     address:
-  //       "#304, St.1970, Sangkat,Phnom Penh Thmey, Khan Sen Sok,Phnom Penh, Cambodia.",
-  //     showreel_pc: "",
-  //     showreel_mb: "",
-  //     created_by: 1,
-  //     updated_by: 1,
-  //   },
-  // });
+  const info = await prisma.infos.create({
+    data: {
+      name: "HDS",
+      email: "info@hdsmediagroup.com",
+      phone1: "(+855) 23 424 424",
+      phone2: "(+855) 10 222 444",
+      address:
+        "#304, St.1970, Sangkat,Phnom Penh Thmey, Khan Sen Sok,Phnom Penh, Cambodia.",
+      showreel_pc: "",
+      showreel_mb: "",
+      created_by: 1,
+      updated_by: 1,
+    },
+  });
 
   // Client 
   // const now = new Date();

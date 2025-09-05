@@ -1,11 +1,24 @@
 import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
+import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import prisma from "@/lib/db";
 
 export async function GET() {
   try {
-    const members = await prisma.members.findMany();
+    const members = await prisma.members.findMany({
+      include: {
+        department: {
+          select: {
+            name: true,
+          },
+        },
+        createdBy: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
     return NextResponse.json(members);
   } catch (error) {
     return NextResponse.error();
@@ -43,9 +56,10 @@ export async function POST(req: Request) {
       month,
       day
     );
+    await mkdir(directoryPath, { recursive: true });
 
     // Save file to /public/uploads
-    const profilePath = `/uploads/info/${year}/${month}/${day}/${filename}`;
+    const profilePath = `/uploads/members/${year}/${month}/${day}/${filename}`;
     const filePath = path.join(directoryPath, filename);
     await writeFile(filePath, buffer);
 
@@ -53,7 +67,7 @@ export async function POST(req: Request) {
       data: {
         name,
         position,
-        department_id : Number(department_id),
+        department_id: Number(department_id),
         profile: profilePath,
         created_by: 1,
         updated_by: 1,

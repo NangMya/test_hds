@@ -36,13 +36,11 @@ export async function PUT(
 
   try {
     const form = await req.formData();
-
-    const form = await req.formData();
     const name = form.get("name") as string;
     const position = form.get("position") as string;
     const department_id = form.get("department_id") as string;
-    const profile = form.get("profile") as File;
-
+    const profile = form.get("profile") as string | File;
+    console.log('profile',profile);
     if (!name || !position || !department_id || !profile) {
       return NextResponse.json(
         { error: "All fields are required!" },
@@ -57,7 +55,7 @@ export async function PUT(
       where: { id: Number(id) },
     });
     let profilePath = "";
-    if (typeof profile !== "string") {
+    if (typeof profile != "string") {
       const bytes = await profile.arrayBuffer();
       const buffer = Buffer.from(bytes);
       const filename = `${Date.now()}_${profile.name}`;
@@ -83,7 +81,7 @@ export async function PUT(
         const filePath = path.join(directoryPath, filename);
         await writeFile(filePath, buffer);
       }
-      profilePath = `/uploads/info/${year}/${month}/${day}/${filename}`;
+      profilePath = `/uploads/members/${year}/${month}/${day}/${filename}`;
     } else {
       profilePath = profile;
     }

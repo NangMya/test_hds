@@ -53,6 +53,49 @@ export type DepartmentProp = {
     name: string;
   };
 };
+
+export type MemberProp = {
+  id?: number;
+  name: string;
+  profile: string | null,
+  department_id?: string | null,
+  position: string,
+  department?: {
+    name:string,
+  };
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
+};
+
+export type WorkProp = {
+  id? :number;
+  date:string;
+  title:string;
+  description:string;
+  challenges:string;
+  strategy:string;
+  takeaway:string;
+  image: string | null;
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
+}
+
 async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
   const fullUrl = `${BASE_URL}${url}`;
 

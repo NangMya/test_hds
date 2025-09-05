@@ -2,51 +2,36 @@
 
 import FormTitle from "@/components/FormTitle";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import { errorAlert } from "@/lib/swalUtils";
+import { WorkProp } from "@/services/api";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { BsFolderFill } from "react-icons/bs";
 
 const initialState = {
   date: "",
-  title_en: "",
-  title_km: "",
-  description_en: "",
-  description_km: "",
-  challenges_en: "",
-  challenges_km: "",
-  strategy_en: "",
-  strategy_km: "",
-  takeaway_en: "",
-  takeaway_km: "",
-  image: null as File | string | null,
-};
-type WorkForm = {
-  date: string;
-  title_en: string;
-  title_km: string;
-  description_en: string;
-  description_km: string;
-  challenges_en: string;
-  challenges_km: string;
-  strategy_en: string;
-  strategy_km: string;
-  takeaway_en: string;
-  takeaway_km: string;
-  image: File | null | string;
+  title: "",
+  description: "",
+  challenges: "",
+  strategy: "",
+  takeaway: "",
+  image: "",
 };
 
 const page = () => {
-  const [work, setWork] = useState<WorkForm>(initialState);
-    const [loading, setLoading] = useState<boolean>(true);
+  const [work, setWork] = useState<WorkProp>(initialState);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState("");
   const router = useRouter();
 
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   useEffect(() => {
     const getWorkData = async () => {
-      console.log("id", id);
       try {
         const res = await fetch(`/api/admin/our_work/${id}`, {
           method: "GET",
@@ -54,10 +39,8 @@ const page = () => {
             "Content-Type": "application/json",
           },
         });
-
         const data = await res.json();
-        setLoading(false)
-        console.log(data);
+        setLoading(false);
         setWork(data);
       } catch (err) {
         console.error("Failed to fetch work data", err);
@@ -66,38 +49,47 @@ const page = () => {
 
     getWorkData();
   }, [id]);
-
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    const maxSizeInBytes = 1 * 1024 * 1024;
+    if (file && file.size > maxSizeInBytes) {
+      errorAlert("File is too large!. Maximum size is 1MB.");
+      return;
+    }
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setImageUrl(url);
+      setImageFile(file);
+    }
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("date", work.date);
-    formData.append("title_en", work.title_en);
-    formData.append("title_km", work.title_km);
-    formData.append("description_en", work.description_en);
-    formData.append("description_km", work.description_km);
-    formData.append("challenges_en", work.challenges_en);
-    formData.append("challenges_km", work.challenges_km);
-    formData.append("strategy_en", work.strategy_en);
-    formData.append("strategy_km", work.strategy_km);
-    formData.append("takeaway_en", work.takeaway_en);
-    formData.append("takeaway_km", work.takeaway_km);
-    if (work.image) formData.append("image", work.image);
-
+    formData.append("title", work.title);
+    formData.append("description", work.description);
+    formData.append("challenges", work.challenges);
+    formData.append("strategy", work.strategy);
+    formData.append("takeaway", work.takeaway);
+    if (imageFile) {
+      formData.append("image", imageFile);
+    } else {
+      formData.append("image", work.image as string);
+    }
     try {
       const response = await fetch(`/api/admin/our_work/${id}`, {
         method: "PUT",
         body: formData,
       });
-
       const data = await response.json();
-      setLoading(false)
       if (response.ok) {
         router.push("/admin/our_works");
       } else {
         setError(data.error || "Fail to create");
       }
+      setLoading(false);
     } catch (error) {
       setError("An error occurred. Please try again later.");
     }
@@ -105,9 +97,8 @@ const page = () => {
 
   return (
     <section>
-
       <div className="bg-white p-4 rounded-lg">
-        { loading && <LoadingOverlay/>}
+        {loading && <LoadingOverlay />}
         <FormTitle title="Edit Our Work" />
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg">
@@ -120,197 +111,137 @@ const page = () => {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
-          <div className="mb-4">
-            <label htmlFor="date" className="text-primary text-sm">
-              Date
-            </label>
-            <input
-              type="date"
-              placeholder="Date"
-              name="date"
-              value={
-                work.date ? new Date(work.date).toISOString().split("T")[0] : ""
-              }
-              onChange={(e) => setWork({ ...work, date: e.target.value })}
-              required
-              className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-            />
-          </div>
+          {error && (
+            <div className="px-4 py-2 text-sm text-red-700 bg-red-100 rounded-lg">
+              {error}
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-x-4 items-center">
             <div className="mb-4">
-              <label htmlFor="title_en" className="text-primary text-sm">
-                Title EN
+              <label htmlFor="title" className="text-primary text-sm">
+                Title
               </label>
               <input
-                type="title_en"
-                placeholder="Title (EN)"
-                name="title_en"
-                value={work.title_en}
-                onChange={(e) => setWork({ ...work, title_en: e.target.value })}
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={work.title}
+                onChange={(e) => setWork({ ...work, title: e.target.value })}
+                required
+                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="date" className="text-primary text-sm">
+                Date
+              </label>
+              <input
+                type="date"
+                placeholder="Date"
+                name="date"
+  value={work.date ? work.date.slice(0, 10) : ''}
+                onChange={(e) => setWork({ ...work, date: e.target.value })}
                 required
                 className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="title_km" className="text-primary text-sm">
-                Title KM
-              </label>
-              <input
-                type="title_km"
-                placeholder="Title (KM)"
-                name="title_km"
-                value={work.title_km}
-                onChange={(e) => setWork({ ...work, title_km: e.target.value })}
-                required
-                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="description_en" className="text-primary text-sm">
-                Description EN
+              <label htmlFor="description" className="text-primary text-sm">
+                Description
               </label>
               <textarea
                 rows={2}
-                name="description_en"
-                value={work.description_en}
+                name="description"
+                value={work.description}
                 onChange={(e) =>
-                  setWork({ ...work, description_en: e.target.value })
+                  setWork({ ...work, description: e.target.value })
                 }
                 className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Description (EN)"
+                placeholder="Description"
               ></textarea>
             </div>
+
             <div className="mb-4">
-              <label htmlFor="description_km" className="text-primary text-sm">
-                Description KM
+              <label htmlFor="challenges" className="text-primary text-sm">
+                Challenges
               </label>
               <textarea
                 rows={2}
-                name="description_km"
-                value={work.description_km}
+                name="challenges"
+                value={work.challenges}
                 onChange={(e) =>
-                  setWork({ ...work, description_km: e.target.value })
+                  setWork({ ...work, challenges: e.target.value })
                 }
                 className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Description (KM)"
+                placeholder="Challenges"
               ></textarea>
             </div>
+
             <div className="mb-4">
-              <label htmlFor="challenges_en" className="text-primary text-sm">
-                Challenges EN
+              <label htmlFor="strategy" className="text-primary text-sm">
+                Strategy
               </label>
               <textarea
                 rows={2}
-                name="challenges_en"
-                value={work.challenges_en}
-                onChange={(e) =>
-                  setWork({ ...work, challenges_en: e.target.value })
-                }
+                name="strategy"
+                value={work.strategy}
+                onChange={(e) => setWork({ ...work, strategy: e.target.value })}
                 className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Challenges (EN)"
+                placeholder="Strategy"
               ></textarea>
             </div>
+
             <div className="mb-4">
-              <label htmlFor="challenges_km" className="text-primary text-sm">
-                Challenges KM
+              <label htmlFor="takeaway" className="text-primary text-sm">
+                Takeaway
               </label>
               <textarea
                 rows={2}
-                name="challenges_km"
-                value={work.challenges_km}
-                onChange={(e) =>
-                  setWork({ ...work, challenges_km: e.target.value })
-                }
+                name="takeaway"
+                value={work.takeaway}
+                onChange={(e) => setWork({ ...work, takeaway: e.target.value })}
                 className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Challenges (KM)"
-              ></textarea>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="strategy_en" className="text-primary text-sm">
-                Strategy EN
-              </label>
-              <textarea
-                rows={2}
-                name="strategy_en"
-                value={work.strategy_en}
-                onChange={(e) =>
-                  setWork({ ...work, strategy_en: e.target.value })
-                }
-                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Strategy (EN)"
-              ></textarea>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="strategy_km" className="text-primary text-sm">
-                Strategy KM
-              </label>
-              <textarea
-                rows={2}
-                name="strategy_km"
-                value={work.strategy_km}
-                onChange={(e) =>
-                  setWork({ ...work, strategy_km: e.target.value })
-                }
-                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Strategy (KM)"
-              ></textarea>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="takeaway_en" className="text-primary text-sm">
-                Takeaway EN
-              </label>
-              <textarea
-                rows={2}
-                name="takeaway_en"
-                value={work.takeaway_en}
-                onChange={(e) =>
-                  setWork({ ...work, takeaway_en: e.target.value })
-                }
-                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Takeaway (EN)"
-              ></textarea>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="takeaway_km" className="text-primary text-sm">
-                Takeaway KM
-              </label>
-              <textarea
-                rows={2}
-                name="takeaway_km"
-                value={work.takeaway_km}
-                onChange={(e) =>
-                  setWork({ ...work, takeaway_km: e.target.value })
-                }
-                className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
-                placeholder="Takeaway (KM)"
+                placeholder="Takeaway"
               ></textarea>
             </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="image" className="text-primary text-sm">
+          <div className="mb-4 flex flex-col items-center justify-center border rounded px-4 py-10">
+            <label htmlFor="image" className="text-primary text-xs">
               Image
             </label>
+            {(imageUrl || work.image) && (
+              <div className="mt-4 w-full">
+                <Image
+                  src={(imageUrl || work.image) as string}
+                  alt={work.title}
+                  width={200}
+                  height={200}
+                  className="w-full max-h-48 rounded-lg object-contain"
+                />
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={() => document.getElementById("profileInput")?.click()}
+            >
+              <BsFolderFill size={25} className="inline text-primary" />
+              <p className="text-gray-600 text-xs">
+                <span className="font-medium text-gray-900 text-xs">
+                  Choose your file
+                </span>
+                to start uploading
+              </p>
+            </button>
             <input
+              id="profileInput"
               type="file"
-              name="image"
+              name="profile"
+              onChange={(e) => handleFileChange(e)}
+              className="hidden"
               accept="image/*"
-              onChange={(e) =>
-                setWork({ ...work, image: e.target.files?.[0] ?? null })
-              }
-              className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
             />
-            {work.image ? (
-              <Image
-                src={
-                  typeof work.image === "string"
-                    ? work.image 
-                    : URL.createObjectURL(work.image) 
-                }
-                alt={work.title_en}
-                width={80}
-                height={80}
-              />
-            ) : null}
           </div>
 
           <div className="flex justify-end gap-2 mb-4">

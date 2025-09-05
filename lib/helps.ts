@@ -7,5 +7,11 @@ export const customFormatDate = (isoDate: string) => {
     return `${day} ${month} ${year}`;
   };
   
-  console.log(customFormatDate("2022-06-26T00:00:00.000Z"));
-  
+export const datePath = () =>{
+    const now = new Date();
+    const year = now.getFullYear().toString();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0");
+    const day = now.getDate().toString().padStart(2, "0");
+    const datePath = `${year}/${month}/${day}`;
+    return datePath;
+}  
