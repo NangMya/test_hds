@@ -96,7 +96,7 @@ const page = () => {
   };
 
   return (
-    <section>
+    <section className="py-20">
       <div className="bg-white p-4 rounded-lg">
         {loading && <LoadingOverlay />}
         <FormTitle title="Edit Our Work" />

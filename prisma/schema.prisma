@@ -16,32 +16,36 @@ model roles {
 }
 
 model users {
-  id                     Int           @id @default(autoincrement())
+  id                     Int              @id @default(autoincrement())
   name                   String?
-  email                  String        @unique
+  email                  String           @unique
   password               String
   two_factor_code        String?
   two_factor_code_expiry DateTime?
-  is_two_factor_enabled  Boolean       @default(true)
+  is_two_factor_enabled  Boolean          @default(true)
   reset_token            String?
   reset_token_expiry     DateTime?
   role_id                Int?
-  role                   roles?        @relation("roleId", fields: [role_id], references: [id])
-  created_at             DateTime      @default(now())
-  updated_at             DateTime      @updatedAt
-  created_Work           our_works[]   @relation("UserCreatedWorks")
-  updated_Work           our_works[]   @relation("UserUpdatedWorks")
-  created_Job            jobs[]        @relation("UserCreatedJobs")
-  updated_Job            jobs[]        @relation("UserUpdatedJobs")
-  created_Info           infos[]       @relation("UserCreatedInfo")
-  updated_Info           infos[]       @relation("UserUpdatedInfo")
-  updated_Applicant      applicants[]  @relation("UserUpdatedApplicants")
-  created_Client         clients[]     @relation("UserCreatedClient")
-  updated_Client         clients[]     @relation("UserUpdatedClient")
-  created_Department     departments[] @relation("UserCreatedDepartment")
-  updated_Department     departments[] @relation("UserUpdatedDepartment")
-  created_Member         members[]     @relation("UserCreatedMember")
-  updated_Member         members[]     @relation("UserUpdatedMember")
+  role                   roles?           @relation("roleId", fields: [role_id], references: [id])
+  created_at             DateTime         @default(now())
+  updated_at             DateTime         @updatedAt
+  created_Work           our_works[]      @relation("UserCreatedWorks")
+  updated_Work           our_works[]      @relation("UserUpdatedWorks")
+  created_Job            jobs[]           @relation("UserCreatedJobs")
+  updated_Job            jobs[]           @relation("UserUpdatedJobs")
+  created_Info           infos[]          @relation("UserCreatedInfo")
+  updated_Info           infos[]          @relation("UserUpdatedInfo")
+  updated_Applicant      applicants[]     @relation("UserUpdatedApplicants")
+  created_Client         clients[]        @relation("UserCreatedClient")
+  updated_Client         clients[]        @relation("UserUpdatedClient")
+  created_Department     departments[]    @relation("UserCreatedDepartment")
+  updated_Department     departments[]    @relation("UserUpdatedDepartment")
+  created_Member         members[]        @relation("UserCreatedMember")
+  updated_Member         members[]        @relation("UserUpdatedMember")
+  created_Activities     hds_activities[] @relation("UserCreatedActivities")
+  updated_Activities     hds_activities[] @relation("UserUpdatedActivities")
+  created_Gallery        galleries[]      @relation("UserCreatedGallery")
+  updated_Gallery        galleries[]      @relation("UserUpdatedGallery")
 }
 
 model messages {
@@ -170,11 +174,38 @@ model members {
   profile       String
   position      String
   department_id Int
-  department  departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
+  department    departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
   created_by    Int
   updated_by    Int
   createdBy     users       @relation("UserCreatedMember", fields: [created_by], references: [id])
   updatedBy     users       @relation("UserUpdatedMember", fields: [updated_by], references: [id])
   created_at    DateTime    @default(now())
   updated_at    DateTime    @updatedAt
+}
+
+model hds_activities {
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String
+  created_by  Int
+  updated_by  Int
+  createdBy   users       @relation("UserCreatedActivities", fields: [created_by], references: [id])
+  updatedBy   users       @relation("UserUpdatedActivities", fields: [updated_by], references: [id])
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  galleries   galleries[] @relation("ImageOfActivity")
+}
+
+model galleries {
+  id          Int            @id @default(autoincrement())
+  type        String
+  activity_id Int
+  activity    hds_activities @relation("ImageOfActivity", fields: [activity_id], references: [id])
+  image       String
+  created_by  Int
+  updated_by  Int
+  createdBy   users          @relation("UserCreatedGallery", fields: [created_by], references: [id])
+  updatedBy   users          @relation("UserUpdatedGallery", fields: [updated_by], references: [id])
+  created_at  DateTime       @default(now())
+  updated_at  DateTime       @updatedAt
 }

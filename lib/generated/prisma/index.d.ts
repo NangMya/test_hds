@@ -63,6 +63,16 @@ export type departments = $Result.DefaultSelection<Prisma.$departmentsPayload>
  * 
  */
 export type members = $Result.DefaultSelection<Prisma.$membersPayload>
+/**
+ * Model hds_activities
+ * 
+ */
+export type hds_activities = $Result.DefaultSelection<Prisma.$hds_activitiesPayload>
+/**
+ * Model galleries
+ * 
+ */
+export type galleries = $Result.DefaultSelection<Prisma.$galleriesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -288,6 +298,26 @@ export class PrismaClient<
     * ```
     */
   get members(): Prisma.membersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hds_activities`: Exposes CRUD operations for the **hds_activities** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hds_activities
+    * const hds_activities = await prisma.hds_activities.findMany()
+    * ```
+    */
+  get hds_activities(): Prisma.hds_activitiesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.galleries`: Exposes CRUD operations for the **galleries** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Galleries
+    * const galleries = await prisma.galleries.findMany()
+    * ```
+    */
+  get galleries(): Prisma.galleriesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -737,7 +767,9 @@ export namespace Prisma {
     infos: 'infos',
     clients: 'clients',
     departments: 'departments',
-    members: 'members'
+    members: 'members',
+    hds_activities: 'hds_activities',
+    galleries: 'galleries'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -756,7 +788,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients" | "departments" | "members"
+      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients" | "departments" | "members" | "hds_activities" | "galleries"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1420,6 +1452,138 @@ export namespace Prisma {
           }
         }
       }
+      hds_activities: {
+        payload: Prisma.$hds_activitiesPayload<ExtArgs>
+        fields: Prisma.hds_activitiesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.hds_activitiesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.hds_activitiesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          findFirst: {
+            args: Prisma.hds_activitiesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.hds_activitiesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          findMany: {
+            args: Prisma.hds_activitiesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>[]
+          }
+          create: {
+            args: Prisma.hds_activitiesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          createMany: {
+            args: Prisma.hds_activitiesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.hds_activitiesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          update: {
+            args: Prisma.hds_activitiesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          deleteMany: {
+            args: Prisma.hds_activitiesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.hds_activitiesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.hds_activitiesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$hds_activitiesPayload>
+          }
+          aggregate: {
+            args: Prisma.Hds_activitiesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHds_activities>
+          }
+          groupBy: {
+            args: Prisma.hds_activitiesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Hds_activitiesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.hds_activitiesCountArgs<ExtArgs>
+            result: $Utils.Optional<Hds_activitiesCountAggregateOutputType> | number
+          }
+        }
+      }
+      galleries: {
+        payload: Prisma.$galleriesPayload<ExtArgs>
+        fields: Prisma.galleriesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.galleriesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.galleriesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          findFirst: {
+            args: Prisma.galleriesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.galleriesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          findMany: {
+            args: Prisma.galleriesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>[]
+          }
+          create: {
+            args: Prisma.galleriesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          createMany: {
+            args: Prisma.galleriesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.galleriesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          update: {
+            args: Prisma.galleriesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          deleteMany: {
+            args: Prisma.galleriesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.galleriesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.galleriesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$galleriesPayload>
+          }
+          aggregate: {
+            args: Prisma.GalleriesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGalleries>
+          }
+          groupBy: {
+            args: Prisma.galleriesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GalleriesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.galleriesCountArgs<ExtArgs>
+            result: $Utils.Optional<GalleriesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1514,6 +1678,8 @@ export namespace Prisma {
     clients?: clientsOmit
     departments?: departmentsOmit
     members?: membersOmit
+    hds_activities?: hds_activitiesOmit
+    galleries?: galleriesOmit
   }
 
   /* Types for Logging */
@@ -1652,6 +1818,10 @@ export namespace Prisma {
     updated_Department: number
     created_Member: number
     updated_Member: number
+    created_Activities: number
+    updated_Activities: number
+    created_Gallery: number
+    updated_Gallery: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1668,6 +1838,10 @@ export namespace Prisma {
     updated_Department?: boolean | UsersCountOutputTypeCountUpdated_DepartmentArgs
     created_Member?: boolean | UsersCountOutputTypeCountCreated_MemberArgs
     updated_Member?: boolean | UsersCountOutputTypeCountUpdated_MemberArgs
+    created_Activities?: boolean | UsersCountOutputTypeCountCreated_ActivitiesArgs
+    updated_Activities?: boolean | UsersCountOutputTypeCountUpdated_ActivitiesArgs
+    created_Gallery?: boolean | UsersCountOutputTypeCountCreated_GalleryArgs
+    updated_Gallery?: boolean | UsersCountOutputTypeCountUpdated_GalleryArgs
   }
 
   // Custom InputTypes
@@ -1772,6 +1946,34 @@ export namespace Prisma {
     where?: membersWhereInput
   }
 
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_ActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hds_activitiesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_ActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hds_activitiesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_GalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: galleriesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_GalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: galleriesWhereInput
+  }
+
 
   /**
    * Count Type JobsCountOutputType
@@ -1832,6 +2034,37 @@ export namespace Prisma {
    */
   export type DepartmentsCountOutputTypeCountMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: membersWhereInput
+  }
+
+
+  /**
+   * Count Type Hds_activitiesCountOutputType
+   */
+
+  export type Hds_activitiesCountOutputType = {
+    galleries: number
+  }
+
+  export type Hds_activitiesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    galleries?: boolean | Hds_activitiesCountOutputTypeCountGalleriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Hds_activitiesCountOutputType without action
+   */
+  export type Hds_activitiesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hds_activitiesCountOutputType
+     */
+    select?: Hds_activitiesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Hds_activitiesCountOutputType without action
+   */
+  export type Hds_activitiesCountOutputTypeCountGalleriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: galleriesWhereInput
   }
 
 
@@ -3074,6 +3307,10 @@ export namespace Prisma {
     updated_Department?: boolean | users$updated_DepartmentArgs<ExtArgs>
     created_Member?: boolean | users$created_MemberArgs<ExtArgs>
     updated_Member?: boolean | users$updated_MemberArgs<ExtArgs>
+    created_Activities?: boolean | users$created_ActivitiesArgs<ExtArgs>
+    updated_Activities?: boolean | users$updated_ActivitiesArgs<ExtArgs>
+    created_Gallery?: boolean | users$created_GalleryArgs<ExtArgs>
+    updated_Gallery?: boolean | users$updated_GalleryArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -3110,6 +3347,10 @@ export namespace Prisma {
     updated_Department?: boolean | users$updated_DepartmentArgs<ExtArgs>
     created_Member?: boolean | users$created_MemberArgs<ExtArgs>
     updated_Member?: boolean | users$updated_MemberArgs<ExtArgs>
+    created_Activities?: boolean | users$created_ActivitiesArgs<ExtArgs>
+    updated_Activities?: boolean | users$updated_ActivitiesArgs<ExtArgs>
+    created_Gallery?: boolean | users$created_GalleryArgs<ExtArgs>
+    updated_Gallery?: boolean | users$updated_GalleryArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3130,6 +3371,10 @@ export namespace Prisma {
       updated_Department: Prisma.$departmentsPayload<ExtArgs>[]
       created_Member: Prisma.$membersPayload<ExtArgs>[]
       updated_Member: Prisma.$membersPayload<ExtArgs>[]
+      created_Activities: Prisma.$hds_activitiesPayload<ExtArgs>[]
+      updated_Activities: Prisma.$hds_activitiesPayload<ExtArgs>[]
+      created_Gallery: Prisma.$galleriesPayload<ExtArgs>[]
+      updated_Gallery: Prisma.$galleriesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3498,6 +3743,10 @@ export namespace Prisma {
     updated_Department<T extends users$updated_DepartmentArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_DepartmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     created_Member<T extends users$created_MemberArgs<ExtArgs> = {}>(args?: Subset<T, users$created_MemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Member<T extends users$updated_MemberArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_MemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Activities<T extends users$created_ActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, users$created_ActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Activities<T extends users$updated_ActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_ActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Gallery<T extends users$created_GalleryArgs<ExtArgs> = {}>(args?: Subset<T, users$created_GalleryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Gallery<T extends users$updated_GalleryArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_GalleryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4210,6 +4459,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MembersScalarFieldEnum | MembersScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Activities
+   */
+  export type users$created_ActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    where?: hds_activitiesWhereInput
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    cursor?: hds_activitiesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hds_activitiesScalarFieldEnum | Hds_activitiesScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Activities
+   */
+  export type users$updated_ActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    where?: hds_activitiesWhereInput
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    cursor?: hds_activitiesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Hds_activitiesScalarFieldEnum | Hds_activitiesScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Gallery
+   */
+  export type users$created_GalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    where?: galleriesWhereInput
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    cursor?: galleriesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Gallery
+   */
+  export type users$updated_GalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    where?: galleriesWhereInput
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    cursor?: galleriesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
   }
 
   /**
@@ -12628,6 +12973,2049 @@ export namespace Prisma {
 
 
   /**
+   * Model hds_activities
+   */
+
+  export type AggregateHds_activities = {
+    _count: Hds_activitiesCountAggregateOutputType | null
+    _avg: Hds_activitiesAvgAggregateOutputType | null
+    _sum: Hds_activitiesSumAggregateOutputType | null
+    _min: Hds_activitiesMinAggregateOutputType | null
+    _max: Hds_activitiesMaxAggregateOutputType | null
+  }
+
+  export type Hds_activitiesAvgAggregateOutputType = {
+    id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type Hds_activitiesSumAggregateOutputType = {
+    id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type Hds_activitiesMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Hds_activitiesMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type Hds_activitiesCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type Hds_activitiesAvgAggregateInputType = {
+    id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Hds_activitiesSumAggregateInputType = {
+    id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Hds_activitiesMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Hds_activitiesMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type Hds_activitiesCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type Hds_activitiesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hds_activities to aggregate.
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hds_activities to fetch.
+     */
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: hds_activitiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hds_activities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hds_activities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned hds_activities
+    **/
+    _count?: true | Hds_activitiesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Hds_activitiesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Hds_activitiesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Hds_activitiesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Hds_activitiesMaxAggregateInputType
+  }
+
+  export type GetHds_activitiesAggregateType<T extends Hds_activitiesAggregateArgs> = {
+        [P in keyof T & keyof AggregateHds_activities]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHds_activities[P]>
+      : GetScalarType<T[P], AggregateHds_activities[P]>
+  }
+
+
+
+
+  export type hds_activitiesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: hds_activitiesWhereInput
+    orderBy?: hds_activitiesOrderByWithAggregationInput | hds_activitiesOrderByWithAggregationInput[]
+    by: Hds_activitiesScalarFieldEnum[] | Hds_activitiesScalarFieldEnum
+    having?: hds_activitiesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Hds_activitiesCountAggregateInputType | true
+    _avg?: Hds_activitiesAvgAggregateInputType
+    _sum?: Hds_activitiesSumAggregateInputType
+    _min?: Hds_activitiesMinAggregateInputType
+    _max?: Hds_activitiesMaxAggregateInputType
+  }
+
+  export type Hds_activitiesGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: Hds_activitiesCountAggregateOutputType | null
+    _avg: Hds_activitiesAvgAggregateOutputType | null
+    _sum: Hds_activitiesSumAggregateOutputType | null
+    _min: Hds_activitiesMinAggregateOutputType | null
+    _max: Hds_activitiesMaxAggregateOutputType | null
+  }
+
+  type GetHds_activitiesGroupByPayload<T extends hds_activitiesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Hds_activitiesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Hds_activitiesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Hds_activitiesGroupByOutputType[P]>
+            : GetScalarType<T[P], Hds_activitiesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type hds_activitiesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    galleries?: boolean | hds_activities$galleriesArgs<ExtArgs>
+    _count?: boolean | Hds_activitiesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hds_activities"]>
+
+
+
+  export type hds_activitiesSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type hds_activitiesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["hds_activities"]>
+  export type hds_activitiesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    galleries?: boolean | hds_activities$galleriesArgs<ExtArgs>
+    _count?: boolean | Hds_activitiesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $hds_activitiesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "hds_activities"
+    objects: {
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+      galleries: Prisma.$galleriesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["hds_activities"]>
+    composites: {}
+  }
+
+  type hds_activitiesGetPayload<S extends boolean | null | undefined | hds_activitiesDefaultArgs> = $Result.GetResult<Prisma.$hds_activitiesPayload, S>
+
+  type hds_activitiesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<hds_activitiesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Hds_activitiesCountAggregateInputType | true
+    }
+
+  export interface hds_activitiesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['hds_activities'], meta: { name: 'hds_activities' } }
+    /**
+     * Find zero or one Hds_activities that matches the filter.
+     * @param {hds_activitiesFindUniqueArgs} args - Arguments to find a Hds_activities
+     * @example
+     * // Get one Hds_activities
+     * const hds_activities = await prisma.hds_activities.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends hds_activitiesFindUniqueArgs>(args: SelectSubset<T, hds_activitiesFindUniqueArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hds_activities that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {hds_activitiesFindUniqueOrThrowArgs} args - Arguments to find a Hds_activities
+     * @example
+     * // Get one Hds_activities
+     * const hds_activities = await prisma.hds_activities.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends hds_activitiesFindUniqueOrThrowArgs>(args: SelectSubset<T, hds_activitiesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hds_activities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesFindFirstArgs} args - Arguments to find a Hds_activities
+     * @example
+     * // Get one Hds_activities
+     * const hds_activities = await prisma.hds_activities.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends hds_activitiesFindFirstArgs>(args?: SelectSubset<T, hds_activitiesFindFirstArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hds_activities that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesFindFirstOrThrowArgs} args - Arguments to find a Hds_activities
+     * @example
+     * // Get one Hds_activities
+     * const hds_activities = await prisma.hds_activities.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends hds_activitiesFindFirstOrThrowArgs>(args?: SelectSubset<T, hds_activitiesFindFirstOrThrowArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hds_activities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hds_activities
+     * const hds_activities = await prisma.hds_activities.findMany()
+     * 
+     * // Get first 10 Hds_activities
+     * const hds_activities = await prisma.hds_activities.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hds_activitiesWithIdOnly = await prisma.hds_activities.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends hds_activitiesFindManyArgs>(args?: SelectSubset<T, hds_activitiesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hds_activities.
+     * @param {hds_activitiesCreateArgs} args - Arguments to create a Hds_activities.
+     * @example
+     * // Create one Hds_activities
+     * const Hds_activities = await prisma.hds_activities.create({
+     *   data: {
+     *     // ... data to create a Hds_activities
+     *   }
+     * })
+     * 
+     */
+    create<T extends hds_activitiesCreateArgs>(args: SelectSubset<T, hds_activitiesCreateArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hds_activities.
+     * @param {hds_activitiesCreateManyArgs} args - Arguments to create many Hds_activities.
+     * @example
+     * // Create many Hds_activities
+     * const hds_activities = await prisma.hds_activities.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends hds_activitiesCreateManyArgs>(args?: SelectSubset<T, hds_activitiesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Hds_activities.
+     * @param {hds_activitiesDeleteArgs} args - Arguments to delete one Hds_activities.
+     * @example
+     * // Delete one Hds_activities
+     * const Hds_activities = await prisma.hds_activities.delete({
+     *   where: {
+     *     // ... filter to delete one Hds_activities
+     *   }
+     * })
+     * 
+     */
+    delete<T extends hds_activitiesDeleteArgs>(args: SelectSubset<T, hds_activitiesDeleteArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hds_activities.
+     * @param {hds_activitiesUpdateArgs} args - Arguments to update one Hds_activities.
+     * @example
+     * // Update one Hds_activities
+     * const hds_activities = await prisma.hds_activities.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends hds_activitiesUpdateArgs>(args: SelectSubset<T, hds_activitiesUpdateArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hds_activities.
+     * @param {hds_activitiesDeleteManyArgs} args - Arguments to filter Hds_activities to delete.
+     * @example
+     * // Delete a few Hds_activities
+     * const { count } = await prisma.hds_activities.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends hds_activitiesDeleteManyArgs>(args?: SelectSubset<T, hds_activitiesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hds_activities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hds_activities
+     * const hds_activities = await prisma.hds_activities.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends hds_activitiesUpdateManyArgs>(args: SelectSubset<T, hds_activitiesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Hds_activities.
+     * @param {hds_activitiesUpsertArgs} args - Arguments to update or create a Hds_activities.
+     * @example
+     * // Update or create a Hds_activities
+     * const hds_activities = await prisma.hds_activities.upsert({
+     *   create: {
+     *     // ... data to create a Hds_activities
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hds_activities we want to update
+     *   }
+     * })
+     */
+    upsert<T extends hds_activitiesUpsertArgs>(args: SelectSubset<T, hds_activitiesUpsertArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hds_activities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesCountArgs} args - Arguments to filter Hds_activities to count.
+     * @example
+     * // Count the number of Hds_activities
+     * const count = await prisma.hds_activities.count({
+     *   where: {
+     *     // ... the filter for the Hds_activities we want to count
+     *   }
+     * })
+    **/
+    count<T extends hds_activitiesCountArgs>(
+      args?: Subset<T, hds_activitiesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Hds_activitiesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hds_activities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Hds_activitiesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Hds_activitiesAggregateArgs>(args: Subset<T, Hds_activitiesAggregateArgs>): Prisma.PrismaPromise<GetHds_activitiesAggregateType<T>>
+
+    /**
+     * Group by Hds_activities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {hds_activitiesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends hds_activitiesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: hds_activitiesGroupByArgs['orderBy'] }
+        : { orderBy?: hds_activitiesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, hds_activitiesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHds_activitiesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the hds_activities model
+   */
+  readonly fields: hds_activitiesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for hds_activities.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__hds_activitiesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    galleries<T extends hds_activities$galleriesArgs<ExtArgs> = {}>(args?: Subset<T, hds_activities$galleriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the hds_activities model
+   */
+  interface hds_activitiesFieldRefs {
+    readonly id: FieldRef<"hds_activities", 'Int'>
+    readonly title: FieldRef<"hds_activities", 'String'>
+    readonly description: FieldRef<"hds_activities", 'String'>
+    readonly created_by: FieldRef<"hds_activities", 'Int'>
+    readonly updated_by: FieldRef<"hds_activities", 'Int'>
+    readonly created_at: FieldRef<"hds_activities", 'DateTime'>
+    readonly updated_at: FieldRef<"hds_activities", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * hds_activities findUnique
+   */
+  export type hds_activitiesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter, which hds_activities to fetch.
+     */
+    where: hds_activitiesWhereUniqueInput
+  }
+
+  /**
+   * hds_activities findUniqueOrThrow
+   */
+  export type hds_activitiesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter, which hds_activities to fetch.
+     */
+    where: hds_activitiesWhereUniqueInput
+  }
+
+  /**
+   * hds_activities findFirst
+   */
+  export type hds_activitiesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter, which hds_activities to fetch.
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hds_activities to fetch.
+     */
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hds_activities.
+     */
+    cursor?: hds_activitiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hds_activities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hds_activities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hds_activities.
+     */
+    distinct?: Hds_activitiesScalarFieldEnum | Hds_activitiesScalarFieldEnum[]
+  }
+
+  /**
+   * hds_activities findFirstOrThrow
+   */
+  export type hds_activitiesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter, which hds_activities to fetch.
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hds_activities to fetch.
+     */
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for hds_activities.
+     */
+    cursor?: hds_activitiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hds_activities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hds_activities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of hds_activities.
+     */
+    distinct?: Hds_activitiesScalarFieldEnum | Hds_activitiesScalarFieldEnum[]
+  }
+
+  /**
+   * hds_activities findMany
+   */
+  export type hds_activitiesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter, which hds_activities to fetch.
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of hds_activities to fetch.
+     */
+    orderBy?: hds_activitiesOrderByWithRelationInput | hds_activitiesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing hds_activities.
+     */
+    cursor?: hds_activitiesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` hds_activities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` hds_activities.
+     */
+    skip?: number
+    distinct?: Hds_activitiesScalarFieldEnum | Hds_activitiesScalarFieldEnum[]
+  }
+
+  /**
+   * hds_activities create
+   */
+  export type hds_activitiesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a hds_activities.
+     */
+    data: XOR<hds_activitiesCreateInput, hds_activitiesUncheckedCreateInput>
+  }
+
+  /**
+   * hds_activities createMany
+   */
+  export type hds_activitiesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many hds_activities.
+     */
+    data: hds_activitiesCreateManyInput | hds_activitiesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * hds_activities update
+   */
+  export type hds_activitiesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a hds_activities.
+     */
+    data: XOR<hds_activitiesUpdateInput, hds_activitiesUncheckedUpdateInput>
+    /**
+     * Choose, which hds_activities to update.
+     */
+    where: hds_activitiesWhereUniqueInput
+  }
+
+  /**
+   * hds_activities updateMany
+   */
+  export type hds_activitiesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update hds_activities.
+     */
+    data: XOR<hds_activitiesUpdateManyMutationInput, hds_activitiesUncheckedUpdateManyInput>
+    /**
+     * Filter which hds_activities to update
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * Limit how many hds_activities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * hds_activities upsert
+   */
+  export type hds_activitiesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the hds_activities to update in case it exists.
+     */
+    where: hds_activitiesWhereUniqueInput
+    /**
+     * In case the hds_activities found by the `where` argument doesn't exist, create a new hds_activities with this data.
+     */
+    create: XOR<hds_activitiesCreateInput, hds_activitiesUncheckedCreateInput>
+    /**
+     * In case the hds_activities was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<hds_activitiesUpdateInput, hds_activitiesUncheckedUpdateInput>
+  }
+
+  /**
+   * hds_activities delete
+   */
+  export type hds_activitiesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+    /**
+     * Filter which hds_activities to delete.
+     */
+    where: hds_activitiesWhereUniqueInput
+  }
+
+  /**
+   * hds_activities deleteMany
+   */
+  export type hds_activitiesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which hds_activities to delete
+     */
+    where?: hds_activitiesWhereInput
+    /**
+     * Limit how many hds_activities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * hds_activities.galleries
+   */
+  export type hds_activities$galleriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    where?: galleriesWhereInput
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    cursor?: galleriesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * hds_activities without action
+   */
+  export type hds_activitiesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the hds_activities
+     */
+    select?: hds_activitiesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the hds_activities
+     */
+    omit?: hds_activitiesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: hds_activitiesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model galleries
+   */
+
+  export type AggregateGalleries = {
+    _count: GalleriesCountAggregateOutputType | null
+    _avg: GalleriesAvgAggregateOutputType | null
+    _sum: GalleriesSumAggregateOutputType | null
+    _min: GalleriesMinAggregateOutputType | null
+    _max: GalleriesMaxAggregateOutputType | null
+  }
+
+  export type GalleriesAvgAggregateOutputType = {
+    id: number | null
+    activity_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type GalleriesSumAggregateOutputType = {
+    id: number | null
+    activity_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type GalleriesMinAggregateOutputType = {
+    id: number | null
+    type: string | null
+    activity_id: number | null
+    image: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type GalleriesMaxAggregateOutputType = {
+    id: number | null
+    type: string | null
+    activity_id: number | null
+    image: string | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type GalleriesCountAggregateOutputType = {
+    id: number
+    type: number
+    activity_id: number
+    image: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type GalleriesAvgAggregateInputType = {
+    id?: true
+    activity_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type GalleriesSumAggregateInputType = {
+    id?: true
+    activity_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type GalleriesMinAggregateInputType = {
+    id?: true
+    type?: true
+    activity_id?: true
+    image?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type GalleriesMaxAggregateInputType = {
+    id?: true
+    type?: true
+    activity_id?: true
+    image?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type GalleriesCountAggregateInputType = {
+    id?: true
+    type?: true
+    activity_id?: true
+    image?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type GalleriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which galleries to aggregate.
+     */
+    where?: galleriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of galleries to fetch.
+     */
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: galleriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` galleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` galleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned galleries
+    **/
+    _count?: true | GalleriesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GalleriesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GalleriesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GalleriesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GalleriesMaxAggregateInputType
+  }
+
+  export type GetGalleriesAggregateType<T extends GalleriesAggregateArgs> = {
+        [P in keyof T & keyof AggregateGalleries]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGalleries[P]>
+      : GetScalarType<T[P], AggregateGalleries[P]>
+  }
+
+
+
+
+  export type galleriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: galleriesWhereInput
+    orderBy?: galleriesOrderByWithAggregationInput | galleriesOrderByWithAggregationInput[]
+    by: GalleriesScalarFieldEnum[] | GalleriesScalarFieldEnum
+    having?: galleriesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GalleriesCountAggregateInputType | true
+    _avg?: GalleriesAvgAggregateInputType
+    _sum?: GalleriesSumAggregateInputType
+    _min?: GalleriesMinAggregateInputType
+    _max?: GalleriesMaxAggregateInputType
+  }
+
+  export type GalleriesGroupByOutputType = {
+    id: number
+    type: string
+    activity_id: number
+    image: string
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: GalleriesCountAggregateOutputType | null
+    _avg: GalleriesAvgAggregateOutputType | null
+    _sum: GalleriesSumAggregateOutputType | null
+    _min: GalleriesMinAggregateOutputType | null
+    _max: GalleriesMaxAggregateOutputType | null
+  }
+
+  type GetGalleriesGroupByPayload<T extends galleriesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GalleriesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GalleriesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GalleriesGroupByOutputType[P]>
+            : GetScalarType<T[P], GalleriesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type galleriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    type?: boolean
+    activity_id?: boolean
+    image?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    activity?: boolean | hds_activitiesDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["galleries"]>
+
+
+
+  export type galleriesSelectScalar = {
+    id?: boolean
+    type?: boolean
+    activity_id?: boolean
+    image?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type galleriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "activity_id" | "image" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["galleries"]>
+  export type galleriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    activity?: boolean | hds_activitiesDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $galleriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "galleries"
+    objects: {
+      activity: Prisma.$hds_activitiesPayload<ExtArgs>
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      type: string
+      activity_id: number
+      image: string
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["galleries"]>
+    composites: {}
+  }
+
+  type galleriesGetPayload<S extends boolean | null | undefined | galleriesDefaultArgs> = $Result.GetResult<Prisma.$galleriesPayload, S>
+
+  type galleriesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<galleriesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GalleriesCountAggregateInputType | true
+    }
+
+  export interface galleriesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['galleries'], meta: { name: 'galleries' } }
+    /**
+     * Find zero or one Galleries that matches the filter.
+     * @param {galleriesFindUniqueArgs} args - Arguments to find a Galleries
+     * @example
+     * // Get one Galleries
+     * const galleries = await prisma.galleries.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends galleriesFindUniqueArgs>(args: SelectSubset<T, galleriesFindUniqueArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Galleries that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {galleriesFindUniqueOrThrowArgs} args - Arguments to find a Galleries
+     * @example
+     * // Get one Galleries
+     * const galleries = await prisma.galleries.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends galleriesFindUniqueOrThrowArgs>(args: SelectSubset<T, galleriesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Galleries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesFindFirstArgs} args - Arguments to find a Galleries
+     * @example
+     * // Get one Galleries
+     * const galleries = await prisma.galleries.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends galleriesFindFirstArgs>(args?: SelectSubset<T, galleriesFindFirstArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Galleries that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesFindFirstOrThrowArgs} args - Arguments to find a Galleries
+     * @example
+     * // Get one Galleries
+     * const galleries = await prisma.galleries.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends galleriesFindFirstOrThrowArgs>(args?: SelectSubset<T, galleriesFindFirstOrThrowArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Galleries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Galleries
+     * const galleries = await prisma.galleries.findMany()
+     * 
+     * // Get first 10 Galleries
+     * const galleries = await prisma.galleries.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const galleriesWithIdOnly = await prisma.galleries.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends galleriesFindManyArgs>(args?: SelectSubset<T, galleriesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Galleries.
+     * @param {galleriesCreateArgs} args - Arguments to create a Galleries.
+     * @example
+     * // Create one Galleries
+     * const Galleries = await prisma.galleries.create({
+     *   data: {
+     *     // ... data to create a Galleries
+     *   }
+     * })
+     * 
+     */
+    create<T extends galleriesCreateArgs>(args: SelectSubset<T, galleriesCreateArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Galleries.
+     * @param {galleriesCreateManyArgs} args - Arguments to create many Galleries.
+     * @example
+     * // Create many Galleries
+     * const galleries = await prisma.galleries.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends galleriesCreateManyArgs>(args?: SelectSubset<T, galleriesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Galleries.
+     * @param {galleriesDeleteArgs} args - Arguments to delete one Galleries.
+     * @example
+     * // Delete one Galleries
+     * const Galleries = await prisma.galleries.delete({
+     *   where: {
+     *     // ... filter to delete one Galleries
+     *   }
+     * })
+     * 
+     */
+    delete<T extends galleriesDeleteArgs>(args: SelectSubset<T, galleriesDeleteArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Galleries.
+     * @param {galleriesUpdateArgs} args - Arguments to update one Galleries.
+     * @example
+     * // Update one Galleries
+     * const galleries = await prisma.galleries.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends galleriesUpdateArgs>(args: SelectSubset<T, galleriesUpdateArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Galleries.
+     * @param {galleriesDeleteManyArgs} args - Arguments to filter Galleries to delete.
+     * @example
+     * // Delete a few Galleries
+     * const { count } = await prisma.galleries.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends galleriesDeleteManyArgs>(args?: SelectSubset<T, galleriesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Galleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Galleries
+     * const galleries = await prisma.galleries.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends galleriesUpdateManyArgs>(args: SelectSubset<T, galleriesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Galleries.
+     * @param {galleriesUpsertArgs} args - Arguments to update or create a Galleries.
+     * @example
+     * // Update or create a Galleries
+     * const galleries = await prisma.galleries.upsert({
+     *   create: {
+     *     // ... data to create a Galleries
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Galleries we want to update
+     *   }
+     * })
+     */
+    upsert<T extends galleriesUpsertArgs>(args: SelectSubset<T, galleriesUpsertArgs<ExtArgs>>): Prisma__galleriesClient<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Galleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesCountArgs} args - Arguments to filter Galleries to count.
+     * @example
+     * // Count the number of Galleries
+     * const count = await prisma.galleries.count({
+     *   where: {
+     *     // ... the filter for the Galleries we want to count
+     *   }
+     * })
+    **/
+    count<T extends galleriesCountArgs>(
+      args?: Subset<T, galleriesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GalleriesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Galleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GalleriesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GalleriesAggregateArgs>(args: Subset<T, GalleriesAggregateArgs>): Prisma.PrismaPromise<GetGalleriesAggregateType<T>>
+
+    /**
+     * Group by Galleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {galleriesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends galleriesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: galleriesGroupByArgs['orderBy'] }
+        : { orderBy?: galleriesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, galleriesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGalleriesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the galleries model
+   */
+  readonly fields: galleriesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for galleries.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__galleriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    activity<T extends hds_activitiesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, hds_activitiesDefaultArgs<ExtArgs>>): Prisma__hds_activitiesClient<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the galleries model
+   */
+  interface galleriesFieldRefs {
+    readonly id: FieldRef<"galleries", 'Int'>
+    readonly type: FieldRef<"galleries", 'String'>
+    readonly activity_id: FieldRef<"galleries", 'Int'>
+    readonly image: FieldRef<"galleries", 'String'>
+    readonly created_by: FieldRef<"galleries", 'Int'>
+    readonly updated_by: FieldRef<"galleries", 'Int'>
+    readonly created_at: FieldRef<"galleries", 'DateTime'>
+    readonly updated_at: FieldRef<"galleries", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * galleries findUnique
+   */
+  export type galleriesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter, which galleries to fetch.
+     */
+    where: galleriesWhereUniqueInput
+  }
+
+  /**
+   * galleries findUniqueOrThrow
+   */
+  export type galleriesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter, which galleries to fetch.
+     */
+    where: galleriesWhereUniqueInput
+  }
+
+  /**
+   * galleries findFirst
+   */
+  export type galleriesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter, which galleries to fetch.
+     */
+    where?: galleriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of galleries to fetch.
+     */
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for galleries.
+     */
+    cursor?: galleriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` galleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` galleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of galleries.
+     */
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * galleries findFirstOrThrow
+   */
+  export type galleriesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter, which galleries to fetch.
+     */
+    where?: galleriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of galleries to fetch.
+     */
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for galleries.
+     */
+    cursor?: galleriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` galleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` galleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of galleries.
+     */
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * galleries findMany
+   */
+  export type galleriesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter, which galleries to fetch.
+     */
+    where?: galleriesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of galleries to fetch.
+     */
+    orderBy?: galleriesOrderByWithRelationInput | galleriesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing galleries.
+     */
+    cursor?: galleriesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` galleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` galleries.
+     */
+    skip?: number
+    distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * galleries create
+   */
+  export type galleriesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a galleries.
+     */
+    data: XOR<galleriesCreateInput, galleriesUncheckedCreateInput>
+  }
+
+  /**
+   * galleries createMany
+   */
+  export type galleriesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many galleries.
+     */
+    data: galleriesCreateManyInput | galleriesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * galleries update
+   */
+  export type galleriesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a galleries.
+     */
+    data: XOR<galleriesUpdateInput, galleriesUncheckedUpdateInput>
+    /**
+     * Choose, which galleries to update.
+     */
+    where: galleriesWhereUniqueInput
+  }
+
+  /**
+   * galleries updateMany
+   */
+  export type galleriesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update galleries.
+     */
+    data: XOR<galleriesUpdateManyMutationInput, galleriesUncheckedUpdateManyInput>
+    /**
+     * Filter which galleries to update
+     */
+    where?: galleriesWhereInput
+    /**
+     * Limit how many galleries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * galleries upsert
+   */
+  export type galleriesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the galleries to update in case it exists.
+     */
+    where: galleriesWhereUniqueInput
+    /**
+     * In case the galleries found by the `where` argument doesn't exist, create a new galleries with this data.
+     */
+    create: XOR<galleriesCreateInput, galleriesUncheckedCreateInput>
+    /**
+     * In case the galleries was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<galleriesUpdateInput, galleriesUncheckedUpdateInput>
+  }
+
+  /**
+   * galleries delete
+   */
+  export type galleriesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+    /**
+     * Filter which galleries to delete.
+     */
+    where: galleriesWhereUniqueInput
+  }
+
+  /**
+   * galleries deleteMany
+   */
+  export type galleriesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which galleries to delete
+     */
+    where?: galleriesWhereInput
+    /**
+     * Limit how many galleries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * galleries without action
+   */
+  export type galleriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the galleries
+     */
+    select?: galleriesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the galleries
+     */
+    omit?: galleriesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: galleriesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12809,6 +15197,33 @@ export namespace Prisma {
   export type MembersScalarFieldEnum = (typeof MembersScalarFieldEnum)[keyof typeof MembersScalarFieldEnum]
 
 
+  export const Hds_activitiesScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type Hds_activitiesScalarFieldEnum = (typeof Hds_activitiesScalarFieldEnum)[keyof typeof Hds_activitiesScalarFieldEnum]
+
+
+  export const GalleriesScalarFieldEnum: {
+    id: 'id',
+    type: 'type',
+    activity_id: 'activity_id',
+    image: 'image',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type GalleriesScalarFieldEnum = (typeof GalleriesScalarFieldEnum)[keyof typeof GalleriesScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -12965,6 +15380,22 @@ export namespace Prisma {
   export type membersOrderByRelevanceFieldEnum = (typeof membersOrderByRelevanceFieldEnum)[keyof typeof membersOrderByRelevanceFieldEnum]
 
 
+  export const hds_activitiesOrderByRelevanceFieldEnum: {
+    title: 'title',
+    description: 'description'
+  };
+
+  export type hds_activitiesOrderByRelevanceFieldEnum = (typeof hds_activitiesOrderByRelevanceFieldEnum)[keyof typeof hds_activitiesOrderByRelevanceFieldEnum]
+
+
+  export const galleriesOrderByRelevanceFieldEnum: {
+    type: 'type',
+    image: 'image'
+  };
+
+  export type galleriesOrderByRelevanceFieldEnum = (typeof galleriesOrderByRelevanceFieldEnum)[keyof typeof galleriesOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references
    */
@@ -13100,6 +15531,10 @@ export namespace Prisma {
     updated_Department?: DepartmentsListRelationFilter
     created_Member?: MembersListRelationFilter
     updated_Member?: MembersListRelationFilter
+    created_Activities?: Hds_activitiesListRelationFilter
+    updated_Activities?: Hds_activitiesListRelationFilter
+    created_Gallery?: GalleriesListRelationFilter
+    updated_Gallery?: GalleriesListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -13129,6 +15564,10 @@ export namespace Prisma {
     updated_Department?: departmentsOrderByRelationAggregateInput
     created_Member?: membersOrderByRelationAggregateInput
     updated_Member?: membersOrderByRelationAggregateInput
+    created_Activities?: hds_activitiesOrderByRelationAggregateInput
+    updated_Activities?: hds_activitiesOrderByRelationAggregateInput
+    created_Gallery?: galleriesOrderByRelationAggregateInput
+    updated_Gallery?: galleriesOrderByRelationAggregateInput
     _relevance?: usersOrderByRelevanceInput
   }
 
@@ -13162,6 +15601,10 @@ export namespace Prisma {
     updated_Department?: DepartmentsListRelationFilter
     created_Member?: MembersListRelationFilter
     updated_Member?: MembersListRelationFilter
+    created_Activities?: Hds_activitiesListRelationFilter
+    updated_Activities?: Hds_activitiesListRelationFilter
+    created_Gallery?: GalleriesListRelationFilter
+    updated_Gallery?: GalleriesListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -13958,6 +16401,159 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"members"> | Date | string
   }
 
+  export type hds_activitiesWhereInput = {
+    AND?: hds_activitiesWhereInput | hds_activitiesWhereInput[]
+    OR?: hds_activitiesWhereInput[]
+    NOT?: hds_activitiesWhereInput | hds_activitiesWhereInput[]
+    id?: IntFilter<"hds_activities"> | number
+    title?: StringFilter<"hds_activities"> | string
+    description?: StringFilter<"hds_activities"> | string
+    created_by?: IntFilter<"hds_activities"> | number
+    updated_by?: IntFilter<"hds_activities"> | number
+    created_at?: DateTimeFilter<"hds_activities"> | Date | string
+    updated_at?: DateTimeFilter<"hds_activities"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    galleries?: GalleriesListRelationFilter
+  }
+
+  export type hds_activitiesOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    galleries?: galleriesOrderByRelationAggregateInput
+    _relevance?: hds_activitiesOrderByRelevanceInput
+  }
+
+  export type hds_activitiesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: hds_activitiesWhereInput | hds_activitiesWhereInput[]
+    OR?: hds_activitiesWhereInput[]
+    NOT?: hds_activitiesWhereInput | hds_activitiesWhereInput[]
+    title?: StringFilter<"hds_activities"> | string
+    description?: StringFilter<"hds_activities"> | string
+    created_by?: IntFilter<"hds_activities"> | number
+    updated_by?: IntFilter<"hds_activities"> | number
+    created_at?: DateTimeFilter<"hds_activities"> | Date | string
+    updated_at?: DateTimeFilter<"hds_activities"> | Date | string
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    galleries?: GalleriesListRelationFilter
+  }, "id">
+
+  export type hds_activitiesOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: hds_activitiesCountOrderByAggregateInput
+    _avg?: hds_activitiesAvgOrderByAggregateInput
+    _max?: hds_activitiesMaxOrderByAggregateInput
+    _min?: hds_activitiesMinOrderByAggregateInput
+    _sum?: hds_activitiesSumOrderByAggregateInput
+  }
+
+  export type hds_activitiesScalarWhereWithAggregatesInput = {
+    AND?: hds_activitiesScalarWhereWithAggregatesInput | hds_activitiesScalarWhereWithAggregatesInput[]
+    OR?: hds_activitiesScalarWhereWithAggregatesInput[]
+    NOT?: hds_activitiesScalarWhereWithAggregatesInput | hds_activitiesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"hds_activities"> | number
+    title?: StringWithAggregatesFilter<"hds_activities"> | string
+    description?: StringWithAggregatesFilter<"hds_activities"> | string
+    created_by?: IntWithAggregatesFilter<"hds_activities"> | number
+    updated_by?: IntWithAggregatesFilter<"hds_activities"> | number
+    created_at?: DateTimeWithAggregatesFilter<"hds_activities"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"hds_activities"> | Date | string
+  }
+
+  export type galleriesWhereInput = {
+    AND?: galleriesWhereInput | galleriesWhereInput[]
+    OR?: galleriesWhereInput[]
+    NOT?: galleriesWhereInput | galleriesWhereInput[]
+    id?: IntFilter<"galleries"> | number
+    type?: StringFilter<"galleries"> | string
+    activity_id?: IntFilter<"galleries"> | number
+    image?: StringFilter<"galleries"> | string
+    created_by?: IntFilter<"galleries"> | number
+    updated_by?: IntFilter<"galleries"> | number
+    created_at?: DateTimeFilter<"galleries"> | Date | string
+    updated_at?: DateTimeFilter<"galleries"> | Date | string
+    activity?: XOR<Hds_activitiesScalarRelationFilter, hds_activitiesWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type galleriesOrderByWithRelationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    activity_id?: SortOrder
+    image?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    activity?: hds_activitiesOrderByWithRelationInput
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    _relevance?: galleriesOrderByRelevanceInput
+  }
+
+  export type galleriesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: galleriesWhereInput | galleriesWhereInput[]
+    OR?: galleriesWhereInput[]
+    NOT?: galleriesWhereInput | galleriesWhereInput[]
+    type?: StringFilter<"galleries"> | string
+    activity_id?: IntFilter<"galleries"> | number
+    image?: StringFilter<"galleries"> | string
+    created_by?: IntFilter<"galleries"> | number
+    updated_by?: IntFilter<"galleries"> | number
+    created_at?: DateTimeFilter<"galleries"> | Date | string
+    updated_at?: DateTimeFilter<"galleries"> | Date | string
+    activity?: XOR<Hds_activitiesScalarRelationFilter, hds_activitiesWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type galleriesOrderByWithAggregationInput = {
+    id?: SortOrder
+    type?: SortOrder
+    activity_id?: SortOrder
+    image?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: galleriesCountOrderByAggregateInput
+    _avg?: galleriesAvgOrderByAggregateInput
+    _max?: galleriesMaxOrderByAggregateInput
+    _min?: galleriesMinOrderByAggregateInput
+    _sum?: galleriesSumOrderByAggregateInput
+  }
+
+  export type galleriesScalarWhereWithAggregatesInput = {
+    AND?: galleriesScalarWhereWithAggregatesInput | galleriesScalarWhereWithAggregatesInput[]
+    OR?: galleriesScalarWhereWithAggregatesInput[]
+    NOT?: galleriesScalarWhereWithAggregatesInput | galleriesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"galleries"> | number
+    type?: StringWithAggregatesFilter<"galleries"> | string
+    activity_id?: IntWithAggregatesFilter<"galleries"> | number
+    image?: StringWithAggregatesFilter<"galleries"> | string
+    created_by?: IntWithAggregatesFilter<"galleries"> | number
+    updated_by?: IntWithAggregatesFilter<"galleries"> | number
+    created_at?: DateTimeWithAggregatesFilter<"galleries"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"galleries"> | Date | string
+  }
+
   export type rolesCreateInput = {
     name: string
     access: JsonNullValueInput | InputJsonValue
@@ -14026,6 +16622,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -14054,6 +16654,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUpdateInput = {
@@ -14081,6 +16685,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -14109,6 +16717,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -14942,6 +17554,146 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type hds_activitiesCreateInput = {
+    title: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_ActivitiesInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_ActivitiesInput
+    galleries?: galleriesCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    galleries?: galleriesUncheckedCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_ActivitiesNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_ActivitiesNestedInput
+    galleries?: galleriesUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    galleries?: galleriesUncheckedUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type hds_activitiesUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hds_activitiesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesCreateInput = {
+    type: string
+    image: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    activity: hds_activitiesCreateNestedOneWithoutGalleriesInput
+    createdBy: usersCreateNestedOneWithoutCreated_GalleryInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_GalleryInput
+  }
+
+  export type galleriesUncheckedCreateInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    activity?: hds_activitiesUpdateOneRequiredWithoutGalleriesNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_GalleryNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_GalleryNestedInput
+  }
+
+  export type galleriesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesCreateManyInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -15191,6 +17943,18 @@ export namespace Prisma {
     none?: membersWhereInput
   }
 
+  export type Hds_activitiesListRelationFilter = {
+    every?: hds_activitiesWhereInput
+    some?: hds_activitiesWhereInput
+    none?: hds_activitiesWhereInput
+  }
+
+  export type GalleriesListRelationFilter = {
+    every?: galleriesWhereInput
+    some?: galleriesWhereInput
+    none?: galleriesWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -15221,6 +17985,14 @@ export namespace Prisma {
   }
 
   export type membersOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type hds_activitiesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type galleriesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15865,6 +18637,112 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type hds_activitiesOrderByRelevanceInput = {
+    fields: hds_activitiesOrderByRelevanceFieldEnum | hds_activitiesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type hds_activitiesCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type hds_activitiesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type hds_activitiesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type hds_activitiesMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type hds_activitiesSumOrderByAggregateInput = {
+    id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type Hds_activitiesScalarRelationFilter = {
+    is?: hds_activitiesWhereInput
+    isNot?: hds_activitiesWhereInput
+  }
+
+  export type galleriesOrderByRelevanceInput = {
+    fields: galleriesOrderByRelevanceFieldEnum | galleriesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type galleriesCountOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    activity_id?: SortOrder
+    image?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type galleriesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    activity_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type galleriesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    activity_id?: SortOrder
+    image?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type galleriesMinOrderByAggregateInput = {
+    id?: SortOrder
+    type?: SortOrder
+    activity_id?: SortOrder
+    image?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type galleriesSumOrderByAggregateInput = {
+    id?: SortOrder
+    activity_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
   export type usersCreateNestedManyWithoutRoleInput = {
     create?: XOR<usersCreateWithoutRoleInput, usersUncheckedCreateWithoutRoleInput> | usersCreateWithoutRoleInput[] | usersUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: usersCreateOrConnectWithoutRoleInput | usersCreateOrConnectWithoutRoleInput[]
@@ -16016,6 +18894,34 @@ export namespace Prisma {
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
   }
 
+  export type hds_activitiesCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput> | hds_activitiesCreateWithoutCreatedByInput[] | hds_activitiesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutCreatedByInput | hds_activitiesCreateOrConnectWithoutCreatedByInput[]
+    createMany?: hds_activitiesCreateManyCreatedByInputEnvelope
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+  }
+
+  export type hds_activitiesCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput> | hds_activitiesCreateWithoutUpdatedByInput[] | hds_activitiesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutUpdatedByInput | hds_activitiesCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: hds_activitiesCreateManyUpdatedByInputEnvelope
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+  }
+
+  export type galleriesCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput> | galleriesCreateWithoutCreatedByInput[] | galleriesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutCreatedByInput | galleriesCreateOrConnectWithoutCreatedByInput[]
+    createMany?: galleriesCreateManyCreatedByInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
+  export type galleriesCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput> | galleriesCreateWithoutUpdatedByInput[] | galleriesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutUpdatedByInput | galleriesCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: galleriesCreateManyUpdatedByInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
   export type our_worksUncheckedCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<our_worksCreateWithoutCreatedByInput, our_worksUncheckedCreateWithoutCreatedByInput> | our_worksCreateWithoutCreatedByInput[] | our_worksUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: our_worksCreateOrConnectWithoutCreatedByInput | our_worksCreateOrConnectWithoutCreatedByInput[]
@@ -16105,6 +19011,34 @@ export namespace Prisma {
     connectOrCreate?: membersCreateOrConnectWithoutUpdatedByInput | membersCreateOrConnectWithoutUpdatedByInput[]
     createMany?: membersCreateManyUpdatedByInputEnvelope
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput> | hds_activitiesCreateWithoutCreatedByInput[] | hds_activitiesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutCreatedByInput | hds_activitiesCreateOrConnectWithoutCreatedByInput[]
+    createMany?: hds_activitiesCreateManyCreatedByInputEnvelope
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+  }
+
+  export type hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput> | hds_activitiesCreateWithoutUpdatedByInput[] | hds_activitiesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutUpdatedByInput | hds_activitiesCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: hds_activitiesCreateManyUpdatedByInputEnvelope
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+  }
+
+  export type galleriesUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput> | galleriesCreateWithoutCreatedByInput[] | galleriesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutCreatedByInput | galleriesCreateOrConnectWithoutCreatedByInput[]
+    createMany?: galleriesCreateManyCreatedByInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
+  export type galleriesUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput> | galleriesCreateWithoutUpdatedByInput[] | galleriesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutUpdatedByInput | galleriesCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: galleriesCreateManyUpdatedByInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -16315,6 +19249,62 @@ export namespace Prisma {
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
   }
 
+  export type hds_activitiesUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput> | hds_activitiesCreateWithoutCreatedByInput[] | hds_activitiesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutCreatedByInput | hds_activitiesCreateOrConnectWithoutCreatedByInput[]
+    upsert?: hds_activitiesUpsertWithWhereUniqueWithoutCreatedByInput | hds_activitiesUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: hds_activitiesCreateManyCreatedByInputEnvelope
+    set?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    disconnect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    delete?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    update?: hds_activitiesUpdateWithWhereUniqueWithoutCreatedByInput | hds_activitiesUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: hds_activitiesUpdateManyWithWhereWithoutCreatedByInput | hds_activitiesUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+  }
+
+  export type hds_activitiesUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput> | hds_activitiesCreateWithoutUpdatedByInput[] | hds_activitiesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutUpdatedByInput | hds_activitiesCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: hds_activitiesUpsertWithWhereUniqueWithoutUpdatedByInput | hds_activitiesUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: hds_activitiesCreateManyUpdatedByInputEnvelope
+    set?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    disconnect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    delete?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    update?: hds_activitiesUpdateWithWhereUniqueWithoutUpdatedByInput | hds_activitiesUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: hds_activitiesUpdateManyWithWhereWithoutUpdatedByInput | hds_activitiesUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+  }
+
+  export type galleriesUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput> | galleriesCreateWithoutCreatedByInput[] | galleriesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutCreatedByInput | galleriesCreateOrConnectWithoutCreatedByInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutCreatedByInput | galleriesUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: galleriesCreateManyCreatedByInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutCreatedByInput | galleriesUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutCreatedByInput | galleriesUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+  }
+
+  export type galleriesUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput> | galleriesCreateWithoutUpdatedByInput[] | galleriesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutUpdatedByInput | galleriesCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutUpdatedByInput | galleriesUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: galleriesCreateManyUpdatedByInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutUpdatedByInput | galleriesUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutUpdatedByInput | galleriesUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -16503,6 +19493,62 @@ export namespace Prisma {
     update?: membersUpdateWithWhereUniqueWithoutUpdatedByInput | membersUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: membersUpdateManyWithWhereWithoutUpdatedByInput | membersUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput> | hds_activitiesCreateWithoutCreatedByInput[] | hds_activitiesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutCreatedByInput | hds_activitiesCreateOrConnectWithoutCreatedByInput[]
+    upsert?: hds_activitiesUpsertWithWhereUniqueWithoutCreatedByInput | hds_activitiesUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: hds_activitiesCreateManyCreatedByInputEnvelope
+    set?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    disconnect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    delete?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    update?: hds_activitiesUpdateWithWhereUniqueWithoutCreatedByInput | hds_activitiesUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: hds_activitiesUpdateManyWithWhereWithoutCreatedByInput | hds_activitiesUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+  }
+
+  export type hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput> | hds_activitiesCreateWithoutUpdatedByInput[] | hds_activitiesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutUpdatedByInput | hds_activitiesCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: hds_activitiesUpsertWithWhereUniqueWithoutUpdatedByInput | hds_activitiesUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: hds_activitiesCreateManyUpdatedByInputEnvelope
+    set?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    disconnect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    delete?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    connect?: hds_activitiesWhereUniqueInput | hds_activitiesWhereUniqueInput[]
+    update?: hds_activitiesUpdateWithWhereUniqueWithoutUpdatedByInput | hds_activitiesUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: hds_activitiesUpdateManyWithWhereWithoutUpdatedByInput | hds_activitiesUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput> | galleriesCreateWithoutCreatedByInput[] | galleriesUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutCreatedByInput | galleriesCreateOrConnectWithoutCreatedByInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutCreatedByInput | galleriesUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: galleriesCreateManyCreatedByInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutCreatedByInput | galleriesUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutCreatedByInput | galleriesUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput> | galleriesCreateWithoutUpdatedByInput[] | galleriesUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutUpdatedByInput | galleriesCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutUpdatedByInput | galleriesUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: galleriesCreateManyUpdatedByInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutUpdatedByInput | galleriesUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutUpdatedByInput | galleriesUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutCreated_WorkInput = {
@@ -16799,6 +19845,118 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_MemberInput, usersUpdateWithoutUpdated_MemberInput>, usersUncheckedUpdateWithoutUpdated_MemberInput>
   }
 
+  export type usersCreateNestedOneWithoutCreated_ActivitiesInput = {
+    create?: XOR<usersCreateWithoutCreated_ActivitiesInput, usersUncheckedCreateWithoutCreated_ActivitiesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_ActivitiesInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_ActivitiesInput = {
+    create?: XOR<usersCreateWithoutUpdated_ActivitiesInput, usersUncheckedCreateWithoutUpdated_ActivitiesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_ActivitiesInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type galleriesCreateNestedManyWithoutActivityInput = {
+    create?: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput> | galleriesCreateWithoutActivityInput[] | galleriesUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutActivityInput | galleriesCreateOrConnectWithoutActivityInput[]
+    createMany?: galleriesCreateManyActivityInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
+  export type galleriesUncheckedCreateNestedManyWithoutActivityInput = {
+    create?: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput> | galleriesCreateWithoutActivityInput[] | galleriesUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutActivityInput | galleriesCreateOrConnectWithoutActivityInput[]
+    createMany?: galleriesCreateManyActivityInputEnvelope
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_ActivitiesNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_ActivitiesInput, usersUncheckedCreateWithoutCreated_ActivitiesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_ActivitiesInput
+    upsert?: usersUpsertWithoutCreated_ActivitiesInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_ActivitiesInput, usersUpdateWithoutCreated_ActivitiesInput>, usersUncheckedUpdateWithoutCreated_ActivitiesInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_ActivitiesNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_ActivitiesInput, usersUncheckedCreateWithoutUpdated_ActivitiesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_ActivitiesInput
+    upsert?: usersUpsertWithoutUpdated_ActivitiesInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_ActivitiesInput, usersUpdateWithoutUpdated_ActivitiesInput>, usersUncheckedUpdateWithoutUpdated_ActivitiesInput>
+  }
+
+  export type galleriesUpdateManyWithoutActivityNestedInput = {
+    create?: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput> | galleriesCreateWithoutActivityInput[] | galleriesUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutActivityInput | galleriesCreateOrConnectWithoutActivityInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutActivityInput | galleriesUpsertWithWhereUniqueWithoutActivityInput[]
+    createMany?: galleriesCreateManyActivityInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutActivityInput | galleriesUpdateWithWhereUniqueWithoutActivityInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutActivityInput | galleriesUpdateManyWithWhereWithoutActivityInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutActivityNestedInput = {
+    create?: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput> | galleriesCreateWithoutActivityInput[] | galleriesUncheckedCreateWithoutActivityInput[]
+    connectOrCreate?: galleriesCreateOrConnectWithoutActivityInput | galleriesCreateOrConnectWithoutActivityInput[]
+    upsert?: galleriesUpsertWithWhereUniqueWithoutActivityInput | galleriesUpsertWithWhereUniqueWithoutActivityInput[]
+    createMany?: galleriesCreateManyActivityInputEnvelope
+    set?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    disconnect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    delete?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+    update?: galleriesUpdateWithWhereUniqueWithoutActivityInput | galleriesUpdateWithWhereUniqueWithoutActivityInput[]
+    updateMany?: galleriesUpdateManyWithWhereWithoutActivityInput | galleriesUpdateManyWithWhereWithoutActivityInput[]
+    deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+  }
+
+  export type hds_activitiesCreateNestedOneWithoutGalleriesInput = {
+    create?: XOR<hds_activitiesCreateWithoutGalleriesInput, hds_activitiesUncheckedCreateWithoutGalleriesInput>
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutGalleriesInput
+    connect?: hds_activitiesWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutCreated_GalleryInput = {
+    create?: XOR<usersCreateWithoutCreated_GalleryInput, usersUncheckedCreateWithoutCreated_GalleryInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_GalleryInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_GalleryInput = {
+    create?: XOR<usersCreateWithoutUpdated_GalleryInput, usersUncheckedCreateWithoutUpdated_GalleryInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_GalleryInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type hds_activitiesUpdateOneRequiredWithoutGalleriesNestedInput = {
+    create?: XOR<hds_activitiesCreateWithoutGalleriesInput, hds_activitiesUncheckedCreateWithoutGalleriesInput>
+    connectOrCreate?: hds_activitiesCreateOrConnectWithoutGalleriesInput
+    upsert?: hds_activitiesUpsertWithoutGalleriesInput
+    connect?: hds_activitiesWhereUniqueInput
+    update?: XOR<XOR<hds_activitiesUpdateToOneWithWhereWithoutGalleriesInput, hds_activitiesUpdateWithoutGalleriesInput>, hds_activitiesUncheckedUpdateWithoutGalleriesInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_GalleryNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_GalleryInput, usersUncheckedCreateWithoutCreated_GalleryInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_GalleryInput
+    upsert?: usersUpsertWithoutCreated_GalleryInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_GalleryInput, usersUpdateWithoutCreated_GalleryInput>, usersUncheckedUpdateWithoutCreated_GalleryInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_GalleryNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_GalleryInput, usersUncheckedCreateWithoutUpdated_GalleryInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_GalleryInput
+    upsert?: usersUpsertWithoutUpdated_GalleryInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_GalleryInput, usersUpdateWithoutUpdated_GalleryInput>, usersUncheckedUpdateWithoutUpdated_GalleryInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -17051,6 +20209,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutRoleInput = {
@@ -17078,6 +20240,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutRoleInput = {
@@ -17635,6 +20801,122 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type hds_activitiesCreateWithoutCreatedByInput = {
+    title: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updatedBy: usersCreateNestedOneWithoutUpdated_ActivitiesInput
+    galleries?: galleriesCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    title: string
+    description: string
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    galleries?: galleriesUncheckedCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesCreateOrConnectWithoutCreatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    create: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type hds_activitiesCreateManyCreatedByInputEnvelope = {
+    data: hds_activitiesCreateManyCreatedByInput | hds_activitiesCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type hds_activitiesCreateWithoutUpdatedByInput = {
+    title: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_ActivitiesInput
+    galleries?: galleriesCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    title: string
+    description: string
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    galleries?: galleriesUncheckedCreateNestedManyWithoutActivityInput
+  }
+
+  export type hds_activitiesCreateOrConnectWithoutUpdatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    create: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type hds_activitiesCreateManyUpdatedByInputEnvelope = {
+    data: hds_activitiesCreateManyUpdatedByInput | hds_activitiesCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type galleriesCreateWithoutCreatedByInput = {
+    type: string
+    image: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    activity: hds_activitiesCreateNestedOneWithoutGalleriesInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_GalleryInput
+  }
+
+  export type galleriesUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesCreateOrConnectWithoutCreatedByInput = {
+    where: galleriesWhereUniqueInput
+    create: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type galleriesCreateManyCreatedByInputEnvelope = {
+    data: galleriesCreateManyCreatedByInput | galleriesCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type galleriesCreateWithoutUpdatedByInput = {
+    type: string
+    image: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    activity: hds_activitiesCreateNestedOneWithoutGalleriesInput
+    createdBy: usersCreateNestedOneWithoutCreated_GalleryInput
+  }
+
+  export type galleriesUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesCreateOrConnectWithoutUpdatedByInput = {
+    where: galleriesWhereUniqueInput
+    create: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type galleriesCreateManyUpdatedByInputEnvelope = {
+    data: galleriesCreateManyUpdatedByInput | galleriesCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
   export type rolesUpsertWithoutUsersInput = {
     update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
     create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
@@ -17993,6 +21275,97 @@ export namespace Prisma {
     data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
+  export type hds_activitiesUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    update: XOR<hds_activitiesUpdateWithoutCreatedByInput, hds_activitiesUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<hds_activitiesCreateWithoutCreatedByInput, hds_activitiesUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type hds_activitiesUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    data: XOR<hds_activitiesUpdateWithoutCreatedByInput, hds_activitiesUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type hds_activitiesUpdateManyWithWhereWithoutCreatedByInput = {
+    where: hds_activitiesScalarWhereInput
+    data: XOR<hds_activitiesUpdateManyMutationInput, hds_activitiesUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type hds_activitiesScalarWhereInput = {
+    AND?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+    OR?: hds_activitiesScalarWhereInput[]
+    NOT?: hds_activitiesScalarWhereInput | hds_activitiesScalarWhereInput[]
+    id?: IntFilter<"hds_activities"> | number
+    title?: StringFilter<"hds_activities"> | string
+    description?: StringFilter<"hds_activities"> | string
+    created_by?: IntFilter<"hds_activities"> | number
+    updated_by?: IntFilter<"hds_activities"> | number
+    created_at?: DateTimeFilter<"hds_activities"> | Date | string
+    updated_at?: DateTimeFilter<"hds_activities"> | Date | string
+  }
+
+  export type hds_activitiesUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    update: XOR<hds_activitiesUpdateWithoutUpdatedByInput, hds_activitiesUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<hds_activitiesCreateWithoutUpdatedByInput, hds_activitiesUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type hds_activitiesUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: hds_activitiesWhereUniqueInput
+    data: XOR<hds_activitiesUpdateWithoutUpdatedByInput, hds_activitiesUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type hds_activitiesUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: hds_activitiesScalarWhereInput
+    data: XOR<hds_activitiesUpdateManyMutationInput, hds_activitiesUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
+  export type galleriesUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: galleriesWhereUniqueInput
+    update: XOR<galleriesUpdateWithoutCreatedByInput, galleriesUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<galleriesCreateWithoutCreatedByInput, galleriesUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type galleriesUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: galleriesWhereUniqueInput
+    data: XOR<galleriesUpdateWithoutCreatedByInput, galleriesUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type galleriesUpdateManyWithWhereWithoutCreatedByInput = {
+    where: galleriesScalarWhereInput
+    data: XOR<galleriesUpdateManyMutationInput, galleriesUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type galleriesScalarWhereInput = {
+    AND?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+    OR?: galleriesScalarWhereInput[]
+    NOT?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
+    id?: IntFilter<"galleries"> | number
+    type?: StringFilter<"galleries"> | string
+    activity_id?: IntFilter<"galleries"> | number
+    image?: StringFilter<"galleries"> | string
+    created_by?: IntFilter<"galleries"> | number
+    updated_by?: IntFilter<"galleries"> | number
+    created_at?: DateTimeFilter<"galleries"> | Date | string
+    updated_at?: DateTimeFilter<"galleries"> | Date | string
+  }
+
+  export type galleriesUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: galleriesWhereUniqueInput
+    update: XOR<galleriesUpdateWithoutUpdatedByInput, galleriesUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<galleriesCreateWithoutUpdatedByInput, galleriesUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type galleriesUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: galleriesWhereUniqueInput
+    data: XOR<galleriesUpdateWithoutUpdatedByInput, galleriesUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type galleriesUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: galleriesScalarWhereInput
+    data: XOR<galleriesUpdateManyMutationInput, galleriesUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
   export type usersCreateWithoutCreated_WorkInput = {
     name?: string | null
     email: string
@@ -18017,6 +21390,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_WorkInput = {
@@ -18044,6 +21421,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_WorkInput = {
@@ -18075,6 +21456,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_WorkInput = {
@@ -18102,6 +21487,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_WorkInput = {
@@ -18144,6 +21533,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_WorkInput = {
@@ -18171,6 +21564,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_WorkInput = {
@@ -18208,6 +21605,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_WorkInput = {
@@ -18235,6 +21636,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_JobInput = {
@@ -18261,6 +21666,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_JobInput = {
@@ -18288,6 +21697,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_JobInput = {
@@ -18319,6 +21732,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_JobInput = {
@@ -18346,6 +21763,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_JobInput = {
@@ -18427,6 +21848,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_JobInput = {
@@ -18454,6 +21879,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_JobInput = {
@@ -18491,6 +21920,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_JobInput = {
@@ -18518,6 +21951,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type applicantsUpsertWithWhereUniqueWithoutJobInput = {
@@ -18608,6 +22045,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ApplicantInput = {
@@ -18635,6 +22076,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ApplicantInput = {
@@ -18731,6 +22176,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ApplicantInput = {
@@ -18758,6 +22207,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_InfoInput = {
@@ -18784,6 +22237,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_InfoInput = {
@@ -18811,6 +22268,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_InfoInput = {
@@ -18842,6 +22303,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_InfoInput = {
@@ -18869,6 +22334,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_InfoInput = {
@@ -18911,6 +22380,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_InfoInput = {
@@ -18938,6 +22411,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_InfoInput = {
@@ -18975,6 +22452,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_InfoInput = {
@@ -19002,6 +22483,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_ClientInput = {
@@ -19028,6 +22513,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_ClientInput = {
@@ -19055,6 +22544,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_ClientInput = {
@@ -19086,6 +22579,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ClientInput = {
@@ -19113,6 +22610,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ClientInput = {
@@ -19155,6 +22656,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_ClientInput = {
@@ -19182,6 +22687,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_ClientInput = {
@@ -19219,6 +22728,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ClientInput = {
@@ -19246,6 +22759,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateWithoutCreated_DepartmentInput = {
@@ -19272,6 +22789,10 @@ export namespace Prisma {
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_DepartmentInput = {
@@ -19299,6 +22820,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_DepartmentInput = {
@@ -19330,6 +22855,10 @@ export namespace Prisma {
     created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_DepartmentInput = {
@@ -19357,6 +22886,10 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_DepartmentInput = {
@@ -19430,6 +22963,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_DepartmentInput = {
@@ -19457,6 +22994,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_DepartmentInput = {
@@ -19494,6 +23035,10 @@ export namespace Prisma {
     created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_DepartmentInput = {
@@ -19521,6 +23066,10 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type membersUpsertWithWhereUniqueWithoutDepartmentInput = {
@@ -19587,6 +23136,10 @@ export namespace Prisma {
     created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutCreated_MemberInput = {
@@ -19614,6 +23167,10 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutCreated_MemberInput = {
@@ -19645,6 +23202,10 @@ export namespace Prisma {
     created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
     updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_MemberInput = {
@@ -19672,6 +23233,10 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_MemberInput = {
@@ -19744,6 +23309,10 @@ export namespace Prisma {
     created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_MemberInput = {
@@ -19771,6 +23340,10 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUpsertWithoutUpdated_MemberInput = {
@@ -19808,6 +23381,10 @@ export namespace Prisma {
     created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_MemberInput = {
@@ -19835,6 +23412,661 @@ export namespace Prisma {
     created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersCreateWithoutCreated_ActivitiesInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_ActivitiesInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_ActivitiesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_ActivitiesInput, usersUncheckedCreateWithoutCreated_ActivitiesInput>
+  }
+
+  export type usersCreateWithoutUpdated_ActivitiesInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_ActivitiesInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_ActivitiesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_ActivitiesInput, usersUncheckedCreateWithoutUpdated_ActivitiesInput>
+  }
+
+  export type galleriesCreateWithoutActivityInput = {
+    type: string
+    image: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_GalleryInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_GalleryInput
+  }
+
+  export type galleriesUncheckedCreateWithoutActivityInput = {
+    id?: number
+    type: string
+    image: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesCreateOrConnectWithoutActivityInput = {
+    where: galleriesWhereUniqueInput
+    create: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput>
+  }
+
+  export type galleriesCreateManyActivityInputEnvelope = {
+    data: galleriesCreateManyActivityInput | galleriesCreateManyActivityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usersUpsertWithoutCreated_ActivitiesInput = {
+    update: XOR<usersUpdateWithoutCreated_ActivitiesInput, usersUncheckedUpdateWithoutCreated_ActivitiesInput>
+    create: XOR<usersCreateWithoutCreated_ActivitiesInput, usersUncheckedCreateWithoutCreated_ActivitiesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_ActivitiesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_ActivitiesInput, usersUncheckedUpdateWithoutCreated_ActivitiesInput>
+  }
+
+  export type usersUpdateWithoutCreated_ActivitiesInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_ActivitiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_ActivitiesInput = {
+    update: XOR<usersUpdateWithoutUpdated_ActivitiesInput, usersUncheckedUpdateWithoutUpdated_ActivitiesInput>
+    create: XOR<usersCreateWithoutUpdated_ActivitiesInput, usersUncheckedCreateWithoutUpdated_ActivitiesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_ActivitiesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_ActivitiesInput, usersUncheckedUpdateWithoutUpdated_ActivitiesInput>
+  }
+
+  export type usersUpdateWithoutUpdated_ActivitiesInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_ActivitiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type galleriesUpsertWithWhereUniqueWithoutActivityInput = {
+    where: galleriesWhereUniqueInput
+    update: XOR<galleriesUpdateWithoutActivityInput, galleriesUncheckedUpdateWithoutActivityInput>
+    create: XOR<galleriesCreateWithoutActivityInput, galleriesUncheckedCreateWithoutActivityInput>
+  }
+
+  export type galleriesUpdateWithWhereUniqueWithoutActivityInput = {
+    where: galleriesWhereUniqueInput
+    data: XOR<galleriesUpdateWithoutActivityInput, galleriesUncheckedUpdateWithoutActivityInput>
+  }
+
+  export type galleriesUpdateManyWithWhereWithoutActivityInput = {
+    where: galleriesScalarWhereInput
+    data: XOR<galleriesUpdateManyMutationInput, galleriesUncheckedUpdateManyWithoutActivityInput>
+  }
+
+  export type hds_activitiesCreateWithoutGalleriesInput = {
+    title: string
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_ActivitiesInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_ActivitiesInput
+  }
+
+  export type hds_activitiesUncheckedCreateWithoutGalleriesInput = {
+    id?: number
+    title: string
+    description: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type hds_activitiesCreateOrConnectWithoutGalleriesInput = {
+    where: hds_activitiesWhereUniqueInput
+    create: XOR<hds_activitiesCreateWithoutGalleriesInput, hds_activitiesUncheckedCreateWithoutGalleriesInput>
+  }
+
+  export type usersCreateWithoutCreated_GalleryInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_GalleryInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_GalleryInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_GalleryInput, usersUncheckedCreateWithoutCreated_GalleryInput>
+  }
+
+  export type usersCreateWithoutUpdated_GalleryInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_GalleryInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_GalleryInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_GalleryInput, usersUncheckedCreateWithoutUpdated_GalleryInput>
+  }
+
+  export type hds_activitiesUpsertWithoutGalleriesInput = {
+    update: XOR<hds_activitiesUpdateWithoutGalleriesInput, hds_activitiesUncheckedUpdateWithoutGalleriesInput>
+    create: XOR<hds_activitiesCreateWithoutGalleriesInput, hds_activitiesUncheckedCreateWithoutGalleriesInput>
+    where?: hds_activitiesWhereInput
+  }
+
+  export type hds_activitiesUpdateToOneWithWhereWithoutGalleriesInput = {
+    where?: hds_activitiesWhereInput
+    data: XOR<hds_activitiesUpdateWithoutGalleriesInput, hds_activitiesUncheckedUpdateWithoutGalleriesInput>
+  }
+
+  export type hds_activitiesUpdateWithoutGalleriesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_ActivitiesNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_ActivitiesNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateWithoutGalleriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usersUpsertWithoutCreated_GalleryInput = {
+    update: XOR<usersUpdateWithoutCreated_GalleryInput, usersUncheckedUpdateWithoutCreated_GalleryInput>
+    create: XOR<usersCreateWithoutCreated_GalleryInput, usersUncheckedCreateWithoutCreated_GalleryInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_GalleryInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_GalleryInput, usersUncheckedUpdateWithoutCreated_GalleryInput>
+  }
+
+  export type usersUpdateWithoutCreated_GalleryInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_GalleryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_GalleryInput = {
+    update: XOR<usersUpdateWithoutUpdated_GalleryInput, usersUncheckedUpdateWithoutUpdated_GalleryInput>
+    create: XOR<usersCreateWithoutUpdated_GalleryInput, usersUncheckedCreateWithoutUpdated_GalleryInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_GalleryInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_GalleryInput, usersUncheckedUpdateWithoutUpdated_GalleryInput>
+  }
+
+  export type usersUpdateWithoutUpdated_GalleryInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_GalleryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
   export type usersCreateManyRoleInput = {
@@ -19875,6 +24107,10 @@ export namespace Prisma {
     updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRoleInput = {
@@ -19902,6 +24138,10 @@ export namespace Prisma {
     updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRoleInput = {
@@ -20098,6 +24338,44 @@ export namespace Prisma {
     profile: string
     position: string
     department_id: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type hds_activitiesCreateManyCreatedByInput = {
+    id?: number
+    title: string
+    description: string
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type hds_activitiesCreateManyUpdatedByInput = {
+    id?: number
+    title: string
+    description: string
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesCreateManyCreatedByInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesCreateManyUpdatedByInput = {
+    id?: number
+    type: string
+    activity_id: number
+    image: string
     created_by: number
     created_at?: Date | string
     updated_at?: Date | string
@@ -20653,6 +24931,120 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type hds_activitiesUpdateWithoutCreatedByInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_ActivitiesNestedInput
+    galleries?: galleriesUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    galleries?: galleriesUncheckedUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type hds_activitiesUpdateWithoutUpdatedByInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_ActivitiesNestedInput
+    galleries?: galleriesUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    galleries?: galleriesUncheckedUpdateManyWithoutActivityNestedInput
+  }
+
+  export type hds_activitiesUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUpdateWithoutCreatedByInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    activity?: hds_activitiesUpdateOneRequiredWithoutGalleriesNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_GalleryNestedInput
+  }
+
+  export type galleriesUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUpdateWithoutUpdatedByInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    activity?: hds_activitiesUpdateOneRequiredWithoutGalleriesNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_GalleryNestedInput
+  }
+
+  export type galleriesUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    activity_id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type applicantsCreateManyJobInput = {
     id?: number
     name: string
@@ -20749,6 +25141,45 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesCreateManyActivityInput = {
+    id?: number
+    type: string
+    image: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type galleriesUpdateWithoutActivityInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_GalleryNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_GalleryNestedInput
+  }
+
+  export type galleriesUncheckedUpdateWithoutActivityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type galleriesUncheckedUpdateManyWithoutActivityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

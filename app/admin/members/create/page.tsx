@@ -98,7 +98,7 @@ const page = () => {
   }, []);
 
   return (
-    <section className="">
+    <section className="h-full overflow-auto py-20">
       {loading && <LoadingOverlay />}
       <div className="bg-white p-4 rounded-lg max-w-md mx-auto ">
         <FormTitle title="Create Member" />
@@ -198,7 +198,7 @@ const page = () => {
           </div>
 
           <div className="flex justify-end gap-2 mb-4 mt-4">
-            <CancelButton url="/admin/department" label="Cancel" />
+            <CancelButton url="/admin/members" label="Cancel" />
             <PrimaryButton type="submit" label="Save" />
           </div>
         </form>

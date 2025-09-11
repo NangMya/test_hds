@@ -50,7 +50,7 @@ const page = () => {
     };
 
     return (
-        <section>
+        <section className="py-20">
             {loading && <LoadingOverlay />}
 
             <div className="bg-white p-4 rounded-lg max-w-md mx-auto">
@@ -91,7 +91,7 @@ const page = () => {
                     </div>
 
                     <div className="flex justify-end gap-2 mb-4">
-                        <CancelButton url="/admin/department" label="Cancel" />
+                        <CancelButton url="/admin/departments" label="Cancel" />
                         <PrimaryButton type="submit" label="Save" />
                     </div>
                 </form>

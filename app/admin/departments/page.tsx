@@ -65,7 +65,7 @@ const page = () => {
   };
 
   return (
-    <section>
+    <section className="py-20">
       <div className="bg-white shadow rounded-lg p-6 w-full mx-auto mainDiv">
         {loading && <LoadingOverlay />}
         {error && <p className="text-red-500">{error}</p>}

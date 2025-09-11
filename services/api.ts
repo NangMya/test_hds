@@ -96,6 +96,29 @@ export type WorkProp = {
   };
 }
 
+
+export type ActivityProp = {
+  id?: number;
+  title: string;
+  description: string,
+  galleries?: GalleryProp[],
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
+};
+export type GalleryProp ={
+  id:number,
+  type: string,
+  image: string,
+}
+
 async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
   const fullUrl = `${BASE_URL}${url}`;
 

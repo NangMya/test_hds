@@ -36,8 +36,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex-1 flex flex-col">
         <DashboardHeader />
         <main className="flex-1">
-          <div className="bg-gray-100 py-24 h-screen overflow-y-auto overflow-x-hidden">
-            <div className="max-w-7xl mx-auto overflow-x-hidden px-4 sm:px-6 lg:px-8">
+          <div className="bg-gray-100 h-screen overflow-y-auto overflow-x-hidden">
+            <div className="max-w-7xl mx-auto custom-scroll hover:overflow-y-auto overflow-y-hidden  max-h-screen px-4 sm:px-6 lg:px-8">
               {children}
             </div>
           </div>

@@ -6,30 +6,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="bg-white shadow-sm min-w-48 overflow-hidden">
-      <ul className="">
-      <li className="px-2 pb-6 mb-6">
+    <div className="bg-white shadow-sm min-w-48 z-10">
+      <div className="px-2 pb-4">
         <Logo width="90px" />
-        </li>
-        {
-          adminNavLinks.map((link) =>{
+      </div>
+      <div className="custom-scroll hover:overflow-y-auto overflow-y-hidden  max-h-screen pb-20  h-full z-20">
+        <ul className="mx-4">
+          {adminNavLinks.map((link) => {
             return (
-              <li key={link.id} className="px-6 pb-6 text-sm cursor-pointer text-secondaryBg hover:text-primary">
-              <Link
-                href={link.url}
-                className={`${pathname.startsWith(link.url) ? 'text-primary' : 'text-secondaryBg'} hover:text-primary` }
-              >
-                {link.label}
-              </Link>
-            </li>            
-            )
-          })
-        }
-      </ul>
+              <li key={link.id} className="mb-4 w-full">
+                <Link
+                  href={link.url}
+                  className={`px-6 py-2 border rounded-lg block w-full text-sm cursor-pointer text-secondaryBg hover:text-white ${
+                    pathname.startsWith(link.url)
+                      ? "text-white bg-primary"
+                      : "text-secondaryBg"
+                  } hover:text-primary hover:bg-primary`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
