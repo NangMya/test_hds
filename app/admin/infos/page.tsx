@@ -91,14 +91,12 @@ const page = () => {
       const url = URL.createObjectURL(mbShowreelFile);
       setMbShowreelUrl(url);
 
-      // Clean up the URL when the component unmounts or the file changes to prevent memory leaks
       return () => URL.revokeObjectURL(url);
     } else {
       setMbShowreelUrl(null);
     }
   }, [mbShowreelFile]);
 
-  // Handle both file input changes with a single function
   const handleFileChange = useCallback(
     (
       e: React.ChangeEvent<HTMLInputElement>,
@@ -185,7 +183,7 @@ const page = () => {
   };
 
   return (
-    <section className="max-w-7xl w-full">
+    <section className="max-w-7xl w-full py-20">
       {loading && <LoadingOverlay />}
       {error && <p className="text-red-500 py-2 text-xs">{error}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">

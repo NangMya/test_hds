@@ -1,6 +1,9 @@
 "use client";
 import ButtonLink from "@/components/ButtonLink";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Pagination from "@/components/Pagination";
+import SearchInput from "@/components/SearchInput";
+import usePaginationSearch from "@/hook/usePaginationSearch";
 import { customFormatDate } from "@/lib/helps";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
 import { WorkProp } from "@/services/api";
@@ -11,13 +14,16 @@ import React, { useEffect, useState } from "react";
 import { FaEdit, FaPlusSquare } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 
-
-
 const page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [works, setWorks] = useState<WorkProp[]>([]);
-  const router = useRouter();
+  const { search, setSearch, page, setPage, totalPages, currentData } =
+    usePaginationSearch({
+      data: works,
+      pageSize: 10,
+      searchField: "title",
+    });
 
   useEffect(() => {
     const fetchWroks = async () => {
@@ -35,37 +41,32 @@ const page = () => {
       }
     };
     fetchWroks();
-  }, [router]);
+  }, []);
 
   const handleDelete = async (id: number) => {
-    const confirmed = await confirmDialog({
-      title: "Delete this item?",
-      text: "This action cannot be undone.",
-      confirmText: "Delete",
-    });
-  
+    const confirmed = await confirmDialog();
+
     if (!confirmed) return;
-  
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/admin/our_work/${id}`, {
-          method: "DELETE",
-        });
-  
-        const data = await res.json();
-  
-        if (res.ok) {
-          successAlert("Item deleted successfully.");
-          setWorks(prevWorks => prevWorks.filter(work => work.id !== id));
-        } else {
-          errorAlert(data.error || "Delete failed.");
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Delete failed:", error);
-        errorAlert("Something went wrong");
+
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/admin/our_work/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        successAlert("Item deleted successfully.");
+        setWorks((prevWorks) => prevWorks.filter((work) => work.id !== id));
+      } else {
+        errorAlert(data.error || "Delete failed.");
       }
-    
+      setLoading(false);
+    } catch (error) {
+      console.error("Delete failed:", error);
+      errorAlert("Something went wrong");
+    }
   };
 
   return (
@@ -74,7 +75,12 @@ const page = () => {
         {loading && <LoadingOverlay />}
         {error && <p className="text-red-500">{error}</p>}
 
-         <div className="flex py-2 justify-end">
+        <div className="flex py-2 justify-end">
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Search by title..."
+          />
           <ButtonLink url="/admin/our_works/create" label="Create" />
         </div>
 
@@ -82,19 +88,19 @@ const page = () => {
           <table className="min-w-full">
             <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora">
               <tr className="whitespace-nowrap">
-                <th className="px-4 py-2 text-sm font-lora">Date</th>
-                <th className="px-4 py-2 text-sm font-lora">Title</th>
-                <th className="px-4 py-2 text-sm font-lora">Description</th>
-                <th className="px-4 py-2 text-sm font-lora">Challenges</th>
-                <th className="px-4 py-2 text-sm font-lora">Strategy</th>
-                <th className="px-4 py-2 text-sm font-lora">Takeaway</th>
-                <th className="px-4 py-2 text-sm font-lora">Image</th>
-                <th className="px-4 py-2 text-sm font-lora">Created By</th>
-                <th className="px-4 py-2 text-sm font-lora">Action</th>
+                <th className="px-4 py-2 text-xs font-lora">Date</th>
+                <th className="px-4 py-2 text-xs font-lora">Title</th>
+                <th className="px-4 py-2 text-xs font-lora">Description</th>
+                <th className="px-4 py-2 text-xs font-lora">Challenges</th>
+                <th className="px-4 py-2 text-xs font-lora">Strategy</th>
+                <th className="px-4 py-2 text-xs font-lora">Takeaway</th>
+                <th className="px-4 py-2 text-xs font-lora">Image</th>
+                <th className="px-4 py-2 text-xs font-lora">Created By</th>
+                <th className="px-4 py-2 text-xs font-lora">Action</th>
               </tr>
             </thead>
             <tbody>
-              {works.map((work: WorkProp) => (
+              {currentData.map((work: WorkProp) => (
                 <tr
                   key={work.id}
                   className="whitespace-nowrap border-b border-border"
@@ -102,9 +108,7 @@ const page = () => {
                   <td className="px-4 py-3 text-xs font-lora">
                     {customFormatDate(work.date)}
                   </td>
-                  <td className="px-4 py-3 text-xs font-lora">
-                    {work.title}
-                  </td>
+                  <td className="px-4 py-3 text-xs font-lora">{work.title}</td>
                   <td className="px-4 py-3 text-xs font-lora">
                     {work.description}
                   </td>
@@ -132,20 +136,19 @@ const page = () => {
                   </td>
                   <td className="px-4 py-3 text-xs font-lora">
                     <div className="flex justify-center gap-x-4">
-
-                    <Link
-                      href={`/admin/our_works/edit/${work.id}`}
-                      className="text-blue-500"
-                    >
-                      {" "}
-                      <FaEdit size={20} />
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(work.id as number)}
-                      className="text-red-500  hover:text-red-600"
-                    >
-                      <FaTrash size={20}/>
-                    </button>
+                      <Link
+                        href={`/admin/our_works/edit/${work.id}`}
+                        className="text-blue-500"
+                      >
+                        {" "}
+                        <FaEdit size={20} />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(work.id as number)}
+                        className="text-red-500  hover:text-red-600"
+                      >
+                        <FaTrash size={20} />
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -153,6 +156,7 @@ const page = () => {
             </tbody>
           </table>
         </div>
+        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </div>
     </section>
   );

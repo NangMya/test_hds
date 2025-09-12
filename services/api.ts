@@ -4,17 +4,20 @@ const BASE_URL = process.env.BASE_URL
   ? process.env.BASE_URL
   : "http://localhost:3000";
 
+
+export interface AdminProp{
+  id?: number;
+  name: string;
+  email: string;
+  created_at?: any;
+}
 export interface Client {
   id: string;
   name: string;
   logo: string;
 }
 
-export interface Member {
-  id: string;
-  name: string;
-  // Add other properties
-}
+
 
 export interface Info {
   id: number;
@@ -61,7 +64,7 @@ export type MemberProp = {
   department_id?: string | null,
   position: string,
   department?: {
-    name:string,
+    name: string,
   };
   created_by?: number;
   updated_by?: number;
@@ -76,13 +79,13 @@ export type MemberProp = {
 };
 
 export type WorkProp = {
-  id? :number;
-  date:string;
-  title:string;
-  description:string;
-  challenges:string;
-  strategy:string;
-  takeaway:string;
+  id?: number;
+  date: string;
+  title: string;
+  description: string;
+  challenges: string;
+  strategy: string;
+  takeaway: string;
   image: string | null;
   created_by?: number;
   updated_by?: number;
@@ -113,11 +116,83 @@ export type ActivityProp = {
     name: string;
   };
 };
-export type GalleryProp ={
-  id:number,
+export type GalleryProp = {
+  id?: number,
   type: string,
   image: string,
 }
+export type JobProp = {
+  id?: number;
+  open_date: string;
+  close_date: string;
+  position: string;
+  description: string;
+  department_id?: string | null,
+  experiences: string;
+  level: string;
+  overview: string;
+  job_type: string;
+  salary: string;
+  duties: string;
+  requirements: string;
+  gender: string;
+  status: string;
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  department?: {
+    name: string
+  }
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
+};
+
+export type ApplicantProp = {
+  id?: number;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  status: string;
+  job_id: string | null;
+  job?: {
+    position: string
+  }
+  file: string;
+  expected_salary: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type AwardProp = {
+  id?: number;
+  date: string;
+  title: string,
+  department_id?: string | null;
+  member_id?: string | null;
+  department?: {
+    name: string,
+  };
+  member?: {
+    name: string;
+    profile?: string | null;
+  }
+  created_by?: number;
+  updated_by?: number;
+  created_at?: string;
+  updated_at?: string;
+  createdBy?: {
+    name: string;
+  };
+  updatedBy?: {
+    name: string;
+  };
+};
 
 async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
   const fullUrl = `${BASE_URL}${url}`;

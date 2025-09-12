@@ -1,6 +1,7 @@
 
 import prisma from "@/lib/db";
 import { mkdir, writeFile } from "fs/promises";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import path from "path";
 
@@ -20,6 +21,15 @@ export async function GET() {
 
 // POST a new client
 export async function POST(req: Request) {
+  // const session = await getServerSession(authOptions);
+
+  // if (!session) {
+  //   return new Response("Unauthorized", { status: 401 });
+  // }
+
+  // const loggedInUserId = session.user.id;
+  // console.log('session=>',session);
+
   try {
     const form = await req.formData();
     const name = form.get("name") as string;
@@ -43,6 +53,7 @@ export async function POST(req: Request) {
         month,
         day
       );
+    await mkdir(directoryPath, { recursive: true });
 
       const pcFilePath = path.join(directoryPath, fileName);
       await writeFile(pcFilePath, buffer);
@@ -55,12 +66,16 @@ export async function POST(req: Request) {
       logo: filepath,
       created_by: 1,
       updated_by: 1,
+      // created_by: loggedInUserId ?? 1,
+      // updated_by: loggedInUserId ?? 1,
     };
+    console.log(['data=>',data]);
     let newClient = await prisma.clients.create({
       data: data,
     });
     return NextResponse.json(newClient, { status: 201 });
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       { error: "Failed to create client" },
       { status: 500 }

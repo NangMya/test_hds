@@ -1,3 +1,5 @@
+import { HiRefresh } from "react-icons/hi";
+
 export const navLinks = [
     {
         id: 1,
@@ -38,56 +40,44 @@ export const navLinks = [
     }
 ];
 
+export interface MenuItem {
+  label: string;
+  href?: string;      
+  icon?: React.ReactNode;
+  subItems?: { label: string; href: string }[]; 
+}
 export const adminNavLinks = [
     {
-        id: 1,
-        url: '/admin/dashboard',
-        label: 'Dashboard',
+        label: "Dashboard",
+        href: "/admin/dashboard",
     },
     {
-        id: 2,
-        url: '/admin/jobs',
-        label: 'Jobs',
+        label: "Job",
+        href: "/admin/jobs",
     },
     {
-        id: 3,
-        url: '/admin/applicants',
-        label: 'Applicants',
+        label: "Applications",
+        href: "/admin/applicants",
     },
     {
-        id: 4,
-        url: '/admin/message',
-        label: 'Contact',
+        label: "Case Study",
+        href: "/admin/our_works"
     },
     {
-        id: 5,
-        url: '/admin/our_works',
-        label: 'Our Works',
+        label: "Company Info",
+        subItems: [
+            {label:"About", href:"/admin/infos"},
+        ] 
     },
     {
-        id: 6,
-        url: "/admin/infos",
-        label: "Company Info"
-    },
-    {
-        id: 7,
-        url: "/admin/clients",
-        label: "Clients",
-    },
-    {
-        id: 8,
-        url: "/admin/departments",
-        label: "Departments"
-    },
-    {
-        id:9,
-        url: "/admin/members",
-        label: "Members",
-    },
-    {
-        id: 10,
-        url: "/admin/hds_activities",
-        label: "HDS Activities"
+        label: "Setup",
+        subItems: [
+            {label: "Clients", href:'/admin/clients'},
+            {label: "Departments", href:'/admin/departments'},
+            {label: "Members", href:'/admin/members'},
+            {label: "Awards", href:'/admin/awards'},
+            {label: "Admin", href:'/admin/admin'},
+            {label: "Activities", href:'/admin/hds_activities'},
+        ]
     }
-   
-];
+]

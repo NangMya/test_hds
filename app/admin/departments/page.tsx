@@ -1,12 +1,13 @@
 "use client";
 import ButtonLink from "@/components/ButtonLink";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Pagination from "@/components/Pagination";
+import SearchInput from "@/components/SearchInput";
+import usePaginationSearch from "@/hook/usePaginationSearch";
 import { customFormatDate } from "@/lib/helps";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
 import { DepartmentProp } from "@/services/api";
-import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaPlusSquare } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
@@ -15,6 +16,7 @@ const page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [departments, setDepartments] = useState<DepartmentProp[]>([]);
+  const { search, setSearch, page, setPage, totalPages, currentData} = usePaginationSearch({data: departments, pageSize:10,searchField: "name"})
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -24,8 +26,6 @@ const page = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log('data',data);
-        console.log('response',data);
         setDepartments(data);
       } catch (error) {
         setError("Failed to fetch department");
@@ -71,21 +71,22 @@ const page = () => {
         {error && <p className="text-red-500">{error}</p>}
 
         <div className="flex py-2 justify-end">
+          <SearchInput value={search} onChange={setSearch} placeholder="Search by name..."/>
           <ButtonLink url="/admin/departments/create" label="Create" />
         </div>
 
         <div className="overflow-x-auto w-full tableDiv">
           <table className="min-w-full">
-            <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora w-full">
+            <thead className="bg-dashboardBg text-secondaryBg py-2 text-xs font-lora w-full">
               <tr className="whitespace-nowrap">
-                <th className="px-4 py-2 text-sm font-lora text-left">Name</th>
-                <th className="px-4 py-2 text-sm font-lora text-left">Status</th>
-                <th className="px-4 py-2 text-sm font-lora text-left">Created By</th>
-                <th className="px-4 py-2 text-sm font-lora">Action</th>
+                <th className="px-4 py-2 text-xs font-lora text-left">Name</th>
+                <th className="px-4 py-2 text-xs font-lora text-left">Status</th>
+                <th className="px-4 py-2 text-xs font-lora text-left">Created By</th>
+                <th className="px-4 py-2 text-xs font-lora">Action</th>
               </tr>
             </thead>
-            <tbody>
-              {departments.map((department: DepartmentProp) => (
+            <tbody className="text-xs">
+              {currentData.map((department: DepartmentProp) => (
                 <tr
                   key={department.id}
                   className="whitespace-nowrap border-b border-border"
@@ -122,6 +123,7 @@ const page = () => {
             </tbody>
           </table>
         </div>
+        <Pagination page={page} totalPages={totalPages} setPage={setPage}/>
       </div>
     </section>
   );

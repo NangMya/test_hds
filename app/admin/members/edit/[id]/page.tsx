@@ -169,7 +169,7 @@ const page = () => {
               <option value="">Choose Department</option>
               {departments.map((department) => {
                 return (
-                  <option key={department.id} value={department.id}>
+                  <option key={department.id} value={department.id}  selected={member.department_id == department.id}>
                     {department.name}
                   </option>
                 );

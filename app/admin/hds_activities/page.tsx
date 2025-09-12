@@ -1,6 +1,9 @@
 "use client";
 import ButtonLink from "@/components/ButtonLink";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Pagination from "@/components/Pagination";
+import SearchInput from "@/components/SearchInput";
+import usePaginationSearch from "@/hook/usePaginationSearch";
 import { confirmDialog, errorAlert, successAlert } from "@/lib/swalUtils";
 import { ActivityProp, GalleryProp } from "@/services/api";
 import Image from "next/image";
@@ -14,6 +17,7 @@ const page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [activities, setActivities] = useState<ActivityProp[]>([]);
+  const { search, setSearch, page, setPage,totalPages,currentData} = usePaginationSearch({ data: activities, pageSize: 10, searchField: "title"});
 
   useEffect(() => {
     const fetchMemebrs = async () => {
@@ -60,7 +64,6 @@ const page = () => {
     }
   };
 
-
   return (
     <section className="py-20">
       <div className="bg-white shadow rounded-lg p-6 w-full mx-auto mainDiv">
@@ -68,22 +71,29 @@ const page = () => {
         {error && <p className="text-red-500">{error}</p>}
 
         <div className="flex py-2 justify-end">
+          <SearchInput value={search} onChange={setSearch} placeholder="Search by title.."/>
           <ButtonLink url="/admin/hds_activities/create" label="Create" />
         </div>
 
         <div className="overflow-x-auto w-full tableDiv">
           <table className="min-w-full">
-            <thead className="bg-dashboardBg text-secondaryBg py-2 text-sm font-lora w-full">
+            <thead className="bg-dashboardBg text-secondaryBg py-2 text-xs font-lora w-full">
               <tr className="whitespace-nowrap">
-                <th className="px-4 py-2 text-sm font-lora text-left">Title</th>
-                <th className="px-4 py-2 text-sm font-lora text-left">Description</th>
-                <th className="px-4 py-2 text-sm font-lora text-left">Images</th>
-                <th className="px-4 py-2 text-sm font-lora text-left">Created By</th>
-                <th className="px-4 py-2 text-sm font-lora">Action</th>
+                <th className="px-4 py-2 text-xs font-lora text-left">Title</th>
+                <th className="px-4 py-2 text-xs font-lora text-left">
+                  Description
+                </th>
+                <th className="px-4 py-2 text-xs font-lora text-left">
+                  Images
+                </th>
+                <th className="px-4 py-2 text-xs font-lora text-left">
+                  Created By
+                </th>
+                <th className="px-4 py-2 text-xs font-lora">Action</th>
               </tr>
             </thead>
             <tbody>
-              {activities.map((activity: ActivityProp) => (
+              {currentData.map((activity: ActivityProp) => (
                 <tr
                   key={activity.id}
                   className="whitespace-nowrap border-b border-border"
@@ -94,18 +104,23 @@ const page = () => {
                   <td className="px-4 py-3 text-xs font-lora">
                     {activity.description}
                   </td>
-                    <td className="px-4 py-3 text-xs font-lora">
-                        {
-                           activity.galleries && activity.galleries.map((img: GalleryProp) =>{
-                                return (
-                                <div key={img.id}>
-                                <Image src={img.image as string} alt={activity.title} width={60} height={60} className="object-contain" />
-                                </div>
-                                )
-                            })
-                        }
+                  <td className="px-4 py-3 text-xs font-lora flex flex-row gap-2 items-center">
+                    {activity.galleries &&
+                      activity.galleries.slice(0, 4).map((img: GalleryProp) => (
+                        <div key={img.id}>
+                          <Image
+                            src={img.image as string}
+                            alt={activity.title}
+                            width={40}
+                            height={40}
+                            className="object-contain"
+                          />
+                        </div>
+                      ))}
+                    {activity.galleries && activity.galleries.length > 4 && (
+                      <span className="text-xl font-bold">...</span>
+                    )}
                   </td>
-                 
 
                   <td className="px-4 py-3 text-xs font-lora">
                     {activity?.createdBy?.name}
@@ -132,6 +147,7 @@ const page = () => {
             </tbody>
           </table>
         </div>
+         <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </div>
     </section>
   );

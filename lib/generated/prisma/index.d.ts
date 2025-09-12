@@ -73,6 +73,16 @@ export type hds_activities = $Result.DefaultSelection<Prisma.$hds_activitiesPayl
  * 
  */
 export type galleries = $Result.DefaultSelection<Prisma.$galleriesPayload>
+/**
+ * Model awards
+ * 
+ */
+export type awards = $Result.DefaultSelection<Prisma.$awardsPayload>
+/**
+ * Model session
+ * 
+ */
+export type session = $Result.DefaultSelection<Prisma.$sessionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -318,6 +328,26 @@ export class PrismaClient<
     * ```
     */
   get galleries(): Prisma.galleriesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.awards`: Exposes CRUD operations for the **awards** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Awards
+    * const awards = await prisma.awards.findMany()
+    * ```
+    */
+  get awards(): Prisma.awardsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.session`: Exposes CRUD operations for the **session** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sessions
+    * const sessions = await prisma.session.findMany()
+    * ```
+    */
+  get session(): Prisma.sessionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -769,7 +799,9 @@ export namespace Prisma {
     departments: 'departments',
     members: 'members',
     hds_activities: 'hds_activities',
-    galleries: 'galleries'
+    galleries: 'galleries',
+    awards: 'awards',
+    session: 'session'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -788,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients" | "departments" | "members" | "hds_activities" | "galleries"
+      modelProps: "roles" | "users" | "messages" | "our_works" | "jobs" | "applicants" | "infos" | "clients" | "departments" | "members" | "hds_activities" | "galleries" | "awards" | "session"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1584,6 +1616,138 @@ export namespace Prisma {
           }
         }
       }
+      awards: {
+        payload: Prisma.$awardsPayload<ExtArgs>
+        fields: Prisma.awardsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.awardsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.awardsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          findFirst: {
+            args: Prisma.awardsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.awardsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          findMany: {
+            args: Prisma.awardsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>[]
+          }
+          create: {
+            args: Prisma.awardsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          createMany: {
+            args: Prisma.awardsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.awardsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          update: {
+            args: Prisma.awardsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          deleteMany: {
+            args: Prisma.awardsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.awardsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.awardsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$awardsPayload>
+          }
+          aggregate: {
+            args: Prisma.AwardsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAwards>
+          }
+          groupBy: {
+            args: Prisma.awardsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AwardsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.awardsCountArgs<ExtArgs>
+            result: $Utils.Optional<AwardsCountAggregateOutputType> | number
+          }
+        }
+      }
+      session: {
+        payload: Prisma.$sessionPayload<ExtArgs>
+        fields: Prisma.sessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          findFirst: {
+            args: Prisma.sessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          findMany: {
+            args: Prisma.sessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>[]
+          }
+          create: {
+            args: Prisma.sessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          createMany: {
+            args: Prisma.sessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.sessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          update: {
+            args: Prisma.sessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.sessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.sessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sessionPayload>
+          }
+          aggregate: {
+            args: Prisma.SessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSession>
+          }
+          groupBy: {
+            args: Prisma.sessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sessionCountArgs<ExtArgs>
+            result: $Utils.Optional<SessionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1680,6 +1844,8 @@ export namespace Prisma {
     members?: membersOmit
     hds_activities?: hds_activitiesOmit
     galleries?: galleriesOmit
+    awards?: awardsOmit
+    session?: sessionOmit
   }
 
   /* Types for Logging */
@@ -1822,6 +1988,9 @@ export namespace Prisma {
     updated_Activities: number
     created_Gallery: number
     updated_Gallery: number
+    created_Award: number
+    updated_Award: number
+    sessions: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1842,6 +2011,9 @@ export namespace Prisma {
     updated_Activities?: boolean | UsersCountOutputTypeCountUpdated_ActivitiesArgs
     created_Gallery?: boolean | UsersCountOutputTypeCountCreated_GalleryArgs
     updated_Gallery?: boolean | UsersCountOutputTypeCountUpdated_GalleryArgs
+    created_Award?: boolean | UsersCountOutputTypeCountCreated_AwardArgs
+    updated_Award?: boolean | UsersCountOutputTypeCountUpdated_AwardArgs
+    sessions?: boolean | UsersCountOutputTypeCountSessionsArgs
   }
 
   // Custom InputTypes
@@ -1974,6 +2146,27 @@ export namespace Prisma {
     where?: galleriesWhereInput
   }
 
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCreated_AwardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: awardsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUpdated_AwardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: awardsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sessionWhereInput
+  }
+
 
   /**
    * Count Type JobsCountOutputType
@@ -2012,10 +2205,14 @@ export namespace Prisma {
 
   export type DepartmentsCountOutputType = {
     member: number
+    jobs: number
+    awards: number
   }
 
   export type DepartmentsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     member?: boolean | DepartmentsCountOutputTypeCountMemberArgs
+    jobs?: boolean | DepartmentsCountOutputTypeCountJobsArgs
+    awards?: boolean | DepartmentsCountOutputTypeCountAwardsArgs
   }
 
   // Custom InputTypes
@@ -2034,6 +2231,51 @@ export namespace Prisma {
    */
   export type DepartmentsCountOutputTypeCountMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: membersWhereInput
+  }
+
+  /**
+   * DepartmentsCountOutputType without action
+   */
+  export type DepartmentsCountOutputTypeCountJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: jobsWhereInput
+  }
+
+  /**
+   * DepartmentsCountOutputType without action
+   */
+  export type DepartmentsCountOutputTypeCountAwardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: awardsWhereInput
+  }
+
+
+  /**
+   * Count Type MembersCountOutputType
+   */
+
+  export type MembersCountOutputType = {
+    awards: number
+  }
+
+  export type MembersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    awards?: boolean | MembersCountOutputTypeCountAwardsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MembersCountOutputType without action
+   */
+  export type MembersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MembersCountOutputType
+     */
+    select?: MembersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MembersCountOutputType without action
+   */
+  export type MembersCountOutputTypeCountAwardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: awardsWhereInput
   }
 
 
@@ -3311,6 +3553,9 @@ export namespace Prisma {
     updated_Activities?: boolean | users$updated_ActivitiesArgs<ExtArgs>
     created_Gallery?: boolean | users$created_GalleryArgs<ExtArgs>
     updated_Gallery?: boolean | users$updated_GalleryArgs<ExtArgs>
+    created_Award?: boolean | users$created_AwardArgs<ExtArgs>
+    updated_Award?: boolean | users$updated_AwardArgs<ExtArgs>
+    sessions?: boolean | users$sessionsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -3351,6 +3596,9 @@ export namespace Prisma {
     updated_Activities?: boolean | users$updated_ActivitiesArgs<ExtArgs>
     created_Gallery?: boolean | users$created_GalleryArgs<ExtArgs>
     updated_Gallery?: boolean | users$updated_GalleryArgs<ExtArgs>
+    created_Award?: boolean | users$created_AwardArgs<ExtArgs>
+    updated_Award?: boolean | users$updated_AwardArgs<ExtArgs>
+    sessions?: boolean | users$sessionsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3375,6 +3623,9 @@ export namespace Prisma {
       updated_Activities: Prisma.$hds_activitiesPayload<ExtArgs>[]
       created_Gallery: Prisma.$galleriesPayload<ExtArgs>[]
       updated_Gallery: Prisma.$galleriesPayload<ExtArgs>[]
+      created_Award: Prisma.$awardsPayload<ExtArgs>[]
+      updated_Award: Prisma.$awardsPayload<ExtArgs>[]
+      sessions: Prisma.$sessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3747,6 +3998,9 @@ export namespace Prisma {
     updated_Activities<T extends users$updated_ActivitiesArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_ActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$hds_activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     created_Gallery<T extends users$created_GalleryArgs<ExtArgs> = {}>(args?: Subset<T, users$created_GalleryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updated_Gallery<T extends users$updated_GalleryArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_GalleryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$galleriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    created_Award<T extends users$created_AwardArgs<ExtArgs> = {}>(args?: Subset<T, users$created_AwardArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updated_Award<T extends users$updated_AwardArgs<ExtArgs> = {}>(args?: Subset<T, users$updated_AwardArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends users$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, users$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4555,6 +4809,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GalleriesScalarFieldEnum | GalleriesScalarFieldEnum[]
+  }
+
+  /**
+   * users.created_Award
+   */
+  export type users$created_AwardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    where?: awardsWhereInput
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    cursor?: awardsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
+   * users.updated_Award
+   */
+  export type users$updated_AwardArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    where?: awardsWhereInput
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    cursor?: awardsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
+   * users.sessions
+   */
+  export type users$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    where?: sessionWhereInput
+    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    cursor?: sessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -6580,12 +6906,14 @@ export namespace Prisma {
 
   export type JobsAvgAggregateOutputType = {
     id: number | null
+    department_id: number | null
     created_by: number | null
     updated_by: number | null
   }
 
   export type JobsSumAggregateOutputType = {
     id: number | null
+    department_id: number | null
     created_by: number | null
     updated_by: number | null
   }
@@ -6595,7 +6923,7 @@ export namespace Prisma {
     open_date: Date | null
     close_date: Date | null
     position: string | null
-    department: string | null
+    department_id: number | null
     description: string | null
     experiences: string | null
     level: string | null
@@ -6617,7 +6945,7 @@ export namespace Prisma {
     open_date: Date | null
     close_date: Date | null
     position: string | null
-    department: string | null
+    department_id: number | null
     description: string | null
     experiences: string | null
     level: string | null
@@ -6639,7 +6967,7 @@ export namespace Prisma {
     open_date: number
     close_date: number
     position: number
-    department: number
+    department_id: number
     description: number
     experiences: number
     level: number
@@ -6660,12 +6988,14 @@ export namespace Prisma {
 
   export type JobsAvgAggregateInputType = {
     id?: true
+    department_id?: true
     created_by?: true
     updated_by?: true
   }
 
   export type JobsSumAggregateInputType = {
     id?: true
+    department_id?: true
     created_by?: true
     updated_by?: true
   }
@@ -6675,7 +7005,7 @@ export namespace Prisma {
     open_date?: true
     close_date?: true
     position?: true
-    department?: true
+    department_id?: true
     description?: true
     experiences?: true
     level?: true
@@ -6697,7 +7027,7 @@ export namespace Prisma {
     open_date?: true
     close_date?: true
     position?: true
-    department?: true
+    department_id?: true
     description?: true
     experiences?: true
     level?: true
@@ -6719,7 +7049,7 @@ export namespace Prisma {
     open_date?: true
     close_date?: true
     position?: true
-    department?: true
+    department_id?: true
     description?: true
     experiences?: true
     level?: true
@@ -6828,7 +7158,7 @@ export namespace Prisma {
     open_date: Date
     close_date: Date
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -6869,7 +7199,7 @@ export namespace Prisma {
     open_date?: boolean
     close_date?: boolean
     position?: boolean
-    department?: boolean
+    department_id?: boolean
     description?: boolean
     experiences?: boolean
     level?: boolean
@@ -6884,6 +7214,7 @@ export namespace Prisma {
     updated_by?: boolean
     created_at?: boolean
     updated_at?: boolean
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
     applicant?: boolean | jobs$applicantArgs<ExtArgs>
@@ -6897,7 +7228,7 @@ export namespace Prisma {
     open_date?: boolean
     close_date?: boolean
     position?: boolean
-    department?: boolean
+    department_id?: boolean
     description?: boolean
     experiences?: boolean
     level?: boolean
@@ -6914,8 +7245,9 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "open_date" | "close_date" | "position" | "department" | "description" | "experiences" | "level" | "overview" | "job_type" | "salary" | "duties" | "requirements" | "gender" | "status" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["jobs"]>
+  export type jobsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "open_date" | "close_date" | "position" | "department_id" | "description" | "experiences" | "level" | "overview" | "job_type" | "salary" | "duties" | "requirements" | "gender" | "status" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["jobs"]>
   export type jobsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
     applicant?: boolean | jobs$applicantArgs<ExtArgs>
@@ -6925,6 +7257,7 @@ export namespace Prisma {
   export type $jobsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "jobs"
     objects: {
+      department: Prisma.$departmentsPayload<ExtArgs>
       createdBy: Prisma.$usersPayload<ExtArgs>
       updatedBy: Prisma.$usersPayload<ExtArgs>
       applicant: Prisma.$applicantsPayload<ExtArgs>[]
@@ -6934,7 +7267,7 @@ export namespace Prisma {
       open_date: Date
       close_date: Date
       position: string
-      department: string
+      department_id: number
       description: string
       experiences: string
       level: string
@@ -7289,6 +7622,7 @@ export namespace Prisma {
    */
   export interface Prisma__jobsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    department<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     applicant<T extends jobs$applicantArgs<ExtArgs> = {}>(args?: Subset<T, jobs$applicantArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$applicantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7325,7 +7659,7 @@ export namespace Prisma {
     readonly open_date: FieldRef<"jobs", 'DateTime'>
     readonly close_date: FieldRef<"jobs", 'DateTime'>
     readonly position: FieldRef<"jobs", 'String'>
-    readonly department: FieldRef<"jobs", 'String'>
+    readonly department_id: FieldRef<"jobs", 'Int'>
     readonly description: FieldRef<"jobs", 'String'>
     readonly experiences: FieldRef<"jobs", 'String'>
     readonly level: FieldRef<"jobs", 'String'>
@@ -11143,6 +11477,8 @@ export namespace Prisma {
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
     member?: boolean | departments$memberArgs<ExtArgs>
+    jobs?: boolean | departments$jobsArgs<ExtArgs>
+    awards?: boolean | departments$awardsArgs<ExtArgs>
     _count?: boolean | DepartmentsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["departments"]>
 
@@ -11163,6 +11499,8 @@ export namespace Prisma {
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
     member?: boolean | departments$memberArgs<ExtArgs>
+    jobs?: boolean | departments$jobsArgs<ExtArgs>
+    awards?: boolean | departments$awardsArgs<ExtArgs>
     _count?: boolean | DepartmentsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -11172,6 +11510,8 @@ export namespace Prisma {
       createdBy: Prisma.$usersPayload<ExtArgs>
       updatedBy: Prisma.$usersPayload<ExtArgs>
       member: Prisma.$membersPayload<ExtArgs>[]
+      jobs: Prisma.$jobsPayload<ExtArgs>[]
+      awards: Prisma.$awardsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11524,6 +11864,8 @@ export namespace Prisma {
     createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     member<T extends departments$memberArgs<ExtArgs> = {}>(args?: Subset<T, departments$memberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    jobs<T extends departments$jobsArgs<ExtArgs> = {}>(args?: Subset<T, departments$jobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jobsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    awards<T extends departments$awardsArgs<ExtArgs> = {}>(args?: Subset<T, departments$awardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11927,6 +12269,54 @@ export namespace Prisma {
   }
 
   /**
+   * departments.jobs
+   */
+  export type departments$jobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jobs
+     */
+    select?: jobsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jobs
+     */
+    omit?: jobsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jobsInclude<ExtArgs> | null
+    where?: jobsWhereInput
+    orderBy?: jobsOrderByWithRelationInput | jobsOrderByWithRelationInput[]
+    cursor?: jobsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JobsScalarFieldEnum | JobsScalarFieldEnum[]
+  }
+
+  /**
+   * departments.awards
+   */
+  export type departments$awardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    where?: awardsWhereInput
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    cursor?: awardsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
    * departments without action
    */
   export type departmentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12190,6 +12580,8 @@ export namespace Prisma {
     department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    awards?: boolean | members$awardsArgs<ExtArgs>
+    _count?: boolean | MembersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["members"]>
 
 
@@ -12211,6 +12603,8 @@ export namespace Prisma {
     department?: boolean | departmentsDefaultArgs<ExtArgs>
     createdBy?: boolean | usersDefaultArgs<ExtArgs>
     updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+    awards?: boolean | members$awardsArgs<ExtArgs>
+    _count?: boolean | MembersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $membersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12219,6 +12613,7 @@ export namespace Prisma {
       department: Prisma.$departmentsPayload<ExtArgs>
       createdBy: Prisma.$usersPayload<ExtArgs>
       updatedBy: Prisma.$usersPayload<ExtArgs>
+      awards: Prisma.$awardsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -12573,6 +12968,7 @@ export namespace Prisma {
     department<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    awards<T extends members$awardsArgs<ExtArgs> = {}>(args?: Subset<T, members$awardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12951,6 +13347,30 @@ export namespace Prisma {
      * Limit how many members to delete.
      */
     limit?: number
+  }
+
+  /**
+   * members.awards
+   */
+  export type members$awardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    where?: awardsWhereInput
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    cursor?: awardsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
   }
 
   /**
@@ -15016,6 +15436,1993 @@ export namespace Prisma {
 
 
   /**
+   * Model awards
+   */
+
+  export type AggregateAwards = {
+    _count: AwardsCountAggregateOutputType | null
+    _avg: AwardsAvgAggregateOutputType | null
+    _sum: AwardsSumAggregateOutputType | null
+    _min: AwardsMinAggregateOutputType | null
+    _max: AwardsMaxAggregateOutputType | null
+  }
+
+  export type AwardsAvgAggregateOutputType = {
+    id: number | null
+    department_id: number | null
+    member_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type AwardsSumAggregateOutputType = {
+    id: number | null
+    department_id: number | null
+    member_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type AwardsMinAggregateOutputType = {
+    id: number | null
+    date: Date | null
+    title: string | null
+    department_id: number | null
+    member_id: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AwardsMaxAggregateOutputType = {
+    id: number | null
+    date: Date | null
+    title: string | null
+    department_id: number | null
+    member_id: number | null
+    created_by: number | null
+    updated_by: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AwardsCountAggregateOutputType = {
+    id: number
+    date: number
+    title: number
+    department_id: number
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AwardsAvgAggregateInputType = {
+    id?: true
+    department_id?: true
+    member_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type AwardsSumAggregateInputType = {
+    id?: true
+    department_id?: true
+    member_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type AwardsMinAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    department_id?: true
+    member_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AwardsMaxAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    department_id?: true
+    member_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AwardsCountAggregateInputType = {
+    id?: true
+    date?: true
+    title?: true
+    department_id?: true
+    member_id?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AwardsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which awards to aggregate.
+     */
+    where?: awardsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of awards to fetch.
+     */
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: awardsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` awards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` awards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned awards
+    **/
+    _count?: true | AwardsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AwardsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AwardsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AwardsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AwardsMaxAggregateInputType
+  }
+
+  export type GetAwardsAggregateType<T extends AwardsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAwards]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAwards[P]>
+      : GetScalarType<T[P], AggregateAwards[P]>
+  }
+
+
+
+
+  export type awardsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: awardsWhereInput
+    orderBy?: awardsOrderByWithAggregationInput | awardsOrderByWithAggregationInput[]
+    by: AwardsScalarFieldEnum[] | AwardsScalarFieldEnum
+    having?: awardsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AwardsCountAggregateInputType | true
+    _avg?: AwardsAvgAggregateInputType
+    _sum?: AwardsSumAggregateInputType
+    _min?: AwardsMinAggregateInputType
+    _max?: AwardsMaxAggregateInputType
+  }
+
+  export type AwardsGroupByOutputType = {
+    id: number
+    date: Date
+    title: string
+    department_id: number
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at: Date
+    updated_at: Date
+    _count: AwardsCountAggregateOutputType | null
+    _avg: AwardsAvgAggregateOutputType | null
+    _sum: AwardsSumAggregateOutputType | null
+    _min: AwardsMinAggregateOutputType | null
+    _max: AwardsMaxAggregateOutputType | null
+  }
+
+  type GetAwardsGroupByPayload<T extends awardsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AwardsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AwardsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AwardsGroupByOutputType[P]>
+            : GetScalarType<T[P], AwardsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type awardsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    date?: boolean
+    title?: boolean
+    department_id?: boolean
+    member_id?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
+    member?: boolean | membersDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["awards"]>
+
+
+
+  export type awardsSelectScalar = {
+    id?: boolean
+    date?: boolean
+    title?: boolean
+    department_id?: boolean
+    member_id?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type awardsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "title" | "department_id" | "member_id" | "created_by" | "updated_by" | "created_at" | "updated_at", ExtArgs["result"]["awards"]>
+  export type awardsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    department?: boolean | departmentsDefaultArgs<ExtArgs>
+    member?: boolean | membersDefaultArgs<ExtArgs>
+    createdBy?: boolean | usersDefaultArgs<ExtArgs>
+    updatedBy?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $awardsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "awards"
+    objects: {
+      department: Prisma.$departmentsPayload<ExtArgs>
+      member: Prisma.$membersPayload<ExtArgs>
+      createdBy: Prisma.$usersPayload<ExtArgs>
+      updatedBy: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      date: Date
+      title: string
+      department_id: number
+      member_id: number
+      created_by: number
+      updated_by: number
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["awards"]>
+    composites: {}
+  }
+
+  type awardsGetPayload<S extends boolean | null | undefined | awardsDefaultArgs> = $Result.GetResult<Prisma.$awardsPayload, S>
+
+  type awardsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<awardsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AwardsCountAggregateInputType | true
+    }
+
+  export interface awardsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['awards'], meta: { name: 'awards' } }
+    /**
+     * Find zero or one Awards that matches the filter.
+     * @param {awardsFindUniqueArgs} args - Arguments to find a Awards
+     * @example
+     * // Get one Awards
+     * const awards = await prisma.awards.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends awardsFindUniqueArgs>(args: SelectSubset<T, awardsFindUniqueArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Awards that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {awardsFindUniqueOrThrowArgs} args - Arguments to find a Awards
+     * @example
+     * // Get one Awards
+     * const awards = await prisma.awards.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends awardsFindUniqueOrThrowArgs>(args: SelectSubset<T, awardsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Awards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsFindFirstArgs} args - Arguments to find a Awards
+     * @example
+     * // Get one Awards
+     * const awards = await prisma.awards.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends awardsFindFirstArgs>(args?: SelectSubset<T, awardsFindFirstArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Awards that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsFindFirstOrThrowArgs} args - Arguments to find a Awards
+     * @example
+     * // Get one Awards
+     * const awards = await prisma.awards.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends awardsFindFirstOrThrowArgs>(args?: SelectSubset<T, awardsFindFirstOrThrowArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Awards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Awards
+     * const awards = await prisma.awards.findMany()
+     * 
+     * // Get first 10 Awards
+     * const awards = await prisma.awards.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const awardsWithIdOnly = await prisma.awards.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends awardsFindManyArgs>(args?: SelectSubset<T, awardsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Awards.
+     * @param {awardsCreateArgs} args - Arguments to create a Awards.
+     * @example
+     * // Create one Awards
+     * const Awards = await prisma.awards.create({
+     *   data: {
+     *     // ... data to create a Awards
+     *   }
+     * })
+     * 
+     */
+    create<T extends awardsCreateArgs>(args: SelectSubset<T, awardsCreateArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Awards.
+     * @param {awardsCreateManyArgs} args - Arguments to create many Awards.
+     * @example
+     * // Create many Awards
+     * const awards = await prisma.awards.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends awardsCreateManyArgs>(args?: SelectSubset<T, awardsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Awards.
+     * @param {awardsDeleteArgs} args - Arguments to delete one Awards.
+     * @example
+     * // Delete one Awards
+     * const Awards = await prisma.awards.delete({
+     *   where: {
+     *     // ... filter to delete one Awards
+     *   }
+     * })
+     * 
+     */
+    delete<T extends awardsDeleteArgs>(args: SelectSubset<T, awardsDeleteArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Awards.
+     * @param {awardsUpdateArgs} args - Arguments to update one Awards.
+     * @example
+     * // Update one Awards
+     * const awards = await prisma.awards.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends awardsUpdateArgs>(args: SelectSubset<T, awardsUpdateArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Awards.
+     * @param {awardsDeleteManyArgs} args - Arguments to filter Awards to delete.
+     * @example
+     * // Delete a few Awards
+     * const { count } = await prisma.awards.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends awardsDeleteManyArgs>(args?: SelectSubset<T, awardsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Awards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Awards
+     * const awards = await prisma.awards.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends awardsUpdateManyArgs>(args: SelectSubset<T, awardsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Awards.
+     * @param {awardsUpsertArgs} args - Arguments to update or create a Awards.
+     * @example
+     * // Update or create a Awards
+     * const awards = await prisma.awards.upsert({
+     *   create: {
+     *     // ... data to create a Awards
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Awards we want to update
+     *   }
+     * })
+     */
+    upsert<T extends awardsUpsertArgs>(args: SelectSubset<T, awardsUpsertArgs<ExtArgs>>): Prisma__awardsClient<$Result.GetResult<Prisma.$awardsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Awards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsCountArgs} args - Arguments to filter Awards to count.
+     * @example
+     * // Count the number of Awards
+     * const count = await prisma.awards.count({
+     *   where: {
+     *     // ... the filter for the Awards we want to count
+     *   }
+     * })
+    **/
+    count<T extends awardsCountArgs>(
+      args?: Subset<T, awardsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AwardsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Awards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AwardsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AwardsAggregateArgs>(args: Subset<T, AwardsAggregateArgs>): Prisma.PrismaPromise<GetAwardsAggregateType<T>>
+
+    /**
+     * Group by Awards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {awardsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends awardsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: awardsGroupByArgs['orderBy'] }
+        : { orderBy?: awardsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, awardsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAwardsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the awards model
+   */
+  readonly fields: awardsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for awards.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__awardsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    department<T extends departmentsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, departmentsDefaultArgs<ExtArgs>>): Prisma__departmentsClient<$Result.GetResult<Prisma.$departmentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    member<T extends membersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, membersDefaultArgs<ExtArgs>>): Prisma__membersClient<$Result.GetResult<Prisma.$membersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    createdBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    updatedBy<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the awards model
+   */
+  interface awardsFieldRefs {
+    readonly id: FieldRef<"awards", 'Int'>
+    readonly date: FieldRef<"awards", 'DateTime'>
+    readonly title: FieldRef<"awards", 'String'>
+    readonly department_id: FieldRef<"awards", 'Int'>
+    readonly member_id: FieldRef<"awards", 'Int'>
+    readonly created_by: FieldRef<"awards", 'Int'>
+    readonly updated_by: FieldRef<"awards", 'Int'>
+    readonly created_at: FieldRef<"awards", 'DateTime'>
+    readonly updated_at: FieldRef<"awards", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * awards findUnique
+   */
+  export type awardsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter, which awards to fetch.
+     */
+    where: awardsWhereUniqueInput
+  }
+
+  /**
+   * awards findUniqueOrThrow
+   */
+  export type awardsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter, which awards to fetch.
+     */
+    where: awardsWhereUniqueInput
+  }
+
+  /**
+   * awards findFirst
+   */
+  export type awardsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter, which awards to fetch.
+     */
+    where?: awardsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of awards to fetch.
+     */
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for awards.
+     */
+    cursor?: awardsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` awards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` awards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of awards.
+     */
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
+   * awards findFirstOrThrow
+   */
+  export type awardsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter, which awards to fetch.
+     */
+    where?: awardsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of awards to fetch.
+     */
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for awards.
+     */
+    cursor?: awardsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` awards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` awards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of awards.
+     */
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
+   * awards findMany
+   */
+  export type awardsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter, which awards to fetch.
+     */
+    where?: awardsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of awards to fetch.
+     */
+    orderBy?: awardsOrderByWithRelationInput | awardsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing awards.
+     */
+    cursor?: awardsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` awards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` awards.
+     */
+    skip?: number
+    distinct?: AwardsScalarFieldEnum | AwardsScalarFieldEnum[]
+  }
+
+  /**
+   * awards create
+   */
+  export type awardsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a awards.
+     */
+    data: XOR<awardsCreateInput, awardsUncheckedCreateInput>
+  }
+
+  /**
+   * awards createMany
+   */
+  export type awardsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many awards.
+     */
+    data: awardsCreateManyInput | awardsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * awards update
+   */
+  export type awardsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a awards.
+     */
+    data: XOR<awardsUpdateInput, awardsUncheckedUpdateInput>
+    /**
+     * Choose, which awards to update.
+     */
+    where: awardsWhereUniqueInput
+  }
+
+  /**
+   * awards updateMany
+   */
+  export type awardsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update awards.
+     */
+    data: XOR<awardsUpdateManyMutationInput, awardsUncheckedUpdateManyInput>
+    /**
+     * Filter which awards to update
+     */
+    where?: awardsWhereInput
+    /**
+     * Limit how many awards to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * awards upsert
+   */
+  export type awardsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the awards to update in case it exists.
+     */
+    where: awardsWhereUniqueInput
+    /**
+     * In case the awards found by the `where` argument doesn't exist, create a new awards with this data.
+     */
+    create: XOR<awardsCreateInput, awardsUncheckedCreateInput>
+    /**
+     * In case the awards was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<awardsUpdateInput, awardsUncheckedUpdateInput>
+  }
+
+  /**
+   * awards delete
+   */
+  export type awardsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+    /**
+     * Filter which awards to delete.
+     */
+    where: awardsWhereUniqueInput
+  }
+
+  /**
+   * awards deleteMany
+   */
+  export type awardsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which awards to delete
+     */
+    where?: awardsWhereInput
+    /**
+     * Limit how many awards to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * awards without action
+   */
+  export type awardsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the awards
+     */
+    select?: awardsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the awards
+     */
+    omit?: awardsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: awardsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model session
+   */
+
+  export type AggregateSession = {
+    _count: SessionCountAggregateOutputType | null
+    _avg: SessionAvgAggregateOutputType | null
+    _sum: SessionSumAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
+  }
+
+  export type SessionAvgAggregateOutputType = {
+    user_id: number | null
+  }
+
+  export type SessionSumAggregateOutputType = {
+    user_id: number | null
+  }
+
+  export type SessionMinAggregateOutputType = {
+    id: string | null
+    sessionToken: string | null
+    user_id: number | null
+    expires: Date | null
+  }
+
+  export type SessionMaxAggregateOutputType = {
+    id: string | null
+    sessionToken: string | null
+    user_id: number | null
+    expires: Date | null
+  }
+
+  export type SessionCountAggregateOutputType = {
+    id: number
+    sessionToken: number
+    user_id: number
+    expires: number
+    _all: number
+  }
+
+
+  export type SessionAvgAggregateInputType = {
+    user_id?: true
+  }
+
+  export type SessionSumAggregateInputType = {
+    user_id?: true
+  }
+
+  export type SessionMinAggregateInputType = {
+    id?: true
+    sessionToken?: true
+    user_id?: true
+    expires?: true
+  }
+
+  export type SessionMaxAggregateInputType = {
+    id?: true
+    sessionToken?: true
+    user_id?: true
+    expires?: true
+  }
+
+  export type SessionCountAggregateInputType = {
+    id?: true
+    sessionToken?: true
+    user_id?: true
+    expires?: true
+    _all?: true
+  }
+
+  export type SessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which session to aggregate.
+     */
+    where?: sessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sessions to fetch.
+     */
+    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sessions
+    **/
+    _count?: true | SessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SessionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SessionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SessionMaxAggregateInputType
+  }
+
+  export type GetSessionAggregateType<T extends SessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSession[P]>
+      : GetScalarType<T[P], AggregateSession[P]>
+  }
+
+
+
+
+  export type sessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sessionWhereInput
+    orderBy?: sessionOrderByWithAggregationInput | sessionOrderByWithAggregationInput[]
+    by: SessionScalarFieldEnum[] | SessionScalarFieldEnum
+    having?: sessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SessionCountAggregateInputType | true
+    _avg?: SessionAvgAggregateInputType
+    _sum?: SessionSumAggregateInputType
+    _min?: SessionMinAggregateInputType
+    _max?: SessionMaxAggregateInputType
+  }
+
+  export type SessionGroupByOutputType = {
+    id: string
+    sessionToken: string
+    user_id: number
+    expires: Date
+    _count: SessionCountAggregateOutputType | null
+    _avg: SessionAvgAggregateOutputType | null
+    _sum: SessionSumAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
+  }
+
+  type GetSessionGroupByPayload<T extends sessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SessionGroupByOutputType[P]>
+            : GetScalarType<T[P], SessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionToken?: boolean
+    user_id?: boolean
+    expires?: boolean
+    user?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
+
+
+
+  export type sessionSelectScalar = {
+    id?: boolean
+    sessionToken?: boolean
+    user_id?: boolean
+    expires?: boolean
+  }
+
+  export type sessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionToken" | "user_id" | "expires", ExtArgs["result"]["session"]>
+  export type sessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $sessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "session"
+    objects: {
+      user: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionToken: string
+      user_id: number
+      expires: Date
+    }, ExtArgs["result"]["session"]>
+    composites: {}
+  }
+
+  type sessionGetPayload<S extends boolean | null | undefined | sessionDefaultArgs> = $Result.GetResult<Prisma.$sessionPayload, S>
+
+  type sessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SessionCountAggregateInputType | true
+    }
+
+  export interface sessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['session'], meta: { name: 'session' } }
+    /**
+     * Find zero or one Session that matches the filter.
+     * @param {sessionFindUniqueArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sessionFindUniqueArgs>(args: SelectSubset<T, sessionFindUniqueArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Session that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sessionFindUniqueOrThrowArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sessionFindUniqueOrThrowArgs>(args: SelectSubset<T, sessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Session that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionFindFirstArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sessionFindFirstArgs>(args?: SelectSubset<T, sessionFindFirstArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Session that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionFindFirstOrThrowArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sessionFindFirstOrThrowArgs>(args?: SelectSubset<T, sessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sessions
+     * const sessions = await prisma.session.findMany()
+     * 
+     * // Get first 10 Sessions
+     * const sessions = await prisma.session.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sessionWithIdOnly = await prisma.session.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends sessionFindManyArgs>(args?: SelectSubset<T, sessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Session.
+     * @param {sessionCreateArgs} args - Arguments to create a Session.
+     * @example
+     * // Create one Session
+     * const Session = await prisma.session.create({
+     *   data: {
+     *     // ... data to create a Session
+     *   }
+     * })
+     * 
+     */
+    create<T extends sessionCreateArgs>(args: SelectSubset<T, sessionCreateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sessions.
+     * @param {sessionCreateManyArgs} args - Arguments to create many Sessions.
+     * @example
+     * // Create many Sessions
+     * const session = await prisma.session.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sessionCreateManyArgs>(args?: SelectSubset<T, sessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Session.
+     * @param {sessionDeleteArgs} args - Arguments to delete one Session.
+     * @example
+     * // Delete one Session
+     * const Session = await prisma.session.delete({
+     *   where: {
+     *     // ... filter to delete one Session
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sessionDeleteArgs>(args: SelectSubset<T, sessionDeleteArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Session.
+     * @param {sessionUpdateArgs} args - Arguments to update one Session.
+     * @example
+     * // Update one Session
+     * const session = await prisma.session.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sessionUpdateArgs>(args: SelectSubset<T, sessionUpdateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sessions.
+     * @param {sessionDeleteManyArgs} args - Arguments to filter Sessions to delete.
+     * @example
+     * // Delete a few Sessions
+     * const { count } = await prisma.session.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sessionDeleteManyArgs>(args?: SelectSubset<T, sessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sessions
+     * const session = await prisma.session.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sessionUpdateManyArgs>(args: SelectSubset<T, sessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Session.
+     * @param {sessionUpsertArgs} args - Arguments to update or create a Session.
+     * @example
+     * // Update or create a Session
+     * const session = await prisma.session.upsert({
+     *   create: {
+     *     // ... data to create a Session
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Session we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sessionUpsertArgs>(args: SelectSubset<T, sessionUpsertArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionCountArgs} args - Arguments to filter Sessions to count.
+     * @example
+     * // Count the number of Sessions
+     * const count = await prisma.session.count({
+     *   where: {
+     *     // ... the filter for the Sessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends sessionCountArgs>(
+      args?: Subset<T, sessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Session.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SessionAggregateArgs>(args: Subset<T, SessionAggregateArgs>): Prisma.PrismaPromise<GetSessionAggregateType<T>>
+
+    /**
+     * Group by Session.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sessionGroupByArgs['orderBy'] }
+        : { orderBy?: sessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the session model
+   */
+  readonly fields: sessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for session.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the session model
+   */
+  interface sessionFieldRefs {
+    readonly id: FieldRef<"session", 'String'>
+    readonly sessionToken: FieldRef<"session", 'String'>
+    readonly user_id: FieldRef<"session", 'Int'>
+    readonly expires: FieldRef<"session", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * session findUnique
+   */
+  export type sessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter, which session to fetch.
+     */
+    where: sessionWhereUniqueInput
+  }
+
+  /**
+   * session findUniqueOrThrow
+   */
+  export type sessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter, which session to fetch.
+     */
+    where: sessionWhereUniqueInput
+  }
+
+  /**
+   * session findFirst
+   */
+  export type sessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter, which session to fetch.
+     */
+    where?: sessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sessions to fetch.
+     */
+    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sessions.
+     */
+    cursor?: sessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sessions.
+     */
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * session findFirstOrThrow
+   */
+  export type sessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter, which session to fetch.
+     */
+    where?: sessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sessions to fetch.
+     */
+    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sessions.
+     */
+    cursor?: sessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sessions.
+     */
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * session findMany
+   */
+  export type sessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter, which sessions to fetch.
+     */
+    where?: sessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sessions to fetch.
+     */
+    orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sessions.
+     */
+    cursor?: sessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sessions.
+     */
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * session create
+   */
+  export type sessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a session.
+     */
+    data: XOR<sessionCreateInput, sessionUncheckedCreateInput>
+  }
+
+  /**
+   * session createMany
+   */
+  export type sessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sessions.
+     */
+    data: sessionCreateManyInput | sessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * session update
+   */
+  export type sessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a session.
+     */
+    data: XOR<sessionUpdateInput, sessionUncheckedUpdateInput>
+    /**
+     * Choose, which session to update.
+     */
+    where: sessionWhereUniqueInput
+  }
+
+  /**
+   * session updateMany
+   */
+  export type sessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sessions.
+     */
+    data: XOR<sessionUpdateManyMutationInput, sessionUncheckedUpdateManyInput>
+    /**
+     * Filter which sessions to update
+     */
+    where?: sessionWhereInput
+    /**
+     * Limit how many sessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * session upsert
+   */
+  export type sessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the session to update in case it exists.
+     */
+    where: sessionWhereUniqueInput
+    /**
+     * In case the session found by the `where` argument doesn't exist, create a new session with this data.
+     */
+    create: XOR<sessionCreateInput, sessionUncheckedCreateInput>
+    /**
+     * In case the session was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sessionUpdateInput, sessionUncheckedUpdateInput>
+  }
+
+  /**
+   * session delete
+   */
+  export type sessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+    /**
+     * Filter which session to delete.
+     */
+    where: sessionWhereUniqueInput
+  }
+
+  /**
+   * session deleteMany
+   */
+  export type sessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sessions to delete
+     */
+    where?: sessionWhereInput
+    /**
+     * Limit how many sessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * session without action
+   */
+  export type sessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the session
+     */
+    select?: sessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the session
+     */
+    omit?: sessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -15092,7 +17499,7 @@ export namespace Prisma {
     open_date: 'open_date',
     close_date: 'close_date',
     position: 'position',
-    department: 'department',
+    department_id: 'department_id',
     description: 'description',
     experiences: 'experiences',
     level: 'level',
@@ -15224,6 +17631,31 @@ export namespace Prisma {
   export type GalleriesScalarFieldEnum = (typeof GalleriesScalarFieldEnum)[keyof typeof GalleriesScalarFieldEnum]
 
 
+  export const AwardsScalarFieldEnum: {
+    id: 'id',
+    date: 'date',
+    title: 'title',
+    department_id: 'department_id',
+    member_id: 'member_id',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AwardsScalarFieldEnum = (typeof AwardsScalarFieldEnum)[keyof typeof AwardsScalarFieldEnum]
+
+
+  export const SessionScalarFieldEnum: {
+    id: 'id',
+    sessionToken: 'sessionToken',
+    user_id: 'user_id',
+    expires: 'expires'
+  };
+
+  export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -15306,7 +17738,6 @@ export namespace Prisma {
 
   export const jobsOrderByRelevanceFieldEnum: {
     position: 'position',
-    department: 'department',
     description: 'description',
     experiences: 'experiences',
     level: 'level',
@@ -15394,6 +17825,21 @@ export namespace Prisma {
   };
 
   export type galleriesOrderByRelevanceFieldEnum = (typeof galleriesOrderByRelevanceFieldEnum)[keyof typeof galleriesOrderByRelevanceFieldEnum]
+
+
+  export const awardsOrderByRelevanceFieldEnum: {
+    title: 'title'
+  };
+
+  export type awardsOrderByRelevanceFieldEnum = (typeof awardsOrderByRelevanceFieldEnum)[keyof typeof awardsOrderByRelevanceFieldEnum]
+
+
+  export const sessionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    sessionToken: 'sessionToken'
+  };
+
+  export type sessionOrderByRelevanceFieldEnum = (typeof sessionOrderByRelevanceFieldEnum)[keyof typeof sessionOrderByRelevanceFieldEnum]
 
 
   /**
@@ -15535,6 +17981,9 @@ export namespace Prisma {
     updated_Activities?: Hds_activitiesListRelationFilter
     created_Gallery?: GalleriesListRelationFilter
     updated_Gallery?: GalleriesListRelationFilter
+    created_Award?: AwardsListRelationFilter
+    updated_Award?: AwardsListRelationFilter
+    sessions?: SessionListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -15568,6 +18017,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesOrderByRelationAggregateInput
     created_Gallery?: galleriesOrderByRelationAggregateInput
     updated_Gallery?: galleriesOrderByRelationAggregateInput
+    created_Award?: awardsOrderByRelationAggregateInput
+    updated_Award?: awardsOrderByRelationAggregateInput
+    sessions?: sessionOrderByRelationAggregateInput
     _relevance?: usersOrderByRelevanceInput
   }
 
@@ -15605,6 +18057,9 @@ export namespace Prisma {
     updated_Activities?: Hds_activitiesListRelationFilter
     created_Gallery?: GalleriesListRelationFilter
     updated_Gallery?: GalleriesListRelationFilter
+    created_Award?: AwardsListRelationFilter
+    updated_Award?: AwardsListRelationFilter
+    sessions?: SessionListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -15814,7 +18269,7 @@ export namespace Prisma {
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
     position?: StringFilter<"jobs"> | string
-    department?: StringFilter<"jobs"> | string
+    department_id?: IntFilter<"jobs"> | number
     description?: StringFilter<"jobs"> | string
     experiences?: StringFilter<"jobs"> | string
     level?: StringFilter<"jobs"> | string
@@ -15829,6 +18284,7 @@ export namespace Prisma {
     updated_by?: IntFilter<"jobs"> | number
     created_at?: DateTimeFilter<"jobs"> | Date | string
     updated_at?: DateTimeFilter<"jobs"> | Date | string
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     applicant?: ApplicantsListRelationFilter
@@ -15839,7 +18295,7 @@ export namespace Prisma {
     open_date?: SortOrder
     close_date?: SortOrder
     position?: SortOrder
-    department?: SortOrder
+    department_id?: SortOrder
     description?: SortOrder
     experiences?: SortOrder
     level?: SortOrder
@@ -15854,6 +18310,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    department?: departmentsOrderByWithRelationInput
     createdBy?: usersOrderByWithRelationInput
     updatedBy?: usersOrderByWithRelationInput
     applicant?: applicantsOrderByRelationAggregateInput
@@ -15868,7 +18325,7 @@ export namespace Prisma {
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
     position?: StringFilter<"jobs"> | string
-    department?: StringFilter<"jobs"> | string
+    department_id?: IntFilter<"jobs"> | number
     description?: StringFilter<"jobs"> | string
     experiences?: StringFilter<"jobs"> | string
     level?: StringFilter<"jobs"> | string
@@ -15883,6 +18340,7 @@ export namespace Prisma {
     updated_by?: IntFilter<"jobs"> | number
     created_at?: DateTimeFilter<"jobs"> | Date | string
     updated_at?: DateTimeFilter<"jobs"> | Date | string
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     applicant?: ApplicantsListRelationFilter
@@ -15893,7 +18351,7 @@ export namespace Prisma {
     open_date?: SortOrder
     close_date?: SortOrder
     position?: SortOrder
-    department?: SortOrder
+    department_id?: SortOrder
     description?: SortOrder
     experiences?: SortOrder
     level?: SortOrder
@@ -15923,7 +18381,7 @@ export namespace Prisma {
     open_date?: DateTimeWithAggregatesFilter<"jobs"> | Date | string
     close_date?: DateTimeWithAggregatesFilter<"jobs"> | Date | string
     position?: StringWithAggregatesFilter<"jobs"> | string
-    department?: StringWithAggregatesFilter<"jobs"> | string
+    department_id?: IntWithAggregatesFilter<"jobs"> | number
     description?: StringWithAggregatesFilter<"jobs"> | string
     experiences?: StringWithAggregatesFilter<"jobs"> | string
     level?: StringWithAggregatesFilter<"jobs"> | string
@@ -16257,6 +18715,8 @@ export namespace Prisma {
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     member?: MembersListRelationFilter
+    jobs?: JobsListRelationFilter
+    awards?: AwardsListRelationFilter
   }
 
   export type departmentsOrderByWithRelationInput = {
@@ -16270,6 +18730,8 @@ export namespace Prisma {
     createdBy?: usersOrderByWithRelationInput
     updatedBy?: usersOrderByWithRelationInput
     member?: membersOrderByRelationAggregateInput
+    jobs?: jobsOrderByRelationAggregateInput
+    awards?: awardsOrderByRelationAggregateInput
     _relevance?: departmentsOrderByRelevanceInput
   }
 
@@ -16287,6 +18749,8 @@ export namespace Prisma {
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     member?: MembersListRelationFilter
+    jobs?: JobsListRelationFilter
+    awards?: AwardsListRelationFilter
   }, "id">
 
   export type departmentsOrderByWithAggregationInput = {
@@ -16333,6 +18797,7 @@ export namespace Prisma {
     department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    awards?: AwardsListRelationFilter
   }
 
   export type membersOrderByWithRelationInput = {
@@ -16348,6 +18813,7 @@ export namespace Prisma {
     department?: departmentsOrderByWithRelationInput
     createdBy?: usersOrderByWithRelationInput
     updatedBy?: usersOrderByWithRelationInput
+    awards?: awardsOrderByRelationAggregateInput
     _relevance?: membersOrderByRelevanceInput
   }
 
@@ -16367,6 +18833,7 @@ export namespace Prisma {
     department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
     createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
     updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    awards?: AwardsListRelationFilter
   }, "id">
 
   export type membersOrderByWithAggregationInput = {
@@ -16554,6 +19021,146 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"galleries"> | Date | string
   }
 
+  export type awardsWhereInput = {
+    AND?: awardsWhereInput | awardsWhereInput[]
+    OR?: awardsWhereInput[]
+    NOT?: awardsWhereInput | awardsWhereInput[]
+    id?: IntFilter<"awards"> | number
+    date?: DateTimeFilter<"awards"> | Date | string
+    title?: StringFilter<"awards"> | string
+    department_id?: IntFilter<"awards"> | number
+    member_id?: IntFilter<"awards"> | number
+    created_by?: IntFilter<"awards"> | number
+    updated_by?: IntFilter<"awards"> | number
+    created_at?: DateTimeFilter<"awards"> | Date | string
+    updated_at?: DateTimeFilter<"awards"> | Date | string
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    member?: XOR<MembersScalarRelationFilter, membersWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type awardsOrderByWithRelationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    department?: departmentsOrderByWithRelationInput
+    member?: membersOrderByWithRelationInput
+    createdBy?: usersOrderByWithRelationInput
+    updatedBy?: usersOrderByWithRelationInput
+    _relevance?: awardsOrderByRelevanceInput
+  }
+
+  export type awardsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: awardsWhereInput | awardsWhereInput[]
+    OR?: awardsWhereInput[]
+    NOT?: awardsWhereInput | awardsWhereInput[]
+    date?: DateTimeFilter<"awards"> | Date | string
+    title?: StringFilter<"awards"> | string
+    department_id?: IntFilter<"awards"> | number
+    member_id?: IntFilter<"awards"> | number
+    created_by?: IntFilter<"awards"> | number
+    updated_by?: IntFilter<"awards"> | number
+    created_at?: DateTimeFilter<"awards"> | Date | string
+    updated_at?: DateTimeFilter<"awards"> | Date | string
+    department?: XOR<DepartmentsScalarRelationFilter, departmentsWhereInput>
+    member?: XOR<MembersScalarRelationFilter, membersWhereInput>
+    createdBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    updatedBy?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type awardsOrderByWithAggregationInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: awardsCountOrderByAggregateInput
+    _avg?: awardsAvgOrderByAggregateInput
+    _max?: awardsMaxOrderByAggregateInput
+    _min?: awardsMinOrderByAggregateInput
+    _sum?: awardsSumOrderByAggregateInput
+  }
+
+  export type awardsScalarWhereWithAggregatesInput = {
+    AND?: awardsScalarWhereWithAggregatesInput | awardsScalarWhereWithAggregatesInput[]
+    OR?: awardsScalarWhereWithAggregatesInput[]
+    NOT?: awardsScalarWhereWithAggregatesInput | awardsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"awards"> | number
+    date?: DateTimeWithAggregatesFilter<"awards"> | Date | string
+    title?: StringWithAggregatesFilter<"awards"> | string
+    department_id?: IntWithAggregatesFilter<"awards"> | number
+    member_id?: IntWithAggregatesFilter<"awards"> | number
+    created_by?: IntWithAggregatesFilter<"awards"> | number
+    updated_by?: IntWithAggregatesFilter<"awards"> | number
+    created_at?: DateTimeWithAggregatesFilter<"awards"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"awards"> | Date | string
+  }
+
+  export type sessionWhereInput = {
+    AND?: sessionWhereInput | sessionWhereInput[]
+    OR?: sessionWhereInput[]
+    NOT?: sessionWhereInput | sessionWhereInput[]
+    id?: StringFilter<"session"> | string
+    sessionToken?: StringFilter<"session"> | string
+    user_id?: IntFilter<"session"> | number
+    expires?: DateTimeFilter<"session"> | Date | string
+    user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type sessionOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionToken?: SortOrder
+    user_id?: SortOrder
+    expires?: SortOrder
+    user?: usersOrderByWithRelationInput
+    _relevance?: sessionOrderByRelevanceInput
+  }
+
+  export type sessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    sessionToken?: string
+    AND?: sessionWhereInput | sessionWhereInput[]
+    OR?: sessionWhereInput[]
+    NOT?: sessionWhereInput | sessionWhereInput[]
+    user_id?: IntFilter<"session"> | number
+    expires?: DateTimeFilter<"session"> | Date | string
+    user?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id" | "sessionToken">
+
+  export type sessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionToken?: SortOrder
+    user_id?: SortOrder
+    expires?: SortOrder
+    _count?: sessionCountOrderByAggregateInput
+    _avg?: sessionAvgOrderByAggregateInput
+    _max?: sessionMaxOrderByAggregateInput
+    _min?: sessionMinOrderByAggregateInput
+    _sum?: sessionSumOrderByAggregateInput
+  }
+
+  export type sessionScalarWhereWithAggregatesInput = {
+    AND?: sessionScalarWhereWithAggregatesInput | sessionScalarWhereWithAggregatesInput[]
+    OR?: sessionScalarWhereWithAggregatesInput[]
+    NOT?: sessionScalarWhereWithAggregatesInput | sessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"session"> | string
+    sessionToken?: StringWithAggregatesFilter<"session"> | string
+    user_id?: IntWithAggregatesFilter<"session"> | number
+    expires?: DateTimeWithAggregatesFilter<"session"> | Date | string
+  }
+
   export type rolesCreateInput = {
     name: string
     access: JsonNullValueInput | InputJsonValue
@@ -16626,6 +19233,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -16658,6 +19268,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersUpdateInput = {
@@ -16689,6 +19302,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -16721,6 +19337,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -16937,7 +19556,6 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
     description: string
     experiences: string
     level: string
@@ -16950,6 +19568,7 @@ export namespace Prisma {
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutJobsInput
     createdBy: usersCreateNestedOneWithoutCreated_JobInput
     updatedBy: usersCreateNestedOneWithoutUpdated_JobInput
     applicant?: applicantsCreateNestedManyWithoutJobInput
@@ -16960,7 +19579,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -16982,7 +19601,6 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -16995,6 +19613,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutJobsNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_JobNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_JobNestedInput
     applicant?: applicantsUpdateManyWithoutJobNestedInput
@@ -17005,7 +19624,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -17028,7 +19647,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -17049,7 +19668,6 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -17069,7 +19687,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -17415,6 +20033,8 @@ export namespace Prisma {
     createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
     updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
     member?: membersCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsCreateNestedManyWithoutDepartmentInput
+    awards?: awardsCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateInput = {
@@ -17426,6 +20046,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsUncheckedCreateNestedManyWithoutDepartmentInput
+    awards?: awardsUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUpdateInput = {
@@ -17436,6 +20058,8 @@ export namespace Prisma {
     createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
     member?: membersUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateInput = {
@@ -17447,6 +20071,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUncheckedUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsCreateManyInput = {
@@ -17485,6 +20111,7 @@ export namespace Prisma {
     department: departmentsCreateNestedOneWithoutMemberInput
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+    awards?: awardsCreateNestedManyWithoutMemberInput
   }
 
   export type membersUncheckedCreateInput = {
@@ -17497,6 +20124,7 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    awards?: awardsUncheckedCreateNestedManyWithoutMemberInput
   }
 
   export type membersUpdateInput = {
@@ -17508,6 +20136,7 @@ export namespace Prisma {
     department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+    awards?: awardsUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateInput = {
@@ -17520,6 +20149,7 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    awards?: awardsUncheckedUpdateManyWithoutMemberNestedInput
   }
 
   export type membersCreateManyInput = {
@@ -17692,6 +20322,131 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsCreateInput = {
+    date: Date | string
+    title: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutAwardsInput
+    member: membersCreateNestedOneWithoutAwardsInput
+    createdBy: usersCreateNestedOneWithoutCreated_AwardInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_AwardInput
+  }
+
+  export type awardsUncheckedCreateInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutAwardsNestedInput
+    member?: membersUpdateOneRequiredWithoutAwardsNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_AwardNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_AwardNestedInput
+  }
+
+  export type awardsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsCreateManyInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionCreateInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+    user: usersCreateNestedOneWithoutSessionsInput
+  }
+
+  export type sessionUncheckedCreateInput = {
+    id?: string
+    sessionToken: string
+    user_id: number
+    expires: Date | string
+  }
+
+  export type sessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: usersUpdateOneRequiredWithoutSessionsNestedInput
+  }
+
+  export type sessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionCreateManyInput = {
+    id?: string
+    sessionToken: string
+    user_id: number
+    expires: Date | string
+  }
+
+  export type sessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -17955,6 +20710,18 @@ export namespace Prisma {
     none?: galleriesWhereInput
   }
 
+  export type AwardsListRelationFilter = {
+    every?: awardsWhereInput
+    some?: awardsWhereInput
+    none?: awardsWhereInput
+  }
+
+  export type SessionListRelationFilter = {
+    every?: sessionWhereInput
+    some?: sessionWhereInput
+    none?: sessionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -17993,6 +20760,14 @@ export namespace Prisma {
   }
 
   export type galleriesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type awardsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type sessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18239,6 +21014,11 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type DepartmentsScalarRelationFilter = {
+    is?: departmentsWhereInput
+    isNot?: departmentsWhereInput
+  }
+
   export type jobsOrderByRelevanceInput = {
     fields: jobsOrderByRelevanceFieldEnum | jobsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -18250,7 +21030,7 @@ export namespace Prisma {
     open_date?: SortOrder
     close_date?: SortOrder
     position?: SortOrder
-    department?: SortOrder
+    department_id?: SortOrder
     description?: SortOrder
     experiences?: SortOrder
     level?: SortOrder
@@ -18269,6 +21049,7 @@ export namespace Prisma {
 
   export type jobsAvgOrderByAggregateInput = {
     id?: SortOrder
+    department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -18278,7 +21059,7 @@ export namespace Prisma {
     open_date?: SortOrder
     close_date?: SortOrder
     position?: SortOrder
-    department?: SortOrder
+    department_id?: SortOrder
     description?: SortOrder
     experiences?: SortOrder
     level?: SortOrder
@@ -18300,7 +21081,7 @@ export namespace Prisma {
     open_date?: SortOrder
     close_date?: SortOrder
     position?: SortOrder
-    department?: SortOrder
+    department_id?: SortOrder
     description?: SortOrder
     experiences?: SortOrder
     level?: SortOrder
@@ -18319,6 +21100,7 @@ export namespace Prisma {
 
   export type jobsSumOrderByAggregateInput = {
     id?: SortOrder
+    department_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -18576,11 +21358,6 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
-  export type DepartmentsScalarRelationFilter = {
-    is?: departmentsWhereInput
-    isNot?: departmentsWhereInput
-  }
-
   export type membersOrderByRelevanceInput = {
     fields: membersOrderByRelevanceFieldEnum | membersOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -18741,6 +21518,104 @@ export namespace Prisma {
     activity_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+  }
+
+  export type MembersScalarRelationFilter = {
+    is?: membersWhereInput
+    isNot?: membersWhereInput
+  }
+
+  export type awardsOrderByRelevanceInput = {
+    fields: awardsOrderByRelevanceFieldEnum | awardsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type awardsCountOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type awardsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type awardsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type awardsMinOrderByAggregateInput = {
+    id?: SortOrder
+    date?: SortOrder
+    title?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type awardsSumOrderByAggregateInput = {
+    id?: SortOrder
+    department_id?: SortOrder
+    member_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type sessionOrderByRelevanceInput = {
+    fields: sessionOrderByRelevanceFieldEnum | sessionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type sessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionToken?: SortOrder
+    user_id?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type sessionAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+  }
+
+  export type sessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionToken?: SortOrder
+    user_id?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type sessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionToken?: SortOrder
+    user_id?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type sessionSumOrderByAggregateInput = {
+    user_id?: SortOrder
   }
 
   export type usersCreateNestedManyWithoutRoleInput = {
@@ -18922,6 +21797,27 @@ export namespace Prisma {
     connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
   }
 
+  export type awardsCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput> | awardsCreateWithoutCreatedByInput[] | awardsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutCreatedByInput | awardsCreateOrConnectWithoutCreatedByInput[]
+    createMany?: awardsCreateManyCreatedByInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
+  export type awardsCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput> | awardsCreateWithoutUpdatedByInput[] | awardsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutUpdatedByInput | awardsCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: awardsCreateManyUpdatedByInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
+  export type sessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput> | sessionCreateWithoutUserInput[] | sessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sessionCreateOrConnectWithoutUserInput | sessionCreateOrConnectWithoutUserInput[]
+    createMany?: sessionCreateManyUserInputEnvelope
+    connect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+  }
+
   export type our_worksUncheckedCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<our_worksCreateWithoutCreatedByInput, our_worksUncheckedCreateWithoutCreatedByInput> | our_worksCreateWithoutCreatedByInput[] | our_worksUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: our_worksCreateOrConnectWithoutCreatedByInput | our_worksCreateOrConnectWithoutCreatedByInput[]
@@ -19039,6 +21935,27 @@ export namespace Prisma {
     connectOrCreate?: galleriesCreateOrConnectWithoutUpdatedByInput | galleriesCreateOrConnectWithoutUpdatedByInput[]
     createMany?: galleriesCreateManyUpdatedByInputEnvelope
     connect?: galleriesWhereUniqueInput | galleriesWhereUniqueInput[]
+  }
+
+  export type awardsUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput> | awardsCreateWithoutCreatedByInput[] | awardsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutCreatedByInput | awardsCreateOrConnectWithoutCreatedByInput[]
+    createMany?: awardsCreateManyCreatedByInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
+  export type awardsUncheckedCreateNestedManyWithoutUpdatedByInput = {
+    create?: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput> | awardsCreateWithoutUpdatedByInput[] | awardsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutUpdatedByInput | awardsCreateOrConnectWithoutUpdatedByInput[]
+    createMany?: awardsCreateManyUpdatedByInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
+  export type sessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput> | sessionCreateWithoutUserInput[] | sessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sessionCreateOrConnectWithoutUserInput | sessionCreateOrConnectWithoutUserInput[]
+    createMany?: sessionCreateManyUserInputEnvelope
+    connect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -19305,6 +22222,48 @@ export namespace Prisma {
     deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
   }
 
+  export type awardsUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput> | awardsCreateWithoutCreatedByInput[] | awardsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutCreatedByInput | awardsCreateOrConnectWithoutCreatedByInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutCreatedByInput | awardsUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: awardsCreateManyCreatedByInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutCreatedByInput | awardsUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutCreatedByInput | awardsUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
+  export type awardsUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput> | awardsCreateWithoutUpdatedByInput[] | awardsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutUpdatedByInput | awardsCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutUpdatedByInput | awardsUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: awardsCreateManyUpdatedByInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutUpdatedByInput | awardsUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutUpdatedByInput | awardsUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
+  export type sessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput> | sessionCreateWithoutUserInput[] | sessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sessionCreateOrConnectWithoutUserInput | sessionCreateOrConnectWithoutUserInput[]
+    upsert?: sessionUpsertWithWhereUniqueWithoutUserInput | sessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sessionCreateManyUserInputEnvelope
+    set?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    disconnect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    delete?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    connect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    update?: sessionUpdateWithWhereUniqueWithoutUserInput | sessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sessionUpdateManyWithWhereWithoutUserInput | sessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sessionScalarWhereInput | sessionScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -19551,6 +22510,48 @@ export namespace Prisma {
     deleteMany?: galleriesScalarWhereInput | galleriesScalarWhereInput[]
   }
 
+  export type awardsUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput> | awardsCreateWithoutCreatedByInput[] | awardsUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutCreatedByInput | awardsCreateOrConnectWithoutCreatedByInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutCreatedByInput | awardsUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: awardsCreateManyCreatedByInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutCreatedByInput | awardsUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutCreatedByInput | awardsUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
+  export type awardsUncheckedUpdateManyWithoutUpdatedByNestedInput = {
+    create?: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput> | awardsCreateWithoutUpdatedByInput[] | awardsUncheckedCreateWithoutUpdatedByInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutUpdatedByInput | awardsCreateOrConnectWithoutUpdatedByInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutUpdatedByInput | awardsUpsertWithWhereUniqueWithoutUpdatedByInput[]
+    createMany?: awardsCreateManyUpdatedByInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutUpdatedByInput | awardsUpdateWithWhereUniqueWithoutUpdatedByInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutUpdatedByInput | awardsUpdateManyWithWhereWithoutUpdatedByInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
+  export type sessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput> | sessionCreateWithoutUserInput[] | sessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: sessionCreateOrConnectWithoutUserInput | sessionCreateOrConnectWithoutUserInput[]
+    upsert?: sessionUpsertWithWhereUniqueWithoutUserInput | sessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: sessionCreateManyUserInputEnvelope
+    set?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    disconnect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    delete?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    connect?: sessionWhereUniqueInput | sessionWhereUniqueInput[]
+    update?: sessionUpdateWithWhereUniqueWithoutUserInput | sessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: sessionUpdateManyWithWhereWithoutUserInput | sessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: sessionScalarWhereInput | sessionScalarWhereInput[]
+  }
+
   export type usersCreateNestedOneWithoutCreated_WorkInput = {
     create?: XOR<usersCreateWithoutCreated_WorkInput, usersUncheckedCreateWithoutCreated_WorkInput>
     connectOrCreate?: usersCreateOrConnectWithoutCreated_WorkInput
@@ -19579,6 +22580,12 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_WorkInput, usersUpdateWithoutUpdated_WorkInput>, usersUncheckedUpdateWithoutUpdated_WorkInput>
   }
 
+  export type departmentsCreateNestedOneWithoutJobsInput = {
+    create?: XOR<departmentsCreateWithoutJobsInput, departmentsUncheckedCreateWithoutJobsInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutJobsInput
+    connect?: departmentsWhereUniqueInput
+  }
+
   export type usersCreateNestedOneWithoutCreated_JobInput = {
     create?: XOR<usersCreateWithoutCreated_JobInput, usersUncheckedCreateWithoutCreated_JobInput>
     connectOrCreate?: usersCreateOrConnectWithoutCreated_JobInput
@@ -19603,6 +22610,14 @@ export namespace Prisma {
     connectOrCreate?: applicantsCreateOrConnectWithoutJobInput | applicantsCreateOrConnectWithoutJobInput[]
     createMany?: applicantsCreateManyJobInputEnvelope
     connect?: applicantsWhereUniqueInput | applicantsWhereUniqueInput[]
+  }
+
+  export type departmentsUpdateOneRequiredWithoutJobsNestedInput = {
+    create?: XOR<departmentsCreateWithoutJobsInput, departmentsUncheckedCreateWithoutJobsInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutJobsInput
+    upsert?: departmentsUpsertWithoutJobsInput
+    connect?: departmentsWhereUniqueInput
+    update?: XOR<XOR<departmentsUpdateToOneWithWhereWithoutJobsInput, departmentsUpdateWithoutJobsInput>, departmentsUncheckedUpdateWithoutJobsInput>
   }
 
   export type usersUpdateOneRequiredWithoutCreated_JobNestedInput = {
@@ -19752,11 +22767,39 @@ export namespace Prisma {
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
   }
 
+  export type jobsCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput> | jobsCreateWithoutDepartmentInput[] | jobsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: jobsCreateOrConnectWithoutDepartmentInput | jobsCreateOrConnectWithoutDepartmentInput[]
+    createMany?: jobsCreateManyDepartmentInputEnvelope
+    connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+  }
+
+  export type awardsCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput> | awardsCreateWithoutDepartmentInput[] | awardsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutDepartmentInput | awardsCreateOrConnectWithoutDepartmentInput[]
+    createMany?: awardsCreateManyDepartmentInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
   export type membersUncheckedCreateNestedManyWithoutDepartmentInput = {
     create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
     connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
     createMany?: membersCreateManyDepartmentInputEnvelope
     connect?: membersWhereUniqueInput | membersWhereUniqueInput[]
+  }
+
+  export type jobsUncheckedCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput> | jobsCreateWithoutDepartmentInput[] | jobsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: jobsCreateOrConnectWithoutDepartmentInput | jobsCreateOrConnectWithoutDepartmentInput[]
+    createMany?: jobsCreateManyDepartmentInputEnvelope
+    connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+  }
+
+  export type awardsUncheckedCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput> | awardsCreateWithoutDepartmentInput[] | awardsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutDepartmentInput | awardsCreateOrConnectWithoutDepartmentInput[]
+    createMany?: awardsCreateManyDepartmentInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
   }
 
   export type usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput = {
@@ -19789,6 +22832,34 @@ export namespace Prisma {
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
   }
 
+  export type jobsUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput> | jobsCreateWithoutDepartmentInput[] | jobsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: jobsCreateOrConnectWithoutDepartmentInput | jobsCreateOrConnectWithoutDepartmentInput[]
+    upsert?: jobsUpsertWithWhereUniqueWithoutDepartmentInput | jobsUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: jobsCreateManyDepartmentInputEnvelope
+    set?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    disconnect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    delete?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    update?: jobsUpdateWithWhereUniqueWithoutDepartmentInput | jobsUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: jobsUpdateManyWithWhereWithoutDepartmentInput | jobsUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: jobsScalarWhereInput | jobsScalarWhereInput[]
+  }
+
+  export type awardsUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput> | awardsCreateWithoutDepartmentInput[] | awardsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutDepartmentInput | awardsCreateOrConnectWithoutDepartmentInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutDepartmentInput | awardsUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: awardsCreateManyDepartmentInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutDepartmentInput | awardsUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutDepartmentInput | awardsUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
   export type membersUncheckedUpdateManyWithoutDepartmentNestedInput = {
     create?: XOR<membersCreateWithoutDepartmentInput, membersUncheckedCreateWithoutDepartmentInput> | membersCreateWithoutDepartmentInput[] | membersUncheckedCreateWithoutDepartmentInput[]
     connectOrCreate?: membersCreateOrConnectWithoutDepartmentInput | membersCreateOrConnectWithoutDepartmentInput[]
@@ -19801,6 +22872,34 @@ export namespace Prisma {
     update?: membersUpdateWithWhereUniqueWithoutDepartmentInput | membersUpdateWithWhereUniqueWithoutDepartmentInput[]
     updateMany?: membersUpdateManyWithWhereWithoutDepartmentInput | membersUpdateManyWithWhereWithoutDepartmentInput[]
     deleteMany?: membersScalarWhereInput | membersScalarWhereInput[]
+  }
+
+  export type jobsUncheckedUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput> | jobsCreateWithoutDepartmentInput[] | jobsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: jobsCreateOrConnectWithoutDepartmentInput | jobsCreateOrConnectWithoutDepartmentInput[]
+    upsert?: jobsUpsertWithWhereUniqueWithoutDepartmentInput | jobsUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: jobsCreateManyDepartmentInputEnvelope
+    set?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    disconnect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    delete?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    connect?: jobsWhereUniqueInput | jobsWhereUniqueInput[]
+    update?: jobsUpdateWithWhereUniqueWithoutDepartmentInput | jobsUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: jobsUpdateManyWithWhereWithoutDepartmentInput | jobsUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: jobsScalarWhereInput | jobsScalarWhereInput[]
+  }
+
+  export type awardsUncheckedUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput> | awardsCreateWithoutDepartmentInput[] | awardsUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutDepartmentInput | awardsCreateOrConnectWithoutDepartmentInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutDepartmentInput | awardsUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: awardsCreateManyDepartmentInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutDepartmentInput | awardsUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutDepartmentInput | awardsUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
   }
 
   export type departmentsCreateNestedOneWithoutMemberInput = {
@@ -19819,6 +22918,20 @@ export namespace Prisma {
     create?: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
     connectOrCreate?: usersCreateOrConnectWithoutUpdated_MemberInput
     connect?: usersWhereUniqueInput
+  }
+
+  export type awardsCreateNestedManyWithoutMemberInput = {
+    create?: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput> | awardsCreateWithoutMemberInput[] | awardsUncheckedCreateWithoutMemberInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutMemberInput | awardsCreateOrConnectWithoutMemberInput[]
+    createMany?: awardsCreateManyMemberInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+  }
+
+  export type awardsUncheckedCreateNestedManyWithoutMemberInput = {
+    create?: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput> | awardsCreateWithoutMemberInput[] | awardsUncheckedCreateWithoutMemberInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutMemberInput | awardsCreateOrConnectWithoutMemberInput[]
+    createMany?: awardsCreateManyMemberInputEnvelope
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
   }
 
   export type departmentsUpdateOneRequiredWithoutMemberNestedInput = {
@@ -19843,6 +22956,34 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutUpdated_MemberInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_MemberInput, usersUpdateWithoutUpdated_MemberInput>, usersUncheckedUpdateWithoutUpdated_MemberInput>
+  }
+
+  export type awardsUpdateManyWithoutMemberNestedInput = {
+    create?: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput> | awardsCreateWithoutMemberInput[] | awardsUncheckedCreateWithoutMemberInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutMemberInput | awardsCreateOrConnectWithoutMemberInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutMemberInput | awardsUpsertWithWhereUniqueWithoutMemberInput[]
+    createMany?: awardsCreateManyMemberInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutMemberInput | awardsUpdateWithWhereUniqueWithoutMemberInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutMemberInput | awardsUpdateManyWithWhereWithoutMemberInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
+  }
+
+  export type awardsUncheckedUpdateManyWithoutMemberNestedInput = {
+    create?: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput> | awardsCreateWithoutMemberInput[] | awardsUncheckedCreateWithoutMemberInput[]
+    connectOrCreate?: awardsCreateOrConnectWithoutMemberInput | awardsCreateOrConnectWithoutMemberInput[]
+    upsert?: awardsUpsertWithWhereUniqueWithoutMemberInput | awardsUpsertWithWhereUniqueWithoutMemberInput[]
+    createMany?: awardsCreateManyMemberInputEnvelope
+    set?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    disconnect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    delete?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    connect?: awardsWhereUniqueInput | awardsWhereUniqueInput[]
+    update?: awardsUpdateWithWhereUniqueWithoutMemberInput | awardsUpdateWithWhereUniqueWithoutMemberInput[]
+    updateMany?: awardsUpdateManyWithWhereWithoutMemberInput | awardsUpdateManyWithWhereWithoutMemberInput[]
+    deleteMany?: awardsScalarWhereInput | awardsScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutCreated_ActivitiesInput = {
@@ -19955,6 +23096,76 @@ export namespace Prisma {
     upsert?: usersUpsertWithoutUpdated_GalleryInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_GalleryInput, usersUpdateWithoutUpdated_GalleryInput>, usersUncheckedUpdateWithoutUpdated_GalleryInput>
+  }
+
+  export type departmentsCreateNestedOneWithoutAwardsInput = {
+    create?: XOR<departmentsCreateWithoutAwardsInput, departmentsUncheckedCreateWithoutAwardsInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutAwardsInput
+    connect?: departmentsWhereUniqueInput
+  }
+
+  export type membersCreateNestedOneWithoutAwardsInput = {
+    create?: XOR<membersCreateWithoutAwardsInput, membersUncheckedCreateWithoutAwardsInput>
+    connectOrCreate?: membersCreateOrConnectWithoutAwardsInput
+    connect?: membersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutCreated_AwardInput = {
+    create?: XOR<usersCreateWithoutCreated_AwardInput, usersUncheckedCreateWithoutCreated_AwardInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_AwardInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUpdated_AwardInput = {
+    create?: XOR<usersCreateWithoutUpdated_AwardInput, usersUncheckedCreateWithoutUpdated_AwardInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_AwardInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type departmentsUpdateOneRequiredWithoutAwardsNestedInput = {
+    create?: XOR<departmentsCreateWithoutAwardsInput, departmentsUncheckedCreateWithoutAwardsInput>
+    connectOrCreate?: departmentsCreateOrConnectWithoutAwardsInput
+    upsert?: departmentsUpsertWithoutAwardsInput
+    connect?: departmentsWhereUniqueInput
+    update?: XOR<XOR<departmentsUpdateToOneWithWhereWithoutAwardsInput, departmentsUpdateWithoutAwardsInput>, departmentsUncheckedUpdateWithoutAwardsInput>
+  }
+
+  export type membersUpdateOneRequiredWithoutAwardsNestedInput = {
+    create?: XOR<membersCreateWithoutAwardsInput, membersUncheckedCreateWithoutAwardsInput>
+    connectOrCreate?: membersCreateOrConnectWithoutAwardsInput
+    upsert?: membersUpsertWithoutAwardsInput
+    connect?: membersWhereUniqueInput
+    update?: XOR<XOR<membersUpdateToOneWithWhereWithoutAwardsInput, membersUpdateWithoutAwardsInput>, membersUncheckedUpdateWithoutAwardsInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutCreated_AwardNestedInput = {
+    create?: XOR<usersCreateWithoutCreated_AwardInput, usersUncheckedCreateWithoutCreated_AwardInput>
+    connectOrCreate?: usersCreateOrConnectWithoutCreated_AwardInput
+    upsert?: usersUpsertWithoutCreated_AwardInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutCreated_AwardInput, usersUpdateWithoutCreated_AwardInput>, usersUncheckedUpdateWithoutCreated_AwardInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutUpdated_AwardNestedInput = {
+    create?: XOR<usersCreateWithoutUpdated_AwardInput, usersUncheckedCreateWithoutUpdated_AwardInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUpdated_AwardInput
+    upsert?: usersUpsertWithoutUpdated_AwardInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUpdated_AwardInput, usersUpdateWithoutUpdated_AwardInput>, usersUncheckedUpdateWithoutUpdated_AwardInput>
+  }
+
+  export type usersCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<usersCreateWithoutSessionsInput, usersUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: usersCreateOrConnectWithoutSessionsInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<usersCreateWithoutSessionsInput, usersUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: usersCreateOrConnectWithoutSessionsInput
+    upsert?: usersUpsertWithoutSessionsInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutSessionsInput, usersUpdateWithoutSessionsInput>, usersUncheckedUpdateWithoutSessionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -20213,6 +23424,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutRoleInput = {
@@ -20244,6 +23458,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutRoleInput = {
@@ -20384,7 +23601,6 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
     description: string
     experiences: string
     level: string
@@ -20397,6 +23613,7 @@ export namespace Prisma {
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutJobsInput
     updatedBy: usersCreateNestedOneWithoutUpdated_JobInput
     applicant?: applicantsCreateNestedManyWithoutJobInput
   }
@@ -20406,7 +23623,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -20437,7 +23654,6 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
     description: string
     experiences: string
     level: string
@@ -20450,6 +23666,7 @@ export namespace Prisma {
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutJobsInput
     createdBy: usersCreateNestedOneWithoutCreated_JobInput
     applicant?: applicantsCreateNestedManyWithoutJobInput
   }
@@ -20459,7 +23676,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -20688,6 +23905,8 @@ export namespace Prisma {
     updated_at?: Date | string
     updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
     member?: membersCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsCreateNestedManyWithoutDepartmentInput
+    awards?: awardsCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateWithoutCreatedByInput = {
@@ -20698,6 +23917,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsUncheckedCreateNestedManyWithoutDepartmentInput
+    awards?: awardsUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsCreateOrConnectWithoutCreatedByInput = {
@@ -20717,6 +23938,8 @@ export namespace Prisma {
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
     member?: membersCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsCreateNestedManyWithoutDepartmentInput
+    awards?: awardsCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateWithoutUpdatedByInput = {
@@ -20727,6 +23950,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsUncheckedCreateNestedManyWithoutDepartmentInput
+    awards?: awardsUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsCreateOrConnectWithoutUpdatedByInput = {
@@ -20747,6 +23972,7 @@ export namespace Prisma {
     updated_at?: Date | string
     department: departmentsCreateNestedOneWithoutMemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+    awards?: awardsCreateNestedManyWithoutMemberInput
   }
 
   export type membersUncheckedCreateWithoutCreatedByInput = {
@@ -20758,6 +23984,7 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    awards?: awardsUncheckedCreateNestedManyWithoutMemberInput
   }
 
   export type membersCreateOrConnectWithoutCreatedByInput = {
@@ -20778,6 +24005,7 @@ export namespace Prisma {
     updated_at?: Date | string
     department: departmentsCreateNestedOneWithoutMemberInput
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
+    awards?: awardsCreateNestedManyWithoutMemberInput
   }
 
   export type membersUncheckedCreateWithoutUpdatedByInput = {
@@ -20789,6 +24017,7 @@ export namespace Prisma {
     created_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    awards?: awardsUncheckedCreateNestedManyWithoutMemberInput
   }
 
   export type membersCreateOrConnectWithoutUpdatedByInput = {
@@ -20917,6 +24146,90 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type awardsCreateWithoutCreatedByInput = {
+    date: Date | string
+    title: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutAwardsInput
+    member: membersCreateNestedOneWithoutAwardsInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_AwardInput
+  }
+
+  export type awardsUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateOrConnectWithoutCreatedByInput = {
+    where: awardsWhereUniqueInput
+    create: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type awardsCreateManyCreatedByInputEnvelope = {
+    data: awardsCreateManyCreatedByInput | awardsCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type awardsCreateWithoutUpdatedByInput = {
+    date: Date | string
+    title: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutAwardsInput
+    member: membersCreateNestedOneWithoutAwardsInput
+    createdBy: usersCreateNestedOneWithoutCreated_AwardInput
+  }
+
+  export type awardsUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateOrConnectWithoutUpdatedByInput = {
+    where: awardsWhereUniqueInput
+    create: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type awardsCreateManyUpdatedByInputEnvelope = {
+    data: awardsCreateManyUpdatedByInput | awardsCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type sessionCreateWithoutUserInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+  }
+
+  export type sessionUncheckedCreateWithoutUserInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+  }
+
+  export type sessionCreateOrConnectWithoutUserInput = {
+    where: sessionWhereUniqueInput
+    create: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type sessionCreateManyUserInputEnvelope = {
+    data: sessionCreateManyUserInput | sessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type rolesUpsertWithoutUsersInput = {
     update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
     create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
@@ -21013,7 +24326,7 @@ export namespace Prisma {
     open_date?: DateTimeFilter<"jobs"> | Date | string
     close_date?: DateTimeFilter<"jobs"> | Date | string
     position?: StringFilter<"jobs"> | string
-    department?: StringFilter<"jobs"> | string
+    department_id?: IntFilter<"jobs"> | number
     description?: StringFilter<"jobs"> | string
     experiences?: StringFilter<"jobs"> | string
     level?: StringFilter<"jobs"> | string
@@ -21366,6 +24679,79 @@ export namespace Prisma {
     data: XOR<galleriesUpdateManyMutationInput, galleriesUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
+  export type awardsUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: awardsWhereUniqueInput
+    update: XOR<awardsUpdateWithoutCreatedByInput, awardsUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<awardsCreateWithoutCreatedByInput, awardsUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type awardsUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: awardsWhereUniqueInput
+    data: XOR<awardsUpdateWithoutCreatedByInput, awardsUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type awardsUpdateManyWithWhereWithoutCreatedByInput = {
+    where: awardsScalarWhereInput
+    data: XOR<awardsUpdateManyMutationInput, awardsUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type awardsScalarWhereInput = {
+    AND?: awardsScalarWhereInput | awardsScalarWhereInput[]
+    OR?: awardsScalarWhereInput[]
+    NOT?: awardsScalarWhereInput | awardsScalarWhereInput[]
+    id?: IntFilter<"awards"> | number
+    date?: DateTimeFilter<"awards"> | Date | string
+    title?: StringFilter<"awards"> | string
+    department_id?: IntFilter<"awards"> | number
+    member_id?: IntFilter<"awards"> | number
+    created_by?: IntFilter<"awards"> | number
+    updated_by?: IntFilter<"awards"> | number
+    created_at?: DateTimeFilter<"awards"> | Date | string
+    updated_at?: DateTimeFilter<"awards"> | Date | string
+  }
+
+  export type awardsUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: awardsWhereUniqueInput
+    update: XOR<awardsUpdateWithoutUpdatedByInput, awardsUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<awardsCreateWithoutUpdatedByInput, awardsUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type awardsUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: awardsWhereUniqueInput
+    data: XOR<awardsUpdateWithoutUpdatedByInput, awardsUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type awardsUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: awardsScalarWhereInput
+    data: XOR<awardsUpdateManyMutationInput, awardsUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
+  export type sessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: sessionWhereUniqueInput
+    update: XOR<sessionUpdateWithoutUserInput, sessionUncheckedUpdateWithoutUserInput>
+    create: XOR<sessionCreateWithoutUserInput, sessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type sessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: sessionWhereUniqueInput
+    data: XOR<sessionUpdateWithoutUserInput, sessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type sessionUpdateManyWithWhereWithoutUserInput = {
+    where: sessionScalarWhereInput
+    data: XOR<sessionUpdateManyMutationInput, sessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type sessionScalarWhereInput = {
+    AND?: sessionScalarWhereInput | sessionScalarWhereInput[]
+    OR?: sessionScalarWhereInput[]
+    NOT?: sessionScalarWhereInput | sessionScalarWhereInput[]
+    id?: StringFilter<"session"> | string
+    sessionToken?: StringFilter<"session"> | string
+    user_id?: IntFilter<"session"> | number
+    expires?: DateTimeFilter<"session"> | Date | string
+  }
+
   export type usersCreateWithoutCreated_WorkInput = {
     name?: string | null
     email: string
@@ -21394,6 +24780,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_WorkInput = {
@@ -21425,6 +24814,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_WorkInput = {
@@ -21460,6 +24852,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_WorkInput = {
@@ -21491,6 +24886,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_WorkInput = {
@@ -21537,6 +24935,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_WorkInput = {
@@ -21568,6 +24969,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_WorkInput = {
@@ -21609,6 +25013,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_WorkInput = {
@@ -21640,6 +25047,37 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type departmentsCreateWithoutJobsInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+    member?: membersCreateNestedManyWithoutDepartmentInput
+    awards?: awardsCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type departmentsUncheckedCreateWithoutJobsInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
+    awards?: awardsUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type departmentsCreateOrConnectWithoutJobsInput = {
+    where: departmentsWhereUniqueInput
+    create: XOR<departmentsCreateWithoutJobsInput, departmentsUncheckedCreateWithoutJobsInput>
   }
 
   export type usersCreateWithoutCreated_JobInput = {
@@ -21670,6 +25108,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_JobInput = {
@@ -21701,6 +25142,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_JobInput = {
@@ -21736,6 +25180,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_JobInput = {
@@ -21767,6 +25214,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_JobInput = {
@@ -21813,6 +25263,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type departmentsUpsertWithoutJobsInput = {
+    update: XOR<departmentsUpdateWithoutJobsInput, departmentsUncheckedUpdateWithoutJobsInput>
+    create: XOR<departmentsCreateWithoutJobsInput, departmentsUncheckedCreateWithoutJobsInput>
+    where?: departmentsWhereInput
+  }
+
+  export type departmentsUpdateToOneWithWhereWithoutJobsInput = {
+    where?: departmentsWhereInput
+    data: XOR<departmentsUpdateWithoutJobsInput, departmentsUncheckedUpdateWithoutJobsInput>
+  }
+
+  export type departmentsUpdateWithoutJobsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+    member?: membersUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type departmentsUncheckedUpdateWithoutJobsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
   export type usersUpsertWithoutCreated_JobInput = {
     update: XOR<usersUpdateWithoutCreated_JobInput, usersUncheckedUpdateWithoutCreated_JobInput>
     create: XOR<usersCreateWithoutCreated_JobInput, usersUncheckedCreateWithoutCreated_JobInput>
@@ -21852,6 +25336,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_JobInput = {
@@ -21883,6 +25370,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_JobInput = {
@@ -21924,6 +25414,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_JobInput = {
@@ -21955,6 +25448,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type applicantsUpsertWithWhereUniqueWithoutJobInput = {
@@ -21977,7 +25473,6 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
     description: string
     experiences: string
     level: string
@@ -21990,6 +25485,7 @@ export namespace Prisma {
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutJobsInput
     createdBy: usersCreateNestedOneWithoutCreated_JobInput
     updatedBy: usersCreateNestedOneWithoutUpdated_JobInput
   }
@@ -21999,7 +25495,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -22049,6 +25545,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ApplicantInput = {
@@ -22080,6 +25579,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ApplicantInput = {
@@ -22102,7 +25604,6 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -22115,6 +25616,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutJobsNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_JobNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_JobNestedInput
   }
@@ -22124,7 +25626,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -22180,6 +25682,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ApplicantInput = {
@@ -22211,6 +25716,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutCreated_InfoInput = {
@@ -22241,6 +25749,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_InfoInput = {
@@ -22272,6 +25783,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_InfoInput = {
@@ -22307,6 +25821,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_InfoInput = {
@@ -22338,6 +25855,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_InfoInput = {
@@ -22384,6 +25904,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_InfoInput = {
@@ -22415,6 +25938,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_InfoInput = {
@@ -22456,6 +25982,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_InfoInput = {
@@ -22487,6 +26016,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutCreated_ClientInput = {
@@ -22517,6 +26049,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_ClientInput = {
@@ -22548,6 +26083,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_ClientInput = {
@@ -22583,6 +26121,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ClientInput = {
@@ -22614,6 +26155,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ClientInput = {
@@ -22660,6 +26204,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_ClientInput = {
@@ -22691,6 +26238,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_ClientInput = {
@@ -22732,6 +26282,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ClientInput = {
@@ -22763,6 +26316,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutCreated_DepartmentInput = {
@@ -22793,6 +26349,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_DepartmentInput = {
@@ -22824,6 +26383,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_DepartmentInput = {
@@ -22859,6 +26421,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_DepartmentInput = {
@@ -22890,6 +26455,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_DepartmentInput = {
@@ -22905,6 +26473,7 @@ export namespace Prisma {
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_MemberInput
     updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+    awards?: awardsCreateNestedManyWithoutMemberInput
   }
 
   export type membersUncheckedCreateWithoutDepartmentInput = {
@@ -22916,6 +26485,7 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    awards?: awardsUncheckedCreateNestedManyWithoutMemberInput
   }
 
   export type membersCreateOrConnectWithoutDepartmentInput = {
@@ -22925,6 +26495,90 @@ export namespace Prisma {
 
   export type membersCreateManyDepartmentInputEnvelope = {
     data: membersCreateManyDepartmentInput | membersCreateManyDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type jobsCreateWithoutDepartmentInput = {
+    open_date: Date | string
+    close_date: Date | string
+    position: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
+    gender: string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_JobInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_JobInput
+    applicant?: applicantsCreateNestedManyWithoutJobInput
+  }
+
+  export type jobsUncheckedCreateWithoutDepartmentInput = {
+    id?: number
+    open_date: Date | string
+    close_date: Date | string
+    position: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
+    gender: string
+    status?: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    applicant?: applicantsUncheckedCreateNestedManyWithoutJobInput
+  }
+
+  export type jobsCreateOrConnectWithoutDepartmentInput = {
+    where: jobsWhereUniqueInput
+    create: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type jobsCreateManyDepartmentInputEnvelope = {
+    data: jobsCreateManyDepartmentInput | jobsCreateManyDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type awardsCreateWithoutDepartmentInput = {
+    date: Date | string
+    title: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    member: membersCreateNestedOneWithoutAwardsInput
+    createdBy: usersCreateNestedOneWithoutCreated_AwardInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_AwardInput
+  }
+
+  export type awardsUncheckedCreateWithoutDepartmentInput = {
+    id?: number
+    date: Date | string
+    title: string
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateOrConnectWithoutDepartmentInput = {
+    where: awardsWhereUniqueInput
+    create: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type awardsCreateManyDepartmentInputEnvelope = {
+    data: awardsCreateManyDepartmentInput | awardsCreateManyDepartmentInput[]
     skipDuplicates?: boolean
   }
 
@@ -22967,6 +26621,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_DepartmentInput = {
@@ -22998,6 +26655,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_DepartmentInput = {
@@ -23039,6 +26699,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_DepartmentInput = {
@@ -23070,6 +26733,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type membersUpsertWithWhereUniqueWithoutDepartmentInput = {
@@ -23088,6 +26754,38 @@ export namespace Prisma {
     data: XOR<membersUpdateManyMutationInput, membersUncheckedUpdateManyWithoutDepartmentInput>
   }
 
+  export type jobsUpsertWithWhereUniqueWithoutDepartmentInput = {
+    where: jobsWhereUniqueInput
+    update: XOR<jobsUpdateWithoutDepartmentInput, jobsUncheckedUpdateWithoutDepartmentInput>
+    create: XOR<jobsCreateWithoutDepartmentInput, jobsUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type jobsUpdateWithWhereUniqueWithoutDepartmentInput = {
+    where: jobsWhereUniqueInput
+    data: XOR<jobsUpdateWithoutDepartmentInput, jobsUncheckedUpdateWithoutDepartmentInput>
+  }
+
+  export type jobsUpdateManyWithWhereWithoutDepartmentInput = {
+    where: jobsScalarWhereInput
+    data: XOR<jobsUpdateManyMutationInput, jobsUncheckedUpdateManyWithoutDepartmentInput>
+  }
+
+  export type awardsUpsertWithWhereUniqueWithoutDepartmentInput = {
+    where: awardsWhereUniqueInput
+    update: XOR<awardsUpdateWithoutDepartmentInput, awardsUncheckedUpdateWithoutDepartmentInput>
+    create: XOR<awardsCreateWithoutDepartmentInput, awardsUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type awardsUpdateWithWhereUniqueWithoutDepartmentInput = {
+    where: awardsWhereUniqueInput
+    data: XOR<awardsUpdateWithoutDepartmentInput, awardsUncheckedUpdateWithoutDepartmentInput>
+  }
+
+  export type awardsUpdateManyWithWhereWithoutDepartmentInput = {
+    where: awardsScalarWhereInput
+    data: XOR<awardsUpdateManyMutationInput, awardsUncheckedUpdateManyWithoutDepartmentInput>
+  }
+
   export type departmentsCreateWithoutMemberInput = {
     name: string
     status: number
@@ -23095,6 +26793,8 @@ export namespace Prisma {
     updated_at?: Date | string
     createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
     updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+    jobs?: jobsCreateNestedManyWithoutDepartmentInput
+    awards?: awardsCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsUncheckedCreateWithoutMemberInput = {
@@ -23105,6 +26805,8 @@ export namespace Prisma {
     updated_by: number
     created_at?: Date | string
     updated_at?: Date | string
+    jobs?: jobsUncheckedCreateNestedManyWithoutDepartmentInput
+    awards?: awardsUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type departmentsCreateOrConnectWithoutMemberInput = {
@@ -23140,6 +26842,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_MemberInput = {
@@ -23171,6 +26876,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_MemberInput = {
@@ -23206,6 +26914,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_MemberInput = {
@@ -23237,11 +26948,45 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_MemberInput = {
     where: usersWhereUniqueInput
     create: XOR<usersCreateWithoutUpdated_MemberInput, usersUncheckedCreateWithoutUpdated_MemberInput>
+  }
+
+  export type awardsCreateWithoutMemberInput = {
+    date: Date | string
+    title: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutAwardsInput
+    createdBy: usersCreateNestedOneWithoutCreated_AwardInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_AwardInput
+  }
+
+  export type awardsUncheckedCreateWithoutMemberInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateOrConnectWithoutMemberInput = {
+    where: awardsWhereUniqueInput
+    create: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput>
+  }
+
+  export type awardsCreateManyMemberInputEnvelope = {
+    data: awardsCreateManyMemberInput | awardsCreateManyMemberInput[]
+    skipDuplicates?: boolean
   }
 
   export type departmentsUpsertWithoutMemberInput = {
@@ -23262,6 +27007,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+    jobs?: jobsUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateWithoutMemberInput = {
@@ -23272,6 +27019,8 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    jobs?: jobsUncheckedUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type usersUpsertWithoutCreated_MemberInput = {
@@ -23313,6 +27062,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_MemberInput = {
@@ -23344,6 +27096,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_MemberInput = {
@@ -23385,6 +27140,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_MemberInput = {
@@ -23416,6 +27174,25 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type awardsUpsertWithWhereUniqueWithoutMemberInput = {
+    where: awardsWhereUniqueInput
+    update: XOR<awardsUpdateWithoutMemberInput, awardsUncheckedUpdateWithoutMemberInput>
+    create: XOR<awardsCreateWithoutMemberInput, awardsUncheckedCreateWithoutMemberInput>
+  }
+
+  export type awardsUpdateWithWhereUniqueWithoutMemberInput = {
+    where: awardsWhereUniqueInput
+    data: XOR<awardsUpdateWithoutMemberInput, awardsUncheckedUpdateWithoutMemberInput>
+  }
+
+  export type awardsUpdateManyWithWhereWithoutMemberInput = {
+    where: awardsScalarWhereInput
+    data: XOR<awardsUpdateManyMutationInput, awardsUncheckedUpdateManyWithoutMemberInput>
   }
 
   export type usersCreateWithoutCreated_ActivitiesInput = {
@@ -23446,6 +27223,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_ActivitiesInput = {
@@ -23477,6 +27257,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_ActivitiesInput = {
@@ -23512,6 +27295,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_ActivitiesInput = {
@@ -23543,6 +27329,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_ActivitiesInput = {
@@ -23618,6 +27407,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_ActivitiesInput = {
@@ -23649,6 +27441,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_ActivitiesInput = {
@@ -23690,6 +27485,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_ActivitiesInput = {
@@ -23721,6 +27519,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type galleriesUpsertWithWhereUniqueWithoutActivityInput = {
@@ -23791,6 +27592,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutCreated_GalleryInput = {
@@ -23822,6 +27626,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutCreated_GalleryInput = {
@@ -23857,6 +27664,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
     updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUpdated_GalleryInput = {
@@ -23888,6 +27698,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
     updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
     created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUpdated_GalleryInput = {
@@ -23964,6 +27777,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutCreated_GalleryInput = {
@@ -23995,6 +27811,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUpsertWithoutUpdated_GalleryInput = {
@@ -24036,6 +27855,9 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUpdated_GalleryInput = {
@@ -24067,6 +27889,583 @@ export namespace Prisma {
     created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type departmentsCreateWithoutAwardsInput = {
+    name: string
+    status: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    createdBy: usersCreateNestedOneWithoutCreated_DepartmentInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_DepartmentInput
+    member?: membersCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type departmentsUncheckedCreateWithoutAwardsInput = {
+    id?: number
+    name: string
+    status: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    member?: membersUncheckedCreateNestedManyWithoutDepartmentInput
+    jobs?: jobsUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type departmentsCreateOrConnectWithoutAwardsInput = {
+    where: departmentsWhereUniqueInput
+    create: XOR<departmentsCreateWithoutAwardsInput, departmentsUncheckedCreateWithoutAwardsInput>
+  }
+
+  export type membersCreateWithoutAwardsInput = {
+    name: string
+    profile: string
+    position: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    department: departmentsCreateNestedOneWithoutMemberInput
+    createdBy: usersCreateNestedOneWithoutCreated_MemberInput
+    updatedBy: usersCreateNestedOneWithoutUpdated_MemberInput
+  }
+
+  export type membersUncheckedCreateWithoutAwardsInput = {
+    id?: number
+    name: string
+    profile: string
+    position: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type membersCreateOrConnectWithoutAwardsInput = {
+    where: membersWhereUniqueInput
+    create: XOR<membersCreateWithoutAwardsInput, membersUncheckedCreateWithoutAwardsInput>
+  }
+
+  export type usersCreateWithoutCreated_AwardInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutCreated_AwardInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutCreated_AwardInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutCreated_AwardInput, usersUncheckedCreateWithoutCreated_AwardInput>
+  }
+
+  export type usersCreateWithoutUpdated_AwardInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    sessions?: sessionCreateNestedManyWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutUpdated_AwardInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    sessions?: sessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutUpdated_AwardInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutUpdated_AwardInput, usersUncheckedCreateWithoutUpdated_AwardInput>
+  }
+
+  export type departmentsUpsertWithoutAwardsInput = {
+    update: XOR<departmentsUpdateWithoutAwardsInput, departmentsUncheckedUpdateWithoutAwardsInput>
+    create: XOR<departmentsCreateWithoutAwardsInput, departmentsUncheckedCreateWithoutAwardsInput>
+    where?: departmentsWhereInput
+  }
+
+  export type departmentsUpdateToOneWithWhereWithoutAwardsInput = {
+    where?: departmentsWhereInput
+    data: XOR<departmentsUpdateWithoutAwardsInput, departmentsUncheckedUpdateWithoutAwardsInput>
+  }
+
+  export type departmentsUpdateWithoutAwardsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
+    member?: membersUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type departmentsUncheckedUpdateWithoutAwardsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type membersUpsertWithoutAwardsInput = {
+    update: XOR<membersUpdateWithoutAwardsInput, membersUncheckedUpdateWithoutAwardsInput>
+    create: XOR<membersCreateWithoutAwardsInput, membersUncheckedCreateWithoutAwardsInput>
+    where?: membersWhereInput
+  }
+
+  export type membersUpdateToOneWithWhereWithoutAwardsInput = {
+    where?: membersWhereInput
+    data: XOR<membersUpdateWithoutAwardsInput, membersUncheckedUpdateWithoutAwardsInput>
+  }
+
+  export type membersUpdateWithoutAwardsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+  }
+
+  export type membersUncheckedUpdateWithoutAwardsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    profile?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type usersUpsertWithoutCreated_AwardInput = {
+    update: XOR<usersUpdateWithoutCreated_AwardInput, usersUncheckedUpdateWithoutCreated_AwardInput>
+    create: XOR<usersCreateWithoutCreated_AwardInput, usersUncheckedCreateWithoutCreated_AwardInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutCreated_AwardInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutCreated_AwardInput, usersUncheckedUpdateWithoutCreated_AwardInput>
+  }
+
+  export type usersUpdateWithoutCreated_AwardInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutCreated_AwardInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersUpsertWithoutUpdated_AwardInput = {
+    update: XOR<usersUpdateWithoutUpdated_AwardInput, usersUncheckedUpdateWithoutUpdated_AwardInput>
+    create: XOR<usersCreateWithoutUpdated_AwardInput, usersUncheckedCreateWithoutUpdated_AwardInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUpdated_AwardInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUpdated_AwardInput, usersUncheckedUpdateWithoutUpdated_AwardInput>
+  }
+
+  export type usersUpdateWithoutUpdated_AwardInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUpdated_AwardInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersCreateWithoutSessionsInput = {
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    created_Work?: our_worksCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersUncheckedCreateWithoutSessionsInput = {
+    id?: number
+    name?: string | null
+    email: string
+    password: string
+    two_factor_code?: string | null
+    two_factor_code_expiry?: Date | string | null
+    is_two_factor_enabled?: boolean
+    reset_token?: string | null
+    reset_token_expiry?: Date | string | null
+    role_id?: number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    created_Work?: our_worksUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Work?: our_worksUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Job?: jobsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Job?: jobsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Info?: infosUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Info?: infosUncheckedCreateNestedManyWithoutUpdatedByInput
+    updated_Applicant?: applicantsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Client?: clientsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Client?: clientsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Department?: departmentsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Department?: departmentsUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Member?: membersUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Member?: membersUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Activities?: hds_activitiesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Gallery?: galleriesUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Gallery?: galleriesUncheckedCreateNestedManyWithoutUpdatedByInput
+    created_Award?: awardsUncheckedCreateNestedManyWithoutCreatedByInput
+    updated_Award?: awardsUncheckedCreateNestedManyWithoutUpdatedByInput
+  }
+
+  export type usersCreateOrConnectWithoutSessionsInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutSessionsInput, usersUncheckedCreateWithoutSessionsInput>
+  }
+
+  export type usersUpsertWithoutSessionsInput = {
+    update: XOR<usersUpdateWithoutSessionsInput, usersUncheckedUpdateWithoutSessionsInput>
+    create: XOR<usersCreateWithoutSessionsInput, usersUncheckedCreateWithoutSessionsInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutSessionsInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutSessionsInput, usersUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type usersUpdateWithoutSessionsInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    created_Work?: our_worksUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutSessionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    two_factor_code?: NullableStringFieldUpdateOperationsInput | string | null
+    two_factor_code_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_two_factor_enabled?: BoolFieldUpdateOperationsInput | boolean
+    reset_token?: NullableStringFieldUpdateOperationsInput | string | null
+    reset_token_expiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role_id?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_Work?: our_worksUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Work?: our_worksUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Job?: jobsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Job?: jobsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Info?: infosUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Info?: infosUncheckedUpdateManyWithoutUpdatedByNestedInput
+    updated_Applicant?: applicantsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Client?: clientsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Client?: clientsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Department?: departmentsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Department?: departmentsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Member?: membersUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Member?: membersUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Activities?: hds_activitiesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
   }
 
   export type usersCreateManyRoleInput = {
@@ -24111,6 +28510,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRoleInput = {
@@ -24142,6 +28544,9 @@ export namespace Prisma {
     updated_Activities?: hds_activitiesUncheckedUpdateManyWithoutUpdatedByNestedInput
     created_Gallery?: galleriesUncheckedUpdateManyWithoutCreatedByNestedInput
     updated_Gallery?: galleriesUncheckedUpdateManyWithoutUpdatedByNestedInput
+    created_Award?: awardsUncheckedUpdateManyWithoutCreatedByNestedInput
+    updated_Award?: awardsUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: sessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRoleInput = {
@@ -24191,7 +28596,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -24212,7 +28617,7 @@ export namespace Prisma {
     open_date: Date | string
     close_date: Date | string
     position: string
-    department: string
+    department_id: number
     description: string
     experiences: string
     level: string
@@ -24381,6 +28786,34 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
+  export type awardsCreateManyCreatedByInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateManyUpdatedByInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    member_id: number
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type sessionCreateManyUserInput = {
+    id?: string
+    sessionToken: string
+    expires: Date | string
+  }
+
   export type our_worksUpdateWithoutCreatedByInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
@@ -24467,7 +28900,6 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24480,6 +28912,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutJobsNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_JobNestedInput
     applicant?: applicantsUpdateManyWithoutJobNestedInput
   }
@@ -24489,7 +28922,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24511,7 +28944,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24531,7 +28964,6 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24544,6 +28976,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutJobsNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_JobNestedInput
     applicant?: applicantsUpdateManyWithoutJobNestedInput
   }
@@ -24553,7 +28986,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24575,7 +29008,7 @@ export namespace Prisma {
     open_date?: DateTimeFieldUpdateOperationsInput | Date | string
     close_date?: DateTimeFieldUpdateOperationsInput | Date | string
     position?: StringFieldUpdateOperationsInput | string
-    department?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     experiences?: StringFieldUpdateOperationsInput | string
     level?: StringFieldUpdateOperationsInput | string
@@ -24818,6 +29251,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_DepartmentNestedInput
     member?: membersUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateWithoutCreatedByInput = {
@@ -24828,6 +29263,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUncheckedUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateManyWithoutCreatedByInput = {
@@ -24846,6 +29283,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_DepartmentNestedInput
     member?: membersUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateWithoutUpdatedByInput = {
@@ -24856,6 +29295,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: membersUncheckedUpdateManyWithoutDepartmentNestedInput
+    jobs?: jobsUncheckedUpdateManyWithoutDepartmentNestedInput
+    awards?: awardsUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type departmentsUncheckedUpdateManyWithoutUpdatedByInput = {
@@ -24875,6 +29316,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+    awards?: awardsUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateWithoutCreatedByInput = {
@@ -24886,6 +29328,7 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    awards?: awardsUncheckedUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateManyWithoutCreatedByInput = {
@@ -24907,6 +29350,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: departmentsUpdateOneRequiredWithoutMemberNestedInput
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
+    awards?: awardsUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateWithoutUpdatedByInput = {
@@ -24918,6 +29362,7 @@ export namespace Prisma {
     created_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    awards?: awardsUncheckedUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateManyWithoutUpdatedByInput = {
@@ -25045,6 +29490,88 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type awardsUpdateWithoutCreatedByInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutAwardsNestedInput
+    member?: membersUpdateOneRequiredWithoutAwardsNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_AwardNestedInput
+  }
+
+  export type awardsUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUpdateWithoutUpdatedByInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutAwardsNestedInput
+    member?: membersUpdateOneRequiredWithoutAwardsNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_AwardNestedInput
+  }
+
+  export type awardsUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type sessionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type applicantsCreateManyJobInput = {
     id?: number
     name: string
@@ -25115,6 +29642,38 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
+  export type jobsCreateManyDepartmentInput = {
+    id?: number
+    open_date: Date | string
+    close_date: Date | string
+    position: string
+    description: string
+    experiences: string
+    level: string
+    overview: string
+    job_type: string
+    salary: string
+    duties: string
+    requirements: string
+    gender: string
+    status?: string
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsCreateManyDepartmentInput = {
+    id?: number
+    date: Date | string
+    title: string
+    member_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
   export type membersUpdateWithoutDepartmentInput = {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
@@ -25123,6 +29682,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: usersUpdateOneRequiredWithoutCreated_MemberNestedInput
     updatedBy?: usersUpdateOneRequiredWithoutUpdated_MemberNestedInput
+    awards?: awardsUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateWithoutDepartmentInput = {
@@ -25134,6 +29694,7 @@ export namespace Prisma {
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    awards?: awardsUncheckedUpdateManyWithoutMemberNestedInput
   }
 
   export type membersUncheckedUpdateManyWithoutDepartmentInput = {
@@ -25141,6 +29702,145 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     profile?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jobsUpdateWithoutDepartmentInput = {
+    open_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    close_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: usersUpdateOneRequiredWithoutCreated_JobNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_JobNestedInput
+    applicant?: applicantsUpdateManyWithoutJobNestedInput
+  }
+
+  export type jobsUncheckedUpdateWithoutDepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    open_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    close_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicant?: applicantsUncheckedUpdateManyWithoutJobNestedInput
+  }
+
+  export type jobsUncheckedUpdateManyWithoutDepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    open_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    close_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    position?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    experiences?: StringFieldUpdateOperationsInput | string
+    level?: StringFieldUpdateOperationsInput | string
+    overview?: StringFieldUpdateOperationsInput | string
+    job_type?: StringFieldUpdateOperationsInput | string
+    salary?: StringFieldUpdateOperationsInput | string
+    duties?: StringFieldUpdateOperationsInput | string
+    requirements?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUpdateWithoutDepartmentInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    member?: membersUpdateOneRequiredWithoutAwardsNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_AwardNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_AwardNestedInput
+  }
+
+  export type awardsUncheckedUpdateWithoutDepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUncheckedUpdateManyWithoutDepartmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    member_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsCreateManyMemberInput = {
+    id?: number
+    date: Date | string
+    title: string
+    department_id: number
+    created_by: number
+    updated_by: number
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type awardsUpdateWithoutMemberInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: departmentsUpdateOneRequiredWithoutAwardsNestedInput
+    createdBy?: usersUpdateOneRequiredWithoutCreated_AwardNestedInput
+    updatedBy?: usersUpdateOneRequiredWithoutUpdated_AwardNestedInput
+  }
+
+  export type awardsUncheckedUpdateWithoutMemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
+    created_by?: IntFieldUpdateOperationsInput | number
+    updated_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type awardsUncheckedUpdateManyWithoutMemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    department_id?: IntFieldUpdateOperationsInput | number
     created_by?: IntFieldUpdateOperationsInput | number
     updated_by?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string

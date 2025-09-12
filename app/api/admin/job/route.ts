@@ -4,7 +4,20 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const jobs = await prisma.jobs.findMany();
+        const jobs = await prisma.jobs.findMany({
+            include: {
+                department: {
+                    select: {
+                        name: true,
+                    }
+                },
+                createdBy: {
+                    select: {
+                        name: true,
+                    },
+                },
+            }
+        });
         return NextResponse.json(jobs);
     } catch (error) {
         return NextResponse.error();
@@ -19,7 +32,7 @@ export async function POST(req: Request) {
         const open_date = new Date(openDateStr).toISOString();
         const close_date = new Date(closeDateStr).toISOString();
         const position = form.get('position') as string;
-        const department  = form.get("department") as string;
+        const department_id = form.get("department_id") as string;
         const description = form.get("description") as string;
         const experiences = form.get("experiences") as string;
         const level = form.get("level") as string;
@@ -30,8 +43,9 @@ export async function POST(req: Request) {
         const requirements = form.get("requirements") as string;
         const gender = form.get("gender") as string;
         const status = form.get("status") as string;
+        console.log("duties", duties);
 
-        if(
+        if (
             !open_date ||
             !close_date ||
             !position ||
@@ -42,33 +56,33 @@ export async function POST(req: Request) {
             !duties ||
             !requirements ||
             !gender
-                ){
-                    return NextResponse.json({error: "All fields are required"},{status: 400})
-                }
+        ) {
+            return NextResponse.json({ error: "All fields are required" }, { status: 400 })
+        }
 
-                const newJob = await prisma.jobs.create({
-                    data: {
-                        open_date,
-                        close_date,
-                        position,
-                        description,
-                        department,
-                        experiences,
-                        level,
-                        overview,
-                        job_type,
-                        salary,
-                        duties,
-                        requirements,
-                        gender,
-                        status,
-                        created_by: 1,
-                        updated_by: 1,
-                    },
-                });
-                return NextResponse.json(newJob);
+        const newJob = await prisma.jobs.create({
+            data: {
+                open_date,
+                close_date,
+                position,
+                description,
+                department_id: Number(department_id),
+                experiences,
+                level,
+                overview,
+                job_type,
+                salary,
+                duties,
+                requirements,
+                gender,
+                status,
+                created_by: 1,
+                updated_by: 1,
+            },
+        });
+        return NextResponse.json(newJob);
 
     } catch (error) {
-        return NextResponse.json({error: "Server error"},{status: 500});
+        return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 }

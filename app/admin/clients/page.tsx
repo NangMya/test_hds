@@ -12,7 +12,7 @@ type ClientProps = {
   logo: string | null;
 };
 const page = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [clients, setClients] = useState<ClientProps[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>("");
@@ -70,6 +70,7 @@ const page = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      setLoading(false)
       setClients(data);
       setSelectedImage("");
     } catch (error) {
@@ -107,6 +108,7 @@ const page = () => {
   };
 
   return (
+    <section className="py-20">
     <div className="bg-white shadow rounded-lg p-6">
       {loading && <LoadingOverlay />}
       {error && <p className="text-red-500">{error}</p>}
@@ -151,6 +153,7 @@ const page = () => {
           ))}
       </div>
     </div>
+    </section>
   );
 };
 

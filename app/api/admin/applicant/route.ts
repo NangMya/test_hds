@@ -1,5 +1,5 @@
 import prisma from "@/lib/db";
-import { writeFile } from "fs/promises";
+import { mkdir, writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path";
 
@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
-        
+
         const form = await req.formData();
         const name = form.get("name") as string;
         const email = form.get("email") as string;
@@ -25,14 +25,14 @@ export async function POST(req: Request) {
         const job_id = form.get("job_id") as string;
         const existing = await prisma.applicants.findFirst({
             where: {
-              email,
-              job_id: Number(job_id)
+                email,
+                job_id: Number(job_id)
             }
-          });
-          
-          if (existing) {
+        });
+
+        if (existing) {
             return NextResponse.json({ error: "Already applied for this job." }, { status: 409 });
-          }
+        }
         const file = form.get('file') as File;
 
         const allowedTypes = [
@@ -60,24 +60,32 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "File is too large" }, { status: 400 });
         }
 
+        const now = new Date();
+        const year = now.getFullYear().toString();
+        const month = (now.getMonth() + 1).toString().padStart(2, "0");
+        const day = now.getDate().toString().padStart(2, "0");
+
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
         const filename = `${name}_${Date.now()}_${file.name}`;
-        const filepath = path.join(process.cwd(), "public", "uploads/applications", filename);
-        await writeFile(filepath, buffer);
-
-        // multip file
-        // const buffer = Buffer.from(await file.arrayBuffer());
-        // const filename = `${name}-${file.name.replace(/\s/g, "-")}`;
-        // const uploadPath = path.join(process.cwd(), "public", "uploads/applications", filename);
-
-        // await writeFile(uploadPath, buffer);
-
+        const directoryPath = path.join(
+            process.cwd(),
+            "public",
+            "uploads",
+            "applications",
+            year,
+            month,
+            day
+        );
+        await mkdir(directoryPath, { recursive: true });
+        const filePathUrl = `/uploads/applications/${year}/${month}/${day}/${filename}`;
+        const filePath = path.join(directoryPath, filename);
+        await writeFile(filePath, buffer);
 
         const newApplicant = await prisma.applicants.create({
-            data: { name, email, phone, address, experience,job_id: Number(job_id),file:`/uploads/applications/${filename}`, expected_salary, updated_by: 1, status:"pending" }
+            data: { name, email, phone, address, experience, job_id: Number(job_id), file: filePathUrl, expected_salary, updated_by: 1, status: "pending" }
         })
-       
+
         return NextResponse.json(newApplicant, { status: 201 })
     } catch (error) {
         console.log(error);
