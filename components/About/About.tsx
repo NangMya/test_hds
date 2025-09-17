@@ -5,7 +5,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <section className="bg-secondaryBg p-6 rounded-2xl w-[90%] mx-auto font-lora">
+    <section className="bg-secondaryBg p-6 rounded-2xl w-[90%] mx-auto font-lora" data-aos="fade-up" data-aos-duration="3000">
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 relative">
         <div className="w-full px-4 sm:px-0 sm:w-[90%] md:w-[70%] mx-auto text-left mt-8">
           <h1 className="text-white font-lg opacity-70">
@@ -27,7 +27,7 @@ const About = () => {
 
         <div className="pt-4 pb-44 sm:pb-4 px:6 sm:px-6 md:px-10 font-lora mt-6 sm:mt-4 md:mt-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-4">
-            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4">
+            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4" data-aos="zoom-in" data-aos-duration="3400">
               <div className="w-14 sm:18 md:w-20 h-8 p-2 flex justify-center items-center rounded-full bg-red-100 mb-6">
                 <Image
                   src="/images/about_us/icons/insights.svg"
@@ -48,7 +48,7 @@ const About = () => {
                 <p className="mt-6 uppercase text-textColor text-md">INSIGHT</p>
               </div>
             </div>
-            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4">
+            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4" data-aos="zoom-in" data-aos-duration="3800">
               <div className="w-14 sm:18 md:w-20 h-8 p-2 flex justify-center items-center rounded-full bg-orange-100 mb-6">
                 <Image
                   src="/images/about_us/icons/idea.svg"
@@ -68,7 +68,7 @@ const About = () => {
                 <p className="mt-6 uppercase text-textColor text-md">IDEA</p>
               </div>
             </div>
-            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4">
+            <div className="bg-white rounded-3xl p-6 flex flex-row gap-8 md:gap-4" data-aos="zoom-in" data-aos-duration="4000">
               <div className="w-14 sm:18 md:w-20 h-8 p-2 flex justify-center items-center rounded-full bg-purple-100 mb-6">
                 <Image
                   src="/images/about_us/icons/target.svg"

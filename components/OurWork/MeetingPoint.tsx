@@ -1,62 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import WavyCard1 from "../WavyCard1";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-
-const MeetingPoint = () => {
-  const slides = [
-    {
-      id: 1,
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-      title: "Zakatplus",
-      subtitle: "Branding",
-    },
-    {
-      id: 2,
-      imageUrl: "https://placehold.co/800x1200/7C4DFF/FFFFFF?text=Boompay",
-      title: "Boompay",
-      subtitle: "App Development",
-    },
-    {
-      id: 3,
-      imageUrl:
-        "https://placehold.co/800x1200/F57C00/FFFFFF?text=Two+days+to+go",
-      title: "Two days to go",
-      subtitle: "Branding & Social campaign",
-    },
-    {
-      id: 4,
-      imageUrl:
-        "https://placehold.co/800x1200/42A5F5/FFFFFF?text=Gecreativ.com",
-      title: "Gecreativ.com",
-      subtitle: "Social Media",
-    },
-    {
-      id: 5,
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Proposal",
-      title: "Proposal",
-      subtitle: "Google Campaign",
-    },
-    {
-      id: 6,
-      imageUrl: "https://placehold.co/800x1200/808080/FFFFFF?text=More+Content",
-      title: "More Content",
-      subtitle: "Placeholder",
-    },
-  ];
-
+import { WorkProp } from "@/services/api";
+type WorkProps ={
+  works: WorkProp[]
+}
+const MeetingPoint = ({works}:WorkProps) => {
+  
   const [activeIndex, setActiveIndex] = useState(2);
-  const currentSlide = slides[activeIndex];
+  const currentSlide = works[activeIndex];
 
   const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % works.length);
   };
 
   const handlePrev = () => {
     setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+      (prevIndex) => (prevIndex - 1 + works.length) % works.length
     );
   };
 
@@ -80,7 +42,7 @@ const MeetingPoint = () => {
           <h1 className="text-2xl sm:text-4xl text-center">Our Recent Projects</h1>
           <div className="flex flex-col items-center justify-center w-full h-full mt-10 font-sans">
             <div className="relative w-full max-w-6xl flex justify-center items-center h-64 sm:h-72 md:h-80">
-              {slides.map((slide, index) => {
+              {works.map((slide, index) => {
                 const offset = index - activeIndex;
 
                 let transformStyle = "";
@@ -94,16 +56,16 @@ const MeetingPoint = () => {
                   zIndex = 30;
                   rounded = "rounded-3xl";
                   shadow = "shadow-2xl";
-                } else if (offset === -1 || offset === slides.length - 1) {
+                } else if (offset === -1 || offset === works.length - 1) {
                   transformStyle = "translateX(-70%) scale(0.9)";
                   zIndex = 20;
-                } else if (offset === 1 || offset === -(slides.length - 1)) {
+                } else if (offset === 1 || offset === -(works.length - 1)) {
                   transformStyle = "translateX(70%) scale(0.9)";
                   zIndex = 20;
-                } else if (offset === -2 || offset === slides.length - 2) {
+                } else if (offset === -2 || offset === works.length - 2) {
                   transformStyle = "translateX(-120%) scale(0.8)";
                   zIndex = 15;
-                } else if (offset === 2 || offset === -(slides.length - 2)) {
+                } else if (offset === 2 || offset === -(works.length - 2)) {
                   transformStyle = "translateX(120%) scale(0.8)";
                   zIndex = 15;
                 } else {
@@ -128,7 +90,7 @@ const MeetingPoint = () => {
                     }}
                   >
                     <img
-                      src={slide.imageUrl}
+                      src={slide.image as string}
                       alt={slide.title}
                       className="w-full h-full object-cover"
                     />
@@ -138,7 +100,7 @@ const MeetingPoint = () => {
                       <h3 className="text-sm md:text-md font-medium">
                         {slide.title}
                       </h3>
-                      <p className="text-xs text-gray-300">{slide.subtitle}</p>
+                      <p className="text-xs text-gray-300">{slide.description}</p>
                     </div>
                   </div>
                 );
@@ -150,7 +112,7 @@ const MeetingPoint = () => {
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                   {currentSlide.title}
                 </h2>
-                <p className="text-md sm:text-lg text-gray-600">{currentSlide.subtitle}</p>
+                <p className="text-md sm:text-lg text-gray-600">{currentSlide.description}</p>
               </div>
             )}
 
@@ -171,22 +133,6 @@ const MeetingPoint = () => {
               </button>
             </div>
           </div>
-          {/* <div className="flex flex-row gap-12 absolute top-10 left-[13%]">
-            <Image
-              src="/images/our_work/1.webp"
-              alt="mockup"
-              width={100}
-              height={100}
-              className="cover w-32 h-32"
-            />
-            <Image
-              src="/images/our_work/2.webp"
-              alt="mockup"
-              width={100}
-              height={100}
-              className="cover w-32 h-32"
-            />
-          </div> */}
         </div>
       </WavyCard1>
     </section>

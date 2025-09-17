@@ -1,7 +1,14 @@
+import AOSProvider from "@/components/AOSProvider";
 import "./globals.css";
 
-// This component remains a Server Component by default, which is the best practice.
-// It will not cause hydration errors because it doesn't use client-side hooks.
+export const metadata = {
+  title: "HDS",
+  description: "Default description for my website.",
+  icons: {
+    icon: "/logo.svg",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -10,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased overflow-x-hidden font-graphik`}>
-        {children}
+        <AOSProvider>{children}</AOSProvider>
       </body>
     </html>
   );

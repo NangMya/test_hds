@@ -1,76 +1,71 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import CTA from "../CTA";
 import WavyCard1 from "../WavyCard1";
-import allTeamMembers, { TeamMember } from "../../data/teamMembers";
+import { MemberProp } from "@/services/api";
 
 const getRandomMembers = (
-  members: TeamMember[],
+  members: MemberProp[],
   count: number
-): TeamMember[] => {
+): MemberProp[] => {
   if (members.length <= count) {
     return members;
   }
   const shuffled = [...members].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
-
-const MeetTheTeam = () => {
-  const [displayedMembers, setDisplayedMembers] = useState<TeamMember[]>([]);
-
+interface MeetTheTeamProps {
+  members: MemberProp[];
+}
+const MeetTheTeam: React.FC<MeetTheTeamProps> = ({ members }) => {
+  const [displayedMembers, setDisplayedMembers] = useState<MemberProp[]>([]);
   useEffect(() => {
-    // 1. initial selection
-    const initialMembers = getRandomMembers(allTeamMembers, 4);
+    const initialMembers = getRandomMembers(members, 4);
     setDisplayedMembers(initialMembers);
 
-    // 2. setup the timer to update the members every 1 second (6,000 millisecond)
     const interval = setInterval(() => {
-      const newMembers = getRandomMembers(allTeamMembers, 4);
+      const newMembers = getRandomMembers(members, 4);
       setDisplayedMembers(newMembers);
-    }, 60 * 100); // 6 * 100 ms = 1 second
+    }, 60 * 100);
 
-    //3. clear interval
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className=" overflow-hidden py-12 sm:py-16 md:py-1  z-0 mt-2 ">
       <WavyCard1>
-        <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-16 h-full text-center pt-0 sm:pt-10">
-          <h2 className="font-lora text-primaryTextColor text-3xl sm:text-5xl  font-normal sm:pt-0 text-left">
+        <div className="container relative z-10 mx-auto px-0 sm:px-4 md:px-8 lg:px-16 h-full text-center pt-0 sm:pt-10">
+          <h2 className="font-lora text-primaryTextColor text-3xl sm:text-5xl  font-normal sm:pt-0 text-left px-4">
             Meet The <span className="text-primary">Team</span>
           </h2>
-          <div className="grid grid-cols-3 sm:grid-cols-2 gap-0 sm:gap-4">
+          <div className="grid grid-cols-5 sm:grid-cols-2 gap-0 sm:gap-4">
             <div className="flex flex-col relative">
+              <Image
+                src="/images/our_people/meet_the_team.png"
+                alt="3D running character"
+                fill
+                className="h-auto min-w-xs sm:min-w-xs max-w-md sm:max-w-lg absolute -bottom-10 sm:-bottom-4 -left-20 sm:-left-20 object-cover scale-75 sm:scale-100"
+              />
               <div className="mt-8 lg:mt-16 xs:block">
                 <Image
-                  src="/images/our_people/meet_the_team.png"
-                  alt="3D running character"
-                  width={300}
-                  height={300}
-                  className="h-auto w-full max-w-md lg:max-w-md absolute bottom-10 sm:-bottom-4 -left-10 sm:-left-20 scale-[200%] sm:scale-100"
-                />
-                <Image
                   src="/images/home/team/heart.webp"
-                  alt="3D running character"
+                  alt="Heart"
                   width={10}
                   height={10}
-                  className="w-8 max-w-md lg:max-w-md absolute top-32 left-12 sm:left-20 scale-[200%] block sm:hidden"
+                  className="w-8 max-w-md lg:max-w-md absolute top-5 left-4 sm:left-20 scale-[200%] block sm:hidden"
                 />
               </div>
             </div>
 
-
-            <div className="grid grid-cols-2 gap-2 md:gap-2 max-w-md sm:max-w-sm mx-auto   mt-0 col-span-2 sm:col-span-1">
+            <div className="grid grid-cols-2 gap-1 md:gap-2 max-w-md sm:max-w-sm mx-auto   mt-0 col-span-4 sm:col-span-1">
               {displayedMembers.map((member) => (
                 <div
                   key={member.id}
-                  className="flex flex-col  text-left odd:mt-8 sm:odd:mt-12 w-40 h-auto"
+                  className="flex flex-col  text-left odd:mt-8 sm:odd:mt-12 h-auto"
                 >
-                  <div className="relative h-32 w-32 overflow-hidden rounded-lg bg-gray-100 md:h-36 md:w-36">
+                  <div className="relative h-28 w-28 sm:h-32 sm:w-32 overflow-hidden rounded-lg bg-gray-100 border md:h-36 md:w-36">
                     <Image
-                      src={member.image}
+                      src={member.profile as string}
                       alt={member.name}
                       layout="fill"
                       objectFit="cover"
@@ -81,7 +76,7 @@ const MeetTheTeam = () => {
                     {member.name}
                   </h3>
                   <p className="text-xs text-gray-600 text-left">
-                    {member.title}
+                    {member.position}
                   </p>
                 </div>
               ))}

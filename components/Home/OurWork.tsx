@@ -5,8 +5,20 @@ import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import CTA from "../CTA";
 import Container from "../Container";
+import { WorkProp } from "@/services/api";
+import Link from "next/link";
 
-const OurWork = () => {
+const OurWork = ({ works }: { works: WorkProp[] }) => {
+  const worksToShow = works.slice(0, 5);
+
+  const gridClasses = [
+    "col-span-2 row-span-2", // first item
+    "col-span-2 row-span-1", // second item
+    "row-span-2",            // third item
+    "row-span-2",            // fourth item
+    "col-span-2",            // fifth item
+  ];
+
   return (
     <section className="relative overflow-hidden py-6 md:py-16 min-h-[500px] sm:min-h-[850px] z-10">
       <Container>
@@ -29,98 +41,35 @@ const OurWork = () => {
 
               <div className="w-full mx-auto mt-6 sm:mt-12">
                 <div className="grid grid-rows-3 grid-cols-4 gap-2 sm:gap-4 mx-auto px-0 pb-2 sm:pb-10">
-                  <div className="col-span-2 row-span-2 bg-white rounded-3xl shadow-md relative">
-                    <Image
-                      src="/images/home/works/1.webp"
-                      alt="work"
-                      width={100}
-                      height={100}
-                      className="object-cover rounded-3xl w-full h-full"
-                    />
-                    <div className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
-                      <span className="-rotate-45 text-md font-extrabold">
-                        <FaArrowRightLong />
-                      </span>
+                  {worksToShow.map((work, i) => (
+                    <div
+                      key={work.id}
+                      className={`${
+                        gridClasses[i] ?? "col-span-2"
+                      } bg-white rounded-3xl shadow-md relative flex items-center justify-center`}
+                    >
+                      <Image
+                        src={work.image ?? "/images/home/works/1.webp"}
+                        alt={work.title}
+                        width={400}
+                        height={300}
+                        className="object-cover rounded-3xl w-full h-full"
+                      />
+                      
+                      <Link href={`/our_work/details/${work.id}`} className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
+                        <span className="-rotate-45 text-md font-extrabold">
+                          <FaArrowRightLong />
+                        </span>
+                      </Link>
+                      <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
+                        {work.title}
+                      </p>
                     </div>
-                    <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
-                      Marketing Strategies For XYZ Company{" "}
-                    </p>
-                  </div>
-                  <div className="col-span-2 row-span-1 bg-white rounded-3xl shadow-md relative">
-                    <Image
-                      src="/images/home/works/2.webp"
-                      alt="work"
-                      width={100}
-                      height={100}
-                      className="object-cover rounded-3xl w-full h-full"
-                    />
-                    <div className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
-                      <span className="-rotate-45 text-md font-extrabold">
-                        <FaArrowRightLong />
-                      </span>
-                    </div>
-                    <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
-                      Packaging Design for Blue Panda{" "}
-                    </p>
-                  </div>
-
-                  <div className="bg-white row-span-2 rounded-3xl shadow-md flex items-center justify-center relative">
-                    <Image
-                      src="/images/home/works/4.webp"
-                      alt="work"
-                      width={100}
-                      height={100}
-                      className="object-cover rounded-3xl w-full h-full"
-                    />
-                    <div className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
-                      <span className="-rotate-45 text-md font-extrabold">
-                        <FaArrowRightLong />
-                      </span>
-                    </div>
-                    <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
-                      Video Production for Rio Brand{" "}
-                    </p>
-                  </div>
-
-                  <div className="bg-blue-100 row-span-2 rounded-3xl shadow-md relative">
-                    <Image
-                      src="/images/home/works/5.webp"
-                      alt="work"
-                      width={50}
-                      height={100}
-                      className="object-cover rounded-3xl w-full h-full"
-                    />
-                    <div className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
-                      <span className="-rotate-45 text-md font-extrabold">
-                        <FaArrowRightLong />
-                      </span>
-                    </div>
-                    <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
-                      Talent Recruitment with Universal Studio{" "}
-                    </p>
-                  </div>
-
-                  <div className="col-span-2 bg-green-100  rounded-3xl shadow-md relative">
-                    <Image
-                      src="/images/home/works/3.webp"
-                      alt="work"
-                      width={100}
-                      height={100}
-                      className="object-cover rounded-3xl w-full h-full"
-                    />
-                    <div className="w-8 h-8 shadow-lg cursor-pointer rounded-lg flex items-center justify-center text-primary text-xs bg-white absolute top-4 right-4">
-                      <span className="-rotate-45 text-md font-extrabold">
-                        <FaArrowRightLong />
-                      </span>
-                    </div>
-                    <p className="absolute bottom-4 left-4 bg-[#EF5935] text-xs px-4 py-2 text-white rounded-2xl">
-                      Digital Design{" "}
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
               <div className="my-4">
-                <CTA url="#" label="Explore More" />
+                <CTA url="/our_work" label="Explore More" />
               </div>
             </div>
           </div>

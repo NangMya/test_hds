@@ -1,21 +1,21 @@
 "use client";
 
-import Image from "next/image";
+import { WorkProp } from "@/services/api";
 import React, { useState, useEffect, useRef } from "react";
-import { BiChevronDown } from "react-icons/bi";
-import { BsArrowUpRight } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa6";
+type WorkProps ={
+  works: WorkProp[]
+}
+const CaseStudy = ({works}:WorkProps) => {
 
-const CaseStudy = () => {
   function useIsLargeScreen() {
     const [isLarge, setIsLarge] = useState(false);
 
     useEffect(() => {
       const handleResize = () => {
-        setIsLarge(window.innerWidth >= 1024); // `lg` breakpoint is 1024px by default
+        setIsLarge(window.innerWidth >= 1024); 
       };
 
-      // Set initial value
       handleResize();
 
       window.addEventListener("resize", handleResize);
@@ -24,42 +24,9 @@ const CaseStudy = () => {
 
     return isLarge;
   }
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      title: "Card 1",
-      subtitle: "Subtitle 1",
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-    },
-    {
-      id: 2,
-      title: "Card 2",
-      subtitle: "Subtitle 2",
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-    },
-    {
-      id: 3,
-      title: "Card 3",
-      subtitle: "Subtitle 3",
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-    },
-    {
-      id: 4,
-      title: "Card 4",
-      subtitle: "Subtitle 4",
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-    },
-    {
-      id: 5,
-      title: "Card 5",
-      subtitle: "Subtitle 5",
-      imageUrl: "https://placehold.co/800x1200/FF5722/FFFFFF?text=Zakatplus",
-    },
-  ]);
+  const [items, setItems] = useState(works);
 
   const isLargeScreen = useIsLargeScreen();
-
-  // Decide which items to display based on screen size
   const itemsToDisplay = isLargeScreen ? items : items.slice(0, 2);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -74,12 +41,9 @@ const CaseStudy = () => {
     setItems(items.slice(0, isMobile ? 2 : 4));
   }, [isMobile]);
 
-  // Function to handle moving the first item to the last position
   const handleNext = () => {
     setItems((currentItems) => {
-      // Get the first item
       const [first, ...rest] = currentItems;
-      // Return a new array with the first item moved to the end
       return [...rest, first];
     });
   };
@@ -148,13 +112,13 @@ const CaseStudy = () => {
                     }}
                   >
                     <img
-                      src={item.imageUrl}
+                      src={item.image as string}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6 text-white text-sm font-sans">
                       <p className="font-semibold text-lg">{item.title}</p>
-                      <p className="text-gray-300">{item.subtitle}</p>
+                      <p className="text-gray-300">{item.description}</p>
                     </div>
                   </div>
                 );

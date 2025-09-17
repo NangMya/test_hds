@@ -7,11 +7,11 @@ export async function GET() {
   try {
     const members = await prisma.members.findMany({
       include: {
-        department: {
-          select: {
-            name: true,
-          },
-        },
+        // department: {
+        //   select: {
+        //     name: true,
+        //   },
+        // },
         createdBy: {
           select: {
             name: true,
@@ -27,13 +27,14 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    
     const form = await req.formData();
     const name = form.get("name") as string;
     const position = form.get("position") as string;
     const department_id = form.get("department_id") as string;
     const profile = form.get("profile") as File;
 
-    if (!name || !position || !department_id || !profile) {
+    if (!name || !position || !profile) {
       return NextResponse.json(
         { error: "All fields are required!" },
         { status: 400 }
@@ -67,7 +68,7 @@ export async function POST(req: Request) {
       data: {
         name,
         position,
-        department_id: Number(department_id),
+        department_id: department_id ? Number(department_id) : null,
         profile: profilePath,
         created_by: 1,
         updated_by: 1,

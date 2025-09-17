@@ -6,7 +6,7 @@ import { BsStarFill } from "react-icons/bs";
 
 const Intro = () => {
   return (
-    <section className=" p-6 rounded-2xl text-center justify-center w-[90%] mx-auto">
+    <section className=" p-6 rounded-2xl text-center justify-center w-[90%] mx-auto" data-aos="fade-down" data-aos-duration="2000">
       <h1 className="font-lora text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center pt-10">
         Who <span className="text-primary">We Are</span>
       </h1>

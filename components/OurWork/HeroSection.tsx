@@ -15,19 +15,19 @@ const HeroSection = () => {
       />
       <div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-12">
-          <div className=" border-t-2 border-t-black mb-4 text-center">
+          <div className=" border-t-2 border-t-black mb-4 text-center" data-aos="zoom-in" data-aos-duration="3000">
             <p className="text-4xl sm:text-6xl font-bold py-4 ">20+</p>
             <p className="text-sm text-gray-500">Successful works</p>
           </div>
-          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block">
+          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block" data-aos="zoom-in" data-aos-duration="4000">
             <p className="text-4xl sm:text-6xl font-bold py-4 ">7+</p>
             <p className="text-sm text-gray-500">Case Studies</p>
           </div>
-          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block">
+          <div className=" border-t-2 border-t-black mb-4 text-center hidden sm:block"  data-aos="zoom-in" data-aos-duration="5000">
             <p className="text-4xl sm:text-6xl font-bold py-4 ">5+</p>
             <p className="text-sm text-gray-500">Service provide</p>
           </div>
-          <div className=" border-t-2 border-t-black mb-4 text-center">
+          <div className=" border-t-2 border-t-black mb-4 text-center"  data-aos="zoom-in" data-aos-duration="6000">
             <p className="text-4xl sm:text-6xl font-bold py-4 ">95%</p>
             <p className="text-sm text-gray-500">Satisfied clients</p>
           </div>

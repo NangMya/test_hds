@@ -30,7 +30,7 @@ const WavyCard4 = ({ children }: Props) => {
                     </linearGradient>
                 </defs>
             </svg>
-            <div className="relative z-10 p-4">{children}</div>
+            <div className="relative z-10 px-4">{children}</div>
         </div>
     );
 };

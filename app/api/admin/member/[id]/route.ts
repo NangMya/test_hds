@@ -91,7 +91,7 @@ export async function PUT(
       data: {
         name,
         position,
-        department_id: Number(department_id),
+        department_id: department_id ? Number(department_id) : null,
         profile: profilePath,
         updated_by: 1,
       },

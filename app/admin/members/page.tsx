@@ -33,7 +33,7 @@ const { search, setSearch, page, setPage, totalPages, currentData } =
         console.log(data);
         setMembers(data);
       } catch (error) {
-        setError("Failed to fetch department");
+        setError("Failed to fetch member");
       } finally {
         setLoading(false);
       }
@@ -90,7 +90,7 @@ const { search, setSearch, page, setPage, totalPages, currentData } =
                 <th className="px-4 py-2 text-xs font-lora text-left">Profile</th>
                 <th className="px-4 py-2 text-xs font-lora text-left">Name</th>
                 <th className="px-4 py-2 text-xs font-lora text-left">Position</th>
-                <th className="px-4 py-2 text-xs font-lora text-left">Department</th>
+                {/* <th className="px-4 py-2 text-xs font-lora text-left">Department</th> */}
                 <th className="px-4 py-2 text-xs font-lora text-left">Created By</th>
                 <th className="px-4 py-2 text-xs font-lora">Action</th>
               </tr>
@@ -110,9 +110,9 @@ const { search, setSearch, page, setPage, totalPages, currentData } =
                   <td className="px-4 py-3 text-xs font-lora">
                     {member.position}
                   </td>
-                  <td className="px-4 py-3 text-xs font-lora">
+                  {/* <td className="px-4 py-3 text-xs font-lora">
                     {member?.department?.name}
-                  </td>
+                  </td> */}
 
                   <td className="px-4 py-3 text-xs font-lora">
                     {member?.createdBy?.name}

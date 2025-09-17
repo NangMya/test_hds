@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 75,
+            "activePatchIndex": 77,
             "patches": [
                 {
                     "date": 1756265713027,
@@ -308,6 +308,14 @@
                 {
                     "date": 1756285721227,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   children: any;\r\n };\r\n const WavyCard1 = ({ children }: Props) => {\r\n   return (\r\n-<div className=\"relative w-full h-auto min-h-[600px] md:min-h-[700px] lg:min-h-[770px] overflow-hidden\">\r\n+<div className=\"relative w-full h-auto min-h-[600px] md:min-h-[750px] lg:min-h-[770px] overflow-hidden\">\r\n       <svg\r\n     className=\"absolute inset-0 -z-10 w-full h-[900px] md:h-[1000px] lg:h-full\"\r\n         viewBox=\"0 0 4000 800\"\r\n         fill=\"none\"\r\n"
+                },
+                {
+                    "date": 1757922807252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n             <stop offset=\"1\" stopColor=\"#EDF2F4\" />\r\n           </linearGradient>\r\n         </defs>\r\n       </svg>\r\n-      <div className=\"relative z-10 p-4\">{children}</div>\r\n+      <div className=\"relative z-10 p-0 sm:p-4\">{children}</div>\r\n     </div>\r\n   );\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1757922836354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n             <stop offset=\"1\" stopColor=\"#EDF2F4\" />\r\n           </linearGradient>\r\n         </defs>\r\n       </svg>\r\n-      <div className=\"relative z-10 p-0 sm:p-4\">{children}</div>\r\n+      <div className=\"relative z-10 px-0 sm:px-4 py-4\">{children}</div>\r\n     </div>\r\n   );\r\n };\r\n \r\n"
                 }
             ],
             "date": 1756265713027,

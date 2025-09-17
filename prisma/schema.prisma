@@ -65,10 +65,10 @@ model our_works {
   id          Int      @id @default(autoincrement())
   date        DateTime
   title       String
-  description String
-  challenges  String
-  strategy    String
-  takeaway    String
+  description String   @db.Text
+  challenges  String   @db.Text
+  strategy    String   @db.Text
+  takeaway    String   @db.Text
   image       String?
   created_by  Int
   updated_by  Int
@@ -86,7 +86,7 @@ model jobs {
   position      String
   department_id Int
   department    departments  @relation(fields: [department_id], references: [id])
-  description   String
+  description   String       @db.Text
   experiences   String
   level         String
   overview      String
@@ -175,25 +175,25 @@ model departments {
 }
 
 model members {
-  id            Int         @id @default(autoincrement())
+  id            Int          @id @default(autoincrement())
   name          String
   profile       String
   position      String
-  department_id Int
-  department    departments @relation("DepartmentOfUser", fields: [department_id], references: [id])
+  department_id Int?
+  department    departments? @relation("DepartmentOfUser", fields: [department_id], references: [id])
   created_by    Int
   updated_by    Int
-  createdBy     users       @relation("UserCreatedMember", fields: [created_by], references: [id])
-  updatedBy     users       @relation("UserUpdatedMember", fields: [updated_by], references: [id])
-  created_at    DateTime    @default(now())
-  updated_at    DateTime    @updatedAt
+  createdBy     users        @relation("UserCreatedMember", fields: [created_by], references: [id])
+  updatedBy     users        @relation("UserUpdatedMember", fields: [updated_by], references: [id])
+  created_at    DateTime     @default(now())
+  updated_at    DateTime     @updatedAt
   awards        awards[]
 }
 
 model hds_activities {
   id          Int         @id @default(autoincrement())
   title       String
-  description String
+  description String      @db.Text
   created_by  Int
   updated_by  Int
   createdBy   users       @relation("UserCreatedActivities", fields: [created_by], references: [id])
@@ -236,7 +236,7 @@ model awards {
 model session {
   id           String   @id @default(uuid())
   sessionToken String   @unique
-  user_id       Int
+  user_id      Int
   expires      DateTime
 
   user users @relation(fields: [user_id], references: [id], onDelete: Cascade)

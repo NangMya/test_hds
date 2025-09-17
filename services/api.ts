@@ -5,7 +5,7 @@ const BASE_URL = process.env.BASE_URL
   : "http://localhost:3000";
 
 
-export interface AdminProp{
+export interface AdminProp {
   id?: number;
   name: string;
   email: string;
@@ -56,7 +56,12 @@ export type DepartmentProp = {
     name: string;
   };
 };
-
+export type TeamMember = {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+};
 export type MemberProp = {
   id?: number;
   name: string;
@@ -86,7 +91,7 @@ export type WorkProp = {
   challenges: string;
   strategy: string;
   takeaway: string;
-  image: string | null;
+  image?: string | null;
   created_by?: number;
   updated_by?: number;
   created_at?: string;
@@ -194,17 +199,26 @@ export type AwardProp = {
   };
 };
 
-async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
-  const fullUrl = `${BASE_URL}${url}`;
+type FetchOptions = {
+  tags?: string[];
+  revalidate?: number;
+  cache?: 'force-cache' | 'no-store';
+};
 
-  const res = await fetch(fullUrl, {
-    cache: "no-store", // Example of disabling cache, or use 'force-cache'
-    next: { tags },
+async function fetcher<T>(url: string, options: FetchOptions = {}): Promise<T> {
+  const { tags = [], revalidate, cache } = options;
+  const fullUrl = `${process.env.BASE_URL}${url}`;
+
+  const cacheOption = cache || 'force-cache';
+  const fetchOptions: RequestInit = {
+    cache: cacheOption,
+    next: { tags, revalidate },
     headers: {
       "Content-Type": "application/json",
-      // 'Authorization': `Bearer ${process.env.API_KEY}`, // Example auth
     },
-  });
+  };
+
+  const res = await fetch(fullUrl, fetchOptions);
 
   if (!res.ok) {
     throw new Error(`Failed to fetch data from ${url}`);
@@ -215,23 +229,20 @@ async function fetcher<T>(url: string, tags: string[] = []): Promise<T> {
 
 // --- API Call Functions ---
 export const api = {
-  // Call to get clients
+  getMembers: async (): Promise<MemberProp[]> => {
+    return fetcher('/api/web/member', { revalidate: 600, tags: ["members"] });
+  },
+  getInfo: async (): Promise<Info> => {
+    return fetcher('/api/web/home', { revalidate: 30, tags: ["info"] });
+  },
   getClients: async (): Promise<Client[]> => {
-    return fetcher<Client[]>("/api/web/client", ["clients"]);
+    return fetcher("/api/web/client", { revalidate: 600, tags: ['clients'] });
+  },
+  getOurWorks: async (): Promise<WorkProp[]> => {
+    return fetcher("/api/web/work", { revalidate: 30, tags: ['works'] });
+  },
+  getWorkById: async (id: string): Promise<WorkProp | null> => {
+    return fetcher(`/api/web/work/${id}`, { revalidate: 30, tags: ["work"] });
   },
 
-  // Call to get info
-  getHomeInfo: async (): Promise<Info> => {
-    return fetcher<Info>("/api/web/home", ["info"]);
-  },
-
-  // Call to get members
-  //   getMembers: async (): Promise<Member[]> => {
-  //     return fetcher<Member[]>('https://api.yourdomain.com/members', ['members']);
-  //   },
-
-  //   // Call to get info
-  //   getHomeInfo: async (): Promise<Info> => {
-  //     return fetcher<Info>('https://api.yourdomain.com/info', ['info']);
-  //   },
 };

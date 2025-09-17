@@ -15,14 +15,14 @@ const initialState = {
   name: "",
   profile: "",
   position: "",
-  department_id: "",
+  // department_id: "",
 };
 
 const page = () => {
   const [member, setMember] = useState<MemberProp>(initialState);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [departments, setDepartments] = useState<DepartmentProp[]>([]);
+  // const [departments, setDepartments] = useState<DepartmentProp[]>([]);
   const [profileUrl, setProfileUrl] = useState("");
   const [profileFile, setProfileFile] = useState<File | null>(null);
   const router = useRouter();
@@ -66,9 +66,9 @@ const page = () => {
     const formData = new FormData();
     formData.append("name", member.name);
     formData.append("position", member.position);
-    if (member.department_id != null) {
-      formData.append("department_id", member.department_id as string);
-    }
+    // if (member.department_id != null) {
+    //   formData.append("department_id", member.department_id as string);
+    // }
 
     if(profileFile){
         formData.append('profile',profileFile);
@@ -93,25 +93,25 @@ const page = () => {
       setError("An error occurred. Please try again later.");
     }
   };
-  useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        const response = await fetch("/api/admin/department");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        console.log("data", data);
-        console.log("response", data);
-        setDepartments(data);
-      } catch (error) {
-        setError("Failed to fetch department");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDepartments();
-  }, []);
+  // useEffect(() => {
+  //   const fetchDepartments = async () => {
+  //     try {
+  //       const response = await fetch("/api/admin/department");
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const data = await response.json();
+  //       console.log("data", data);
+  //       console.log("response", data);
+  //       setDepartments(data);
+  //     } catch (error) {
+  //       setError("Failed to fetch department");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchDepartments();
+  // }, []);
 
   return (
     <section className="py-20">
@@ -154,7 +154,7 @@ const page = () => {
               className="w-full px-2 py-2 text-xs border border-border rounded hover:outline-none focus:outline-none"
             />
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="department_id" className="text-primary text-sm">
               Department
             </label>
@@ -175,7 +175,7 @@ const page = () => {
                 );
               })}
             </select>
-          </div>
+          </div> */}
           <div className="flex flex-col items-center justify-center border rounded px-4 py-10">
             <label htmlFor="profile" className="text-primary text-xs">
               Profile

@@ -23,7 +23,7 @@ const JoinOurTeam = () => {
           alt="join_our_team"
           width={120}
           height={600}
-          className="object-cover absolute top-12 sm:top-12 md:top-20 lg:top-32 w-12 sm:w-16 md:w-20 lg:w-32 h-auto"
+          className="object-cover absolute top-12 sm:top-10 md:top-20 lg:top-28 w-12 sm:w-16 md:w-20 lg:w-32 h-auto"
         />
         <Image
           src="/images/home/our_team.png"
@@ -33,7 +33,7 @@ const JoinOurTeam = () => {
           className="object-cover  w-full "
         />
       <div className="mt-4 ">
-        <CTA url="#" label="Join Our Team" />
+        <CTA url="/join_our_team" label="Join Our Team" />
       </div>
       </div>
     </section>
