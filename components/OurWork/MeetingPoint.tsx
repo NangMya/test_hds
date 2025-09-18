@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import WavyCard1 from "../WavyCard1";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { WorkProp } from "@/services/api";
-type WorkProps ={
-  works: WorkProp[]
-}
-const MeetingPoint = ({works}:WorkProps) => {
-  
+import Link from "next/link";
+type WorkProps = {
+  works: WorkProp[];
+};
+const MeetingPoint = ({ works }: WorkProps) => {
   const [activeIndex, setActiveIndex] = useState(2);
   const currentSlide = works[activeIndex];
 
@@ -39,7 +39,9 @@ const MeetingPoint = ({works}:WorkProps) => {
     <section className=" overflow-hidden py-4 sm:py-16 md:py-1  z-0 mt-2 ">
       <WavyCard1>
         <div className="container relative z-10 mx-auto px-4 md:px-8 lg:px-16 h-full text-center pt-0 sm:pt-10">
-          <h1 className="text-2xl sm:text-4xl text-center">Our Recent Projects</h1>
+          <h1 className="text-2xl sm:text-4xl text-center">
+            Our Recent Projects
+          </h1>
           <div className="flex flex-col items-center justify-center w-full h-full mt-10 font-sans">
             <div className="relative w-full max-w-6xl flex justify-center items-center h-64 sm:h-72 md:h-80">
               {works.map((slide, index) => {
@@ -81,27 +83,29 @@ const MeetingPoint = ({works}:WorkProps) => {
 
                 return (
                   <div className="" key={slide.id}>
-                  <div
-                    className={cardStyle}
-                    style={{
-                      transform: transformStyle,
-                      zIndex: zIndex,
-                      opacity: opacity,
-                    }}
-                  >
-                    <img
-                      src={slide.image as string}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  </div>
-                    <div className=" text-white z-20">
-                      <h3 className="text-sm md:text-md font-medium">
-                        {slide.title}
-                      </h3>
-                      {/* <p className="text-xs text-gray-300">{slide.description}</p> */}
-                    </div>
+                    <Link href={`/our_work/details/${slide.id}`}>
+                      <div
+                        className={cardStyle}
+                        style={{
+                          transform: transformStyle,
+                          zIndex: zIndex,
+                          opacity: opacity,
+                        }}
+                      >
+                        <img
+                          src={slide.image as string}
+                          alt={slide.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                      </div>
+                      <div className=" text-white z-20">
+                        <h3 className="text-sm md:text-md font-medium">
+                          {slide.title}
+                        </h3>
+                        {/* <p className="text-xs text-gray-300">{slide.description}</p> */}
+                      </div>
+                    </Link>
                   </div>
                 );
               })}

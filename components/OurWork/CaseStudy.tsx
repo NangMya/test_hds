@@ -118,7 +118,9 @@ const CaseStudy = ({works}:WorkProps) => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6 text-white text-sm font-sans">
                       <p className="font-semibold text-lg">{item.title}</p>
-                      <p className="text-gray-300">{item.description}</p>
+                      <p className="text-gray-300">
+                          {item.description.length > 30 ? item.description.slice(0, 30) + '...' : item.description}
+                      </p>
                     </div>
                   </div>
                 );
