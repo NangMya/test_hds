@@ -100,7 +100,7 @@ const MeetingPoint = ({works}:WorkProps) => {
                       <h3 className="text-sm md:text-md font-medium">
                         {slide.title}
                       </h3>
-                      <p className="text-xs text-gray-300">{slide.description}</p>
+                      {/* <p className="text-xs text-gray-300">{slide.description}</p> */}
                     </div>
                   </div>
                 );
@@ -112,7 +112,7 @@ const MeetingPoint = ({works}:WorkProps) => {
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                   {currentSlide.title}
                 </h2>
-                <p className="text-md sm:text-lg text-gray-600">{currentSlide.description}</p>
+                {/* <p className="text-md sm:text-lg text-gray-600">{currentSlide.description}</p> */}
               </div>
             )}
 
