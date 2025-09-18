@@ -102,7 +102,6 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
   const logoColor = isHomePage && !isScrolled ? "#FFFFFF" : "#892A51";
   const color = isHomePage && !isScrolled ? "text-white" : "text-primary";
 
-  console.log("navClass",navClass);
 
   return (
     <>
