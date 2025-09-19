@@ -31,7 +31,7 @@ const Features = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 justify-between relativ items-start pt-4">
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-4 text-left ">
-            <div>
+            <div data-aos="zoom-in-right" data-aos-duration="1000">
               <Link href="/our_service#hds_media">
                 <Image
                   priority={true}
@@ -41,18 +41,18 @@ const Features = () => {
                   alt="HDS Media"
                 />
               </Link>
-              <h5 className="font-medium text-sm sm:text-md">ATL Media</h5>
+              <h5 className="font-medium text-sm sm:text-md pt-2">ATL Media</h5>
               <p className="opacity-50 text-[10px] sm:text-xs leading-5">
                 Planning and Buying TV, Radio, OOH, Cinema, etc.
               </p>
-              <h5 className=" font-medium text-sm sm:text-md pt-2">
+              <h5 className=" font-medium text-xs sm:text-xs pt-2">
                 PR Management
               </h5>
-              <p className="opacity-50 text-[10px] sm:text-xs leading-5">
+              <p className="opacity-50 text-[10px] sm:text-xs leading-5 mb-4">
                 PR Event Set-up, Press Invite & PR Tracking.
               </p>
             </div>
-            <div>
+            <div data-aos="zoom-in-right" data-aos-duration="3000">
               <Link href="/our_service#hds_digital">
                 <Image
                   priority={true}
@@ -92,13 +92,13 @@ const Features = () => {
                 Development.
               </p>
             </div>
-            <div className="mt-0 sm:mt-8">
+            <div className="mt-0 sm:mt-8" >
               <div className="relative w-56 h-56 sm:w-72 sm:h-72 flex items-center justify-center mx-0 sm:mx-8 my-0 sm:my-12 md:my-0">
-                <div className="absolute w-full h-full rounded-full border-2 border-primary border-opacity-70 animate-pulse"></div>
-                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full border-2 border-primary border-opacity-50 animate-pulse"></div>
-                <div className="absolute w-40 h-40 sm:w-56 sm:h-56 rounded-full border-2 border-primary border-opacity-30 animate-pulse"></div>
-                <div className="absolute w-32 h-32 sm:w-48 sm:h-48 rounded-full border-2 border-primary border-opacity-10"></div>
-                <div className="bg-primary w-24 h-24  sm:w-40 sm:h-40 rounded-full flex flex-col items-center justify-center">
+                <div className="absolute w-full h-full rounded-full border-2 border-primary border-opacity-70 animate-pulse"data-aos="zoom-in" data-aos-duration="100"></div>
+                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full border-2 border-primary border-opacity-50 animate-pulse" data-aos="zoom-in" data-aos-duration="500"></div>
+                <div className="absolute w-40 h-40 sm:w-56 sm:h-56 rounded-full border-2 border-primary border-opacity-30 animate-pulse" data-aos="zoom-in" data-aos-duration="1000"></div>
+                <div className="absolute w-32 h-32 sm:w-48 sm:h-48 rounded-full border-2 border-primary border-opacity-10" data-aos="zoom-in" data-aos-duration="2000"></div>
+                <div className="bg-primary w-24 h-24  sm:w-40 sm:h-40 rounded-full flex flex-col items-center justify-center" data-aos="zoom-in" data-aos-duration="3000">
                   <p className="text-white text-sm sm:text-lg font-medium">
                     Our Services{" "}
                   </p>
@@ -116,7 +116,7 @@ const Features = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-1 gap-4 text-left  ">
-            <div className="hidden sm:block">
+            <div className="hidden sm:block" data-aos="zoom-in-left" data-aos-duration="2000">
               <Link href="/our_service#hds_talent">
                 <Image
                   priority={true}
@@ -136,7 +136,7 @@ const Features = () => {
               </p>
             </div>
 
-            <div>
+            <div data-aos="zoom-in-left" data-aos-duration="3000">
               <Link href="/our_service#hds_action">
                 <Image
                   priority={true}
@@ -147,7 +147,7 @@ const Features = () => {
                 />
               </Link>
 
-              <h5 className=" font-medium text-sm sm:text-md pt-2">
+              <h5 className=" font-medium text-sm sm:text-md">
                 Below The Line
               </h5>
               <p className="opacity-50 text-[10px] sm:text-xs leading-5">
@@ -155,7 +155,7 @@ const Features = () => {
                 Local & International Artists Scouting.
               </p>
             </div>
-            <div>
+            <div data-aos="zoom-in-left" data-aos-duration="4000">
               <Link href="/our_service#hds_studio">
                 <Image
                   priority={true}

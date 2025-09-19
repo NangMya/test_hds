@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import React from "react";
-import { PiShoppingBagFill } from "react-icons/pi";
 import WavyCard3 from "../WavyCard3";
 
 const HDSTalent = () => {
@@ -10,7 +9,7 @@ const HDSTalent = () => {
     <div id="hds_talent" className="relative">
     <section className="font-lora relative overflow-hidden py-6 md:py-0 w-full z-10 -mt-36 items-center justify-center ">
       <WavyCard3 color="#F15A22">
-        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-0 sm:mt-16">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-0 sm:mt-16" data-aos="zoom-in" data-aos-duration="2000">
           <Image
             src="/images/common/hds_talent.png"
             width={100}
@@ -20,16 +19,16 @@ const HDSTalent = () => {
           />
         </div>
 
-        <h3 className="text-lg text-white text-center">
+        <h3 className="text-lg text-white text-center" data-aos="zoom-in" data-aos-duration="2000">
           KOL/Influencer Management
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
-          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6">
+          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6" data-aos="zoom-in-right" data-aos-duration="3000">
             We collaborate with the right influencers to deliver authentic and
             engaging content that boosts trust and turns followers into
             customers.{" "}
           </p>
-          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6">
+          <p className="text-white text-center sm:text-left py-0 sm:py-4 text-md text-xs  opacity-65 max-w-sm mx-auto leading-6" data-aos="zoom-in-left" data-aos-duration="3000">
             Our approach is focused on selection of the right KOLs that
             resonates with brands and their audiences, who can drive results,
             and deliver engagement.

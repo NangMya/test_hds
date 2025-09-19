@@ -14,6 +14,7 @@ const HDSDigital = () => {
         height={250}
         alt="HDS Talent Image"
         className="object-contain absolute bottom-6 sm:-top-32 -left-8 sm:right-6 w-36 h-36 sm:w-80 sm:h-80 z-50"
+        data-aos="zoom-in" data-aos-duration="1000"
       />
       <Image
         src="/images/our_service/image4.webp"
@@ -21,10 +22,11 @@ const HDSDigital = () => {
         height={300}
         alt="HDS Talent Image"
         className="object-contain absolute bottom-0 sm:-bottom-10 right-0 sm:left-0 z-50 w-40 h-40 sm:w-80 sm:h-80 scale-x-[-1] sm:scale-x-100"
+        data-aos="zoom-in" data-aos-duration="1000"
       />
       <section className="font-lora relative overflow-hidden w-full z-30 -mt-36  pb-10 sm:pb-0">
         <WavyCard3 color="#90264C">
-          <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-4 mt-6 sm:mt-16">
+          <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-4 mt-6 sm:mt-16" data-aos="zoom-in" data-aos-duration="2000">
             <Image
               src="/images/common/hds_digital.png"
               width={100}
@@ -33,14 +35,14 @@ const HDSDigital = () => {
               className="object-contain rounded-full w-full h-full"
             />
           </div>
-          <h3 className="text-lg text-white text-center">Digital Media</h3>
+          <h3 className="text-lg text-white text-center" data-aos="zoom-in" data-aos-duration="1000">Digital Media</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-16 mt-4 sm:mt-10 w-[90%] mx-auto">
-            <p className="text-white text-xs py-2 opacity-65 text-center sm:text-left leading-6 max-w-sm">
+            <p className="text-white text-xs py-2 opacity-65 text-center sm:text-left leading-6 max-w-sm" data-aos="zoom-in-right" data-aos-duration="2000">
               We build your digital presence across social media and online
               platforms with smart content, digital ad strategy and performance
               tracking to drive real results.
             </p>
-            <p className="text-white text-xs py-2 opacity-65 text-center sm:text-left leading-6 max-w-sm">
+            <p className="text-white text-xs py-2 opacity-65 text-center sm:text-left leading-6 max-w-sm" data-aos="zoom-in-left" data-aos-duration="2000">
               We craft digital solutions, optimize engagement and conversions to
               achieve measurable results, impact and sustained growth.
             </p>

@@ -79,6 +79,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         });
         return NextResponse.json(updateJob);
     } catch (error) {
+        console.log('erorr',error);
         return NextResponse.json({ error: "Failed to update job" }, { status: 500 });
     }
 }

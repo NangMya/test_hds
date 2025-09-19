@@ -8,14 +8,19 @@ import HDSMedia from '@/components/OurService/HDSMedia';
 import HDSStudio from '@/components/OurService/HDSStudio';
 import HDSTalent from '@/components/OurService/HDSTalent';
 import HeroSection from '@/components/OurService/HeroSection';
+import { api } from '@/services/api';
 import React from 'react'
 export const metadata = {
   title: "Our Service | HDS",
   description: "Learn about our mission and team.",
 };
-const page = () => {
+const page = async() => {
+  const [info, clients] = await Promise.all([
+    api.getInfo(),
+    api.getClients()
+  ]);
   return (
-    <WebsiteLayout>
+    <WebsiteLayout footerData={info}>
     <section className='pt-14'>
         <Heading firstTitle="Our " secondTitle="Services"/>
         {/* <HeroSection/> */}
@@ -25,7 +30,7 @@ const page = () => {
         <HDSStudio/>
         <HDSDigital/>
         <HDSAction/>
-        <OurClient/>
+        <OurClient clients={clients}/>
     </section>
     </WebsiteLayout>
   )

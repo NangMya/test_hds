@@ -20,7 +20,7 @@ const OurClient = ({ clients }: OurClientProps) => {
         <h1 className="text-3xl md:text-5xl font-normal leading-snug font-lora">
           Partners Who <span className="text-primary">Trust Us</span>
         </h1>
-        <div className=" py-4 sm:py-7 px-2 sm:px-8 mt-2 sm:mt-10">
+        <div className=" py-4 sm:py-7 px-2 sm:px-8 mt-2 sm:mt-8">
           <div className="py-8 dark:bg-gray-800">
             <Marquee
               pauseOnHover={true}

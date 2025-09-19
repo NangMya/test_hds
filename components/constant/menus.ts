@@ -8,7 +8,7 @@ export const navLinks = [
     },
     {
         id: 2,
-        url:'/about_us',
+        url: '/about_us',
         label: "Who We Are",
         subMenu: [
             {
@@ -29,7 +29,7 @@ export const navLinks = [
         label: "What We Do",
     },
     {
-        id:4,
+        id: 4,
         url: '/join_our_team',
         label: "Join Our Team",
     },
@@ -41,10 +41,10 @@ export const navLinks = [
 ];
 
 export interface MenuItem {
-  label: string;
-  href?: string;      
-  icon?: React.ReactNode;
-  subItems?: { label: string; href: string }[]; 
+    label: string;
+    href?: string;
+    icon?: React.ReactNode;
+    subItems?: { label: string; href: string }[];
 }
 export const adminNavLinks = [
     {
@@ -52,7 +52,7 @@ export const adminNavLinks = [
         href: "/admin/dashboard",
     },
     {
-        label: "Job",
+        label: "Jobs",
         href: "/admin/jobs",
     },
     {
@@ -64,20 +64,25 @@ export const adminNavLinks = [
         href: "/admin/our_works"
     },
     {
+        label: "Contacts",
+        href: "/admin/contacts"
+    },
+    {
         label: "Company Info",
         subItems: [
-            {label:"About", href:"/admin/infos"},
-        ] 
+            { label: "About", href: "/admin/infos" },
+        ]
     },
+
     {
         label: "Setup",
         subItems: [
-            {label: "Clients", href:'/admin/clients'},
-            {label: "Departments", href:'/admin/departments'},
-            {label: "Members", href:'/admin/members'},
-            {label: "Awards", href:'/admin/awards'},
-            {label: "Admin", href:'/admin/admin'},
-            {label: "Activities", href:'/admin/hds_activities'},
+            { label: "Clients", href: '/admin/clients' },
+            { label: "Departments", href: '/admin/departments' },
+            { label: "Members", href: '/admin/members' },
+            { label: "Awards", href: '/admin/awards' },
+            { label: "Admin", href: '/admin/admin' },
+            { label: "Activities", href: '/admin/hds_activities' },
         ]
     }
 ]

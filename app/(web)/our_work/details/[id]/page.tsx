@@ -23,8 +23,10 @@ export async function generateStaticParams() {
 }
 
 const WorkDetail = async ({ params }: WorkDetailProps) => {
-  const info: Info = await api.getInfo();
-  const work = await api.getWorkById(params.id);
+   const [info,work] = await Promise.all([
+      api.getInfo(),
+      api.getWorkById(params.id),
+    ])
 
   if (!work) {
     return (

@@ -16,8 +16,9 @@ import { CgClose } from "react-icons/cg";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/Logo";
-import { Info } from "@/services/api"; 
+import { Info } from "@/services/api";
 import { navLinks } from "@/components/constant/menus";
+import SocialLinks from "@/components/SocialLinks";
 
 const socialMediaIcons: { [key: string]: React.ElementType } = {
   linkedin: FaLinkedin,
@@ -47,27 +48,6 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navOpen = openNavBar ? "translate-x-0" : "-translate-x-full";
 
-  const socialLinks = useMemo(() => {
-    const links: SocialLink[] = [];
-    if (!info) {
-      return links;
-    }
-
-    if (info.linkedin_url)
-      links.push({ name: "linkedin", url: info.linkedin_url });
-    if (info.facebook_url)
-      links.push({ name: "facebook", url: info.facebook_url });
-    if (info.instagram_url)
-      links.push({ name: "instagram", url: info.instagram_url });
-    if (info.youtube_url)
-      links.push({ name: "youtube", url: info.youtube_url });
-    if (info.tiktok_url) links.push({ name: "tiktok", url: info.tiktok_url });
-    if (info.telegram_url)
-      links.push({ name: "telegram", url: info.telegram_url });
-
-    return links;
-  }, [info]); 
-
   useEffect(() => {
     const toggleChangeColor = () => {
       const scrollPosition = window.scrollY;
@@ -81,7 +61,6 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
     return () => window.removeEventListener("scroll", toggleChangeColor);
   }, []);
 
- 
   useEffect(() => {
     const toggleChangeColor = () => {
       const scrollPosition = window.scrollY;
@@ -102,11 +81,12 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
   const logoColor = isHomePage && !isScrolled ? "#FFFFFF" : "#892A51";
   const color = isHomePage && !isScrolled ? "text-white" : "text-primary";
 
-
   return (
     <>
       {loading && <LoadingOverlay />}
-    <nav  className={` transition-all duration-500 h-14 z-[100] w-full fixed flex items-center    ${navClass}`}>
+      <nav
+        className={` transition-all duration-500 h-14 z-[100] w-full fixed flex items-center    ${navClass}`}
+      >
         <div className="flex flex-row items-center justify-between w-[90%] mx-auto">
           <Link href="/">
             <Logo color={logoColor} />
@@ -158,10 +138,17 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
                       setOpenNavBar(false);
                     }}
                     className="flex justify-between items-center uppercase font-semibold"
-                  > <span>{item.label}</span>               
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs ${item.id % 2 == 1 ? "bg-[#F26729]" : "bg-primary"
+                  >
+                    {" "}
+                    <span>{item.label}</span>               
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs ${
+                        item.id % 2 == 1 ? "bg-[#F26729]" : "bg-primary"
                       }`}
-                    > <span className="-rotate-45 pb-1">&#8594;</span> </div>
+                    >
+                      {" "}
+                      <span className="-rotate-45 pb-1">&#8594;</span> 
+                    </div>
                   </Link>
                   {item.subMenu && (
                     <div className="ml-4 mt-2 space-y-1 text-xs text-gray-500">
@@ -175,7 +162,9 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
                             setOpenNavBar(false);
                           }}
                           className="block py-1"
-                        > {sub.label}                 
+                        >
+                          {" "}
+                          {sub.label}                 
                         </Link>
                       ))}
                     </div>
@@ -183,25 +172,8 @@ const Nav = ({ openNav, closeNav, info }: NavProps) => {
                 </div>
               ))}
             </nav>
-            {/* Social Links */}
             <div className="mt-10 flex gap-4 text-xl text-gray-700 absolute bottom-4 sm:relative">
-              {/* FIX: Ensure `socialLinks` is not empty before mapping */}
-              {socialLinks.length > 0 &&
-                socialLinks.map((link) => {
-                  const Icon = socialMediaIcons[link.name];
-                  if (!Icon) return null;
-
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.url}
-                      prefetch={true}
-                      onClick={() => setLoading(true)}
-                    >
-                      <Icon size={20} />
-                    </Link>
-                  );
-                })}
+              <SocialLinks info={info} />
             </div>
           </div>
         </div>

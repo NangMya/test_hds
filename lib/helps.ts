@@ -24,3 +24,10 @@ export const datePath = () =>{
     const datePath = `${year}/${month}/${day}`;
     return datePath;
 }  
+
+export function splitToArray(text: string, delimiter = " , ") {
+  return text
+    .split(delimiter)
+    .map(item => item.trim())
+    .filter(item => item);
+}

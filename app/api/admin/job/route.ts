@@ -43,7 +43,6 @@ export async function POST(req: Request) {
         const requirements = form.get("requirements") as string;
         const gender = form.get("gender") as string;
         const status = form.get("status") as string;
-        console.log("duties", duties);
 
         if (
             !open_date ||
@@ -83,6 +82,7 @@ export async function POST(req: Request) {
         return NextResponse.json(newJob);
 
     } catch (error) {
+        console.log('error',error);
         return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 }

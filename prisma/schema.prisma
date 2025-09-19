@@ -89,11 +89,11 @@ model jobs {
   description   String       @db.Text
   experiences   String
   level         String
-  overview      String
+  overview      String       @db.Text
   job_type      String
   salary        String
-  duties        String
-  requirements  String
+  duties        String       @db.Text
+  requirements  String       @db.Text
   gender        String
   status        String       @default("open")
   created_by    Int

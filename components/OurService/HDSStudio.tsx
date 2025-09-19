@@ -15,6 +15,7 @@ const HDSStudio = () => {
           height={280}
           alt="HDS Talent Image"
           className="object-contain  absolute -top-16 sm:-top-32 right-0 sm:left-0 z-40 w-40 h-40 sm:w-80 sm:h-80 scale-x-[-1] sm:scale-x-100"
+          data-aos="zoom-in" data-aos-duration="1000"
         />
         <Image
           src="/images/our_service/image1.webp"
@@ -22,10 +23,11 @@ const HDSStudio = () => {
           height={280}
           alt="HDS Talent Image"
           className="object-contain  absolute bottom-8 sm:-top-24 right-0 z-40 w-40 h-40 sm:w-80 sm:h-80"
+          data-aos="zoom-in" data-aos-duration="1000"
         />
     <section className="font-lora relative overflow-hidden w-full z-30 -mt-36  pb-16 sm:pb-0 ">
       <WavyCard3 color="#326B62">
-        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-4 sm:mt-16">
+        <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4 mt-4 sm:mt-16" data-aos="zoom-in" data-aos-duration="2000">
           <Image
             src="/images/common/hds_studio.png"
             width={100}
@@ -34,7 +36,7 @@ const HDSStudio = () => {
             className="object-contain rounded-full w-full h-full"
           />
         </div>
-        <h3 className="text-lg text-white text-center">Production & Design</h3>
+        <h3 className="text-lg text-white text-center" data-aos="zoom-in" data-aos-duration="2000">Production & Design</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mt-6 sm:mt-12 w-full sm:w-[90%] mx-auto ">
           <div className="px-8">
@@ -44,7 +46,7 @@ const HDSStudio = () => {
               </span>
               <p className="text-white text-sm">Video Production</p>
             </div>
-            <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+            <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-right" data-aos-duration="2000">
               From animated content to video production, we deliver high-quality
               production ensuring smooth execution from the initial concept to
               final output.
@@ -57,7 +59,7 @@ const HDSStudio = () => {
               </span>
               <p className="text-white text-sm">Graphic design</p>
             </div>
-            <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+            <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-left" data-aos-duration="2000">
               We go beyond words, turning stories into visuals that reflect your
               brand identity and captivate your audience.
             </p>

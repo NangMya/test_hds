@@ -2,7 +2,11 @@
 import Image from 'next/image'
 import React from 'react'
 
-const JobTitle = () => {
+type jobTitleProp ={
+  title:string | undefined,
+  description:string | undefined,
+}
+const JobTitle = ({title,description}: jobTitleProp) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-10 py-10">
       <div className="">
@@ -18,13 +22,11 @@ const JobTitle = () => {
             Designer
           </span>
         </div>
-        <h1 className="font-lora text-4xl md:text-5xl">graphic designer</h1>
+        <h1 className="font-lora text-4xl md:text-5xl lowercase">{title}</h1>
         <h2 className="font-lora text-4xl md:text-5xl opacity-50">needs in our team</h2>
         <div className="w-2 h-2 bg-black bg-opacity-50 rounded-full mt-12 hidden sm:block"></div>
-        <p className="opacity-50 text-sm lowercase max-w-md pt-6 sm:pt-0 pb-6 sm:pb-0">
-          When you start a new porject, it's essential to choose the right
-          road to move forward. Thankfully, we have been here for you to
-          trun on a highway.
+        <p className="opacity-50 text-sm lowercase max-w-md pt-6 sm:pt-0 pb-6 sm:pb-0 text-justify">
+          {description}
         </p>
       </div>
       <div className="bg-[#F6F6F6] rounded-lg border w-full flex items-end justify-center relative ">

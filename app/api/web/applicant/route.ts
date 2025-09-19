@@ -3,23 +3,7 @@ import { mkdir, writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import path from "path";
 
-export async function GET() {
-    try {
-        const applicants = await prisma.applicants.findMany({
-            include:{
-                job:{
-                    select:{
-                        id:true,
-                        position: true,
-                    }
-                }
-            }
-        });
-        return NextResponse.json(applicants)
-    } catch (error) {
-        return NextResponse.error();
-    }
-}
+
 
 export async function POST(req: Request) {
     try {

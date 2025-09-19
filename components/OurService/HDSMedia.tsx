@@ -12,11 +12,11 @@ const HDSMedia = () => {
         alt="image"
         width={280}
         height={280}
-        className="object-contain absolute -top-[10%] sm:-top-[20%] right-0 sm:left-0 w-44 h-44 sm:w-64 sm:h-64 scale-x-[-1] sm:scale-x-0"
+        className="object-contain absolute -top-[10%] sm:-top-[20%] right-0 sm:left-0 w-44 h-44 sm:w-64 sm:h-64 scale-x-[-1] sm:scale-x-0" data-aos="zoom-in" data-aos-duration="1000"
       />
-      <Image priority={true}  src="/images/our_service/talent_image.webp" alt="image" width={300} height={300} className="object-contain absolute bottom-10 sm:-bottom-[10%] left-0 z-20 w-40 h-40 sm:w-80 sm:h-80"/>
+      <Image priority={true}  src="/images/our_service/talent_image.webp" alt="image" width={300} height={300} className="object-contain absolute bottom-10 sm:-bottom-[10%] left-0 z-20 w-40 h-40 sm:w-80 sm:h-80" data-aos="zoom-in" data-aos-duration="1000"/>
       
-      <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4">
+      <div className="bg-white w-16 h-16 sm:w-24 sm:h-24 rounded-full p-1 mx-auto mb-1 sm:mb-4" data-aos="zoom-in" data-aos-duration="2000">
         <Image
           src="/images/common/hds_media.png"
           width={100}
@@ -25,7 +25,7 @@ const HDSMedia = () => {
           className="object-contain rounded-full w-full h-full"
         />
       </div>
-      <h3 className="text-md sm:text-lg text-white">ATL Media</h3>
+      <h3 className="text-md sm:text-lg text-white" data-aos="zoom-in" data-aos-duration="2000">ATL Media</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-8 mt-2 sm:mt-10 w-full sm:w-[90%] mx-auto pb-28 sm:pb-44 pt-4 sm:pt-8">
         <div className="px-8 pb-6 sm:pb-0">
           <div className="flex flex-row gap-2 justify-start items-center mb-0 sm:mb-4">
@@ -34,7 +34,7 @@ const HDSMedia = () => {
             </span>
             <p className="text-white text-sm">PR Management</p>
           </div>
-          <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+          <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-right" data-aos-duration="3000">
             From setting up your PR strategy to tracking performance, we manage every step with precision - delivering impactful stories that boost brand credibility through targeted media coverage.
           </p>
         </div>
@@ -45,7 +45,7 @@ const HDSMedia = () => {
             </span>
             <p className="text-white text-sm">ATL Media</p>
           </div>
-          <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+          <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-left" data-aos-duration="3000">
             We optimise brand exposure through strategic placements on TV, redio, billboards, and digital platforms. Ideal for creating strong brand awareness and credibility.
           </p>
         </div>

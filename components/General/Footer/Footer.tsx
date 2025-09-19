@@ -2,18 +2,10 @@
 
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Logo from "@/components/Logo";
-import { api } from "@/services/api";
-import Image from "next/image";
+import SocialLinks from "@/components/SocialLinks";
 import Link from "next/link";
 import React, { useState } from "react";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaTelegram,
-  FaTiktok,
-  FaYoutube,
-} from "react-icons/fa";
+
 import { FaLocationDot } from "react-icons/fa6";
 
 const Footer = async ({ footerData }: {  footerData: any }) => {
@@ -123,12 +115,7 @@ const Footer = async ({ footerData }: {  footerData: any }) => {
                     <div>
                       <p className="py-2 text-sm">Socials</p>
                       <div className="grid grid-cols-3 gap-4 text-primary pt-2">
-                        <FaLinkedin size={18} className="cursor-pointer" />
-                        <FaFacebook size={18} className="cursor-pointer" />
-                        <FaInstagram size={18} className="cursor-pointer" />
-                        <FaYoutube size={18} className="cursor-pointer" />
-                        <FaTiktok size={18} className="cursor-pointer" />
-                        <FaTelegram size={18} className="cursor-pointer" />
+                        <SocialLinks info={footerData}/>
                       </div>
                     </div>
                     <div className="hidden sm:block">

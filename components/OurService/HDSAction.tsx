@@ -16,9 +16,10 @@ const HDSAction = () => {
             height={100}
             alt="HDS Media"
             className="object-contain rounded-full w-full h-full"
+            data-aos="zoom-in" data-aos-duration="1000"
           />
         </div>
-        <h3 className="text-lg text-white text-center">Below The Line</h3>
+        <h3 className="text-lg text-white text-center" data-aos="zoom-in" data-aos-duration="1000">Below The Line</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-8 mt-8 sm:mt-14 w-full sm:w-[90%] mx-auto">
           <div className="px-8 pb-4 sm:pb-0">
             <div className="flex flex-row gap-2 justify-start items-center mb-0 sm:mb-4">
@@ -27,7 +28,7 @@ const HDSAction = () => {
               </span>
               <p className="text-white text-sm">Concepts</p>
             </div>
-            <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+            <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-right" data-aos-duration="2000">
               We combine strategic insight with creativity to deliver unique activation concepts, carefully crafted for each brand and its target market.
             </p>
           </div>
@@ -38,7 +39,7 @@ const HDSAction = () => {
               </span>
               <p className="text-white text-sm">Events</p>
             </div>
-            <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+            <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-out" data-aos-duration="2000">
               We bring a fresh and unique approach to every event, understanding that a well-planned and flawlessly executed experience.
             </p>
           </div>
@@ -49,7 +50,7 @@ const HDSAction = () => {
               </span>
               <p className="text-white text-sm">Activations</p>
             </div>
-            <p className="text-white text-xs py-2 opacity-65 text-left leading-6">
+            <p className="text-white text-xs py-2 opacity-65 text-left leading-6" data-aos="zoom-in-left" data-aos-duration="2000">
               We specialize in concept organization_From scouting national and international artists to full-scale concert execution_with a proven track record, including successful international shows delivered for SMART Axiata, Vattanac Brewery and Ganzberg Group among others.
             </p>
           </div>

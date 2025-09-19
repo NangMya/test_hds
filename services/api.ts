@@ -49,6 +49,7 @@ export type DepartmentProp = {
   updated_by?: number;
   created_at?: string;
   updated_at?: string;
+  jobs?: JobProp[];
   createdBy?: {
     name: string;
   };
@@ -149,6 +150,9 @@ export type JobProp = {
   department?: {
     name: string
   }
+  applicant?:{
+    id?:string,
+  }[]
   createdBy?: {
     name: string;
   };
@@ -199,6 +203,14 @@ export type AwardProp = {
   };
 };
 
+export type ContactProp = {
+  id?: number,
+  name: string,
+  email: string,
+  phone: string,
+  message:string,
+}
+
 type FetchOptions = {
   tags?: string[];
   revalidate?: number;
@@ -244,5 +256,15 @@ export const api = {
   getWorkById: async (id: string): Promise<WorkProp | null> => {
     return fetcher(`/api/web/work/${id}`, { revalidate: 30, tags: ["work"] });
   },
+  getDepartmentWithJobs: async (): Promise<DepartmentProp[]> =>{
+    return fetcher('/api/web/department',{revalidate: 3, tags: ['departments']});
+  },
+   getJobs: async(): Promise<JobProp[]> =>{
+    return fetcher(`/api/web/job`,{revalidate: 30, tags: ["job"]});
+  },
+  getJobById: async(id:string): Promise<JobProp | null> =>{
+    return fetcher(`/api/web/job/${id}`,{revalidate: 30, tags: ["job"]});
+  }
+
 
 };
